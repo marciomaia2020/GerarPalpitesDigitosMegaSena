@@ -85,12 +85,7 @@ A contagem está agora exatamente como você explicou! 🎯✅
 
 
 
-Para Atualizar Valores no Futuro:
-Opção 1 - Simples (manual):
 
-javascript
-
-Copiar
 // Mude apenas aqui:
 sistemaValores.ultimaAtualizacao = "2025-02-01";
 sistemaValores.custosJogo[6] = 7.00; // Novo valor
@@ -280,3 +275,4 @@ Total estimado: R$ 30,00 (5 jogos × R$ 6,00)
 ✅ Compatibilidade total com todas as funcionalidades existentes
 ✅ Interface unificada - mesma lógica para texto manual e arquivos
 Agora você pode simplesmente arrastar seus arquivos .txt para a área verde e todos os jogos serão importados automaticamente! 🎯📁✨
+Agora a Mega Sena tem a mesma funcionalidade inteligente de controle de números sorteados da Dupla Sena! 🍀🎯

@@ -777,6 +777,10 @@
             setTimeout(() => {
                 atualizarVisualizacaoDropArea();
             }, 100);
+            gerarOpcoesQuantidadeDezenas();
+            criarGridNumeros();
+            atualizarAnaliseJogo();
+            verificarStatusValores();
         }
 
         // Gerar opções do select baseadas no sistema de valores
@@ -986,6 +990,9 @@
             }
             
             atualizarVisualizacaoDropArea();
+                btn.classList.add('selecionado');
+            }
+            
             atualizarAnaliseJogo();
             validarBotaoAdicionar();
         }
@@ -1284,6 +1291,9 @@
                 }
             });
 
+                validarBotaoAdicionar();
+            });
+
             // Botões de ação do jogo
             document.getElementById('limparJogo').addEventListener('click', limparSelecao);
             document.getElementById('randomizarJogo').addEventListener('click', randomizarJogo);
@@ -1318,6 +1328,9 @@
                 btn.classList.remove('selecionado');
             });
             atualizarVisualizacaoDropArea();
+            document.querySelectorAll('.numero-mega').forEach(btn => {
+                btn.classList.remove('selecionado');
+            });
             atualizarAnaliseJogo();
             validarBotaoAdicionar();
         }
@@ -1402,6 +1415,7 @@
                                 ✏️
                             </button>
                             <button onclick="removerJogo(${jogo.id})" class="bg-red-500 hover:bg-red-600 text-white px-2 py-1 rounded text-xs" title="Excluir este jogo">
+                            <button onclick="removerJogo(${jogo.id})" class="bg-red-500 hover:bg-red-600 text-white px-2 py-1 rounded text-xs">
                                 🗑️
                             </button>
                         </div>
@@ -1530,6 +1544,11 @@
                 document.body.removeChild(modal);
                 mostrarAlerta('Jogo excluído com sucesso!', 'success');
             };
+        // Remover jogo específico
+        function removerJogo(id) {
+            jogosAdicionados = jogosAdicionados.filter(jogo => jogo.id !== id);
+            atualizarVisualizacaoJogos();
+            atualizarCustoTotal();
         }
 
         // Limpar todos os jogos
