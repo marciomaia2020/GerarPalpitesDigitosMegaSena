@@ -25,6 +25,11 @@
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.05); }
         }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
         .loading-circle {
             width: 80px;
             height: 80px;
@@ -84,6 +89,31 @@
             background: #6b7280;
             opacity: 0.4;
             cursor: not-allowed;
+        }
+
+        /* Destacar números pares/ímpares */
+        .numero-mega.par {
+            border: 2px solid #10b981;
+        }
+        .numero-mega.impar {
+            border: 2px solid #8b5cf6;
+        }
+
+        /* Contador de pares/ímpares com animação */
+        .contador-destaque {
+            animation: bounce 1s ease-in-out;
+        }
+        
+        .meta-atingida {
+            background: linear-gradient(45deg, #10b981, #34d399) !important;
+            color: white;
+            animation: pulse 1s infinite;
+        }
+        
+        .meta-excedida {
+            background: linear-gradient(45deg, #ef4444, #f87171) !important;
+            color: white;
+            animation: pulse 0.5s infinite;
         }
 
         /* Estilos para drag and drop */
@@ -299,7 +329,48 @@
                         </select>
                     </div>
 
-                    <!-- MELHORIA 1: Campo para Editar Números Inseridos -->
+                    <!-- 🎯 CONTADOR DE PARES/ÍMPARES BEM DESTACADO -->
+                    <div class="mb-6 p-5 bg-gradient-to-br from-green-50 via-blue-50 to-purple-50 border-4 border-green-400 rounded-xl shadow-lg">
+                        <div class="text-xl font-bold text-gray-800 mb-4 text-center">⚪ ESTRATÉGIA: PARES vs ÍMPARES</div>
+                        
+                        <!-- Estatística do Último Sorteio -->
+                        <div id="estatisticaUltimoSorteio" class="mb-4 p-3 bg-blue-100 border border-blue-300 rounded-lg text-center">
+                            <div class="text-sm font-medium text-blue-800">📊 ÚLTIMO SORTEIO TEVE:</div>
+                            <div class="text-lg font-bold text-blue-900">
+                                <span id="paresUltimoSorteio" class="text-green-600">3</span> PARES + 
+                                <span id="imparesUltimoSorteio" class="text-purple-600">3</span> ÍMPARES
+                            </div>
+                            <div class="text-xs text-blue-700">👆 Use como referência para sua estratégia</div>
+                        </div>
+                        
+                        <!-- Contador Visual Atual -->
+                        <div class="grid grid-cols-2 gap-6 mb-4">
+                            <div class="text-center p-4 bg-green-100 rounded-lg border-2 border-green-300">
+                                <div class="text-4xl font-bold text-green-600 contador-destaque" id="paresAtuais">0</div>
+                                <div class="text-lg font-bold text-green-700">PARES</div>
+                                <div class="text-sm text-green-600">🎯 Meta: <span id="metaPares" class="font-bold">3</span></div>
+                                <div class="text-xs text-green-500">2, 4, 6, 8, 10...</div>
+                            </div>
+                            <div class="text-center p-4 bg-purple-100 rounded-lg border-2 border-purple-300">
+                                <div class="text-4xl font-bold text-purple-600 contador-destaque" id="imparesAtuais">0</div>
+                                <div class="text-lg font-bold text-purple-700">ÍMPARES</div>
+                                <div class="text-sm text-purple-600">🎯 Meta: <span id="metaImpares" class="font-bold">3</span></div>
+                                <div class="text-xs text-purple-500">1, 3, 5, 7, 9...</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Status da Estratégia -->
+                        <div id="statusEstrategia" class="text-center p-3 rounded-lg font-bold text-lg bg-gray-100 text-gray-700">
+                            🎯 Selecione números para ver sua estratégia
+                        </div>
+                        
+                        <!-- Dica Dinâmica -->
+                        <div id="dicaEstrategia" class="mt-3 text-center text-sm bg-yellow-100 border border-yellow-300 rounded p-2 text-yellow-800">
+                            💡 <strong>Dica:</strong> A maioria dos sorteios tem distribuição equilibrada de pares e ímpares
+                        </div>
+                    </div>
+
+                    <!-- NOVA FUNCIONALIDADE: Campo para Editar Números Inseridos -->
                     <div class="mb-4">
                         <label class="block text-megasena font-medium mb-2">✏️ Editar Números Manualmente:</label>
                         <div class="flex gap-2">
@@ -320,14 +391,12 @@
                         </div>
                     </div>
 
-                    <!-- Análise de Dígitos Atual -->
+                    <!-- Análise Complementar -->
                     <div id="analiseDigitos" class="mb-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
-                        <div class="text-sm font-medium text-blue-800 mb-2">📊 Análise do Jogo Atual:</div>
+                        <div class="text-sm font-medium text-blue-800 mb-2">📊 Análise Complementar:</div>
                         <div class="grid grid-cols-2 gap-2 text-xs">
                             <div>Dezenas selecionadas: <span id="dezenasCount" class="font-bold">0</span></div>
                             <div>Dígitos diferentes: <span id="digitosCount" class="font-bold">0</span></div>
-                            <div>Números pares: <span id="paresCount" class="font-bold text-green-600">0</span></div>
-                            <div>Números ímpares: <span id="imparesCount" class="font-bold text-purple-600">0</span></div>
                         </div>
                         <div id="sugestaoDigitos" class="mt-2 text-xs text-blue-700">
                             <!-- Sugestão baseada no último sorteio -->
@@ -337,6 +406,10 @@
                     <!-- Grid de Números 1-60 -->
                     <div class="mb-4">
                         <label class="block text-megasena font-medium mb-2">Selecione as Dezenas (01-60):</label>
+                        <div class="text-xs mb-2 text-gray-600">
+                            <span class="text-green-600">●</span> Verde = Pares | 
+                            <span class="text-purple-600">●</span> Roxo = Ímpares
+                        </div>
                         <div id="gridNumeros" class="grid grid-cols-6 gap-2">
                             <!-- Números de 01 a 60 serão gerados aqui -->
                         </div>
@@ -358,7 +431,7 @@
                         </div>
                     </div>
 
-                    <!-- MELHORIA 2: Área de Drag and Drop -->
+                    <!-- NOVA FUNCIONALIDADE: Área de Drag and Drop -->
                     <div class="mb-4">
                         <label class="block text-megasena font-medium mb-2">🎯 Área de Drag & Drop:</label>
                         <div id="dropZone" class="drop-zone">
@@ -483,73 +556,32 @@
                         <h3 class="text-xl font-bold text-green-800 mb-3">📋 Passo a Passo:</h3>
                         <div class="space-y-3 text-green-700">
                             <p><strong>1. Escolha a quantidade:</strong> Selecione de 6 a 20 dezenas por jogo</p>
-                            <p><strong>2. Selecione os números:</strong> Clique nos números de 01 a 60 para formar seu jogo</p>
-                            <p><strong>3. Análise automática:</strong> O sistema mostra quantos dígitos foram usados</p>
-                            <p><strong>4. Sugestão inteligente:</strong> Baseada no último sorteio (pequeno/médio/alto)</p>
-                            <p><strong>5. Custo em tempo real:</strong> Veja o valor total conforme adiciona jogos</p>
+                            <p><strong>2. Estratégia Par/Ímpar:</strong> Veja quantos pares e ímpares saíram no último sorteio</p>
+                            <p><strong>3. Selecione os números:</strong> Clique nos números de 01 a 60 para formar seu jogo</p>
+                            <p><strong>4. Acompanhe o contador:</strong> Veja em tempo real quantos pares/ímpares você selecionou</p>
+                            <p><strong>5. Análise automática:</strong> O sistema mostra se você está seguindo a estatística</p>
                             <p><strong>6. Download:</strong> Exporte seus jogos em HTML, TXT ou XLSX</p>
                         </div>
                     </div>
 
                     <div class="bg-purple-50 border border-purple-200 rounded-lg p-4">
-                        <h3 class="text-xl font-bold text-purple-800 mb-3">✨ Novas Funcionalidades:</h3>
+                        <h3 class="text-xl font-bold text-purple-800 mb-3">⚪ Estratégia de Pares e Ímpares:</h3>
                         <div class="space-y-2 text-purple-700">
-                            <p><strong>✏️ Editor Manual:</strong> Digite os números diretamente separados por espaço ou vírgula</p>
-                            <p><strong>🎯 Drag & Drop:</strong> Arraste números para a área especial de seleção</p>
-                            <p><strong>📊 Contador Inteligente:</strong> Acompanhe quantos números você já selecionou</p>
-                            <p><strong>🔄 Validação Automática:</strong> O sistema verifica e corrige automaticamente</p>
-                            <p><strong>❌ Remoção Fácil:</strong> Clique no X para remover números da área de drag</p>
-                        </div>
-                    </div>
-
-                    <div class="bg-orange-50 border border-orange-200 rounded-lg p-4">
-                        <h3 class="text-xl font-bold text-orange-800 mb-3">🎯 Controle de Números Sorteados:</h3>
-                        <div class="space-y-2 text-orange-700">
-                            <p><strong>Bloqueio automático:</strong> Números do último sorteio ficam desabilitados por padrão</p>
-                            <p><strong>Visual especial:</strong> Números sorteados têm ícone 🎯 e borda dourada</p>
-                            <p><strong>Estratégia anti-repetição:</strong> Evita usar números que acabaram de sair</p>
-                            <p><strong>Flexibilidade:</strong> Marque "Permitir números sorteados" para habilitá-los</p>
-                            <p><strong>Randomização inteligente:</strong> Respeita sua preferência automaticamente</p>
+                            <p><strong>📊 Análise Estatística:</strong> O app mostra quantos pares e ímpares saíram no último sorteio</p>
+                            <p><strong>🎯 Meta Dinâmica:</strong> Usa o último sorteio como referência para sua estratégia</p>
+                            <p><strong>📈 Contador Visual:</strong> Veja em tempo real quantos pares/ímpares você já selecionou</p>
+                            <p><strong>✅ Status Inteligente:</strong> Sabe se você está seguindo a estratégia ou divergindo</p>
+                            <p><strong>💡 Dicas Automáticas:</strong> Receba orientações sobre o que fazer a seguir</p>
                         </div>
                     </div>
 
                     <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                        <h3 class="text-xl font-bold text-blue-800 mb-3">🎯 Análise de Dígitos:</h3>
+                        <h3 class="text-xl font-bold text-blue-800 mb-3">🎯 Como Funciona o Contador:</h3>
                         <div class="space-y-2 text-blue-700">
-                            <p><strong>Como contamos:</strong> Todos os dígitos únicos (0-9) que aparecem nos números</p>
-                            <p><strong>Exemplo:</strong> 02 20 28 38 44 47 = dígitos 0, 2, 3, 4, 7, 8 = 6 dígitos diferentes</p>
-                            <p><strong>Outro exemplo:</strong> 12 13 14 15 16 17 = dígitos 1, 2, 3, 4, 5, 6, 7 = 7 dígitos diferentes</p>
-                            <p><strong>Sugestão:</strong> Último sorteio usou X dígitos → tente X-1, X ou X+1</p>
-                        </div>
-                    </div>
-
-                    <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
-                        <h3 class="text-xl font-bold text-yellow-800 mb-3">💰 Sistema de Valores:</h3>
-                        <div class="space-y-3">
-                            <div class="bg-white p-3 rounded border border-yellow-300">
-                                <div class="text-sm font-medium text-yellow-800 mb-2">📋 Informações do Sistema:</div>
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs text-yellow-700">
-                                    <div><strong>Última Atualização:</strong> 20/01/2025</div>
-                                    <div><strong>Fonte:</strong> Caixa Econômica Federal</div>
-                                    <div><strong>Versão:</strong> 1.0</div>
-                                    <div><strong>Status:</strong> Valores Atualizados ✅</div>
-                                </div>
-                            </div>
-                            
-                            <div class="grid grid-cols-2 md:grid-cols-3 gap-3 text-sm">
-                                <div><strong>6 dezenas:</strong> R$ 6,00</div>
-                                <div><strong>7 dezenas:</strong> R$ 42,00</div>
-                                <div><strong>8 dezenas:</strong> R$ 168,00</div>
-                                <div><strong>9 dezenas:</strong> R$ 504,00</div>
-                                <div><strong>10 dezenas:</strong> R$ 1.260,00</div>
-                                <div><strong>15 dezenas:</strong> R$ 30.030,00</div>
-                                <div><strong>20 dezenas:</strong> R$ 232.560,00</div>
-                                <div class="text-blue-600"><strong>Atualização:</strong> Automática</div>
-                            </div>
-                            
-                            <div class="text-xs text-yellow-600">
-                                💡 <strong>Sistema Inteligente:</strong> Os valores são atualizados automaticamente e você será notificado caso estejam desatualizados por mais de 30 dias.
-                            </div>
+                            <p><strong>Verde (Pares):</strong> 2, 4, 6, 8, 10, 12... até 60</p>
+                            <p><strong>Roxo (Ímpares):</strong> 1, 3, 5, 7, 9, 11... até 59</p>
+                            <p><strong>Meta:</strong> Baseada no último sorteio da Mega Sena</p>
+                            <p><strong>Status:</strong> Verde = seguindo estratégia, Vermelho = fugindo da estratégia</p>
                         </div>
                     </div>
                 </div>
@@ -588,28 +620,6 @@
             // Função para obter valor de uma aposta
             obterValor: function(quantidade) {
                 return this.custosJogo[quantidade] || 0;
-            },
-            
-            // Função para verificar se valores estão atualizados (30 dias)
-            valoresAtualizados: function() {
-                const hoje = new Date();
-                const ultimaAtualizacao = new Date(this.ultimaAtualizacao);
-                const diasDiferenca = Math.floor((hoje - ultimaAtualizacao) / (1000 * 60 * 60 * 24));
-                return diasDiferenca <= 30;
-            },
-            
-            // Função para obter status de atualização
-            obterStatusAtualizacao: function() {
-                const hoje = new Date();
-                const ultimaAtualizacao = new Date(this.ultimaAtualizacao);
-                const diasDiferenca = Math.floor((hoje - ultimaAtualizacao) / (1000 * 60 * 60 * 24));
-                
-                return {
-                    atualizado: diasDiferenca <= 30,
-                    diasDesdeUltimaAtualizacao: diasDiferenca,
-                    dataFormatada: ultimaAtualizacao.toLocaleDateString('pt-BR'),
-                    alerta: diasDiferenca > 30 ? "Valores podem estar desatualizados" : "Valores atualizados"
-                };
             }
         };
 
@@ -673,27 +683,49 @@
             document.querySelector('.text-2xl.font-bold.text-megasena').textContent = 
                 `Prêmio Estimado: ${formatarMoeda(data.valorEstimadoProximoConcurso || 55000000)}`;
 
-            // Analisar dígitos do último sorteio para sugestões
-            analisarDigitosUltimoSorteio(numeros);
+            // 🎯 NOVA FUNCIONALIDADE: Analisar pares/ímpares do último sorteio
+            analisarParesImparesUltimoSorteio(numeros);
             
             // Identificar números sorteados
             identificarNumerosSorteados(numeros);
         }
 
-        // Analisar dígitos do último sorteio
-        function analisarDigitosUltimoSorteio(numeros) {
+        // 🎯 NOVA FUNCIONALIDADE PRINCIPAL: Analisar pares/ímpares do último sorteio
+        function analisarParesImparesUltimoSorteio(numeros) {
             const digitos = new Set();
+            let paresUltimoSorteio = 0;
+            let imparesUltimoSorteio = 0;
+            
             numeros.forEach(num => {
-                const numStr = num.toString().padStart(2, '0');
+                const numero = parseInt(num);
+                const numStr = numero.toString().padStart(2, '0');
+                
                 // Adicionar cada dígito individual
                 for (let digit of numStr) {
                     digitos.add(parseInt(digit));
                 }
+                
+                // Contar pares e ímpares
+                if (numero % 2 === 0) {
+                    paresUltimoSorteio++;
+                } else {
+                    imparesUltimoSorteio++;
+                }
             });
             
+            // Armazenar dados globalmente
             window.digitosUltimoSorteio = digitos.size;
-            console.log(`Último sorteio: ${numeros.join(' ')} = ${digitos.size} dígitos: ${Array.from(digitos).sort().join(' ')}`);
-            atualizarSugestaoDigitos();
+            window.paresUltimoSorteio = paresUltimoSorteio;
+            window.imparesUltimoSorteio = imparesUltimoSorteio;
+            
+            // 🎯 ATUALIZAR INTERFACE COM OS DADOS ESTATÍSTICOS
+            document.getElementById('paresUltimoSorteio').textContent = paresUltimoSorteio;
+            document.getElementById('imparesUltimoSorteio').textContent = imparesUltimoSorteio;
+            document.getElementById('metaPares').textContent = paresUltimoSorteio;
+            document.getElementById('metaImpares').textContent = imparesUltimoSorteio;
+            
+            console.log(`Último sorteio: ${numeros.join(' ')} = ${digitos.size} dígitos: ${Array.from(digitos).sort().join(' ')} | Pares: ${paresUltimoSorteio}, Ímpares: ${imparesUltimoSorteio}`);
+            atualizarContadorParesImpares();
         }
 
         // Identificar números sorteados
@@ -737,14 +769,11 @@
                     btn.classList.add('sorteado');
                     
                     if (permitir) {
-                        // Checkbox MARCADO: HABILITAR números sorteados
                         btn.classList.remove('disabled');
                         btn.onclick = () => toggleNumero(numero);
                     } else {
-                        // Checkbox DESMARCADO (padrão): DESABILITAR números sorteados
                         btn.classList.add('disabled');
                         btn.onclick = () => {
-                            // Modal explicativo ao invés de alert()
                             const modal = document.createElement('div');
                             modal.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50';
                             modal.innerHTML = `
@@ -765,17 +794,14 @@
 
         // Inicializar interface
         function inicializarInterface() {
-            // Garantir que arrays globais estão inicializados
             numerosSelecionados = [];
             numerosDropArea = [];
             
             gerarOpcoesQuantidadeDezenas();
             criarGridNumeros();
             configurarDragAndDrop();
-            atualizarAnaliseJogo();
-            verificarStatusValores();
+            atualizarContadorParesImpares();
             
-            // Atualizar visualização inicial da área de drop
             setTimeout(() => {
                 atualizarVisualizacaoDropArea();
             }, 100);
@@ -784,7 +810,7 @@
         // Gerar opções do select baseadas no sistema de valores
         function gerarOpcoesQuantidadeDezenas() {
             const select = document.getElementById('quantidadeDezenas');
-            select.innerHTML = ''; // Limpar opções existentes
+            select.innerHTML = '';
             
             Object.entries(sistemaValores.custosJogo).forEach(([quantidade, valor]) => {
                 const option = document.createElement('option');
@@ -794,45 +820,7 @@
             });
         }
 
-        // Verificar status dos valores e exibir alerta se necessário
-        function verificarStatusValores() {
-            const status = sistemaValores.obterStatusAtualizacao();
-            
-            if (!status.atualizado) {
-                exibirAlertaValores(status);
-            }
-            
-            // Log para debug
-            console.log(`Sistema de Valores:`, {
-                versao: sistemaValores.versao,
-                ultimaAtualizacao: status.dataFormatada,
-                diasDesdeAtualizacao: status.diasDesdeUltimaAtualizacao,
-                status: status.alerta
-            });
-        }
-
-        // Exibir alerta sobre valores desatualizados
-        function exibirAlertaValores(status) {
-            const alertaDiv = document.createElement('div');
-            alertaDiv.className = 'bg-yellow-100 border border-yellow-400 text-yellow-800 px-4 py-3 rounded-lg mb-4';
-            alertaDiv.innerHTML = `
-                <div class="flex items-center">
-                    <span class="mr-2">⚠️</span>
-                    <div>
-                        <strong>Aviso:</strong> Os valores das apostas foram atualizados pela última vez em ${status.dataFormatada} 
-                        (${status.diasDesdeUltimaAtualizacao} dias atrás). 
-                        Recomendamos verificar os valores atuais no site da Caixa.
-                    </div>
-                </div>
-            `;
-            
-            // Inserir após o header
-            const container = document.querySelector('.container');
-            const primeiroElemento = container.children[1]; // Após o header
-            container.insertBefore(alertaDiv, primeiroElemento);
-        }
-
-        // Criar grid de números 1-60
+        // Criar grid de números 1-60 com destaque para pares/ímpares
         function criarGridNumeros() {
             const grid = document.getElementById('gridNumeros');
             grid.innerHTML = '';
@@ -840,6 +828,14 @@
             for (let i = 1; i <= 60; i++) {
                 const btn = document.createElement('button');
                 btn.className = 'numero-mega';
+                
+                // 🎯 DESTACAR PARES E ÍMPARES VISUALMENTE
+                if (i % 2 === 0) {
+                    btn.classList.add('par');
+                } else {
+                    btn.classList.add('impar');
+                }
+                
                 btn.textContent = i.toString().padStart(2, '0');
                 btn.onclick = () => toggleNumero(i);
                 btn.draggable = true;
@@ -859,7 +855,85 @@
             }
         }
 
-        // MELHORIA 2: Configurar funcionalidade de Drag and Drop (COM SUPORTE A ARQUIVOS)
+        // 🎯 NOVA FUNCIONALIDADE PRINCIPAL: Atualizar contador de pares/ímpares
+        function atualizarContadorParesImpares() {
+            const paresAtuais = numerosSelecionados.filter(num => num % 2 === 0).length;
+            const imparesAtuais = numerosSelecionados.filter(num => num % 2 !== 0).length;
+            const metaPares = window.paresUltimoSorteio || 3;
+            const metaImpares = window.imparesUltimoSorteio || 3;
+            
+            // Atualizar contadores visuais
+            document.getElementById('paresAtuais').textContent = paresAtuais;
+            document.getElementById('imparesAtuais').textContent = imparesAtuais;
+            
+            // Aplicar animação de destaque
+            document.getElementById('paresAtuais').classList.add('contador-destaque');
+            document.getElementById('imparesAtuais').classList.add('contador-destaque');
+            
+            setTimeout(() => {
+                document.getElementById('paresAtuais').classList.remove('contador-destaque');
+                document.getElementById('imparesAtuais').classList.remove('contador-destaque');
+            }, 500);
+            
+            // 🎯 AVALIAR ESTRATÉGIA E MOSTRAR STATUS
+            const totalSelecionados = numerosSelecionados.length;
+            const statusEl = document.getElementById('statusEstrategia');
+            const dicaEl = document.getElementById('dicaEstrategia');
+            
+            if (totalSelecionados === 0) {
+                statusEl.textContent = '🎯 Selecione números para ver sua estratégia';
+                statusEl.className = 'text-center p-3 rounded-lg font-bold text-lg bg-gray-100 text-gray-700';
+                dicaEl.innerHTML = '💡 <strong>Dica:</strong> A maioria dos sorteios tem distribuição equilibrada de pares e ímpares';
+            } else {
+                // Avaliar se está seguindo a estratégia
+                const diferencaPares = Math.abs(paresAtuais - metaPares);
+                const diferencaImpares = Math.abs(imparesAtuais - metaImpares);
+                
+                if (totalSelecionados < 6) {
+                    // Ainda selecionando
+                    const paresRestantes = Math.max(0, metaPares - paresAtuais);
+                    const imparesRestantes = Math.max(0, metaImpares - imparesAtuais);
+                    
+                    if (paresRestantes > 0 && imparesRestantes > 0) {
+                        statusEl.textContent = `📍 Faltam: ${paresRestantes} pares, ${imparesRestantes} ímpares`;
+                        statusEl.className = 'text-center p-3 rounded-lg font-bold text-lg bg-blue-100 text-blue-800';
+                        dicaEl.innerHTML = `💡 <strong>Continue:</strong> Selecione mais ${paresRestantes} pares e ${imparesRestantes} ímpares para seguir a estratégia`;
+                    } else if (paresRestantes > 0) {
+                        statusEl.textContent = `📍 Faltam: ${paresRestantes} pares`;
+                        statusEl.className = 'text-center p-3 rounded-lg font-bold text-lg bg-green-100 text-green-800';
+                        dicaEl.innerHTML = `💡 <strong>Quase lá:</strong> Selecione mais ${paresRestantes} números pares`;
+                    } else if (imparesRestantes > 0) {
+                        statusEl.textContent = `📍 Faltam: ${imparesRestantes} ímpares`;
+                        statusEl.className = 'text-center p-3 rounded-lg font-bold text-lg bg-purple-100 text-purple-800';
+                        dicaEl.innerHTML = `💡 <strong>Quase lá:</strong> Selecione mais ${imparesRestantes} números ímpares`;
+                    } else {
+                        statusEl.textContent = '✅ Estratégia completa! Continue selecionando...';
+                        statusEl.className = 'text-center p-3 rounded-lg font-bold text-lg bg-yellow-100 text-yellow-800';
+                        dicaEl.innerHTML = `💡 <strong>Perfeito:</strong> Você já tem a distribuição ideal de pares/ímpares!`;
+                    }
+                } else {
+                    // 6 ou mais números selecionados - avaliar resultado final
+                    if (diferencaPares === 0 && diferencaImpares === 0) {
+                        statusEl.textContent = '🎯 ESTRATÉGIA PERFEITA! Distribuição idêntica ao último sorteio';
+                        statusEl.className = 'text-center p-3 rounded-lg font-bold text-lg bg-green-200 text-green-800 meta-atingida';
+                        dicaEl.innerHTML = `🏆 <strong>Excelente:</strong> Sua distribuição é idêntica ao último sorteio!`;
+                    } else if (diferencaPares <= 1 && diferencaImpares <= 1) {
+                        statusEl.textContent = '✅ Estratégia muito boa! Distribuição similar';
+                        statusEl.className = 'text-center p-3 rounded-lg font-bold text-lg bg-green-100 text-green-800';
+                        dicaEl.innerHTML = `👍 <strong>Ótimo:</strong> Sua distribuição está bem próxima da estatística`;
+                    } else {
+                        statusEl.textContent = '⚠️ Estratégia diferente da estatística';
+                        statusEl.className = 'text-center p-3 rounded-lg font-bold text-lg bg-red-100 text-red-800 meta-excedida';
+                        dicaEl.innerHTML = `⚡ <strong>Atenção:</strong> Você está divergindo da estratégia estatística`;
+                    }
+                }
+            }
+            
+            // Atualizar análise complementar
+            atualizarAnaliseJogo();
+        }
+
+        // NOVA FUNCIONALIDADE: Configurar funcionalidade de Drag and Drop
         function configurarDragAndDrop() {
             const dropZone = document.getElementById('dropZone');
             
@@ -878,13 +952,10 @@
                 e.preventDefault();
                 dropZone.classList.remove('drag-over');
                 
-                // Verificar se são arquivos ou números
                 const files = e.dataTransfer.files;
                 if (files.length > 0) {
-                    // NOVO: Processar arquivos .txt
                     processarArquivosTxt(files);
                 } else {
-                    // Funcionalidade original: números arrastados
                     const numero = parseInt(e.dataTransfer.getData('text/plain'));
                     if (!isNaN(numero)) {
                         adicionarNumeroDropArea(numero);
@@ -895,7 +966,7 @@
             atualizarVisualizacaoDropArea();
         }
 
-        // NOVA FUNCIONALIDADE: Processar arquivos .txt arrastados
+        // Processar arquivos .txt arrastados
         function processarArquivosTxt(files) {
             const arquivosTxt = Array.from(files).filter(file => 
                 file.type === 'text/plain' || file.name.toLowerCase().endsWith('.txt')
@@ -906,21 +977,17 @@
                 return;
             }
             
-            // Processar o primeiro arquivo .txt
             const arquivo = arquivosTxt[0];
             const reader = new FileReader();
             
             reader.onload = function(e) {
                 const conteudo = e.target.result;
                 if (conteudo && conteudo.trim()) {
-                    // Usar a mesma lógica de múltiplos jogos
                     const linhas = conteudo.split(/\r?\n/).filter(linha => linha.trim().length > 0);
                     
                     if (linhas.length > 1) {
-                        // Modal especial para arquivos
                         mostrarModalArquivoTxt(arquivo.name, linhas);
                     } else if (linhas.length === 1) {
-                        // Jogo único do arquivo
                         document.getElementById('editarNumeros').value = linhas[0];
                         processarJogoUnico(linhas[0]);
                     }
@@ -971,7 +1038,6 @@
                 });
             });
             
-            // Modal especial para arquivos
             const modal = document.createElement('div');
             modal.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50';
             modal.innerHTML = `
@@ -1022,19 +1088,19 @@
             
             if (jogosValidados.length > 0) {
                 document.getElementById('confirmarArquivo').onclick = () => {
-                    // Adicionar todos os jogos válidos
                     jogosValidados.forEach(jogoData => {
                         const jogo = {
                             id: Date.now() + Math.random(),
                             numeros: jogoData.numeros,
                             quantidade: jogoData.quantidade,
                             custo: sistemaValores.obterValor(jogoData.quantidade),
-                            digitosDiferentes: calcularDigitosDiferentes(jogoData.numeros)
+                            digitosDiferentes: calcularDigitosDiferentes(jogoData.numeros),
+                            pares: jogoData.numeros.filter(n => n % 2 === 0).length,
+                            impares: jogoData.numeros.filter(n => n % 2 !== 0).length
                         };
                         jogosAdicionados.push(jogo);
                     });
                     
-                    // Atualizar interface
                     atualizarVisualizacaoJogos();
                     atualizarCustoTotal();
                     
@@ -1052,14 +1118,13 @@
                 numerosDropArea.push(numero);
                 atualizarVisualizacaoDropArea();
                 
-                // Sincronizar com a seleção principal
                 if (!numerosSelecionados.includes(numero)) {
                     numerosSelecionados.push(numero);
                     const btn = document.querySelector(`.numero-mega:nth-child(${numero})`);
                     if (btn) btn.classList.add('selecionado');
                 }
                 
-                atualizarAnaliseJogo();
+                atualizarContadorParesImpares();
                 validarBotaoAdicionar();
             }
         }
@@ -1073,7 +1138,7 @@
             if (btn) btn.classList.remove('selecionado');
             
             atualizarVisualizacaoDropArea();
-            atualizarAnaliseJogo();
+            atualizarContadorParesImpares();
             validarBotaoAdicionar();
         }
 
@@ -1085,18 +1150,14 @@
             const numerosNaArea = document.getElementById('numerosNaArea');
             const quantidadeEspecificada = document.getElementById('quantidadeEspecificada');
             
-            // Verificar se os elementos existem antes de usar
             if (!dropZone || !numerosNaArea || !quantidadeEspecificada) {
-                console.warn('Elementos da área de drop não encontrados');
                 return;
             }
             
-            // Garantir que numerosDropArea é um array válido
             if (!Array.isArray(numerosDropArea)) {
                 numerosDropArea = [];
             }
             
-            // Atualizar contadores com validação
             const quantidadeSelect = document.getElementById('quantidadeDezenas');
             const quantidadeAtual = quantidadeSelect ? parseInt(quantidadeSelect.value) || 6 : 6;
             
@@ -1113,9 +1174,8 @@
                 if (numerosDropped) {
                     numerosDropped.classList.remove('hidden');
                     
-                    // Atualizar números na área com validação
                     numerosDropped.innerHTML = numerosDropArea
-                        .filter(numero => numero && typeof numero === 'number') // Filtrar valores válidos
+                        .filter(numero => numero && typeof numero === 'number')
                         .sort((a, b) => a - b)
                         .map(numero => `
                             <div class="numero-drop">
@@ -1133,12 +1193,10 @@
             const maxSelecionados = parseInt(document.getElementById('quantidadeDezenas').value);
             
             if (numerosSelecionados.includes(numero)) {
-                // Remover número
                 numerosSelecionados = numerosSelecionados.filter(n => n !== numero);
                 numerosDropArea = numerosDropArea.filter(n => n !== numero);
                 btn.classList.remove('selecionado');
             } else if (numerosSelecionados.length < maxSelecionados) {
-                // Adicionar número
                 numerosSelecionados.push(numero);
                 if (!numerosDropArea.includes(numero)) {
                     numerosDropArea.push(numero);
@@ -1147,11 +1205,11 @@
             }
             
             atualizarVisualizacaoDropArea();
-            atualizarAnaliseJogo();
+            atualizarContadorParesImpares();
             validarBotaoAdicionar();
         }
 
-        // MELHORIA 1: Aplicar números digitados manualmente (VERSÃO MELHORADA)
+        // Aplicar números digitados manualmente
         function aplicarNumerosDigitados() {
             const input = document.getElementById('editarNumeros');
             const texto = input.value.trim();
@@ -1161,19 +1219,16 @@
                 return;
             }
             
-            // Verificar se é múltiplas linhas (múltiplos jogos)
             const linhas = texto.split(/\r?\n/).filter(linha => linha.trim().length > 0);
             
             if (linhas.length > 1) {
-                // MÚLTIPLOS JOGOS - Processar cada linha como um jogo
                 processarMultiplosJogos(linhas);
             } else {
-                // JOGO ÚNICO - Funcionalidade original
                 processarJogoUnico(texto);
             }
         }
 
-        // Processar múltiplos jogos (uma linha = um jogo)
+        // Processar múltiplos jogos
         function processarMultiplosJogos(linhas) {
             const jogosValidados = [];
             const erros = [];
@@ -1189,14 +1244,13 @@
                 const numerosValidos = numerosDaLinha
                     .map(n => parseInt(n))
                     .filter(n => n >= 1 && n <= 60)
-                    .filter((n, idx, arr) => arr.indexOf(n) === idx); // Remover duplicatas
+                    .filter((n, idx, arr) => arr.indexOf(n) === idx);
                 
                 if (numerosValidos.length < 6 || numerosValidos.length > 20) {
                     erros.push(`Linha ${index + 1}: ${numerosValidos.length} números (deve ter entre 6 e 20)`);
                     return;
                 }
                 
-                // Verificar se a quantidade é suportada
                 if (!sistemaValores.custosJogo[numerosValidos.length]) {
                     erros.push(`Linha ${index + 1}: ${numerosValidos.length} dezenas não é uma quantidade válida`);
                     return;
@@ -1219,7 +1273,6 @@
                 return;
             }
             
-            // Modal de confirmação para múltiplos jogos
             const modal = document.createElement('div');
             modal.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50';
             modal.innerHTML = `
@@ -1248,19 +1301,19 @@
                 document.body.removeChild(modal);
             };
             document.getElementById('confirmarMultiplos').onclick = () => {
-                // Adicionar todos os jogos
                 jogosValidados.forEach(jogoData => {
                     const jogo = {
-                        id: Date.now() + Math.random(), // ID único
+                        id: Date.now() + Math.random(),
                         numeros: jogoData.numeros,
                         quantidade: jogoData.quantidade,
                         custo: sistemaValores.obterValor(jogoData.quantidade),
-                        digitosDiferentes: calcularDigitosDiferentes(jogoData.numeros)
+                        digitosDiferentes: calcularDigitosDiferentes(jogoData.numeros),
+                        pares: jogoData.numeros.filter(n => n % 2 === 0).length,
+                        impares: jogoData.numeros.filter(n => n % 2 !== 0).length
                     };
                     jogosAdicionados.push(jogo);
                 });
                 
-                // Limpar campo e atualizar interface
                 document.getElementById('editarNumeros').value = '';
                 limparSelecao();
                 atualizarVisualizacaoJogos();
@@ -1271,29 +1324,25 @@
             };
         }
 
-        // Processar jogo único (funcionalidade original melhorada)
+        // Processar jogo único
         function processarJogoUnico(texto) {
-            // Extrair números do texto (suporta espaços, vírgulas, pontos)
             const numerosTexto = texto.match(/\d+/g);
             if (!numerosTexto) {
                 mostrarAlerta('Nenhum número válido encontrado!');
                 return;
             }
             
-            // Converter para números e filtrar válidos (1-60)
             const numerosValidos = numerosTexto
                 .map(n => parseInt(n))
                 .filter(n => n >= 1 && n <= 60)
-                .filter((n, index, arr) => arr.indexOf(n) === index); // Remover duplicatas
+                .filter((n, index, arr) => arr.indexOf(n) === index);
             
             if (numerosValidos.length === 0) {
                 mostrarAlerta('Nenhum número válido (01-60) encontrado!');
                 return;
             }
             
-            // Verificar se a quantidade digitada é válida (6-20)
             if (numerosValidos.length >= 6 && numerosValidos.length <= 20 && sistemaValores.custosJogo[numerosValidos.length]) {
-                // Ajustar automaticamente a quantidade de dezenas
                 document.getElementById('quantidadeDezenas').value = numerosValidos.length;
                 quantidadeSelecionada = numerosValidos.length;
                 
@@ -1305,10 +1354,8 @@
                 mostrarAlerta(`Você digitou ${numerosValidos.length} números, mas selecionou ${quantidadePermitida} dezenas. Os primeiros ${quantidadePermitida} serão usados.`);
             }
             
-            // Limpar seleção atual
             limparSelecao();
             
-            // Aplicar novos números (limitado pela quantidade)
             const numerosParaAplicar = numerosValidos.slice(0, quantidadePermitida);
             numerosParaAplicar.forEach(numero => {
                 numerosSelecionados.push(numero);
@@ -1317,18 +1364,16 @@
                 if (btn) btn.classList.add('selecionado');
             });
             
-            // Limpar campo de entrada
             document.getElementById('editarNumeros').value = '';
             
-            // Atualizar interface
             atualizarVisualizacaoDropArea();
-            atualizarAnaliseJogo();
+            atualizarContadorParesImpares();
             validarBotaoAdicionar();
             
             mostrarAlerta(`${numerosParaAplicar.length} números aplicados com sucesso!`, 'success');
         }
 
-        // Calcular dígitos diferentes para um array de números
+        // Calcular dígitos diferentes
         function calcularDigitosDiferentes(numeros) {
             const digitos = new Set();
             numeros.forEach(num => {
@@ -1340,7 +1385,7 @@
             return digitos.size;
         }
 
-        // Função para mostrar alertas (melhorada)
+        // Mostrar alertas
         function mostrarAlerta(mensagem, tipo = 'warning') {
             const cores = {
                 warning: { bg: 'bg-yellow-100', border: 'border-yellow-400', text: 'text-yellow-800' },
@@ -1364,7 +1409,6 @@
             `;
             document.body.appendChild(modal);
             
-            // Auto-remover após 3 segundos se for sucesso
             if (tipo === 'success') {
                 setTimeout(() => {
                     if (document.body.contains(modal)) {
@@ -1378,11 +1422,9 @@
         function atualizarAnaliseJogo() {
             document.getElementById('dezenasCount').textContent = numerosSelecionados.length;
             
-            // Calcular dígitos diferentes (todos os dígitos 0-9 que aparecem)
             const digitos = new Set();
             numerosSelecionados.forEach(num => {
                 const numStr = num.toString().padStart(2, '0');
-                // Adicionar cada dígito individual
                 for (let digit of numStr) {
                     digitos.add(parseInt(digit));
                 }
@@ -1390,41 +1432,26 @@
             
             document.getElementById('digitosCount').textContent = digitos.size;
             
-            // NOVA FUNCIONALIDADE: Calcular pares e ímpares
-            const pares = numerosSelecionados.filter(num => num % 2 === 0).length;
-            const impares = numerosSelecionados.filter(num => num % 2 !== 0).length;
-            
-            document.getElementById('paresCount').textContent = pares;
-            document.getElementById('imparesCount').textContent = impares;
-            
-            console.log(`Jogo atual: ${numerosSelecionados.map(n => n.toString().padStart(2, '0')).join(' ')} = ${digitos.size} dígitos: ${Array.from(digitos).sort().join(' ')} | Pares: ${pares}, Ímpares: ${impares}`);
-            atualizarSugestaoDigitos(digitos.size);
-        }
-
-        // Atualizar sugestão de dígitos
-        function atualizarSugestaoDigitos(digitosAtuais = 0) {
+            // Atualizar sugestão de dígitos
             const ultimoDigitos = window.digitosUltimoSorteio || 6;
             const sugestaoEl = document.getElementById('sugestaoDigitos');
+            const digitosAtuais = digitos.size;
             
-            let sugestao = `Último sorteio usou ${ultimoDigitos} dígitos diferentes. `;
+            let sugestao = `📊 <strong>Último sorteio:</strong> ${ultimoDigitos} dígitos diferentes. `;
             
             if (digitosAtuais === 0) {
-                sugestao += `Sugerimos: ${ultimoDigitos - 1} (pequeno), ${ultimoDigitos} (médio) ou ${ultimoDigitos + 1} (alto).`;
+                sugestao += `Tente usar entre ${ultimoDigitos - 1} e ${ultimoDigitos + 1} dígitos.`;
             } else {
                 if (digitosAtuais < ultimoDigitos - 1) {
-                    sugestao += `Atual: ${digitosAtuais} (muito pequeno) 📉`;
-                } else if (digitosAtuais === ultimoDigitos - 1) {
-                    sugestao += `Atual: ${digitosAtuais} (pequeno) ✅`;
-                } else if (digitosAtuais === ultimoDigitos) {
-                    sugestao += `Atual: ${digitosAtuais} (médio) ✅`;
-                } else if (digitosAtuais === ultimoDigitos + 1) {
-                    sugestao += `Atual: ${digitosAtuais} (alto) ✅`;
+                    sugestao += `Atual: ${digitosAtuais} (baixo) 📉`;
+                } else if (digitosAtuais === ultimoDigitos - 1 || digitosAtuais === ultimoDigitos || digitosAtuais === ultimoDigitos + 1) {
+                    sugestao += `Atual: ${digitosAtuais} (ótimo) ✅`;
                 } else {
-                    sugestao += `Atual: ${digitosAtuais} (muito alto) 📈`;
+                    sugestao += `Atual: ${digitosAtuais} (alto) 📈`;
                 }
             }
             
-            sugestaoEl.textContent = sugestao;
+            sugestaoEl.innerHTML = sugestao;
         }
 
         // Validar botão adicionar
@@ -1436,16 +1463,14 @@
 
         // Configurar event listeners
         function configurarEventListeners() {
-            // Quantidade de dezenas
             document.getElementById('quantidadeDezenas').addEventListener('change', (e) => {
                 quantidadeSelecionada = parseInt(e.target.value);
                 limparSelecao();
-                atualizarAnaliseJogo();
+                atualizarContadorParesImpares();
                 atualizarVisualizacaoDropArea();
                 validarBotaoAdicionar();
             });
 
-            // MELHORIA 1: Event listeners para editor manual
             document.getElementById('aplicarNumeros').addEventListener('click', aplicarNumerosDigitados);
             document.getElementById('editarNumeros').addEventListener('keypress', (e) => {
                 if (e.key === 'Enter') {
@@ -1453,24 +1478,19 @@
                 }
             });
 
-            // Botões de ação do jogo
             document.getElementById('limparJogo').addEventListener('click', limparSelecao);
             document.getElementById('randomizarJogo').addEventListener('click', randomizarJogo);
             document.getElementById('adicionarJogo').addEventListener('click', adicionarJogo);
             
-            // Controles dos jogos
             document.getElementById('mostrarOrdemCrescente').addEventListener('change', atualizarVisualizacaoJogos);
             document.getElementById('limparTodos').addEventListener('click', limparTodosJogos);
             
-            // Controle de números sorteados
             document.getElementById('permitirNumerosSorteados').addEventListener('change', toggleNumerosSorteados);
             
-            // Downloads
             document.getElementById('downloadHTML').addEventListener('click', () => downloadJogos('html'));
             document.getElementById('downloadTXT').addEventListener('click', () => downloadJogos('txt'));
             document.getElementById('downloadXLSX').addEventListener('click', () => downloadJogos('xlsx'));
             
-            // Modal
             document.getElementById('comoFuncionaBtn').addEventListener('click', () => {
                 document.getElementById('modalComoFunciona').classList.remove('hidden');
             });
@@ -1487,7 +1507,7 @@
                 btn.classList.remove('selecionado');
             });
             atualizarVisualizacaoDropArea();
-            atualizarAnaliseJogo();
+            atualizarContadorParesImpares();
             validarBotaoAdicionar();
         }
 
@@ -1511,7 +1531,7 @@
             }
             
             atualizarVisualizacaoDropArea();
-            atualizarAnaliseJogo();
+            atualizarContadorParesImpares();
             validarBotaoAdicionar();
         }
 
@@ -1534,7 +1554,9 @@
                         }
                     });
                     return digitos.size;
-                })()
+                })(),
+                pares: numerosSelecionados.filter(n => n % 2 === 0).length,
+                impares: numerosSelecionados.filter(n => n % 2 !== 0).length
             };
             
             jogosAdicionados.push(jogo);
@@ -1567,6 +1589,8 @@
                         <span class="font-bold text-megasena">Jogo ${index + 1}</span>
                         <div class="flex gap-2">
                             <span class="digito-badge">${jogo.digitosDiferentes} dígitos</span>
+                            <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded">${jogo.pares || 0}P</span>
+                            <span class="px-2 py-1 bg-purple-100 text-purple-800 text-xs rounded">${jogo.impares || 0}I</span>
                             <button onclick="editarJogo(${jogo.id})" class="bg-blue-500 hover:bg-blue-600 text-white px-2 py-1 rounded text-xs" title="Editar este jogo">
                                 ✏️
                             </button>
@@ -1589,16 +1613,14 @@
             });
         }
 
-        // NOVA FUNCIONALIDADE: Editar jogo específico
+        // Editar jogo específico
         function editarJogo(id) {
-            // Encontrar o jogo a ser editado
             const jogo = jogosAdicionados.find(j => j.id === id);
             if (!jogo) {
                 mostrarAlerta('Jogo não encontrado!', 'error');
                 return;
             }
             
-            // Exibir modal de confirmação
             const modal = document.createElement('div');
             modal.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50';
             modal.innerHTML = `
@@ -1606,7 +1628,8 @@
                     <h3 class="font-bold text-blue-800 mb-4">✏️ Editar Jogo</h3>
                     <p class="text-gray-700 mb-4">
                         Você está editando um jogo com <strong>${jogo.quantidade} dezenas</strong>:<br>
-                        <span class="text-megasena font-mono">${jogo.numeros.map(n => n.toString().padStart(2, '0')).join(' ')}</span>
+                        <span class="text-megasena font-mono">${jogo.numeros.map(n => n.toString().padStart(2, '0')).join(' ')}</span><br>
+                        <span class="text-sm text-gray-600">${jogo.pares || 0} pares, ${jogo.impares || 0} ímpares</span>
                     </p>
                     <div class="bg-blue-50 border border-blue-200 rounded p-3 mb-4 text-sm text-blue-800">
                         <strong>Como funciona:</strong> O jogo será carregado nos controles de seleção. 
@@ -1624,38 +1647,29 @@
                 document.body.removeChild(modal);
             };
             document.getElementById('confirmarEditar').onclick = () => {
-                // Remover jogo da lista temporariamente
                 jogosAdicionados = jogosAdicionados.filter(j => j.id !== id);
                 
-                // Carregar jogo nos controles
                 carregarJogoParaEdicao(jogo);
                 
-                // Fechar modal
                 document.body.removeChild(modal);
                 
-                // Atualizar visualização
                 atualizarVisualizacaoJogos();
                 atualizarCustoTotal();
                 
-                // Feedback ao usuário
                 mostrarAlerta(`Jogo carregado para edição! Faça suas alterações e clique em "Adicionar Jogo" novamente.`, 'success');
             };
         }
 
         // Carregar jogo para edição
         function carregarJogoParaEdicao(jogo) {
-            // 1. Limpar seleção atual
             limparSelecao();
             
-            // 2. Definir quantidade de dezenas
             document.getElementById('quantidadeDezenas').value = jogo.quantidade;
             quantidadeSelecionada = jogo.quantidade;
             
-            // 3. Carregar números no campo de edição manual
             const numerosTexto = jogo.numeros.map(n => n.toString().padStart(2, '0')).join(' ');
             document.getElementById('editarNumeros').value = numerosTexto;
             
-            // 4. Aplicar números nos controles (grid e drag area)
             jogo.numeros.forEach(numero => {
                 numerosSelecionados.push(numero);
                 numerosDropArea.push(numero);
@@ -1663,18 +1677,15 @@
                 if (btn) btn.classList.add('selecionado');
             });
             
-            // 5. Atualizar todas as visualizações
             atualizarVisualizacaoDropArea();
-            atualizarAnaliseJogo();
+            atualizarContadorParesImpares();
             validarBotaoAdicionar();
             
-            // 6. Scroll suave para a área de criação
             document.querySelector('#interfacePrincipal').scrollIntoView({ behavior: 'smooth' });
         }
 
         // Remover jogo específico
         function removerJogo(id) {
-            // Modal de confirmação para exclusão
             const modal = document.createElement('div');
             modal.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50';
             modal.innerHTML = `
@@ -1705,7 +1716,6 @@
         function limparTodosJogos() {
             if (jogosAdicionados.length === 0) return;
             
-            // Modal customizado ao invés de confirm()
             const modal = document.createElement('div');
             modal.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50';
             modal.innerHTML = `
@@ -1748,7 +1758,6 @@
         // Downloads
         function downloadJogos(formato) {
             if (jogosAdicionados.length === 0) {
-                // Modal customizado ao invés de alert()
                 const modal = document.createElement('div');
                 modal.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50';
                 modal.innerHTML = `
@@ -1798,6 +1807,7 @@
         .numero { display: inline-block; width: 35px; height: 35px; background: #1B9A67; color: white; 
                  border-radius: 50%; text-align: center; line-height: 35px; margin: 2px; font-weight: bold; }
         .total { text-align: center; margin-top: 20px; font-size: 18px; font-weight: bold; color: #1B9A67; }
+        .pares-impares { font-size: 12px; color: #666; margin-top: 5px; }
     </style>
 </head>
 <body>
@@ -1813,7 +1823,9 @@
         <div>
             ${jogo.numeros.map(num => `<span class="numero">${num.toString().padStart(2, '0')}</span>`).join('')}
         </div>
-        <p><small>${jogo.digitosDiferentes} dígitos diferentes</small></p>
+        <div class="pares-impares">
+            ${jogo.digitosDiferentes} dígitos diferentes | ${jogo.pares || 0} pares, ${jogo.impares || 0} ímpares
+        </div>
     </div>`;
             });
             
@@ -1844,7 +1856,7 @@
         // Download XLSX
         function downloadXLSX(jogos) {
             const dados = [
-                ['Jogo', 'Dezenas', 'Números', 'Dígitos Diferentes', 'Custo']
+                ['Jogo', 'Dezenas', 'Números', 'Dígitos Diferentes', 'Pares', 'Ímpares', 'Custo']
             ];
             
             jogos.forEach((jogo, index) => {
@@ -1853,12 +1865,14 @@
                     jogo.quantidade,
                     jogo.numeros.map(n => n.toString().padStart(2, '0')).join(' - '),
                     jogo.digitosDiferentes,
+                    jogo.pares || 0,
+                    jogo.impares || 0,
                     jogo.custo
                 ]);
             });
             
             const total = jogos.reduce((sum, jogo) => sum + jogo.custo, 0);
-            dados.push(['', '', 'TOTAL:', jogos.length + ' jogo(s)', total]);
+            dados.push(['', '', 'TOTAL:', '', '', '', total]);
             
             const ws = XLSX.utils.aoa_to_sheet(dados);
             const wb = XLSX.utils.book_new();

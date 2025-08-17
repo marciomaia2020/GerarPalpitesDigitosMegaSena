@@ -1,4 +1,4 @@
-# GerarPalpitesDigitosMegaSena
+# GerarPalpitesDigitosMegaSena.
 
 Funcionalidades Implementadas:
 🎯 Interface Principal:
@@ -276,3 +276,25 @@ Total estimado: R$ 30,00 (5 jogos × R$ 6,00)
 ✅ Interface unificada - mesma lógica para texto manual e arquivos
 Agora você pode simplesmente arrastar seus arquivos .txt para a área verde e todos os jogos serão importados automaticamente! 🎯📁✨
 Agora a Mega Sena tem a mesma funcionalidade inteligente de controle de números sorteados da Dupla Sena! 🍀🎯
+
+
+ PRONTO! MEGA-SENA.HTML agora tem um CONTADOR DE PARES/ÍMPARES SUPER DESTACADO!
+
+🎯 Funcionalidades implementadas:
+
+📊 Contador Visual Gigante
+Números grandes mostrando quantos pares/ímpares você selecionou
+Meta dinâmica baseada no último sorteio
+Cores destacadas: Verde para pares, Roxo para ímpares
+Animações quando você seleciona números
+
+🎯 Estratégia Inteligente
+Status em tempo real: "Faltam: 2 pares, 1 ímpar"
+Avaliação final: "ESTRATÉGIA PERFEITA!" ou "Estratégia diferente"
+Dicas automáticas sobre o que fazer
+
+⚪ Visual Melhorado
+Borda verde nos números pares
+Borda roxa nos números ímpares
+Badges P/I nos jogos salvos
+Estatística destacada do último sorteio
