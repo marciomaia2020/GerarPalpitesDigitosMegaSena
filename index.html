@@ -326,6 +326,8 @@
                         <div class="grid grid-cols-2 gap-2 text-xs">
                             <div>Dezenas selecionadas: <span id="dezenasCount" class="font-bold">0</span></div>
                             <div>Dígitos diferentes: <span id="digitosCount" class="font-bold">0</span></div>
+                            <div>Números pares: <span id="paresCount" class="font-bold text-green-600">0</span></div>
+                            <div>Números ímpares: <span id="imparesCount" class="font-bold text-purple-600">0</span></div>
                         </div>
                         <div id="sugestaoDigitos" class="mt-2 text-xs text-blue-700">
                             <!-- Sugestão baseada no último sorteio -->
@@ -1387,7 +1389,15 @@
             });
             
             document.getElementById('digitosCount').textContent = digitos.size;
-            console.log(`Jogo atual: ${numerosSelecionados.map(n => n.toString().padStart(2, '0')).join(' ')} = ${digitos.size} dígitos: ${Array.from(digitos).sort().join(' ')}`);
+            
+            // NOVA FUNCIONALIDADE: Calcular pares e ímpares
+            const pares = numerosSelecionados.filter(num => num % 2 === 0).length;
+            const impares = numerosSelecionados.filter(num => num % 2 !== 0).length;
+            
+            document.getElementById('paresCount').textContent = pares;
+            document.getElementById('imparesCount').textContent = impares;
+            
+            console.log(`Jogo atual: ${numerosSelecionados.map(n => n.toString().padStart(2, '0')).join(' ')} = ${digitos.size} dígitos: ${Array.from(digitos).sort().join(' ')} | Pares: ${pares}, Ímpares: ${impares}`);
             atualizarSugestaoDigitos(digitos.size);
         }
 
