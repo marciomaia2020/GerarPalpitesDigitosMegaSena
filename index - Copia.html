@@ -878,33 +878,26 @@
             atualizarContadorParesImpares();
         }
 
-        // 🚀 NOVA FUNCIONALIDADE CORRIGIDA: Carregar e analisar TODOS os concursos históricos
+        // 🚀 NOVA FUNCIONALIDADE: Carregar e analisar TODOS os concursos históricos
         async function carregarAnaliseHistoricaCompleta() {
             console.log('🚀 Iniciando análise histórica completa da Mega Sena...');
             
             try {
-                document.getElementById('loadingDetails').textContent = '🔍 Descobrindo último concurso disponível na API...';
+                document.getElementById('loadingDetails').textContent = '📊 Carregando análise histórica completa...';
                 
-                // 🎯 PRIMEIRO: Descobrir qual é o ÚLTIMO concurso válido na API
-                const ultimoConcursoValido = await descobrirUltimoConcursoValido();
+                // Buscar último concurso primeiro para determinar o range
+                const ultimoConcursoNumero = ultimoResultado ? ultimoResultado.numero : 2897;
                 
-                if (!ultimoConcursoValido) {
-                    throw new Error('Não foi possível determinar o último concurso válido');
-                }
+                document.getElementById('loadingDetails').textContent = `📊 Analisando ${ultimoConcursoNumero} concursos históricos...`;
                 
-                console.log(`🎯 ÚLTIMO CONCURSO VÁLIDO ENCONTRADO: ${ultimoConcursoValido}`);
-                document.getElementById('loadingDetails').textContent = `📊 Analisando TODOS os ${ultimoConcursoValido} concursos históricos...`;
-                
-                // 🎯 SEGUNDO: Carregar TODOS os concursos do 1 até o último válido
+                // Carregar todos os concursos em lotes
                 const tamanhoBatch = 50;
                 const concursosCarregados = [];
-                let concursosProcessados = 0;
                 
-                for (let i = 1; i <= ultimoConcursoValido; i += tamanhoBatch) {
-                    const fimBatch = Math.min(i + tamanhoBatch - 1, ultimoConcursoValido);
+                for (let i = 1; i <= ultimoConcursoNumero; i += tamanhoBatch) {
+                    const fimBatch = Math.min(i + tamanhoBatch - 1, ultimoConcursoNumero);
                     
-                    const progresso = Math.round((i / ultimoConcursoValido) * 100);
-                    document.getElementById('loadingDetails').textContent = `📊 Analisando concursos ${i} a ${fimBatch} (${progresso}% completo)`;
+                    document.getElementById('loadingDetails').textContent = `📊 Analisando concursos ${i} a ${fimBatch}...`;
                     
                     const promisesBatch = [];
                     for (let j = i; j <= fimBatch; j++) {
@@ -914,9 +907,8 @@
                     const resultadosBatch = await Promise.allSettled(promisesBatch);
                     
                     resultadosBatch.forEach((resultado) => {
-                        if (resultado.status === 'fulfilled' && resultado.value && resultado.value.dezenasSorteadasOrdemSorteio) {
+                        if (resultado.status === 'fulfilled' && resultado.value) {
                             concursosCarregados.push(resultado.value);
-                            concursosProcessados++;
                         }
                     });
 
@@ -924,22 +916,19 @@
                     await new Promise(resolve => setTimeout(resolve, 100));
                 }
                 
-                todosOsConcursos = concursosCarregados;
+                todosOsConcursos = concursosCarregados.filter(c => c && c.dezenasSorteadasOrdemSorteio);
                 
-                console.log(`✅ ANÁLISE HISTÓRICA COMPLETA: ${concursosProcessados} concursos válidos de ${ultimoConcursoValido} possíveis`);
-                document.getElementById('loadingDetails').textContent = `✅ Análise completa: ${concursosProcessados} concursos analisados`;
+                console.log(`✅ Carregados ${todosOsConcursos.length} concursos para análise histórica`);
                 
-                // 🎯 TERCEIRO: Analisar padrões históricos da base completa
+                // Analisar padrões históricos
                 analisarPadroesHistoricos();
                 
-                // 🎯 QUARTO: Atualizar interface com padrão histórico encontrado
+                // 🎯 ATUALIZAR INTERFACE COM PADRÃO HISTÓRICO ENCONTRADO
                 atualizarInterfacePadraoHistorico();
                 
             } catch (error) {
                 console.error('❌ Erro na análise histórica:', error);
-                document.getElementById('loadingDetails').textContent = '⚠️ Erro na análise histórica. Usando padrão conhecido...';
-                
-                // Usar dados de fallback baseados nas estatísticas conhecidas do último concurso 2902
+                // Usar dados de fallback baseados nas estatísticas conhecidas
                 padraoHistoricoMaisComum = {
                     padrao: '3P/3I',
                     pares: 3,
@@ -950,52 +939,6 @@
                 console.log('📊 Usando padrão histórico conhecido: 3P/3I (30.9%)');
                 atualizarInterfacePadraoHistorico();
             }
-        }
-
-        // 🎯 NOVA FUNCIONALIDADE: Descobrir automaticamente o último concurso válido
-        async function descobrirUltimoConcursoValido() {
-            console.log('🔍 Descobrindo último concurso válido na API...');
-            
-            // Estratégia 1: Tentar API principal para último concurso
-            try {
-                const response = await fetch('https://servicebus2.caixa.gov.br/portaldeloterias/api/megasena');
-                if (response.ok) {
-                    const data = await response.json();
-                    if (data && data.numero && data.numero > 0) {
-                        console.log(`✅ Último concurso da API principal: ${data.numero}`);
-                        return data.numero;
-                    }
-                }
-            } catch (error) {
-                console.log('⚠️ API principal falhou, tentando busca reversa...');
-            }
-            
-            // Estratégia 2: Busca reversa para encontrar o último válido
-            for (let concurso = 2910; concurso >= 2850; concurso--) {
-                try {
-                    const response = await fetch(`https://servicebus2.caixa.gov.br/portaldeloterias/api/megasena/${concurso}`);
-                    if (response.ok) {
-                        const data = await response.json();
-                        if (data && data.numero === concurso && data.dezenasSorteadasOrdemSorteio && data.dezenasSorteadasOrdemSorteio.length === 6) {
-                            console.log(`🎯 ÚLTIMO CONCURSO VÁLIDO ENCONTRADO: ${concurso}`);
-                            return concurso;
-                        }
-                    }
-                    await new Promise(resolve => setTimeout(resolve, 200));
-                } catch (error) {
-                    continue;
-                }
-            }
-            
-            // Fallback: usar último resultado que já temos
-            if (ultimoResultado && ultimoResultado.numero) {
-                console.log(`📋 Usando último resultado disponível: ${ultimoResultado.numero}`);
-                return ultimoResultado.numero;
-            }
-            
-            // Fallback final: concurso 2902 (confirmado pelo usuário)
-            console.log('📋 Usando concurso 2902 como fallback');
-            return 2902;
         }
 
         // 🎯 NOVA FUNCIONALIDADE: Atualizar interface com padrão histórico encontrado
