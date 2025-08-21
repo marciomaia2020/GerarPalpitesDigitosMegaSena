@@ -296,6 +296,83 @@
             font-size: 10px;
             margin: 1px;
         }
+
+        /* 🎯 NOVOS ESTILOS PARA GRID ESTRATÉGICA */
+        .numero-estrategico {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 3px solid transparent;
+            position: relative;
+        }
+
+        .numero-estrategico:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .numero-estrategico.selecionado-estrategico {
+            border-color: #8b5cf6;
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.3);
+        }
+
+        /* Categorias de números estratégicos */
+        .numero-muito-atrasado {
+            background: linear-gradient(135deg, #dc2626, #b91c1c);
+            color: white;
+            animation: pulse 2s infinite;
+        }
+
+        .numero-atrasado-estrategico {
+            background: linear-gradient(135deg, #ea580c, #dc2626);
+            color: white;
+        }
+
+        .numero-candidato-estrategico {
+            background: linear-gradient(135deg, #d97706, #f59e0b);
+            color: white;
+        }
+
+        .numero-frequente-estrategico {
+            background: linear-gradient(135deg, #059669, #10b981);
+            color: white;
+        }
+
+        .numero-normal-estrategico {
+            background: linear-gradient(135deg, #6b7280, #9ca3af);
+            color: white;
+        }
+
+        .numero-oculto {
+            opacity: 0.3;
+            transform: scale(0.8);
+            cursor: not-allowed;
+        }
+
+        /* Badge de posição */
+        .numero-estrategico::after {
+            content: attr(data-posicao);
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #8b5cf6;
+            color: white;
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            font-size: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body class="bg-megasena-bg min-h-screen">
@@ -594,6 +671,111 @@
                             </table>
                         </div>
 
+                        <!-- 🎯 NOVA SEÇÃO: Grid de Seleção Estratégica -->
+                        <div class="mt-6 p-4 bg-gradient-to-r from-purple-50 to-pink-50 border-2 border-purple-400 rounded-lg">
+                            <h4 class="text-lg font-bold text-purple-800 mb-4 text-center">🎯 Seleção Manual Estratégica</h4>
+                            <p class="text-sm text-purple-700 text-center mb-4">Clique nos números baseado na análise por posições para criar seu jogo personalizado</p>
+                            
+                            <!-- Controles da Seleção Estratégica -->
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                                <div>
+                                    <label class="block text-purple-800 font-medium mb-2">🎯 Posição Atual:</label>
+                                    <select id="posicaoAtual" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 text-base">
+                                        <option value="1">1ª Bola</option>
+                                        <option value="2">2ª Bola</option>
+                                        <option value="3">3ª Bola</option>
+                                        <option value="4">4ª Bola</option>
+                                        <option value="5">5ª Bola</option>
+                                        <option value="6">6ª Bola</option>
+                                        <option value="todas">Todas as Posições</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-purple-800 font-medium mb-2">📊 Filtro de Números:</label>
+                                    <select id="filtroNumeros" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 text-base">
+                                        <option value="todos">Todos os Números</option>
+                                        <option value="atrasados">Apenas Atrasados</option>
+                                        <option value="candidatos">Apenas Candidatos TOP</option>
+                                        <option value="frequentes">Apenas Frequentes</option>
+                                    </select>
+                                </div>
+                                <div class="flex items-end">
+                                    <button id="btnAtualizarGrid" class="bg-purple-500 hover:bg-purple-600 text-white px-6 py-2 rounded-lg w-full">
+                                        🔄 Atualizar Grid
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Legenda da Grid Estratégica -->
+                            <div class="mb-4 p-3 bg-white rounded-lg border border-purple-200">
+                                <div class="text-sm font-bold text-purple-800 mb-2 text-center">📋 Legenda da Grid Estratégica:</div>
+                                <div class="grid grid-cols-2 md:grid-cols-4 gap-2 text-xs">
+                                    <div class="flex items-center">
+                                        <span class="w-4 h-4 bg-red-500 rounded-full mr-2"></span>
+                                        <span>Muito Atrasados</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <span class="w-4 h-4 bg-orange-500 rounded-full mr-2"></span>
+                                        <span>Atrasados</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <span class="w-4 h-4 bg-yellow-500 rounded-full mr-2"></span>
+                                        <span>Candidatos TOP</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <span class="w-4 h-4 bg-green-500 rounded-full mr-2"></span>
+                                        <span>Frequentes</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Grid Estratégica de Números -->
+                            <div class="mb-4">
+                                <div id="infoGridEstrategica" class="text-sm text-purple-700 bg-purple-100 p-3 rounded mb-4 text-center">
+                                    Selecione uma posição e filtro acima para ver os números estratégicos
+                                </div>
+                                <div id="gridEstrategica" class="grid grid-cols-6 gap-2">
+                                    <!-- Grid será preenchida dinamicamente -->
+                                </div>
+                            </div>
+
+                            <!-- Status da Seleção Estratégica -->
+                            <div class="mb-4 p-3 bg-white rounded-lg border border-purple-200">
+                                <div class="text-sm font-bold text-purple-800 mb-2">📊 Status da Seleção:</div>
+                                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                                    <div>
+                                        <div class="text-lg font-bold text-purple-600" id="numerosEstrategicos">0</div>
+                                        <div class="text-xs text-purple-800">Selecionados</div>
+                                    </div>
+                                    <div>
+                                        <div class="text-lg font-bold text-red-600" id="atrasadosEstrategicos">0</div>
+                                        <div class="text-xs text-purple-800">Atrasados</div>
+                                    </div>
+                                    <div>
+                                        <div class="text-lg font-bold text-yellow-600" id="candidatosEstrategicos">0</div>
+                                        <div class="text-xs text-purple-800">Candidatos</div>
+                                    </div>
+                                    <div>
+                                        <div class="text-lg font-bold text-green-600" id="frequentesEstrategicos">0</div>
+                                        <div class="text-xs text-purple-800">Frequentes</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Botões de Ação da Seleção Estratégica -->
+                            <div class="flex flex-wrap gap-2 justify-center">
+                                <button id="btnLimparEstrategica" class="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-lg">
+                                    🗑️ Limpar Seleção
+                                </button>
+                                <button id="btnSugestaoRapida" class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg">
+                                    ⚡ Sugestão Rápida
+                                </button>
+                                <button id="btnUsarEstrategica" class="bg-purple-500 hover:bg-purple-600 text-white px-4 py-2 rounded-lg disabled:opacity-50">
+                                    ✅ Usar Seleção no Jogo Principal
+                                </button>
+                            </div>
+                        </div>
+
                         <!-- Gerador de Palpites Baseado na Análise -->
                         <div class="mt-6 p-4 bg-gradient-to-r from-green-50 to-blue-50 border-2 border-green-400 rounded-lg">
                             <h4 class="text-lg font-bold text-green-800 mb-4 text-center">🎲 Gerador de Palpites Inteligente</h4>
@@ -714,13 +896,25 @@
                             <p><strong>2. Estratégia Par/Ímpar:</strong> Veja a distribuição histórica mais comum</p>
                             <p><strong>3. Selecione os números:</strong> Clique nos números de 01 a 60 para formar seu jogo</p>
                             <p><strong>4. Análise por posições:</strong> Use a nova funcionalidade para identificar números atrasados</p>
-                            <p><strong>5. Gere palpites inteligentes:</strong> Use a análise para criar jogos automaticamente</p>
-                            <p><strong>6. Download:</strong> Exporte seus jogos em HTML, TXT ou XLSX</p>
+                            <p><strong>5. Grid estratégica:</strong> Escolha números manualmente baseado na análise</p>
+                            <p><strong>6. Gere palpites inteligentes:</strong> Use a análise para criar jogos automaticamente</p>
+                            <p><strong>7. Download:</strong> Exporte seus jogos em HTML, TXT ou XLSX</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-purple-50 border border-purple-200 rounded-lg p-4">
+                        <h3 class="text-xl font-bold text-purple-800 mb-3">🎯 Nova Grid Estratégica:</h3>
+                        <div class="space-y-2 text-purple-700">
+                            <p><strong>🎯 Seleção Manual:</strong> Grid interativa para escolher números baseado na análise</p>
+                            <p><strong>📊 Categorização:</strong> Números coloridos por categoria (atrasados, candidatos, frequentes)</p>
+                            <p><strong>🔍 Filtros Avançados:</strong> Filtre por posição específica e tipo de número</p>
+                            <p><strong>⚡ Sugestão Rápida:</strong> Preenchimento automático baseado na estratégia</p>
+                            <p><strong>✅ Integração:</strong> Transfira sua seleção para o jogo principal</p>
                         </div>
                     </div>
 
                     <div class="bg-orange-50 border border-orange-200 rounded-lg p-4">
-                        <h3 class="text-xl font-bold text-orange-800 mb-3">🎯 Nova Funcionalidade - Análise por Posições:</h3>
+                        <h3 class="text-xl font-bold text-orange-800 mb-3">🎯 Análise por Posições:</h3>
                         <div class="space-y-2 text-orange-700">
                             <p><strong>📊 Análise Histórica:</strong> Carrega os últimos 20-100 concursos e analisa cada posição</p>
                             <p><strong>🎯 Números Atrasados:</strong> Identifica quais números ainda não saíram em cada posição específica</p>
@@ -782,21 +976,21 @@
                 { numero: 2891, data: "24/12/2024", posicoes: [12, 14, 35, 54, 26, 24] },
                 { numero: 2890, data: "21/12/2024", posicoes: [52, 7, 6, 13, 29, 36] },
                 { numero: 2889, data: "19/12/2024", posicoes: [12, 26, 40, 16, 29, 16] },
-                { numero: 2888, data: "17/12/2024", posicoes: [27, 35, 19, 49, 09, 15] },
+                { numero: 2888, data: "17/12/2024", posicoes: [27, 35, 19, 49, 9, 15] },
                 { numero: 2887, data: "14/12/2024", posicoes: [38, 14, 37, 30, 20, 52] },
-                { numero: 2886, data: "12/12/2024", posicoes: [70, 33, 59, 55, 02, 20] },
+                { numero: 2886, data: "12/12/2024", posicoes: [70, 33, 59, 55, 2, 20] },
                 { numero: 2885, data: "10/12/2024", posicoes: [36, 23, 10, 28, 36, 37] },
                 { numero: 2884, data: "07/12/2024", posicoes: [36, 25, 37, 34, 52, 23] },
                 { numero: 2883, data: "05/12/2024", posicoes: [54, 57, 60, 43, 49, 10] },
                 { numero: 2882, data: "03/12/2024", posicoes: [52, 7, 6, 13, 29, 34] },
                 { numero: 2881, data: "30/11/2024", posicoes: [12, 26, 40, 16, 29, 16] },
-                { numero: 2880, data: "28/11/2024", posicoes: [27, 35, 19, 49, 09, 15] },
+                { numero: 2880, data: "28/11/2024", posicoes: [27, 35, 19, 49, 9, 15] },
                 { numero: 2879, data: "26/11/2024", posicoes: [41, 52, 11, 18, 47, 20] },
-                { numero: 2878, data: "23/11/2024", posicoes: [49, 31, 47, 16, 06, 46] },
+                { numero: 2878, data: "23/11/2024", posicoes: [49, 31, 47, 16, 6, 46] },
                 { numero: 2877, data: "21/11/2024", posicoes: [13, 37, 54, 20, 15, 37] },
-                { numero: 2876, data: "19/11/2024", posicoes: [45, 53, 01, 40, 31, 52] },
-                { numero: 2875, data: "16/11/2024", posicoes: [36, 36, 40, 06, 40, 23] },
-                { numero: 2874, data: "14/11/2024", posicoes: [01, 54, 52, 03, 01, 20] }
+                { numero: 2876, data: "19/11/2024", posicoes: [45, 53, 1, 40, 31, 52] },
+                { numero: 2875, data: "16/11/2024", posicoes: [36, 36, 40, 6, 40, 23] },
+                { numero: 2874, data: "14/11/2024", posicoes: [1, 54, 52, 3, 1, 20] }
             ]
         };
 
@@ -810,6 +1004,10 @@
         let analisePosicoesCarregada = false;
         let resultadosAnalise = {};
         let palpitesInteligentes = [];
+        
+        // 🎯 NOVAS VARIÁVEIS PARA GRID ESTRATÉGICA
+        let numerosEstrategicos = [];
+        let categoriasNumeros = {};
 
         // Sistema de Valores da Mega Sena
         const sistemaValores = {
@@ -825,7 +1023,6 @@
 
         // Inicialização da aplicação
         document.addEventListener('DOMContentLoaded', async () => {
-            // Tentar carregar dados da API por 3 segundos, senão usar dados de exemplo
             const timeoutPromise = new Promise((_, reject) => 
                 setTimeout(() => reject(new Error('Timeout')), 3000)
             );
@@ -846,7 +1043,6 @@
             document.getElementById('loadingDetails').textContent = 'Conectando com API da Caixa Econômica Federal...';
             
             try {
-                // Tentar apenas uma vez com timeout curto
                 const controller = new AbortController();
                 const timeoutId = setTimeout(() => controller.abort(), 2000);
                 
@@ -874,7 +1070,7 @@
                 
             } catch (error) {
                 console.log('❌ Erro na API:', error.message);
-                throw error; // Propagar erro para usar dados de exemplo
+                throw error;
             }
         }
 
@@ -894,7 +1090,6 @@
             }, 1000);
         }
 
-        // Finalizar carregamento e mostrar interface
         function finalizarCarregamento() {
             setTimeout(() => {
                 document.getElementById('loading').classList.add('hidden');
@@ -903,14 +1098,12 @@
             }, 500);
         }
 
-        // Exibir último resultado
         function exibirUltimoResultado(data) {
             const numeros = data.listaDezenas || data.dezenasSorteadasOrdemSorteio || [];
             
             document.getElementById('tituloResultado').textContent = `Concurso ${data.numero}`;
             document.getElementById('dataResultado').textContent = `📅 ${data.dataApuracao}`;
 
-            // Números sorteados
             const numerosDiv = document.getElementById('numerosResultado');
             numerosDiv.innerHTML = '';
             numeros.forEach(num => {
@@ -920,10 +1113,8 @@
                 numerosDiv.appendChild(numeroEl);
             });
 
-            // Status do concurso
             document.getElementById('statusResultado').textContent = data.acumulado ? 'ACUMULOU!' : 'TEVE GANHADOR!';
 
-            // Premiação
             if (data.listaRateioPremio && data.listaRateioPremio.length >= 2) {
                 document.getElementById('premiacao5').innerHTML = `
                     <span class="text-megasena mr-2">🏆</span>
@@ -935,17 +1126,14 @@
                 `;
             }
 
-            // Próximo concurso
             document.getElementById('proximoConcurso').textContent = `Concurso ${data.numero + 1}`;
             document.getElementById('dataProximoConcurso').textContent = data.dataProximoConcurso || 'A definir';
             document.getElementById('premioEstimado').textContent = `Prêmio Estimado: ${formatarMoeda(data.valorEstimadoProximoConcurso || 65000000)}`;
 
-            // Analisar pares/ímpares
             analisarParesImparesTempoReal(numeros);
             identificarNumerosSorteados(numeros);
         }
 
-        // Analisar pares/ímpares em tempo real
         function analisarParesImparesTempoReal(numeros) {
             let paresUltimoSorteio = 0;
             let imparesUltimoSorteio = 0;
@@ -973,7 +1161,6 @@
             atualizarContadorParesImpares();
         }
 
-        // Identificar números sorteados
         function identificarNumerosSorteados(numeros) {
             numerosSorteados.clear();
             numeros.forEach(num => {
@@ -981,13 +1168,12 @@
             });
         }
 
-        // Inicializar interface
         function inicializarInterface() {
             numerosSelecionados = [];
+            numerosEstrategicos = [];
             criarGridNumeros();
         }
 
-        // Criar grid de números 1-60
         function criarGridNumeros() {
             const grid = document.getElementById('gridNumeros');
             grid.innerHTML = '';
@@ -1008,7 +1194,6 @@
             }
         }
 
-        // Toggle número
         function toggleNumero(numero) {
             const btn = document.querySelector(`.numero-mega:nth-child(${numero})`);
             const maxSelecionados = parseInt(document.getElementById('quantidadeDezenas').value);
@@ -1025,7 +1210,6 @@
             validarBotaoAdicionar();
         }
 
-        // Atualizar contador de pares/ímpares
         function atualizarContadorParesImpares() {
             const paresAtuais = numerosSelecionados.filter(num => num % 2 === 0).length;
             const imparesAtuais = numerosSelecionados.filter(num => num % 2 !== 0).length;
@@ -1033,7 +1217,6 @@
             document.getElementById('paresAtuais').textContent = paresAtuais;
             document.getElementById('imparesAtuais').textContent = imparesAtuais;
             
-            // Aplicar animação de destaque
             document.getElementById('paresAtuais').classList.add('contador-destaque');
             document.getElementById('imparesAtuais').classList.add('contador-destaque');
             
@@ -1042,7 +1225,6 @@
                 document.getElementById('imparesAtuais').classList.remove('contador-destaque');
             }, 500);
             
-            // Avaliar estratégia
             const totalSelecionados = numerosSelecionados.length;
             const statusEl = document.getElementById('statusEstrategia');
             const metaPares = window.paresUltimoSorteio || 3;
@@ -1085,7 +1267,6 @@
             }
         }
 
-        // Validar botão adicionar
         function validarBotaoAdicionar() {
             const btn = document.getElementById('adicionarJogo');
             const quantidadeNecessaria = parseInt(document.getElementById('quantidadeDezenas').value);
@@ -1094,7 +1275,6 @@
 
         // 🎯 FUNÇÕES DA NOVA ANÁLISE POR POSIÇÕES
         
-        // Carregar análise por posições
         async function carregarAnalisePorPosicoes() {
             const loadingEl = document.getElementById('loadingPosicoes');
             const controles = document.getElementById('controlesPosicoes');
@@ -1105,11 +1285,9 @@
             
             try {
                 if (concursosHistoricos.length > 0) {
-                    // Usar dados que já temos
                     progressoEl.textContent = `✅ ${concursosHistoricos.length} concursos carregados com sucesso!`;
                     analisePosicoesCarregada = true;
                 } else {
-                    // Simular carregamento rápido com dados de exemplo
                     progressoEl.textContent = 'Carregando dados históricos...';
                     await new Promise(resolve => setTimeout(resolve, 1000));
                     
@@ -1138,7 +1316,6 @@
             }
         }
 
-        // Analisar posições detalhadamente
         function analisarPosicoesDetalhada() {
             if (!analisePosicoesCarregada || concursosHistoricos.length === 0) {
                 mostrarAlerta('Carregue primeiro o histórico clicando em "Carregar Análise"!', 'warning');
@@ -1150,6 +1327,7 @@
             const concursosParaAnalise = concursosHistoricos.slice(0, qtdConcursos);
             
             resultadosAnalise = {};
+            categoriasNumeros = {};
             
             for (let posicao = 1; posicao <= 6; posicao++) {
                 if (filtro !== 'todas' && parseInt(filtro) !== posicao) {
@@ -1194,12 +1372,33 @@
                     ultimaData: ultimosNumeros[0]?.data || 'N/A',
                     totalAnalisados: concursosParaAnalise.length
                 };
+
+                // Categorizar números para a grid estratégica
+                if (!categoriasNumeros[posicao]) {
+                    categoriasNumeros[posicao] = {};
+                }
+                
+                // Classificar números por categoria
+                for (let num = 1; num <= 60; num++) {
+                    if (numerosAtrasados.includes(num)) {
+                        if (numerosAtrasados.length > 30) {
+                            categoriasNumeros[posicao][num] = 'muito-atrasado';
+                        } else {
+                            categoriasNumeros[posicao][num] = 'atrasado';
+                        }
+                    } else if (candidatosTOP.includes(num)) {
+                        categoriasNumeros[posicao][num] = 'candidato';
+                    } else if (frequencia[num] > 2) {
+                        categoriasNumeros[posicao][num] = 'frequente';
+                    } else {
+                        categoriasNumeros[posicao][num] = 'normal';
+                    }
+                }
             }
             
             exibirResultadosAnalise();
         }
 
-        // Exibir resultados da análise
         function exibirResultadosAnalise() {
             const resultadosDiv = document.getElementById('resultadosPosicoes');
             const tabelaCorpo = document.getElementById('tabelaAnaliseCorpo');
@@ -1279,7 +1478,253 @@
             });
         }
 
-        // Gerar palpites inteligentes
+        // 🎯 NOVAS FUNÇÕES PARA GRID ESTRATÉGICA
+
+        function atualizarGridEstrategica() {
+            if (Object.keys(categoriasNumeros).length === 0) {
+                mostrarAlerta('Execute primeiro a análise por posições!', 'warning');
+                return;
+            }
+
+            const posicao = document.getElementById('posicaoAtual').value;
+            const filtro = document.getElementById('filtroNumeros').value;
+            const grid = document.getElementById('gridEstrategica');
+            const info = document.getElementById('infoGridEstrategica');
+            
+            grid.innerHTML = '';
+            
+            // Atualizar informações
+            if (posicao === 'todas') {
+                info.textContent = `Mostrando números ${filtro} de todas as posições`;
+            } else {
+                info.textContent = `Mostrando números ${filtro} da ${posicao}ª Bola`;
+            }
+            
+            for (let i = 1; i <= 60; i++) {
+                const btn = document.createElement('button');
+                btn.className = 'numero-estrategico';
+                btn.textContent = i.toString().padStart(2, '0');
+                btn.dataset.numero = i;
+                btn.dataset.posicao = posicao === 'todas' ? 'T' : posicao;
+                
+                // Determinar categoria do número
+                let categoria = 'normal';
+                if (posicao === 'todas') {
+                    // Buscar a melhor categoria entre todas as posições
+                    let melhorCategoria = 'normal';
+                    for (let p = 1; p <= 6; p++) {
+                        if (categoriasNumeros[p] && categoriasNumeros[p][i]) {
+                            const cat = categoriasNumeros[p][i];
+                            if (cat === 'muito-atrasado' || (cat === 'atrasado' && melhorCategoria !== 'muito-atrasado')) {
+                                melhorCategoria = cat;
+                            }
+                        }
+                    }
+                    categoria = melhorCategoria;
+                } else {
+                    categoria = categoriasNumeros[posicao] ? categoriasNumeros[posicao][i] || 'normal' : 'normal';
+                }
+                
+                // Aplicar classe CSS baseada na categoria
+                switch (categoria) {
+                    case 'muito-atrasado':
+                        btn.classList.add('numero-muito-atrasado');
+                        break;
+                    case 'atrasado':
+                        btn.classList.add('numero-atrasado-estrategico');
+                        break;
+                    case 'candidato':
+                        btn.classList.add('numero-candidato-estrategico');
+                        break;
+                    case 'frequente':
+                        btn.classList.add('numero-frequente-estrategico');
+                        break;
+                    default:
+                        btn.classList.add('numero-normal-estrategico');
+                }
+                
+                // Aplicar filtro
+                let mostrar = false;
+                switch (filtro) {
+                    case 'todos':
+                        mostrar = true;
+                        break;
+                    case 'atrasados':
+                        mostrar = categoria === 'muito-atrasado' || categoria === 'atrasado';
+                        break;
+                    case 'candidatos':
+                        mostrar = categoria === 'candidato';
+                        break;
+                    case 'frequentes':
+                        mostrar = categoria === 'frequente';
+                        break;
+                }
+                
+                if (!mostrar) {
+                    btn.classList.add('numero-oculto');
+                    btn.disabled = true;
+                } else {
+                    btn.onclick = () => toggleNumeroEstrategico(i);
+                }
+                
+                // Marcar se já está selecionado
+                if (numerosEstrategicos.includes(i)) {
+                    btn.classList.add('selecionado-estrategico');
+                }
+                
+                grid.appendChild(btn);
+            }
+            
+            atualizarStatusSelecaoEstrategica();
+        }
+
+        function toggleNumeroEstrategico(numero) {
+            const btn = document.querySelector(`.numero-estrategico[data-numero="${numero}"]`);
+            
+            if (numerosEstrategicos.includes(numero)) {
+                numerosEstrategicos = numerosEstrategicos.filter(n => n !== numero);
+                btn.classList.remove('selecionado-estrategico');
+            } else if (numerosEstrategicos.length < 6) {
+                numerosEstrategicos.push(numero);
+                btn.classList.add('selecionado-estrategico');
+            }
+            
+            atualizarStatusSelecaoEstrategica();
+        }
+
+        function atualizarStatusSelecaoEstrategica() {
+            document.getElementById('numerosEstrategicos').textContent = numerosEstrategicos.length;
+            
+            let atrasados = 0, candidatos = 0, frequentes = 0;
+            
+            numerosEstrategicos.forEach(num => {
+                // Verificar categoria em todas as posições
+                let melhorCategoria = 'normal';
+                for (let p = 1; p <= 6; p++) {
+                    if (categoriasNumeros[p] && categoriasNumeros[p][num]) {
+                        const cat = categoriasNumeros[p][num];
+                        if (cat === 'muito-atrasado' || cat === 'atrasado') {
+                            atrasados++;
+                            break;
+                        } else if (cat === 'candidato' && melhorCategoria !== 'atrasado') {
+                            melhorCategoria = 'candidato';
+                        } else if (cat === 'frequente' && melhorCategoria === 'normal') {
+                            melhorCategoria = 'frequente';
+                        }
+                    }
+                }
+                
+                if (melhorCategoria === 'candidato') candidatos++;
+                else if (melhorCategoria === 'frequente') frequentes++;
+            });
+            
+            document.getElementById('atrasadosEstrategicos').textContent = atrasados;
+            document.getElementById('candidatosEstrategicos').textContent = candidatos;
+            document.getElementById('frequentesEstrategicos').textContent = frequentes;
+            
+            // Habilitar/desabilitar botão de usar seleção
+            const btnUsar = document.getElementById('btnUsarEstrategica');
+            btnUsar.disabled = numerosEstrategicos.length !== 6;
+        }
+
+        function limparSelecaoEstrategica() {
+            numerosEstrategicos = [];
+            document.querySelectorAll('.numero-estrategico').forEach(btn => {
+                btn.classList.remove('selecionado-estrategico');
+            });
+            atualizarStatusSelecaoEstrategica();
+        }
+
+        function sugestaoRapidaEstrategica() {
+            if (Object.keys(categoriasNumeros).length === 0) {
+                mostrarAlerta('Execute primeiro a análise por posições!', 'warning');
+                return;
+            }
+            
+            limparSelecaoEstrategica();
+            
+            const posicao = document.getElementById('posicaoAtual').value;
+            const estrategia = document.getElementById('estrategiaPalpite').value;
+            
+            if (posicao === 'todas') {
+                // Selecionar um número de cada posição
+                for (let p = 1; p <= 6; p++) {
+                    if (resultadosAnalise[p]) {
+                        let numeroSelecionado;
+                        
+                        switch (estrategia) {
+                            case 'atrasados':
+                                numeroSelecionado = resultadosAnalise[p].numerosAtrasados[0] || resultadosAnalise[p].candidatosTOP[0];
+                                break;
+                            case 'equilibrado':
+                                const opcoes = [...resultadosAnalise[p].numerosAtrasados.slice(0, 5), ...resultadosAnalise[p].candidatosTOP.slice(0, 3)];
+                                numeroSelecionado = opcoes[Math.floor(Math.random() * opcoes.length)];
+                                break;
+                            case 'misto':
+                                const todasOpcoes = [...resultadosAnalise[p].numerosAtrasados, ...resultadosAnalise[p].candidatosTOP];
+                                numeroSelecionado = todasOpcoes[Math.floor(Math.random() * todasOpcoes.length)];
+                                break;
+                        }
+                        
+                        if (numeroSelecionado && !numerosEstrategicos.includes(numeroSelecionado)) {
+                            numerosEstrategicos.push(numeroSelecionado);
+                        }
+                    }
+                }
+            } else {
+                // Selecionar 6 números da posição específica
+                const dados = resultadosAnalise[posicao];
+                if (dados) {
+                    const candidatos = [...dados.numerosAtrasados.slice(0, 10), ...dados.candidatosTOP.slice(0, 5)];
+                    
+                    while (numerosEstrategicos.length < 6 && candidatos.length > 0) {
+                        const index = Math.floor(Math.random() * candidatos.length);
+                        const numero = candidatos.splice(index, 1)[0];
+                        if (!numerosEstrategicos.includes(numero)) {
+                            numerosEstrategicos.push(numero);
+                        }
+                    }
+                }
+            }
+            
+            // Atualizar visual
+            document.querySelectorAll('.numero-estrategico').forEach(btn => {
+                const numero = parseInt(btn.dataset.numero);
+                if (numerosEstrategicos.includes(numero)) {
+                    btn.classList.add('selecionado-estrategico');
+                }
+            });
+            
+            atualizarStatusSelecaoEstrategica();
+        }
+
+        function usarSelecaoEstrategica() {
+            if (numerosEstrategicos.length !== 6) {
+                mostrarAlerta('Selecione exatamente 6 números na grid estratégica!', 'warning');
+                return;
+            }
+            
+            // Limpar seleção atual no jogo principal
+            numerosSelecionados = [];
+            document.querySelectorAll('.numero-mega').forEach(btn => {
+                btn.classList.remove('selecionado');
+            });
+            
+            // Transferir números da grid estratégica para o jogo principal
+            numerosEstrategicos.forEach(numero => {
+                numerosSelecionados.push(numero);
+                const btn = document.querySelector(`.numero-mega:nth-child(${numero})`);
+                if (btn) {
+                    btn.classList.add('selecionado');
+                }
+            });
+            
+            atualizarContadorParesImpares();
+            validarBotaoAdicionar();
+            
+            mostrarAlerta('✅ Números da grid estratégica transferidos para o jogo principal!', 'success');
+        }
+
         function gerarPalpitesInteligentes() {
             if (Object.keys(resultadosAnalise).length === 0) {
                 mostrarAlerta('Execute primeiro a análise por posições!', 'warning');
@@ -1359,7 +1804,6 @@
             exibirPalpitesGerados();
         }
 
-        // Exibir palpites gerados
         function exibirPalpitesGerados() {
             const palpitesDiv = document.getElementById('palpitesGerados');
             const listaPalpites = document.getElementById('listaPalpites');
@@ -1388,7 +1832,6 @@
             });
         }
 
-        // Adicionar palpites aos jogos
         function adicionarPalpitesAosJogos() {
             if (palpitesInteligentes.length === 0) {
                 mostrarAlerta('Gere primeiro alguns palpites!', 'warning');
@@ -1415,7 +1858,6 @@
             mostrarAlerta(`${palpitesInteligentes.length} palpite(s) adicionado(s) aos seus jogos!`, 'success');
         }
 
-        // Download de palpites
         function downloadPalpites() {
             if (palpitesInteligentes.length === 0) {
                 mostrarAlerta('Gere primeiro alguns palpites!', 'warning');
@@ -1435,7 +1877,6 @@
             baixarArquivo(conteudo, 'palpites-inteligentes-megasena.txt', 'text/plain');
         }
 
-        // Toggle visualização posições
         function toggleVisualizacaoPosicoes() {
             const resultadosDiv = document.getElementById('resultadosPosicoes');
             const controles = document.getElementById('controlesPosicoes');
@@ -1458,7 +1899,6 @@
 
         // Event listeners
         function configurarEventListeners() {
-            // Event listeners básicos
             document.getElementById('comoFuncionaBtn').addEventListener('click', () => {
                 document.getElementById('modalComoFunciona').classList.remove('hidden');
             });
@@ -1466,13 +1906,21 @@
                 document.getElementById('modalComoFunciona').classList.add('hidden');
             });
 
-            // Novos event listeners para análise por posições
+            // Event listeners para análise por posições
             document.getElementById('btnCarregarPosicoes').addEventListener('click', carregarAnalisePorPosicoes);
             document.getElementById('btnTogglePosicoes').addEventListener('click', toggleVisualizacaoPosicoes);
             document.getElementById('btnAnalisarPosicoes').addEventListener('click', analisarPosicoesDetalhada);
             document.getElementById('btnGerarPalpites').addEventListener('click', gerarPalpitesInteligentes);
             document.getElementById('btnAdicionarPalpites').addEventListener('click', adicionarPalpitesAosJogos);
             document.getElementById('btnDownloadPalpites').addEventListener('click', downloadPalpites);
+
+            // 🎯 NOVOS EVENT LISTENERS PARA GRID ESTRATÉGICA
+            document.getElementById('btnAtualizarGrid').addEventListener('click', atualizarGridEstrategica);
+            document.getElementById('posicaoAtual').addEventListener('change', atualizarGridEstrategica);
+            document.getElementById('filtroNumeros').addEventListener('change', atualizarGridEstrategica);
+            document.getElementById('btnLimparEstrategica').addEventListener('click', limparSelecaoEstrategica);
+            document.getElementById('btnSugestaoRapida').addEventListener('click', sugestaoRapidaEstrategica);
+            document.getElementById('btnUsarEstrategica').addEventListener('click', usarSelecaoEstrategica);
 
             // Event listeners para jogos
             document.getElementById('quantidadeDezenas').addEventListener('change', (e) => {
@@ -1741,9 +2189,10 @@
         <h1>🍀 MEGA SENA - MEUS JOGOS</h1>
         <p>Gerado em: ${data}</p>
         <div class="estrategia-real">
-            <h3>📊 Jogos com Análise Avançada</h3>
+            <h3>📊 Jogos com Análise Avançada + Grid Estratégica</h3>
             <p><strong>Último Sorteio:</strong> Concurso ${ultimoResultado ? ultimoResultado.numero : 'N/A'}</p>
             <p><strong>Análise por Posições:</strong> Números atrasados por coluna</p>
+            <p><strong>Grid Estratégica:</strong> Seleção manual inteligente</p>
             <p><em>Gerado com dados da API oficial da Caixa Econômica Federal</em></p>
         </div>
     </div>`;
@@ -1767,7 +2216,7 @@
         Total: ${jogosAdicionados.length} jogo(s) - ${formatarMoeda(total)}
     </div>
     <div style="text-align: center; margin-top: 20px; font-size: 12px; color: #666;">
-        Gerado pelo Gerador de Palpites Mega Sena com análise avançada por posições
+        Gerado pelo Gerador de Palpites Mega Sena com análise avançada por posições + Grid Estratégica
     </div>
 </body>
 </html>`;

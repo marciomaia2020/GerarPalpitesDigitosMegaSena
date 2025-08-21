@@ -85,7 +85,6 @@ A contagem está agora exatamente como você explicou! 🎯✅
 
 
 
-
 // Mude apenas aqui:
 sistemaValores.ultimaAtualizacao = "2025-02-01";
 sistemaValores.custosJogo[6] = 7.00; // Novo valor
@@ -323,3 +322,122 @@ Estratégias múltiplas - atrasados, equilibrada, mista
 
 Agora o app carrega instantaneamente e você pode testar a nova funcionalidade de análise por posições que identifica exatamente os números atrasados por coluna como você pediu!
 
+DICA PARA UMA BOA ESCOLHA...DICA PARA UMA BOA ESCOLHA...DICA PARA UMA BOA ESCOLHA...DICA PARA UMA BOA ESCOLHA...DICA PARA UMA BOA ESCOLHA...
+DICA PARA UMA BOA ESCOLHA...DICA PARA UMA BOA ESCOLHA...DICA PARA UMA BOA ESCOLHA...DICA PARA UMA BOA ESCOLHA...DICA PARA UMA BOA ESCOLHA...
+DICA PARA UMA BOA ESCOLHA...DICA PARA UMA BOA ESCOLHA...DICA PARA UMA BOA ESCOLHA...DICA PARA UMA BOA ESCOLHA...DICA PARA UMA BOA ESCOLHA...
+DICA PARA UMA BOA ESCOLHA...DICA PARA UMA BOA ESCOLHA...DICA PARA UMA BOA ESCOLHA...DICA PARA UMA BOA ESCOLHA...DICA PARA UMA BOA ESCOLHA...
+
+
+
+Como Funciona a Análise por Posições - Passo a Passo
+Vou explicar exatamente como funciona essa nova funcionalidade baseada na imagem que você mostrou:
+
+📊 1. CONCEITO PRINCIPAL
+A análise examina cada posição específica (1ª bola, 2ª bola, etc.) nos últimos concursos para identificar quais números nunca saíram naquela posição específica.
+
+🔍 2. EXEMPLO PRÁTICO - 1ª BOLA
+Na imagem você vê a análise da 1ª Bola:
+
+🟢 Último Número: 27
+
+O número 27 foi o último a sair na 1ª posição do último concurso
+🔴 Números Atrasados: 03, 04, 05, 07, 08, 09, 10, 11... (+31 mais)
+
+Esses números NUNCA saíram na 1ª posição nos últimos 30 concursos
+São considerados "atrasados" para essa posição específica
+Total: 39 números atrasados na 1ª posição
+🟡 Candidatos TOP: 12, 14, 15, 16, 17, 18
+
+Números que saíram na 1ª posição, mas com baixa frequência
+São candidatos porque apareceram poucas vezes
+🎯 3. LÓGICA DA ANÁLISE
+apache
+
+Copiar
+PASSO 1: Pegar os últimos 30 concursos
+PASSO 2: Olhar apenas a 1ª posição de cada concurso
+PASSO 3: Ver quais números de 01-60 saíram na 1ª posição
+PASSO 4: Identificar quais números NUNCA saíram na 1ª posição
+PASSO 5: Esses são os "números atrasados"
+
+📈 4. INTERPRETAÇÃO DOS RESULTADOS
+🔥 Prioridade Alta (como na imagem):
+
+Muitos números atrasados (39 números)
+Significa que a 1ª posição tem muitas opções "devendo sair"
+Estratégia: focar nos números vermelhos (atrasados)
+
+🎲 5. COMO USAR PARA PALPITES
+Estratégia "Atrasados":
+
+Escolhe preferencialmente os números vermelhos (03, 04, 05, 07...)
+Teoria: "números atrasados tendem a sair"
+Estratégia "Equilibrada":
+
+Mistura números atrasados (vermelhos) + candidatos TOP (amarelos)
+Estratégia "Mista":
+
+Combina atrasados + frequentes + alguns aleatórios
+
+🔄 6. PROCESSO COMPLETO
+Carrega últimos 30 concursos da API
+Analisa cada uma das 6 posições separadamente
+Identifica números atrasados em cada posição
+Gera palpites baseado nos números mais "devendo sair"
+Cria jogos com 1 número de cada posição
+
+📊 7. EXEMPLO PRÁTICO DE GERAÇÃO
+Se você escolher "Focar nos Mais Atrasados":
+
+1ª Bola: escolhe entre 03, 04, 05, 07, 08... (números vermelhos)
+2ª Bola: analisa quais estão atrasados na 2ª posição
+3ª Bola: analisa quais estão atrasados na 3ª posição
+E assim por diante...
+
+💡 8. VANTAGEM DESSA ESTRATÉGIA
+Tradicional: Escolhe 6 números aleatórios de 01-60
+Por Posições: Escolhe 1 número "inteligente" para cada posição específica
+
+Isso aumenta as chances porque considera o histórico real de onde cada número costuma sair!
+
+🎯 9. RESUMO DA IMAGEM
+A 1ª Bola tem 39 números atrasados, então é uma posição com Prioridade Alta para apostas, porque há muitas opções "devendo sair" nessa posição específica.
+
+Essa é a inovação: ao invés de escolher 6 números aleatórios, você escolhe números baseado no comportamento histórico de cada posição! 🚀
+
+
+Nova Funcionalidade Implementada: Grid Estratégica Interativa
+📊 O que foi adicionado:
+🎯 Grid Estratégica Completa:
+
+Grid visual com 60 números categorizados por análise
+Cores diferentes para cada tipo: Muito Atrasados (vermelho), Atrasados (laranja), Candidatos TOP (amarelo), Frequentes (verde)
+🔍 Filtros Avançados:
+
+Posição: Escolha 1ª a 6ª Bola ou todas as posições
+Tipo: Filtre apenas atrasados, candidatos, frequentes ou todos
+⚡ Funcionalidades Inteligentes:
+
+Sugestão Rápida: Preenche automaticamente baseado na estratégia escolhida
+Status em Tempo Real: Mostra quantos atrasados/candidatos/frequentes você selecionou
+Transferência Automática: Botão para usar a seleção no jogo principal
+🎮 Integração Completa:
+
+Mantém o gerador automático de palpites
+Adiciona opção de seleção manual estratégica
+Ambos funcionam com a mesma análise por posições
+
+📋 Como usar a Grid Estratégica:
+Execute a análise clicando em "Carregar Análise" → "Analisar"
+Configure os filtros (posição e tipo de números)
+Clique em "Atualizar Grid" para ver os números categorizados
+Selecione 6 números clicando nos que mais interessam
+Use "Sugestão Rápida" para preenchimento automático estratégico
+Transfira para o jogo clicando em "Usar Seleção no Jogo Principal"
+Agora você tem 3 formas de criar jogos:
+
+✅ Manual tradicional: Grid 1-60 normal
+✅ Grid estratégica: Seleção manual baseada na análise
+✅ Gerador automático: Palpites inteligentes automáticos
+
+Todas usando a mesma análise por posições como você pediu! 🚀
