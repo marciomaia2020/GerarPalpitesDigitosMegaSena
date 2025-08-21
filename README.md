@@ -441,3 +441,14 @@ Agora você tem 3 formas de criar jogos:
 ✅ Gerador automático: Palpites inteligentes automáticos
 
 Todas usando a mesma análise por posições como você pediu! 🚀
+
+
+Funcionalidades Completas:
+✅ Edição Manual de números
+✅ Drag & Drop de números e arquivos
+✅ Grid de seleção normal (1-60)
+✅ Análise por posições
+✅ Grid estratégica avançada
+✅ Palpites inteligentes
+✅ Downloads em HTML/TXT/XLSX
+✅ Padrão histórico (3P/3I - 30.6%)
