@@ -24,7 +24,7 @@ Tabela de probabilidades integrada
 💰 Controle Financeiro:
 Custo em tempo real conforme adiciona/remove jogos
 Valores oficiais da Caixa Econômica Federal
-Total geral sempre visível
+Total geral sempre visível.
 
 📋 Gerenciamento:
 Opção ordem crescente ou ordem de inserção
