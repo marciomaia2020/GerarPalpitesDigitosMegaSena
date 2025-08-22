@@ -452,3 +452,55 @@ Funcionalidades Completas:
 ✅ Palpites inteligentes
 ✅ Downloads em HTML/TXT/XLSX
 ✅ Padrão histórico (3P/3I - 30.6%)
+
+
+Como Usar as Regras Minimalistas:
+Vá na seção "🎯 Estratégia Minimalista"
+Selecione as regras desejadas (R1-R7)
+Escolha quantidade de jogos e dezenas
+Clique "🚀 Gerar Jogos Minimalistas"
+Veja os números base extraídos automaticamente
+Adicione aos seus jogos ou faça download
+
+
+PRINCIPAIS MELHORIAS IMPLEMENTADAS:
+1. ⚙️ Sistema de Valores Unificado
+Local único para definir valor da aposta simples (padrão R$ 6,00)
+Cálculo automático de todos os outros valores baseado em multiplicadores oficiais
+Atualização em tempo real de todas as seções quando valor é alterado
+Status visual mostrando última atualização
+
+2. 🎯 Seções de Geração Destacadas
+SEÇÃO 1: Criação Manual (Par/Ímpar + Edição + Drag & Drop)
+SEÇÃO 2: Regras Minimalistas (7 regras com tooltips funcionais)
+SEÇÃO 3: Análise por Posições (Grid + Palpites Inteligentes)
+Visual destacado com bordas coloridas e títulos
+
+3. 🌐 Link Externo Adicionado
+Botão no header para https://resumomegasena.netlify.app/
+Abre em nova janela para não perder o trabalho atual
+
+4. 🔧 Regras Minimalistas Corrigidas
+Tooltips funcionais para cada regra (R1-R7)
+Explicações detalhadas com exemplos práticos
+Posicionamento inteligente dos tooltips
+Event listeners corrigidos
+
+5. 📊 Funcionalidades Mantidas
+TODAS as funcionalidades anteriores intactas
+API oficial da Caixa funcionando
+Downloads em HTML, TXT e XLSX
+Drag & drop e edição manual
+Análise estatística completa
+
+🎯 Como Usar o Sistema Unificado:
+Vá na seção "⚙️ CONFIGURAÇÃO PRINCIPAL"
+Altere o valor da aposta simples se necessário
+Clique "🔄 Atualizar"
+Todos os valores serão recalculados automaticamente
+Use qualquer seção de geração normalmente
+
+📋 Seções de Geração Organizadas:
+🎮 SEÇÃO 1: Criação manual com grid visual
+🎯 SEÇÃO 2: Regras minimalistas com tooltips funcionais
+🎯 SEÇÃO 3: Análise avançada por posições

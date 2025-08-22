@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mega Sena - Gerador de Palpites Avançado com Regras Minimalistas</title>
+    <title>Mega Sena - Gerador de Palpites Avançado</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
     <script>
@@ -29,10 +29,6 @@
             0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
             40% { transform: translateY(-10px); }
             60% { transform: translateY(-5px); }
-        }
-        @keyframes glow {
-            0%, 100% { box-shadow: 0 0 5px rgba(27, 154, 103, 0.3); }
-            50% { box-shadow: 0 0 20px rgba(27, 154, 103, 0.6); }
         }
         .loading-circle {
             width: 80px;
@@ -374,128 +370,6 @@
             justify-content: center;
             font-weight: bold;
         }
-
-        /* Estilos para Regras Minimalistas */
-        .numero-base {
-            background: linear-gradient(135deg, #1B9A67, #2db87f);
-            color: white;
-            border-radius: 6px;
-            padding: 4px 8px;
-            font-size: 12px;
-            font-weight: bold;
-            margin: 2px;
-            display: inline-block;
-        }
-
-        .jogo-minimalista-card {
-            background: linear-gradient(to right, #f0fdf4, #dcfce7);
-            border: 2px solid #1B9A67;
-            border-radius: 12px;
-            padding: 12px;
-            margin: 8px 0;
-        }
-
-        .numero-minimalista {
-            width: 35px;
-            height: 35px;
-            background: linear-gradient(135deg, #1B9A67, #2db87f);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 14px;
-            margin: 2px;
-        }
-
-        .regra-badge {
-            background: linear-gradient(45deg, #8b5cf6, #7c3aed);
-            color: white;
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-size: 10px;
-            font-weight: bold;
-            margin: 1px;
-        }
-
-        .tooltip-regra {
-            position: fixed;
-            background: #333;
-            color: white;
-            padding: 12px 16px;
-            border-radius: 8px;
-            font-size: 13px;
-            max-width: 300px;
-            z-index: 1000;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-            pointer-events: none;
-            line-height: 1.4;
-        }
-
-        .tooltip-regra::before {
-            content: '';
-            position: absolute;
-            top: -6px;
-            left: 50%;
-            transform: translateX(-50%);
-            border-left: 6px solid transparent;
-            border-right: 6px solid transparent;
-            border-bottom: 6px solid #333;
-        }
-
-        /* Seções destacadas para geração de jogos */
-        .secao-geracao {
-            border: 3px solid #1B9A67;
-            border-radius: 15px;
-            background: linear-gradient(135deg, #f0fdf4, #dcfce7);
-            position: relative;
-            animation: glow 3s ease-in-out infinite;
-        }
-
-        .secao-geracao::before {
-            content: "🎯 GERAÇÃO DE JOGOS";
-            position: absolute;
-            top: -12px;
-            left: 20px;
-            background: #1B9A67;
-            color: white;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: bold;
-        }
-
-        .secao-titulo {
-            background: linear-gradient(45deg, #1B9A67, #2db87f);
-            color: white;
-            padding: 12px 20px;
-            margin: -24px -24px 20px -24px;
-            border-radius: 12px 12px 0 0;
-            font-weight: bold;
-            font-size: 18px;
-            text-align: center;
-        }
-
-        .config-principal {
-            background: linear-gradient(135deg, #fef3c7, #fde68a);
-            border: 3px solid #f59e0b;
-            border-radius: 15px;
-            position: relative;
-        }
-
-        .config-principal::before {
-            content: "⚙️ CONFIGURAÇÃO PRINCIPAL";
-            position: absolute;
-            top: -12px;
-            left: 20px;
-            background: #f59e0b;
-            color: white;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: bold;
-        }
     </style>
 </head>
 <body class="bg-megasena-bg min-h-screen">
@@ -503,64 +377,7 @@
         <!-- Header -->
         <div class="text-center mb-6">
             <h1 class="text-4xl font-bold text-megasena mb-2">🍀 MEGA SENA</h1>
-            <p class="text-gray-600">Gerador de Palpites com Análise Estatística + Regras Minimalistas</p>
-            <div class="mt-3">
-                <a href="https://resumomegasena.netlify.app/" target="_blank" 
-                   class="inline-flex items-center bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-sm transition-colors">
-                    🌐 Ver Resultados Completos (Nova Janela)
-                </a>
-            </div>
-        </div>
-
-        <!-- ⚙️ CONFIGURAÇÃO PRINCIPAL DE VALORES -->
-        <div class="config-principal p-6 mb-6">
-            <div class="secao-titulo">⚙️ CONFIGURAÇÃO PRINCIPAL - VALORES DA MEGA SENA</div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-                <div>
-                    <label class="block text-orange-800 font-medium mb-2">💰 Valor da Aposta Simples (6 dezenas):</label>
-                    <div class="flex gap-2">
-                        <span class="text-orange-800 font-bold text-lg">R$</span>
-                        <input 
-                            type="number" 
-                            id="valorApostaSimples" 
-                            value="6.00" 
-                            min="1" 
-                            max="100" 
-                            step="0.01"
-                            class="w-24 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 text-base font-bold text-center"
-                        >
-                        <button id="btnAtualizarValores" class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg">
-                            🔄 Atualizar
-                        </button>
-                    </div>
-                    <div class="text-xs text-orange-600 mt-1">
-                        <strong>Padrão oficial:</strong> R$ 6,00 (CEF)
-                    </div>
-                </div>
-                
-                <div>
-                    <label class="block text-orange-800 font-medium mb-2">📊 Multiplicadores Automáticos:</label>
-                    <div class="bg-white p-3 rounded border text-xs">
-                        <div><strong>7 dezenas:</strong> <span id="mult7">7x</span> = <span id="valor7">R$ 42,00</span></div>
-                        <div><strong>8 dezenas:</strong> <span id="mult8">28x</span> = <span id="valor8">R$ 168,00</span></div>
-                        <div><strong>15 dezenas:</strong> <span id="mult15">5005x</span> = <span id="valor15">R$ 30.030,00</span></div>
-                    </div>
-                </div>
-                
-                <div>
-                    <label class="block text-orange-800 font-medium mb-2">💡 Status do Sistema:</label>
-                    <div class="bg-green-100 p-3 rounded border text-xs text-green-800">
-                        <div id="statusSistema">✅ Sistema configurado</div>
-                        <div><strong>Última atualização:</strong> <span id="ultimaAtualizacao">-</span></div>
-                        <div><strong>Total de opções:</strong> 15 (6-20 dezenas)</div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="bg-orange-100 border border-orange-300 rounded p-3 text-sm text-orange-800">
-                <strong>📌 Como funciona:</strong> Defina o valor da aposta simples acima e todos os outros valores serão calculados automaticamente usando os multiplicadores oficiais da Caixa. O sistema atualiza automaticamente todas as seções (seleção, jogos minimalistas, análises, etc.).
-            </div>
+            <p class="text-gray-600">Gerador de Palpites com Análise Estatística em Tempo Real</p>
         </div>
 
         <!-- Loading -->
@@ -614,11 +431,8 @@
             
             <!-- LADO ESQUERDO: Criação de Jogos -->
             <div class="space-y-6">
-                
-                <!-- 🎯 SEÇÃO 1: JOGO MANUAL -->
-                <div class="secao-geracao bg-white rounded-lg shadow-lg p-6">
-                    <div class="secao-titulo">🎮 SEÇÃO 1: CRIAÇÃO MANUAL DE JOGOS</div>
-                    
+                <!-- Controles do Jogo -->
+                <div class="bg-white rounded-lg shadow-lg p-6 border-2 border-megasena">
                     <div class="flex justify-between items-center mb-4">
                         <h3 class="text-xl font-bold text-megasena">🎮 Criar Novo Jogo</h3>
                         <button id="comoFuncionaBtn" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-sm">
@@ -630,7 +444,21 @@
                     <div class="mb-4">
                         <label class="block text-megasena font-medium mb-2">Quantidade de Dezenas:</label>
                         <select id="quantidadeDezenas" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-megasena text-base">
-                            <!-- Será preenchido dinamicamente -->
+                            <option value="6">6 dezenas - R$ 6,00</option>
+                            <option value="7">7 dezenas - R$ 42,00</option>
+                            <option value="8">8 dezenas - R$ 168,00</option>
+                            <option value="9">9 dezenas - R$ 504,00</option>
+                            <option value="10">10 dezenas - R$ 1.260,00</option>
+                            <option value="11">11 dezenas - R$ 2.772,00</option>
+                            <option value="12">12 dezenas - R$ 5.544,00</option>
+                            <option value="13">13 dezenas - R$ 10.296,00</option>
+                            <option value="14">14 dezenas - R$ 18.018,00</option>
+                            <option value="15">15 dezenas - R$ 30.030,00</option>
+                            <option value="16">16 dezenas - R$ 48.048,00</option>
+                            <option value="17">17 dezenas - R$ 74.256,00</option>
+                            <option value="18">18 dezenas - R$ 111.384,00</option>
+                            <option value="19">19 dezenas - R$ 162.792,00</option>
+                            <option value="20">20 dezenas - R$ 232.560,00</option>
                         </select>
                     </div>
 
@@ -687,7 +515,7 @@
                         </div>
                     </div>
 
-                    <!-- ✏️ SEÇÃO: Campo para Editar Números Inseridos -->
+                    <!-- ✏️ SEÇÃO RESTAURADA: Campo para Editar Números Inseridos -->
                     <div class="mb-4">
                         <label class="block text-megasena font-medium mb-2">✏️ Editar Números Manualmente:</label>
                         <div class="flex gap-2">
@@ -749,7 +577,7 @@
                         </div>
                     </div>
 
-                    <!-- 📥 SEÇÃO: Área de Drag and Drop -->
+                    <!-- 📥 SEÇÃO RESTAURADA: Área de Drag and Drop -->
                     <div class="mb-4">
                         <label class="block text-megasena font-medium mb-2">🎯 Área de Drag & Drop:</label>
                         <div id="dropZone" class="drop-zone">
@@ -781,168 +609,6 @@
                     </div>
                 </div>
 
-                <!-- 🎯 SEÇÃO 2: REGRAS MINIMALISTAS -->
-                <div class="secao-geracao bg-white rounded-lg shadow-lg p-6">
-                    <div class="secao-titulo">🎯 SEÇÃO 2: ESTRATÉGIA MINIMALISTA</div>
-                    
-                    <div class="flex justify-between items-center mb-4">
-                        <h3 class="text-lg font-bold text-megasena">🎯 Estratégia Minimalista</h3>
-                        <button id="btnInfoMinimalista" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-sm">
-                            ❓ Como Funciona
-                        </button>
-                    </div>
-
-                    <div class="mb-4 p-3 bg-green-50 border border-green-200 rounded-lg">
-                        <div class="text-sm font-medium text-green-800 mb-2">📊 Método de Extração Baseado em Dados Oficiais:</div>
-                        <div class="text-xs text-green-700">
-                            Utiliza informações do <strong>próximo sorteio</strong> (concurso, data, prêmio) para gerar dezenas através de regras matemáticas simples.
-                            Baseado em análise de resultados reais anteriores.
-                        </div>
-                    </div>
-
-                    <!-- Informações do Próximo Sorteio (API) -->
-                    <div id="infoProximoSorteio" class="mb-4 p-4 bg-megasena text-white rounded-lg">
-                        <div class="text-sm font-bold mb-2">📅 Dados do Próximo Sorteio (API Oficial):</div>
-                        <div id="dadosProximoSorteio" class="text-sm">
-                            Carregando informações...
-                        </div>
-                    </div>
-
-                    <!-- Seleção de Regras -->
-                    <div class="mb-6">
-                        <label class="block text-megasena font-medium mb-3">🔧 Selecione as Regras Minimalistas:</label>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                            <label class="flex items-center p-3 bg-gray-50 rounded-lg hover:bg-gray-100 cursor-pointer">
-                                <input type="checkbox" id="regra1" class="mr-3 scale-125" checked>
-                                <div class="flex-1">
-                                    <span class="font-bold text-megasena">R1 - Direto</span>
-                                    <div class="text-xs text-gray-600">Números que aparecem puros (dia, mês, concurso)</div>
-                                </div>
-                                <button type="button" class="ml-2 text-blue-500 hover:text-blue-700 regra-info" data-regra="1">ℹ️</button>
-                            </label>
-
-                            <label class="flex items-center p-3 bg-gray-50 rounded-lg hover:bg-gray-100 cursor-pointer">
-                                <input type="checkbox" id="regra2" class="mr-3 scale-125" checked>
-                                <div class="flex-1">
-                                    <span class="font-bold text-megasena">R2 - Soma</span>
-                                    <div class="text-xs text-gray-600">Somar dois números da base</div>
-                                </div>
-                                <button type="button" class="ml-2 text-blue-500 hover:text-blue-700 regra-info" data-regra="2">ℹ️</button>
-                            </label>
-
-                            <label class="flex items-center p-3 bg-gray-50 rounded-lg hover:bg-gray-100 cursor-pointer">
-                                <input type="checkbox" id="regra3" class="mr-3 scale-125" checked>
-                                <div class="flex-1">
-                                    <span class="font-bold text-megasena">R3 - Dobro/Mult.</span>
-                                    <div class="text-xs text-gray-600">Dobrar ou multiplicar números</div>
-                                </div>
-                                <button type="button" class="ml-2 text-blue-500 hover:text-blue-700 regra-info" data-regra="3">ℹ️</button>
-                            </label>
-
-                            <label class="flex items-center p-3 bg-gray-50 rounded-lg hover:bg-gray-100 cursor-pointer">
-                                <input type="checkbox" id="regra4" class="mr-3 scale-125">
-                                <div class="flex-1">
-                                    <span class="font-bold text-megasena">R4 - Diferença</span>
-                                    <div class="text-xs text-gray-600">Subtrair valores entre si</div>
-                                </div>
-                                <button type="button" class="ml-2 text-blue-500 hover:text-blue-700 regra-info" data-regra="4">ℹ️</button>
-                            </label>
-
-                            <label class="flex items-center p-3 bg-gray-50 rounded-lg hover:bg-gray-100 cursor-pointer">
-                                <input type="checkbox" id="regra5" class="mr-3 scale-125" checked>
-                                <div class="flex-1">
-                                    <span class="font-bold text-megasena">R5 - Inversão</span>
-                                    <div class="text-xs text-gray-600">Espelhar números (ex: 25→52)</div>
-                                </div>
-                                <button type="button" class="ml-2 text-blue-500 hover:text-blue-700 regra-info" data-regra="5">ℹ️</button>
-                            </label>
-
-                            <label class="flex items-center p-3 bg-gray-50 rounded-lg hover:bg-gray-100 cursor-pointer">
-                                <input type="checkbox" id="regra6" class="mr-3 scale-125">
-                                <div class="flex-1">
-                                    <span class="font-bold text-megasena">R6 - Vizinhos</span>
-                                    <div class="text-xs text-gray-600">Aproximar para números próximos</div>
-                                </div>
-                                <button type="button" class="ml-2 text-blue-500 hover:text-blue-700 regra-info" data-regra="6">ℹ️</button>
-                            </label>
-
-                            <label class="flex items-center p-3 bg-gray-50 rounded-lg hover:bg-gray-100 cursor-pointer">
-                                <input type="checkbox" id="regra7" class="mr-3 scale-125" checked>
-                                <div class="flex-1">
-                                    <span class="font-bold text-megasena">R7 - Soma Cruzada</span>
-                                    <div class="text-xs text-gray-600">Somar elementos da mesma linha</div>
-                                </div>
-                                <button type="button" class="ml-2 text-blue-500 hover:text-blue-700 regra-info" data-regra="7">ℹ️</button>
-                            </label>
-                        </div>
-                    </div>
-
-                    <!-- Controles de Geração -->
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-                        <div>
-                            <label class="block text-megasena font-medium mb-2">🎮 Quantidade de Jogos:</label>
-                            <select id="qtdJogosMinimalista" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-megasena text-base">
-                                <option value="1">1 jogo</option>
-                                <option value="2">2 jogos</option>
-                                <option value="3" selected>3 jogos</option>
-                                <option value="5">5 jogos</option>
-                                <option value="10">10 jogos</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="block text-megasena font-medium mb-2">🔢 Dezenas por Jogo:</label>
-                            <select id="dezenasMinimalista" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-megasena text-base">
-                                <!-- Será preenchido dinamicamente -->
-                            </select>
-                        </div>
-                        <div class="flex items-end">
-                            <button id="btnGerarMinimalista" class="bg-megasena hover:bg-megasena-dark text-white font-bold px-6 py-2 rounded-lg w-full">
-                                🚀 Gerar Jogos Minimalistas
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Números Base Extraídos -->
-                    <div id="numerosBaseExtraidos" class="mb-4 p-3 bg-blue-50 border border-blue-200 rounded-lg hidden">
-                        <div class="text-sm font-medium text-blue-800 mb-2">🔍 Números Base Extraídos:</div>
-                        <div id="listaBaseExtraidos" class="flex flex-wrap gap-2">
-                            <!-- Números base serão inseridos aqui -->
-                        </div>
-                    </div>
-
-                    <!-- Jogos Minimalistas Gerados -->
-                    <div id="jogosMinimalistasGerados" class="hidden">
-                        <h4 class="font-bold text-megasena mb-3">🎯 Jogos Minimalistas Gerados:</h4>
-                        <div id="listaJogosMinimalistas" class="space-y-3">
-                            <!-- Jogos serão inseridos aqui -->
-                        </div>
-                        
-                        <!-- Estatísticas dos Jogos Gerados -->
-                        <div id="estatisticasMinimalistas" class="mt-4 p-3 bg-green-50 border border-green-200 rounded-lg">
-                            <div class="text-sm font-medium text-green-800 mb-2">📊 Estatísticas dos Jogos:</div>
-                            <div class="grid grid-cols-2 md:grid-cols-4 gap-2 text-xs">
-                                <div>Total: <span id="totalJogosMin" class="font-bold">0</span> jogo(s)</div>
-                                <div>Custo: <span id="custoTotalMin" class="font-bold">R$ 0,00</span></div>
-                                <div>Regras usadas: <span id="regrasUsadas" class="font-bold">0</span></div>
-                                <div>Números únicos: <span id="numerosUnicosMin" class="font-bold">0</span></div>
-                            </div>
-                        </div>
-                        
-                        <!-- Botões de Ação para Jogos Minimalistas -->
-                        <div class="mt-4 flex gap-2 justify-center">
-                            <button id="btnAdicionarMinimalistas" class="bg-megasena hover:bg-megasena-dark text-white px-4 py-2 rounded-lg">
-                                ➕ Adicionar aos Meus Jogos
-                            </button>
-                            <button id="btnDownloadMinimalistas" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg">
-                                📥 Download Jogos
-                            </button>
-                            <button id="btnLimparMinimalistas" class="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-lg">
-                                🗑️ Limpar
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
                 <!-- Tabela de Probabilidades -->
                 <div class="bg-white rounded-lg shadow-lg p-6 border-2 border-blue-200">
                     <h3 class="text-lg font-bold text-blue-800 mb-4">📊 Probabilidades de Acerto</h3>
@@ -957,17 +623,21 @@
                                     <th class="p-2 text-right">Quadra</th>
                                 </tr>
                             </thead>
-                            <tbody id="tabelaProbabilidades">
-                                <!-- Será preenchida dinamicamente -->
+                            <tbody>
+                                <tr><td class="p-1">6</td><td class="p-1 text-right">R$ 6,00</td><td class="p-1 text-right">50.063.860</td><td class="p-1 text-right">154.518</td><td class="p-1 text-right">2.332</td></tr>
+                                <tr class="bg-gray-50"><td class="p-1">7</td><td class="p-1 text-right">R$ 42,00</td><td class="p-1 text-right">7.151.980</td><td class="p-1 text-right">44.981</td><td class="p-1 text-right">1.038</td></tr>
+                                <tr><td class="p-1">8</td><td class="p-1 text-right">R$ 168,00</td><td class="p-1 text-right">1.787.995</td><td class="p-1 text-right">17.192</td><td class="p-1 text-right">539</td></tr>
+                                <tr class="bg-gray-50"><td class="p-1">9</td><td class="p-1 text-right">R$ 504,00</td><td class="p-1 text-right">595.998</td><td class="p-1 text-right">7.791</td><td class="p-1 text-right">312</td></tr>
+                                <tr><td class="p-1">10</td><td class="p-1 text-right">R$ 1.260,00</td><td class="p-1 text-right">238.399</td><td class="p-1 text-right">3.973</td><td class="p-1 text-right">195</td></tr>
+                                <tr class="bg-gray-50"><td class="p-1">15</td><td class="p-1 text-right">R$ 30.030,00</td><td class="p-1 text-right">10.003</td><td class="p-1 text-right">370</td><td class="p-1 text-right">37</td></tr>
+                                <tr><td class="p-1">20</td><td class="p-1 text-right">R$ 232.560,00</td><td class="p-1 text-right">1.292</td><td class="p-1 text-right">81</td><td class="p-1 text-right">13</td></tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
 
-                <!-- 🎯 SEÇÃO 3: ANÁLISE POR POSIÇÕES -->
-                <div class="secao-geracao bg-white rounded-lg shadow-lg p-6">
-                    <div class="secao-titulo">🎯 SEÇÃO 3: ANÁLISE POR POSIÇÕES - NÚMEROS ATRASADOS</div>
-                    
+                <!-- 🎯 SEÇÃO: Análise por Posições (Colunas) -->
+                <div class="bg-white rounded-lg shadow-lg p-6 border-2 border-orange-200 mt-6">
                     <div class="flex justify-between items-center mb-4">
                         <h3 class="text-lg font-bold text-orange-800">🎯 Análise por Posições - Números Atrasados</h3>
                         <div class="flex gap-2">
@@ -1279,34 +949,54 @@
         <div id="modalComoFunciona" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
             <div class="bg-white rounded-lg shadow-lg max-w-4xl w-full mx-4 max-h-screen overflow-y-auto">
                 <div class="bg-megasena text-white p-6 rounded-t-lg">
-                    <h2 class="text-2xl font-bold text-center">🍀 Como Funciona o Gerador Mega Sena Completo</h2>
+                    <h2 class="text-2xl font-bold text-center">🍀 Como Funciona o Gerador Mega Sena</h2>
                 </div>
                 
                 <div class="p-6 space-y-6">
                     <div class="bg-green-50 border border-green-200 rounded-lg p-4">
-                        <h3 class="text-xl font-bold text-green-800 mb-3">📋 3 Seções Principais de Geração:</h3>
+                        <h3 class="text-xl font-bold text-green-800 mb-3">📋 Passo a Passo:</h3>
                         <div class="space-y-3 text-green-700">
-                            <p><strong>🎮 SEÇÃO 1 - Criação Manual:</strong> Estratégia Par/Ímpar + Edição Manual + Drag & Drop + Grid de Seleção</p>
-                            <p><strong>🎯 SEÇÃO 2 - Regras Minimalistas:</strong> 7 regras matemáticas baseadas em dados oficiais do próximo sorteio</p>
-                            <p><strong>🎯 SEÇÃO 3 - Análise por Posições:</strong> Identifica números atrasados + Grid Estratégica + Palpites Inteligentes</p>
+                            <p><strong>1. Escolha a quantidade:</strong> Selecione de 6 a 20 dezenas por jogo</p>
+                            <p><strong>2. Estratégia Par/Ímpar:</strong> Veja a distribuição histórica mais comum (3P/3I - 30.6%)</p>
+                            <p><strong>3. Edite manualmente:</strong> Digite números diretamente no campo de texto</p>
+                            <p><strong>4. Drag & Drop:</strong> Arraste números ou arquivos .txt para a área especial</p>
+                            <p><strong>5. Selecione os números:</strong> Clique nos números de 01 a 60 para formar seu jogo</p>
+                            <p><strong>6. Análise por posições:</strong> Use a funcionalidade para identificar números atrasados</p>
+                            <p><strong>7. Grid estratégica:</strong> Escolha números manualmente baseado na análise</p>
+                            <p><strong>8. Gere palpites inteligentes:</strong> Use a análise para criar jogos automaticamente</p>
+                            <p><strong>9. Download:</strong> Exporte seus jogos em HTML, TXT ou XLSX</p>
                         </div>
                     </div>
 
-                    <div class="bg-megasena-bg border border-megasena rounded-lg p-4">
-                        <h3 class="text-xl font-bold text-megasena mb-3">🎯 Estratégia Minimalista:</h3>
-                        <div class="space-y-2 text-gray-700">
-                            <p><strong>📊 Conceito:</strong> Utiliza dados oficiais do próximo sorteio para gerar dezenas</p>
-                            <p><strong>🔧 7 Regras:</strong> R1-Direto, R2-Soma, R3-Dobro, R4-Diferença, R5-Inversão, R6-Vizinhos, R7-Soma Cruzada</p>
-                            <p><strong>✅ Flexibilidade:</strong> Escolha quais regras usar, quantidade de jogos e dezenas</p>
+                    <div class="bg-purple-50 border border-purple-200 rounded-lg p-4">
+                        <h3 class="text-xl font-bold text-purple-800 mb-3">🎯 Grid Estratégica:</h3>
+                        <div class="space-y-2 text-purple-700">
+                            <p><strong>🎯 Seleção Manual:</strong> Grid interativa para escolher números baseado na análise</p>
+                            <p><strong>📊 Categorização:</strong> Números coloridos por categoria (atrasados, candidatos, frequentes)</p>
+                            <p><strong>🔍 Filtros Avançados:</strong> Filtre por posição específica e tipo de número</p>
+                            <p><strong>⚡ Sugestão Rápida:</strong> Preenchimento automático baseado na estratégia</p>
+                            <p><strong>✅ Integração:</strong> Transfira sua seleção para o jogo principal</p>
                         </div>
                     </div>
 
                     <div class="bg-orange-50 border border-orange-200 rounded-lg p-4">
-                        <h3 class="text-xl font-bold text-orange-800 mb-3">⚙️ Sistema de Valores Unificado:</h3>
+                        <h3 class="text-xl font-bold text-orange-800 mb-3">🎯 Análise por Posições:</h3>
                         <div class="space-y-2 text-orange-700">
-                            <p><strong>💰 Configuração Central:</strong> Defina o valor da aposta simples (padrão R$ 6,00)</p>
-                            <p><strong>🔄 Cálculo Automático:</strong> Todos os outros valores são calculados automaticamente</p>
-                            <p><strong>📊 Sempre Atualizado:</strong> Mudança única atualiza todo o sistema</p>
+                            <p><strong>📊 Análise Histórica:</strong> Carrega os últimos 20-100 concursos e analisa cada posição</p>
+                            <p><strong>🎯 Números Atrasados:</strong> Identifica quais números ainda não saíram em cada posição específica</p>
+                            <p><strong>🎲 Palpites Inteligentes:</strong> Gera jogos baseados nos números mais atrasados por posição</p>
+                            <p><strong>📈 Estratégias Avançadas:</strong> Oferece diferentes abordagens (atrasados, equilibrada, mista)</p>
+                            <p><strong>🔍 Filtros Detalhados:</strong> Analise posições específicas ou todas de uma vez</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                        <h3 class="text-xl font-bold text-blue-800 mb-3">✏️ Edição Manual e Drag & Drop:</h3>
+                        <div class="space-y-2 text-blue-700">
+                            <p><strong>Edição Manual:</strong> Digite números diretamente separados por espaço ou vírgula</p>
+                            <p><strong>Múltiplos Jogos:</strong> Uma linha = um jogo, sistema detecta automaticamente a quantidade</p>
+                            <p><strong>Drag & Drop:</strong> Arraste números da grid ou arquivos .txt com jogos</p>
+                            <p><strong>Validação Automática:</strong> Sistema valida números (01-60) e quantidades (6-20)</p>
                         </div>
                     </div>
                 </div>
@@ -1314,81 +1004,6 @@
                 <div class="bg-gray-50 px-6 py-4 rounded-b-lg text-center">
                     <button id="fecharModal" class="bg-megasena hover:bg-megasena-dark text-white font-medium py-2 px-6 rounded-lg">
                         ✅ Entendi, Vamos Jogar!
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Modal Informações Regras Minimalistas -->
-        <div id="modalInfoMinimalista" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-            <div class="bg-white rounded-lg shadow-lg max-w-4xl w-full mx-4 max-h-screen overflow-y-auto">
-                <div class="bg-megasena text-white p-6 rounded-t-lg">
-                    <h2 class="text-2xl font-bold text-center">🎯 Estratégia Minimalista - Regras Detalhadas</h2>
-                </div>
-                
-                <div class="p-6 space-y-6">
-                    <div class="bg-green-50 border border-green-200 rounded-lg p-4">
-                        <h3 class="text-xl font-bold text-green-800 mb-3">📊 Como Funciona o Método:</h3>
-                        <div class="space-y-3 text-green-700">
-                            <p><strong>1. Extração de Dados:</strong> Sistema pega informações oficiais do próximo sorteio</p>
-                            <p><strong>2. Aplicação de Regras:</strong> Aplica regras matemáticas simples nos números extraídos</p>
-                            <p><strong>3. Geração de Dezenas:</strong> Cria dezenas válidas (01-60) baseadas nos cálculos</p>
-                            <p><strong>4. Validação:</strong> Remove duplicatas e ajusta para a quantidade solicitada</p>
-                        </div>
-                    </div>
-
-                    <div class="space-y-4">
-                        <h3 class="text-xl font-bold text-megasena">🔧 Detalhamento das 7 Regras:</h3>
-                        
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
-                                <h4 class="font-bold text-megasena mb-2">R1 - Direto</h4>
-                                <p class="text-sm text-gray-700 mb-2"><strong>Conceito:</strong> Usar números que aparecem "puros" nos dados</p>
-                                <p class="text-xs text-gray-600"><strong>Exemplo:</strong> Data 21/08 → dezenas 21, 08</p>
-                            </div>
-
-                            <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
-                                <h4 class="font-bold text-megasena mb-2">R2 - Soma</h4>
-                                <p class="text-sm text-gray-700 mb-2"><strong>Conceito:</strong> Somar dois números da base</p>
-                                <p class="text-xs text-gray-600"><strong>Exemplo:</strong> 21 + 25 = 46</p>
-                            </div>
-
-                            <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
-                                <h4 class="font-bold text-megasena mb-2">R3 - Dobro/Multiplicação</h4>
-                                <p class="text-sm text-gray-700 mb-2"><strong>Conceito:</strong> Dobrar ou multiplicar números</p>
-                                <p class="text-xs text-gray-600"><strong>Exemplo:</strong> 21 × 2 = 42</p>
-                            </div>
-
-                            <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
-                                <h4 class="font-bold text-megasena mb-2">R4 - Diferença</h4>
-                                <p class="text-sm text-gray-700 mb-2"><strong>Conceito:</strong> Subtrair valores entre si</p>
-                                <p class="text-xs text-gray-600"><strong>Exemplo:</strong> 35 - 21 = 14</p>
-                            </div>
-
-                            <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
-                                <h4 class="font-bold text-megasena mb-2">R5 - Inversão</h4>
-                                <p class="text-sm text-gray-700 mb-2"><strong>Conceito:</strong> Espelhar números</p>
-                                <p class="text-xs text-gray-600"><strong>Exemplo:</strong> 25 → 52</p>
-                            </div>
-
-                            <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
-                                <h4 class="font-bold text-megasena mb-2">R6 - Vizinhos</h4>
-                                <p class="text-sm text-gray-700 mb-2"><strong>Conceito:</strong> Números próximos</p>
-                                <p class="text-xs text-gray-600"><strong>Exemplo:</strong> 35 → 34, 36</p>
-                            </div>
-
-                            <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
-                                <h4 class="font-bold text-megasena mb-2">R7 - Soma Cruzada</h4>
-                                <p class="text-sm text-gray-700 mb-2"><strong>Conceito:</strong> Somar elementos da mesma categoria</p>
-                                <p class="text-xs text-gray-600"><strong>Exemplo:</strong> Dia + Mês = 29</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="bg-gray-50 px-6 py-4 rounded-b-lg text-center">
-                    <button id="fecharModalMinimalista" class="bg-megasena hover:bg-megasena-dark text-white font-medium py-2 px-6 rounded-lg">
-                        ✅ Entendi, Vou Testar!
                     </button>
                 </div>
             </div>
@@ -1458,191 +1073,21 @@
         let palpitesInteligentes = [];
         let numerosEstrategicos = [];
         let categoriasNumeros = {};
-        let jogosMinimalistas = [];
-        let dadosProximoSorteio = null;
-        let valorApostaSimples = 6.00;
 
-        // Sistema de Valores da Mega Sena - Unificado
+        // Sistema de Valores da Mega Sena
         const sistemaValores = {
-            // Multiplicadores oficiais baseados em combinação matemática
-            multiplicadores: {
-                6: 1,     // Base
-                7: 7,     // C(7,6) = 7
-                8: 28,    // C(8,6) = 28
-                9: 84,    // C(9,6) = 84
-                10: 210,  // C(10,6) = 210
-                11: 462,  // C(11,6) = 462
-                12: 924,  // C(12,6) = 924
-                13: 1716, // C(13,6) = 1716
-                14: 3003, // C(14,6) = 3003
-                15: 5005, // C(15,6) = 5005
-                16: 8008, // C(16,6) = 8008
-                17: 12376, // C(17,6) = 12376
-                18: 18564, // C(18,6) = 18564
-                19: 27132, // C(19,6) = 27132
-                20: 38760  // C(20,6) = 38760
+            custosJogo: {
+                6: 6.00, 7: 42.00, 8: 168.00, 9: 504.00, 10: 1260.00,
+                11: 2772.00, 12: 5544.00, 13: 10296.00, 14: 18018.00, 15: 30030.00,
+                16: 48048.00, 17: 74256.00, 18: 111384.00, 19: 162792.00, 20: 232560.00
             },
-            
             obterValor: function(quantidade) {
-                const multiplicador = this.multiplicadores[quantidade] || 1;
-                return valorApostaSimples * multiplicador;
-            },
-            
-            atualizarTodosValores: function() {
-                // Atualizar select de quantidade de dezenas
-                this.atualizarSelectQuantidade();
-                
-                // Atualizar select de dezenas minimalistas
-                this.atualizarSelectMinimalista();
-                
-                // Atualizar tabela de probabilidades
-                this.atualizarTabelaProbabilidades();
-                
-                // Atualizar visualização dos jogos
-                atualizarVisualizacaoJogos();
-                atualizarCustoTotal();
-                
-                // Atualizar status
-                this.atualizarStatus();
-            },
-            
-            atualizarSelectQuantidade: function() {
-                const select = document.getElementById('quantidadeDezenas');
-                if (!select) return;
-                
-                select.innerHTML = '';
-                for (let i = 6; i <= 20; i++) {
-                    const option = document.createElement('option');
-                    option.value = i;
-                    option.textContent = `${i} dezenas - ${formatarMoeda(this.obterValor(i))}`;
-                    select.appendChild(option);
-                }
-            },
-            
-            atualizarSelectMinimalista: function() {
-                const select = document.getElementById('dezenasMinimalista');
-                if (!select) return;
-                
-                select.innerHTML = '';
-                for (let i = 6; i <= 15; i++) {
-                    const option = document.createElement('option');
-                    option.value = i;
-                    option.textContent = `${i} dezenas - ${formatarMoeda(this.obterValor(i))}`;
-                    if (i === 6) option.selected = true;
-                    select.appendChild(option);
-                }
-            },
-            
-            atualizarTabelaProbabilidades: function() {
-                const tbody = document.getElementById('tabelaProbabilidades');
-                if (!tbody) return;
-                
-                tbody.innerHTML = '';
-                const dezenas = [6, 7, 8, 9, 10, 15, 20];
-                
-                dezenas.forEach((dez, index) => {
-                    const tr = document.createElement('tr');
-                    if (index % 2 === 1) tr.className = 'bg-gray-50';
-                    
-                    tr.innerHTML = `
-                        <td class="p-1">${dez}</td>
-                        <td class="p-1 text-right">${formatarMoeda(this.obterValor(dez))}</td>
-                        <td class="p-1 text-right">${this.obterProbabilidadeSena(dez)}</td>
-                        <td class="p-1 text-right">${this.obterProbabilidadeQuina(dez)}</td>
-                        <td class="p-1 text-right">${this.obterProbabilidadeQuadra(dez)}</td>
-                    `;
-                    tbody.appendChild(tr);
-                });
-            },
-            
-            obterProbabilidadeSena: function(dezenas) {
-                const probabilidades = {
-                    6: '50.063.860', 7: '7.151.980', 8: '1.787.995', 9: '595.998', 10: '238.399',
-                    11: '108.363', 12: '54.182', 13: '29.175', 14: '16.671', 15: '10.003',
-                    16: '6.252', 17: '4.045', 18: '2.697', 19: '1.845', 20: '1.292'
-                };
-                return probabilidades[dezenas] || 'N/A';
-            },
-            
-            obterProbabilidadeQuina: function(dezenas) {
-                const probabilidades = {
-                    6: '154.518', 7: '44.981', 8: '17.192', 9: '7.791', 10: '3.973',
-                    11: '2.211', 12: '1.317', 13: '828', 14: '544', 15: '370',
-                    16: '260', 17: '188', 18: '139', 19: '105', 20: '81'
-                };
-                return probabilidades[dezenas] || 'N/A';
-            },
-            
-            obterProbabilidadeQuadra: function(dezenas) {
-                const probabilidades = {
-                    6: '2.332', 7: '1.038', 8: '539', 9: '312', 10: '195',
-                    11: '129', 12: '90', 13: '65', 14: '48', 15: '37',
-                    16: '29', 17: '23', 18: '19', 19: '16', 20: '13'
-                };
-                return probabilidades[dezenas] || 'N/A';
-            },
-            
-            atualizarStatus: function() {
-                const now = new Date();
-                document.getElementById('statusSistema').textContent = '✅ Sistema atualizado';
-                document.getElementById('ultimaAtualizacao').textContent = now.toLocaleTimeString('pt-BR');
-                
-                // Atualizar valores de exemplo
-                document.getElementById('mult7').textContent = `${this.multiplicadores[7]}x`;
-                document.getElementById('valor7').textContent = formatarMoeda(this.obterValor(7));
-                document.getElementById('mult8').textContent = `${this.multiplicadores[8]}x`;
-                document.getElementById('valor8').textContent = formatarMoeda(this.obterValor(8));
-                document.getElementById('mult15').textContent = `${this.multiplicadores[15]}x`;
-                document.getElementById('valor15').textContent = formatarMoeda(this.obterValor(15));
-            }
-        };
-
-        // 🎯 REGRAS MINIMALISTAS
-        const regrasMinimalistas = {
-            definicoes: {
-                1: {
-                    nome: "R1 - Direto",
-                    descricao: "Usar números que aparecem puros nos dados (dia, mês, concurso, prêmio)",
-                    exemplo: "Data 21/08 → dezenas 21, 08. Concurso 2904 → dezenas 29, 04, 02"
-                },
-                2: {
-                    nome: "R2 - Soma",
-                    descricao: "Somar dois números da base extraída",
-                    exemplo: "21 (dia) + 25 (ano) = 46. 35 (prêmio) + 8 (mês) = 43"
-                },
-                3: {
-                    nome: "R3 - Dobro/Multiplicação",
-                    descricao: "Dobrar ou multiplicar números da base (máximo ≤60)",
-                    exemplo: "21 × 2 = 42. 25 × 2 = 50 (se ≤60)"
-                },
-                4: {
-                    nome: "R4 - Diferença",
-                    descricao: "Subtrair valores entre si",
-                    exemplo: "35 (prêmio) - 21 (dia) = 14. 65 (prêmio) - 19 (dia) = 46"
-                },
-                5: {
-                    nome: "R5 - Inversão",
-                    descricao: "Espelhar números de dois dígitos",
-                    exemplo: "25 → 52. 35 → 53. 21 → 12"
-                },
-                6: {
-                    nome: "R6 - Vizinhos",
-                    descricao: "Aproximar para números próximos (±1, ±2)",
-                    exemplo: "35 → 34, 36. 21 → 20, 22"
-                },
-                7: {
-                    nome: "R7 - Soma Cruzada",
-                    descricao: "Somar elementos da mesma categoria",
-                    exemplo: "Dia + Mês = 21 + 8 = 29. Dígitos do prêmio = 3 + 5 = 8"
-                }
+                return this.custosJogo[quantidade] || 0;
             }
         };
 
         // Inicialização da aplicação
         document.addEventListener('DOMContentLoaded', async () => {
-            // Inicializar sistema de valores
-            sistemaValores.atualizarTodosValores();
-            
             const timeoutPromise = new Promise((_, reject) => 
                 setTimeout(() => reject(new Error('Timeout')), 3000)
             );
@@ -1681,7 +1126,6 @@
                         document.getElementById('loadingDetails').textContent = `✅ Concurso ${data.numero} encontrado!`;
                         ultimoResultado = data;
                         exibirUltimoResultado(data);
-                        atualizarDadosProximoSorteio(data);
                         finalizarCarregamento();
                         return;
                     }
@@ -1705,7 +1149,6 @@
                 analisePosicoesCarregada = true;
                 
                 exibirUltimoResultado(ultimoResultado);
-                atualizarDadosProximoSorteio(ultimoResultado);
                 finalizarCarregamento();
                 
                 document.getElementById('loadingDetails').textContent = '✅ Dados de exemplo carregados! Funcionalidade completa disponível.';
@@ -1718,22 +1161,6 @@
                 document.getElementById('ultimoResultado').classList.remove('hidden');
                 document.getElementById('interfacePrincipal').classList.remove('hidden');
             }, 500);
-        }
-
-        // 🎯 ATUALIZAR DADOS DO PRÓXIMO SORTEIO PARA REGRAS MINIMALISTAS
-        function atualizarDadosProximoSorteio(data) {
-            dadosProximoSorteio = {
-                numero: data.numero + 1,
-                data: data.dataProximoConcurso || '23/01/2025',
-                premio: data.valorEstimadoProximoConcurso || 65000000
-            };
-            
-            const dadosDiv = document.getElementById('dadosProximoSorteio');
-            dadosDiv.innerHTML = `
-                <strong>Concurso ${dadosProximoSorteio.numero}</strong><br>
-                <strong>Data:</strong> ${dadosProximoSorteio.data}<br>
-                <strong>Prêmio:</strong> ${formatarMoeda(dadosProximoSorteio.premio)}
-            `;
         }
 
         function exibirUltimoResultado(data) {
@@ -1884,7 +1311,7 @@
             }
         }
 
-        // 🎯 FUNCIONALIDADE: Configurar Drag and Drop
+        // 🎯 FUNCIONALIDADE RESTAURADA: Configurar Drag and Drop
         function configurarDragAndDrop() {
             const dropZone = document.getElementById('dropZone');
             
@@ -1973,7 +1400,7 @@
                     return;
                 }
                 
-                if (!sistemaValores.multiplicadores[numerosValidos.length]) {
+                if (!sistemaValores.custosJogo[numerosValidos.length]) {
                     erros.push(`Linha ${index + 1}: ${numerosValidos.length} dezenas não é uma quantidade válida`);
                     return;
                 }
@@ -2153,7 +1580,7 @@
             validarBotaoAdicionar();
         }
 
-        // 🎯 APLICAR NÚMEROS DIGITADOS MANUALMENTE
+        // 🎯 FUNCIONALIDADE RESTAURADA: Aplicar números digitados manualmente
         function aplicarNumerosDigitados() {
             const input = document.getElementById('editarNumeros');
             const texto = input.value.trim();
@@ -2194,7 +1621,7 @@
                     return;
                 }
                 
-                if (!sistemaValores.multiplicadores[numerosValidos.length]) {
+                if (!sistemaValores.custosJogo[numerosValidos.length]) {
                     erros.push(`Linha ${index + 1}: ${numerosValidos.length} dezenas não é uma quantidade válida`);
                     return;
                 }
@@ -2260,7 +1687,7 @@
                 return;
             }
             
-            if (numerosValidos.length >= 6 && numerosValidos.length <= 20 && sistemaValores.multiplicadores[numerosValidos.length]) {
+            if (numerosValidos.length >= 6 && numerosValidos.length <= 20 && sistemaValores.custosJogo[numerosValidos.length]) {
                 document.getElementById('quantidadeDezenas').value = numerosValidos.length;
                 quantidadeSelecionada = numerosValidos.length;
                 
@@ -2388,419 +1815,6 @@
             const btn = document.getElementById('adicionarJogo');
             const quantidadeNecessaria = parseInt(document.getElementById('quantidadeDezenas').value);
             btn.disabled = numerosSelecionados.length !== quantidadeNecessaria;
-        }
-
-        // 🎯 FUNÇÕES DAS REGRAS MINIMALISTAS
-
-        function mostrarTooltipRegra(numeroRegra, event) {
-            const regra = regrasMinimalistas.definicoes[numeroRegra];
-            if (!regra) return;
-            
-            // Remover tooltip existente
-            const tooltipExistente = document.querySelector('.tooltip-regra');
-            if (tooltipExistente) {
-                document.body.removeChild(tooltipExistente);
-            }
-            
-            const tooltip = document.createElement('div');
-            tooltip.className = 'tooltip-regra';
-            tooltip.innerHTML = `
-                <strong>${regra.nome}</strong><br>
-                ${regra.descricao}<br><br>
-                <strong>Exemplo:</strong><br>
-                ${regra.exemplo}
-            `;
-            
-            // Posicionar próximo ao mouse
-            const rect = event.target.getBoundingClientRect();
-            tooltip.style.left = `${rect.left + window.scrollX}px`;
-            tooltip.style.top = `${rect.bottom + window.scrollY + 10}px`;
-            
-            // Ajustar posição se sair da tela
-            document.body.appendChild(tooltip);
-            const tooltipRect = tooltip.getBoundingClientRect();
-            
-            if (tooltipRect.right > window.innerWidth) {
-                tooltip.style.left = `${window.innerWidth - tooltipRect.width - 10}px`;
-            }
-            
-            if (tooltipRect.bottom > window.innerHeight) {
-                tooltip.style.top = `${rect.top + window.scrollY - tooltipRect.height - 10}px`;
-            }
-            
-            // Remover tooltip após 5 segundos ou ao clicar fora
-            setTimeout(() => {
-                if (tooltip.parentNode) {
-                    document.body.removeChild(tooltip);
-                }
-            }, 5000);
-            
-            const removerTooltip = (e) => {
-                if (!tooltip.contains(e.target) && tooltip.parentNode) {
-                    document.body.removeChild(tooltip);
-                    document.removeEventListener('click', removerTooltip);
-                }
-            };
-            
-            setTimeout(() => {
-                document.addEventListener('click', removerTooltip);
-            }, 100);
-        }
-
-        function extrairNumerosBase() {
-            if (!dadosProximoSorteio) {
-                showCustomAlert('⚠️ Dados Necessários', 'Dados do próximo sorteio não disponíveis!');
-                return [];
-            }
-            
-            const base = [];
-            
-            // Extrair do número do concurso
-            const concursoStr = dadosProximoSorteio.numero.toString();
-            for (let digit of concursoStr) {
-                const num = parseInt(digit);
-                if (num >= 1 && num <= 60) base.push(num);
-            }
-            
-            // Extrair da data
-            const dataMatch = dadosProximoSorteio.data.match(/(\d{1,2})\/(\d{1,2})\/(\d{4})/);
-            if (dataMatch) {
-                const dia = parseInt(dataMatch[1]);
-                const mes = parseInt(dataMatch[2]);
-                const ano = parseInt(dataMatch[3]);
-                
-                if (dia >= 1 && dia <= 60) base.push(dia);
-                if (mes >= 1 && mes <= 60) base.push(mes);
-                
-                // Extrair dígitos do ano
-                const anoStr = ano.toString();
-                const ano20 = parseInt(anoStr.slice(0, 2)); // 20
-                const ano25 = parseInt(anoStr.slice(2));     // 25
-                
-                if (ano20 >= 1 && ano20 <= 60) base.push(ano20);
-                if (ano25 >= 1 && ano25 <= 60) base.push(ano25);
-            }
-            
-            // Extrair do prêmio
-            const premioStr = dadosProximoSorteio.premio.toString();
-            if (premioStr.length >= 2) {
-                const primeiros2 = parseInt(premioStr.slice(0, 2));
-                if (primeiros2 >= 1 && primeiros2 <= 60) base.push(primeiros2);
-                
-                // Se tiver mais dígitos, extrair mais
-                if (premioStr.length >= 3) {
-                    const digito3 = parseInt(premioStr[2]);
-                    const soma23 = parseInt(premioStr[0]) + parseInt(premioStr[1]);
-                    if (soma23 >= 1 && soma23 <= 60) base.push(soma23);
-                }
-            }
-            
-            // Remover duplicatas e manter apenas números válidos
-            return [...new Set(base)].filter(n => n >= 1 && n <= 60).sort((a, b) => a - b);
-        }
-
-        function aplicarRegrasMinimalistas(numerosBase, regrasAtivas) {
-            const resultados = new Set();
-            
-            // Adicionar números base se R1 estiver ativa
-            if (regrasAtivas.includes(1)) {
-                numerosBase.forEach(num => resultados.add(num));
-            }
-            
-            // R2 - Soma
-            if (regrasAtivas.includes(2)) {
-                for (let i = 0; i < numerosBase.length; i++) {
-                    for (let j = i + 1; j < numerosBase.length; j++) {
-                        const soma = numerosBase[i] + numerosBase[j];
-                        if (soma >= 1 && soma <= 60) {
-                            resultados.add(soma);
-                        }
-                    }
-                }
-            }
-            
-            // R3 - Dobro/Multiplicação
-            if (regrasAtivas.includes(3)) {
-                numerosBase.forEach(num => {
-                    const dobro = num * 2;
-                    const triplo = num * 3;
-                    
-                    if (dobro >= 1 && dobro <= 60) resultados.add(dobro);
-                    if (triplo >= 1 && triplo <= 60) resultados.add(triplo);
-                });
-            }
-            
-            // R4 - Diferença
-            if (regrasAtivas.includes(4)) {
-                for (let i = 0; i < numerosBase.length; i++) {
-                    for (let j = 0; j < numerosBase.length; j++) {
-                        if (i !== j) {
-                            const diff = Math.abs(numerosBase[i] - numerosBase[j]);
-                            if (diff >= 1 && diff <= 60) {
-                                resultados.add(diff);
-                            }
-                        }
-                    }
-                }
-            }
-            
-            // R5 - Inversão
-            if (regrasAtivas.includes(5)) {
-                numerosBase.forEach(num => {
-                    if (num >= 10) {
-                        const numStr = num.toString();
-                        const invertido = parseInt(numStr.split('').reverse().join(''));
-                        if (invertido >= 1 && invertido <= 60) {
-                            resultados.add(invertido);
-                        }
-                    }
-                });
-            }
-            
-            // R6 - Vizinhos
-            if (regrasAtivas.includes(6)) {
-                numerosBase.forEach(num => {
-                    const vizinhos = [num - 2, num - 1, num + 1, num + 2];
-                    vizinhos.forEach(viz => {
-                        if (viz >= 1 && viz <= 60) {
-                            resultados.add(viz);
-                        }
-                    });
-                });
-            }
-            
-            // R7 - Soma Cruzada
-            if (regrasAtivas.includes(7)) {
-                // Somar dígitos de cada número
-                numerosBase.forEach(num => {
-                    if (num >= 10) {
-                        const numStr = num.toString();
-                        let soma = 0;
-                        for (let digit of numStr) {
-                            soma += parseInt(digit);
-                        }
-                        if (soma >= 1 && soma <= 60) {
-                            resultados.add(soma);
-                        }
-                    }
-                });
-                
-                // Somar elementos específicos se houver dados da data
-                if (dadosProximoSorteio) {
-                    const dataMatch = dadosProximoSorteio.data.match(/(\d{1,2})\/(\d{1,2})\/(\d{4})/);
-                    if (dataMatch) {
-                        const dia = parseInt(dataMatch[1]);
-                        const mes = parseInt(dataMatch[2]);
-                        const somaDiaMes = dia + mes;
-                        
-                        if (somaDiaMes >= 1 && somaDiaMes <= 60) {
-                            resultados.add(somaDiaMes);
-                        }
-                    }
-                }
-            }
-            
-            return Array.from(resultados).sort((a, b) => a - b);
-        }
-
-        function gerarJogosMinimalistas() {
-            // Verificar quais regras estão selecionadas
-            const regrasAtivas = [];
-            for (let i = 1; i <= 7; i++) {
-                if (document.getElementById(`regra${i}`).checked) {
-                    regrasAtivas.push(i);
-                }
-            }
-            
-            if (regrasAtivas.length === 0) {
-                showCustomAlert('⚠️ Seleção Necessária', 'Selecione pelo menos uma regra minimalista!');
-                return;
-            }
-            
-            if (!dadosProximoSorteio) {
-                showCustomAlert('⚠️ Dados Necessários', 'Dados do próximo sorteio não disponíveis!');
-                return;
-            }
-            
-            const qtdJogos = parseInt(document.getElementById('qtdJogosMinimalista').value);
-            const dezenasJogo = parseInt(document.getElementById('dezenasMinimalista').value);
-            
-            // Extrair números base
-            const numerosBase = extrairNumerosBase();
-            
-            if (numerosBase.length === 0) {
-                showCustomAlert('❌ Erro', 'Não foi possível extrair números base dos dados!');
-                return;
-            }
-            
-            // Aplicar regras
-            const poolNumeros = aplicarRegrasMinimalistas(numerosBase, regrasAtivas);
-            
-            if (poolNumeros.length < dezenasJogo) {
-                showCustomAlert('⚠️ Pool Insuficiente', `Pool gerado tem apenas ${poolNumeros.length} números, mas precisa de ${dezenasJogo} por jogo. Selecione mais regras ou reduza as dezenas.`);
-                return;
-            }
-            
-            // Gerar jogos
-            jogosMinimalistas = [];
-            
-            for (let i = 0; i < qtdJogos; i++) {
-                const jogo = [];
-                const poolDisponivel = [...poolNumeros];
-                
-                while (jogo.length < dezenasJogo && poolDisponivel.length > 0) {
-                    const index = Math.floor(Math.random() * poolDisponivel.length);
-                    const numero = poolDisponivel.splice(index, 1)[0];
-                    jogo.push(numero);
-                }
-                
-                // Se ainda faltam números, completar com números aleatórios válidos
-                while (jogo.length < dezenasJogo) {
-                    let numeroAleatorio;
-                    do {
-                        numeroAleatorio = Math.floor(Math.random() * 60) + 1;
-                    } while (jogo.includes(numeroAleatorio));
-                    jogo.push(numeroAleatorio);
-                }
-                
-                jogo.sort((a, b) => a - b);
-                
-                const jogoObj = {
-                    id: Date.now() + i,
-                    numeros: jogo,
-                    quantidade: dezenasJogo,
-                    custo: sistemaValores.obterValor(dezenasJogo),
-                    regrasUsadas: regrasAtivas.slice(),
-                    numerosBase: numerosBase.slice(),
-                    origem: 'Regras Minimalistas'
-                };
-                
-                jogosMinimalistas.push(jogoObj);
-            }
-            
-            exibirJogosMinimalistas(numerosBase, regrasAtivas);
-        }
-
-        function exibirJogosMinimalistas(numerosBase, regrasAtivas) {
-            // Mostrar números base extraídos
-            const baseDiv = document.getElementById('numerosBaseExtraidos');
-            const listaBase = document.getElementById('listaBaseExtraidos');
-            
-            listaBase.innerHTML = numerosBase.map(num => 
-                `<span class="numero-base">${num.toString().padStart(2, '0')}</span>`
-            ).join('');
-            
-            baseDiv.classList.remove('hidden');
-            
-            // Mostrar jogos gerados
-            const jogosDiv = document.getElementById('jogosMinimalistasGerados');
-            const listaJogos = document.getElementById('listaJogosMinimalistas');
-            
-            listaJogos.innerHTML = '';
-            
-            jogosMinimalistas.forEach((jogo, index) => {
-                const jogoDiv = document.createElement('div');
-                jogoDiv.className = 'jogo-minimalista-card';
-                
-                jogoDiv.innerHTML = `
-                    <div class="flex justify-between items-center mb-2">
-                        <span class="font-bold text-megasena">Jogo ${index + 1}</span>
-                        <div class="flex gap-1">
-                            ${jogo.regrasUsadas.map(r => `<span class="regra-badge">R${r}</span>`).join('')}
-                            <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded">${formatarMoeda(jogo.custo)}</span>
-                        </div>
-                    </div>
-                    <div class="flex flex-wrap gap-1 mb-2">
-                        ${jogo.numeros.map(num => `<span class="numero-minimalista">${num.toString().padStart(2, '0')}</span>`).join('')}
-                    </div>
-                    <div class="text-xs text-gray-600">
-                        Base: ${jogo.numerosBase.map(n => n.toString().padStart(2, '0')).join(', ')} | 
-                        Regras: ${jogo.regrasUsadas.map(r => `R${r}`).join(', ')}
-                    </div>
-                `;
-                
-                listaJogos.appendChild(jogoDiv);
-            });
-            
-            // Atualizar estatísticas
-            const totalJogos = jogosMinimalistas.length;
-            const custoTotal = jogosMinimalistas.reduce((sum, jogo) => sum + jogo.custo, 0);
-            const numerosUnicos = new Set();
-            jogosMinimalistas.forEach(jogo => {
-                jogo.numeros.forEach(num => numerosUnicos.add(num));
-            });
-            
-            document.getElementById('totalJogosMin').textContent = totalJogos;
-            document.getElementById('custoTotalMin').textContent = formatarMoeda(custoTotal);
-            document.getElementById('regrasUsadas').textContent = regrasAtivas.length;
-            document.getElementById('numerosUnicosMin').textContent = numerosUnicos.size;
-            
-            jogosDiv.classList.remove('hidden');
-        }
-
-        function adicionarJogosMinimalistas() {
-            if (jogosMinimalistas.length === 0) {
-                showCustomAlert('⚠️ Sem Jogos', 'Gere primeiro alguns jogos minimalistas!');
-                return;
-            }
-            
-            jogosMinimalistas.forEach(jogoMin => {
-                const jogo = {
-                    id: Date.now() + Math.random(),
-                    numeros: [...jogoMin.numeros],
-                    quantidade: jogoMin.quantidade,
-                    custo: jogoMin.custo,
-                    digitosDiferentes: calcularDigitosDiferentes(jogoMin.numeros),
-                    pares: jogoMin.numeros.filter(n => n % 2 === 0).length,
-                    impares: jogoMin.numeros.filter(n => n % 2 !== 0).length,
-                    origem: `Minimalista (R${jogoMin.regrasUsadas.join(',R')})`
-                };
-                jogosAdicionados.push(jogo);
-            });
-            
-            atualizarVisualizacaoJogos();
-            atualizarCustoTotal();
-            
-            showCustomAlert('✅ Sucesso', `${jogosMinimalistas.length} jogo(s) minimalista(s) adicionado(s) aos seus jogos!`);
-        }
-
-        function downloadJogosMinimalistas() {
-            if (jogosMinimalistas.length === 0) {
-                showCustomAlert('⚠️ Sem Jogos', 'Gere primeiro alguns jogos minimalistas!');
-                return;
-            }
-            
-            let conteudo = 'JOGOS MINIMALISTAS - MEGA SENA\n';
-            conteudo += 'Baseados em Regras Matemáticas Simples\n';
-            conteudo += `Gerado em: ${new Date().toLocaleString('pt-BR')}\n\n`;
-            
-            if (dadosProximoSorteio) {
-                conteudo += `DADOS BASE UTILIZADOS:\n`;
-                conteudo += `Concurso: ${dadosProximoSorteio.numero}\n`;
-                conteudo += `Data: ${dadosProximoSorteio.data}\n`;
-                conteudo += `Prêmio: ${formatarMoeda(dadosProximoSorteio.premio)}\n\n`;
-            }
-            
-            conteudo += `NÚMEROS BASE EXTRAÍDOS:\n`;
-            const numerosBase = extrairNumerosBase();
-            conteudo += `${numerosBase.map(n => n.toString().padStart(2, '0')).join(' ')}\n\n`;
-            
-            conteudo += `JOGOS GERADOS:\n`;
-            jogosMinimalistas.forEach((jogo, index) => {
-                conteudo += `Jogo ${index + 1}: ${jogo.numeros.map(n => n.toString().padStart(2, '0')).join(' ')} `;
-                conteudo += `(Regras: R${jogo.regrasUsadas.join(', R')} | ${formatarMoeda(jogo.custo)})\n`;
-            });
-            
-            const custoTotal = jogosMinimalistas.reduce((sum, jogo) => sum + jogo.custo, 0);
-            conteudo += `\nTOTAL: ${jogosMinimalistas.length} jogo(s) - ${formatarMoeda(custoTotal)}\n`;
-            
-            baixarArquivo(conteudo, 'jogos-minimalistas-megasena.txt', 'text/plain');
-        }
-
-        function limparJogosMinimalistas() {
-            jogosMinimalistas = [];
-            document.getElementById('jogosMinimalistasGerados').classList.add('hidden');
-            document.getElementById('numerosBaseExtraidos').classList.add('hidden');
         }
 
         // 🎯 FUNÇÕES DA ANÁLISE POR POSIÇÕES
@@ -3417,46 +2431,11 @@
 
         // Event listeners
         function configurarEventListeners() {
-            // Event listeners principais
             document.getElementById('comoFuncionaBtn').addEventListener('click', () => {
                 document.getElementById('modalComoFunciona').classList.remove('hidden');
             });
             document.getElementById('fecharModal').addEventListener('click', () => {
                 document.getElementById('modalComoFunciona').classList.add('hidden');
-            });
-
-            // Event listeners para configuração de valores
-            document.getElementById('btnAtualizarValores').addEventListener('click', () => {
-                const novoValor = parseFloat(document.getElementById('valorApostaSimples').value);
-                if (novoValor && novoValor > 0) {
-                    valorApostaSimples = novoValor;
-                    sistemaValores.atualizarTodosValores();
-                    showCustomAlert('✅ Valores Atualizados', `Novo valor da aposta simples: ${formatarMoeda(valorApostaSimples)}\nTodos os valores foram recalculados automaticamente!`);
-                } else {
-                    showCustomAlert('⚠️ Valor Inválido', 'Digite um valor válido maior que zero!');
-                }
-            });
-
-            // Event listeners para regras minimalistas
-            document.getElementById('btnInfoMinimalista').addEventListener('click', () => {
-                document.getElementById('modalInfoMinimalista').classList.remove('hidden');
-            });
-            document.getElementById('fecharModalMinimalista').addEventListener('click', () => {
-                document.getElementById('modalInfoMinimalista').classList.add('hidden');
-            });
-            document.getElementById('btnGerarMinimalista').addEventListener('click', gerarJogosMinimalistas);
-            document.getElementById('btnAdicionarMinimalistas').addEventListener('click', adicionarJogosMinimalistas);
-            document.getElementById('btnDownloadMinimalistas').addEventListener('click', downloadJogosMinimalistas);
-            document.getElementById('btnLimparMinimalistas').addEventListener('click', limparJogosMinimalistas);
-
-            // Event listeners para tooltips das regras
-            document.querySelectorAll('.regra-info').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    const numeroRegra = parseInt(btn.dataset.regra);
-                    mostrarTooltipRegra(numeroRegra, e);
-                });
             });
 
             // Event listeners para edição manual e drag & drop
@@ -3696,7 +2675,7 @@
             modal.innerHTML = `
                 <div class="bg-white p-6 rounded-lg shadow-lg max-w-sm w-full mx-4">
                     <h3 class="font-bold text-megasena mb-2">${titulo}</h3>
-                    <p class="text-gray-700 mb-4" style="white-space: pre-line;">${mensagem}</p>
+                    <p class="text-gray-700 mb-4">${mensagem}</p>
                     <div class="flex justify-end">
                         <button class="px-4 py-2 bg-blue-500 text-white hover:bg-blue-600 rounded" onclick="this.closest('.fixed').remove()">OK</button>
                     </div>
@@ -3710,7 +2689,7 @@
             modal.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50';
             modal.innerHTML = `
                 <div class="bg-white p-6 rounded-lg shadow-lg max-w-sm w-full mx-4">
-                    <p class="text-gray-700 mb-4" style="white-space: pre-line;">${message}</p>
+                    <p class="text-gray-700 mb-4">${message}</p>
                     <div class="flex justify-end space-x-3">
                         <button class="px-4 py-2 text-gray-600 hover:bg-gray-100 rounded" onclick="this.closest('.fixed').remove()">Cancelar</button>
                         <button class="px-4 py-2 bg-red-500 text-white hover:bg-red-600 rounded" onclick="this.closest('.fixed').remove(); (${onConfirm})()">Confirmar</button>
@@ -3786,12 +2765,12 @@
         <h1>🍀 MEGA SENA - MEUS JOGOS</h1>
         <p>Gerado em: ${data}</p>
         <div class="estrategia-real">
-            <h3>📊 Jogos com Análise Avançada Completa + Regras Minimalistas</h3>
-            <p><strong>🎯 3 SEÇÕES DE GERAÇÃO:</strong></p>
-            <p><strong>SEÇÃO 1:</strong> Criação Manual - Par/Ímpar + Edição + Drag & Drop</p>
-            <p><strong>SEÇÃO 2:</strong> Regras Minimalistas - 7 regras matemáticas baseadas em dados oficiais</p>
-            <p><strong>SEÇÃO 3:</strong> Análise por Posições - Números atrasados + Grid Estratégica + Palpites Inteligentes</p>
-            <p><strong>Sistema de Valores Unificado:</strong> Valor base R$ ${formatarMoeda(valorApostaSimples)} - Cálculo automático</p>
+            <h3>📊 Jogos com Análise Avançada Completa</h3>
+            <p><strong>Último Sorteio:</strong> Concurso ${ultimoResultado ? ultimoResultado.numero : 'N/A'}</p>
+            <p><strong>Padrão Histórico:</strong> 3P/3I é o mais comum (30.6% dos casos)</p>
+            <p><strong>Análise por Posições:</strong> Números atrasados por coluna identificados</p>
+            <p><strong>Grid Estratégica:</strong> Seleção manual inteligente baseada em dados</p>
+            <p><strong>Edição Manual + Drag & Drop:</strong> Múltiplas formas de criar jogos</p>
             <p><em>Gerado com dados da API oficial da Caixa Econômica Federal</em></p>
         </div>
     </div>`;
@@ -3815,9 +2794,8 @@
         Total: ${jogosAdicionados.length} jogo(s) - ${formatarMoeda(total)}
     </div>
     <div style="text-align: center; margin-top: 20px; font-size: 12px; color: #666;">
-        Gerado pelo Gerador Mega Sena com 3 seções de criação:<br>
-        ✅ Manual + Par/Ímpar | ✅ Regras Minimalistas | ✅ Análise por Posições + Grid Estratégica<br>
-        Sistema de valores unificado - Base: ${formatarMoeda(valorApostaSimples)}
+        Gerado pelo Gerador de Palpites Mega Sena com análise avançada completa:<br>
+        ✅ Análise por Posições | ✅ Grid Estratégica | ✅ Edição Manual | ✅ Drag & Drop | ✅ Palpites Inteligentes
     </div>
 </body>
 </html>`;
@@ -3846,11 +2824,11 @@
             const total = jogosAdicionados.reduce((sum, jogo) => sum + jogo.custo, 0);
             dados.push(['', '', 'TOTAL:', '', '', '', total, '']);
             dados.push(['', '', '', '', '', '', '', '']);
-            dados.push(['Sistema Unificado:', '', '', '', '', '', '', '']);
-            dados.push([`Valor Base: ${formatarMoeda(valorApostaSimples)}`, '', '', '', '', '', '', '']);
-            dados.push(['SEÇÃO 1: Manual + Par/Ímpar', '', '', '', '', '', '', '']);
-            dados.push(['SEÇÃO 2: Regras Minimalistas', '', '', '', '', '', '', '']);
-            dados.push(['SEÇÃO 3: Análise Posições + Grid', '', '', '', '', '', '', '']);
+            dados.push(['Funcionalidades Utilizadas:', '', '', '', '', '', '', '']);
+            dados.push(['- Análise por Posições', '', '', '', '', '', '', '']);
+            dados.push(['- Grid Estratégica', '', '', '', '', '', '', '']);
+            dados.push(['- Edição Manual + Drag & Drop', '', '', '', '', '', '', '']);
+            dados.push(['- Padrão Histórico: 3P/3I (30.6%)', '', '', '', '', '', '', '']);
             
             const ws = XLSX.utils.aoa_to_sheet(dados);
             const wb = XLSX.utils.book_new();
