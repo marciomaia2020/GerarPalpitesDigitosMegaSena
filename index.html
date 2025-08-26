@@ -807,6 +807,700 @@
 			font-size: 18px;
 			color: #6b7280;
 		}
+		/* Cores da Mega Sena e variações */
+		:root {
+			--megasena-primary: #1b9a67;
+			--megasena-dark: #178257;
+			--megasena-light: #d4f7e9;
+			--megasena-bg: #e9fbf4;
+		}
+
+		.text-megasena { color: var(--megasena-primary); }
+		.text-megasena-dark { color: var(--megasena-dark); }
+		.bg-megasena { background-color: var(--megasena-primary); }
+		.bg-megasena-dark { background-color: var(--megasena-dark); }
+		.bg-megasena-light { background-color: var(--megasena-light); }
+		.bg-megasena-bg { background-color: var(--megasena-bg); }
+		.border-megasena { border-color: var(--megasena-primary); }
+
+		/* Estilos específicos para ciclos */
+		.numero-ciclo {
+			width: 40px;
+			height: 40px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-weight: bold;
+			font-size: 12px;
+			border-radius: 8px;
+			cursor: pointer;
+			transition: all 0.3s ease;
+			position: relative;
+			border: 2px solid transparent;
+		}
+
+		.numero-ciclo:hover {
+			transform: scale(1.05);
+			box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+		}
+
+		/* Estados dos números no ciclo */
+		.numero-ciclo.apareceu-par {
+			background: linear-gradient(135deg, var(--megasena-primary), var(--megasena-dark));
+			color: white;
+			border-color: #3b82f6;
+		}
+
+		.numero-ciclo.apareceu-impar {
+			background: linear-gradient(135deg, var(--megasena-dark), #136c49);
+			color: white;
+			border-color: #8b5cf6;
+		}
+
+		.numero-ciclo.restante-par {
+			background: white;
+			color: var(--megasena-dark);
+			border: 2px solid #3b82f6;
+			box-shadow: inset 0 0 0 1px #e0e7ff;
+		}
+
+		.numero-ciclo.restante-impar {
+			background: white;
+			color: var(--megasena-dark);
+			border: 2px solid #8b5cf6;
+			box-shadow: inset 0 0 0 1px #f3e8ff;
+		}
+
+		/* Números mais atrasados com destaque */
+		.numero-ciclo.muito-atrasado {
+			animation: pulseAtrasado 2s ease-in-out infinite;
+			box-shadow: 0 0 15px rgba(239, 68, 68, 0.5);
+		}
+
+		@keyframes pulseAtrasado {
+			0%, 100% { transform: scale(1); }
+			50% { transform: scale(1.08); }
+		}
+
+		/* Cards de jogos dos ciclos */
+		.jogo-ciclo-card {
+			background: linear-gradient(to right, var(--megasena-bg), var(--megasena-light));
+			border: 2px solid var(--megasena-primary);
+			border-radius: 12px;
+			padding: 12px;
+			margin: 8px 0;
+		}
+
+		.numero-ciclo-jogo {
+			width: 35px;
+			height: 35px;
+			background: linear-gradient(135deg, var(--megasena-primary), var(--megasena-dark));
+			color: white;
+			border-radius: 50%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-weight: bold;
+			font-size: 14px;
+			margin: 2px;
+		}
+
+		/* Estatísticas dos números restantes */
+		.numero-restante-stat {
+			display: inline-block;
+			padding: 4px 8px;
+			margin: 2px;
+			background: linear-gradient(135deg, #ef4444, #dc2626);
+			color: white;
+			border-radius: 12px;
+			font-size: 12px;
+			font-weight: bold;
+		}
+
+		.numero-provavel-stat {
+			display: inline-block;
+			padding: 6px 12px;
+			margin: 2px;
+			background: linear-gradient(135deg, #fbbf24, #f59e0b);
+			color: white;
+			border-radius: 15px;
+			font-size: 13px;
+			font-weight: bold;
+			cursor: pointer;
+			transition: transform 0.2s ease;
+		}
+
+		.numero-provavel-stat:hover {
+			transform: scale(1.05);
+		}
+
+		/* Barras de progresso customizadas */
+		.barra-progresso-ciclo {
+			background: linear-gradient(90deg, var(--megasena-light), var(--megasena-primary), var(--megasena-dark));
+			border-radius: 10px;
+			height: 6px;
+			position: relative;
+			overflow: hidden;
+		}
+
+		.barra-progresso-ciclo::after {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+			animation: shimmer 2s infinite;
+		}
+
+		@keyframes shimmer {
+			0% { transform: translateX(-100%); }
+			100% { transform: translateX(100%); }
+		}
+
+		/* Tooltips para números */
+		.tooltip-ciclo {
+			position: absolute;
+			background: rgba(0, 0, 0, 0.9);
+			color: white;
+			padding: 8px 12px;
+			border-radius: 6px;
+			font-size: 11px;
+			z-index: 1000;
+			pointer-events: none;
+			transition: opacity 0.3s ease;
+			max-width: 200px;
+		}
+
+		/* Histórico de ciclos */
+		.historico-ciclo-row {
+			transition: background-color 0.3s ease;
+		}
+
+		.historico-ciclo-row:hover {
+			background-color: var(--megasena-bg);
+		}
+
+		/* Estados de loading */
+		.ciclo-loading {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			height: 100px;
+			background: linear-gradient(45deg, var(--megasena-bg), var(--megasena-light));
+			border-radius: 12px;
+			font-size: 16px;
+			color: var(--megasena-dark);
+		}
+
+		.ciclo-loading::before {
+			content: '🔄';
+			animation: spin 1s linear infinite;
+			margin-right: 8px;
+		}
+
+		@keyframes spin {
+			from { transform: rotate(0deg); }
+			to { transform: rotate(360deg); }
+		}
+
+		/* Responsividade */
+		@media (max-width: 768px) {
+			.numero-ciclo {
+				width: 35px;
+				height: 35px;
+				font-size: 11px;
+			}
+			
+			#gridCiclos {
+				grid-template-columns: repeat(6, 1fr);
+				gap: 1px;
+			}
+		}
+
+		@media (max-width: 480px) {
+			.numero-ciclo {
+				width: 30px;
+				height: 30px;
+				font-size: 10px;
+			}
+		}
+		/* Estilos específicos para padrões geométricos */
+		.numero-volante {
+			width: 45px;
+			height: 35px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-weight: bold;
+			font-size: 11px;
+			border-radius: 6px;
+			cursor: pointer;
+			transition: all 0.3s ease;
+			border: 2px solid var(--megasena-primary);
+			position: relative;
+			background: white;
+			color: var(--megasena-dark);
+		}
+
+		.numero-volante:hover {
+			transform: scale(1.05);
+			box-shadow: 0 4px 12px rgba(27, 154, 103, 0.3);
+		}
+
+		/* Estados dos números no volante */
+		.numero-volante.selecionado-padrao {
+			background: linear-gradient(135deg, var(--megasena-primary), var(--megasena-dark));
+			color: white;
+			border-color: var(--megasena-dark);
+			transform: scale(1.1);
+		}
+
+		.numero-volante.frequente-api {
+			background: linear-gradient(135deg, #fbbf24, #f59e0b);
+			color: white;
+			border-color: #f59e0b;
+		}
+
+		.numero-volante.menos-frequente {
+			background: linear-gradient(135deg, #60a5fa, #3b82f6);
+			color: white;
+			border-color: #3b82f6;
+		}
+
+		/* Indicadores de colunas e linhas */
+		.indicador-coluna {
+			background: linear-gradient(135deg, var(--megasena-light), var(--megasena-primary));
+			color: var(--megasena-dark);
+			padding: 4px 8px;
+			border-radius: 6px;
+			font-size: 10px;
+			font-weight: bold;
+			text-align: center;
+			border: 1px solid var(--megasena-primary);
+		}
+
+		.indicador-linha {
+			background: linear-gradient(135deg, #e0e7ff, #c7d2fe);
+			color: #3730a3;
+			padding: 2px 6px;
+			border-radius: 4px;
+			font-size: 9px;
+			font-weight: bold;
+			text-align: center;
+			border: 1px solid #6366f1;
+		}
+
+		/* Cards de padrões */
+		.padrao-card {
+			background: linear-gradient(to right, #f8fafc, #f1f5f9);
+			border: 1px solid #cbd5e1;
+			border-radius: 8px;
+			padding: 8px 12px;
+			margin: 4px 0;
+			transition: all 0.3s ease;
+			cursor: pointer;
+		}
+
+		.padrao-card:hover {
+			background: linear-gradient(to right, var(--megasena-bg), var(--megasena-light));
+			border-color: var(--megasena-primary);
+			transform: translateY(-1px);
+		}
+
+		.padrao-card.comum {
+			border-left: 4px solid #10b981;
+		}
+
+		.padrao-card.raro {
+			border-left: 4px solid #f59e0b;
+		}
+
+		.padrao-card.muito-raro {
+			border-left: 4px solid #ef4444;
+		}
+
+		/* Jogos gerados com padrões */
+		.jogo-padrao-card {
+			background: linear-gradient(to right, var(--megasena-bg), var(--megasena-light));
+			border: 2px solid var(--megasena-primary);
+			border-radius: 12px;
+			padding: 12px;
+			margin: 8px 0;
+		}
+
+		.numero-padrao-jogo {
+			width: 35px;
+			height: 35px;
+			background: linear-gradient(135deg, var(--megasena-primary), var(--megasena-dark));
+			color: white;
+			border-radius: 50%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-weight: bold;
+			font-size: 14px;
+			margin: 2px;
+		}
+
+		/* Análise de padrões */
+		.analise-padrao {
+			background: linear-gradient(135deg, #fef3c7, #fde68a);
+			border: 2px solid #f59e0b;
+			border-radius: 8px;
+			padding: 12px;
+			margin: 8px 0;
+		}
+
+		.padrao-stat {
+			display: inline-block;
+			padding: 4px 8px;
+			margin: 2px;
+			border-radius: 12px;
+			font-size: 11px;
+			font-weight: bold;
+		}
+
+		.padrao-stat.coluna {
+			background: linear-gradient(135deg, #93c5fd, #60a5fa);
+			color: white;
+		}
+
+		.padrao-stat.linha {
+			background: linear-gradient(135deg, #c084fc, #a855f7);
+			color: white;
+		}
+
+		.padrao-stat.geometrico {
+			background: linear-gradient(135deg, var(--megasena-primary), var(--megasena-dark));
+			color: white;
+		}
+
+		/* Inputs personalizados */
+		.input-padrao-personalizado {
+			background: white;
+			border: 2px solid var(--megasena-primary);
+			border-radius: 6px;
+			text-align: center;
+			font-weight: bold;
+			color: var(--megasena-dark);
+			transition: all 0.3s ease;
+		}
+
+		.input-padrao-personalizado:focus {
+			outline: none;
+			border-color: var(--megasena-dark);
+			box-shadow: 0 0 0 3px rgba(27, 154, 103, 0.1);
+		}
+
+		/* Animações para padrões */
+		@keyframes highlightPadrao {
+			0%, 100% { background-color: var(--megasena-bg); }
+			50% { background-color: var(--megasena-light); }
+		}
+
+		.numero-volante.highlight {
+			animation: highlightPadrao 1s ease-in-out 3;
+		}
+
+		/* Grid responsivo do volante */
+		@media (max-width: 768px) {
+			.numero-volante {
+				width: 35px;
+				height: 30px;
+				font-size: 10px;
+			}
+			
+			#volanteOficial {
+				gap: 1px;
+			}
+		}
+
+		@media (max-width: 480px) {
+			.numero-volante {
+				width: 30px;
+				height: 25px;
+				font-size: 9px;
+			}
+		}
+
+		/* Tooltip para padrões */
+		.tooltip-padrao {
+			position: absolute;
+			background: rgba(0, 0, 0, 0.9);
+			color: white;
+			padding: 8px 12px;
+			border-radius: 6px;
+			font-size: 11px;
+			z-index: 1000;
+			pointer-events: none;
+			transition: opacity 0.3s ease;
+			max-width: 250px;
+		}
+
+		/* Estados de loading para padrões */
+		.padroes-loading {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			height: 80px;
+			background: linear-gradient(45deg, var(--megasena-bg), var(--megasena-light));
+			border-radius: 12px;
+			font-size: 14px;
+			color: var(--megasena-dark);
+		}
+
+		.padroes-loading::before {
+			content: '📐';
+			animation: spin 1s linear infinite;
+			margin-right: 8px;
+		}
+
+		/* Destaque para padrões recomendados */
+		.padrao-recomendado {
+			background: linear-gradient(135deg, #d1fae5, #a7f3d0);
+			border: 2px solid #10b981;
+			box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
+		}
+
+		.padrao-evitar {
+			background: linear-gradient(135deg, #fee2e2, #fecaca);
+			border: 2px solid #ef4444;
+			opacity: 0.7;
+		}
+		/* Estilos específicos para filtros */
+		.filtro-checkbox {
+			transition: all 0.3s ease;
+			cursor: pointer;
+		}
+
+		.filtro-checkbox:hover {
+			background: var(--megasena-light);
+			transform: translateY(-1px);
+			box-shadow: 0 4px 12px rgba(27, 154, 103, 0.2);
+		}
+
+		.filtro-checkbox input:checked + div {
+			background: linear-gradient(135deg, var(--megasena-light), var(--megasena-bg));
+		}
+
+		.padrao-critico {
+			background: linear-gradient(135deg, #fecaca, #fee2e2);
+			border: 2px solid #ef4444;
+			border-radius: 8px;
+			padding: 8px 12px;
+			margin: 4px 0;
+		}
+
+		.padrao-muito-raro {
+			background: linear-gradient(135deg, #fed7aa, #fde68a);
+			border: 2px solid #f59e0b;
+			border-radius: 8px;
+			padding: 8px 12px;
+			margin: 4px 0;
+		}
+
+		.padrao-raro {
+			background: linear-gradient(135deg, #fef3c7, #fde047);
+			border: 2px solid #eab308;
+			border-radius: 8px;
+			padding: 8px 12px;
+			margin: 4px 0;
+		}
+
+		.jogo-filtrado-card {
+			background: linear-gradient(to right, var(--megasena-bg), var(--megasena-light));
+			border: 2px solid var(--megasena-primary);
+			border-radius: 12px;
+			padding: 12px;
+			margin: 8px 0;
+			position: relative;
+		}
+
+		.jogo-filtrado-card::before {
+			content: '✅';
+			position: absolute;
+			top: -8px;
+			right: -8px;
+			background: #10b981;
+			color: white;
+			border-radius: 50%;
+			width: 24px;
+			height: 24px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-size: 12px;
+			font-weight: bold;
+		}
+
+		.numero-filtrado-jogo {
+			width: 35px;
+			height: 35px;
+			background: linear-gradient(135deg, var(--megasena-primary), var(--megasena-dark));
+			color: white;
+			border-radius: 50%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-weight: bold;
+			font-size: 14px;
+			margin: 2px;
+		}
+
+		.teste-input {
+			border: 2px solid var(--megasena-primary);
+			border-radius: 6px;
+			transition: all 0.3s ease;
+		}
+
+		.teste-input:focus {
+			outline: none;
+			border-color: var(--megasena-dark);
+			box-shadow: 0 0 0 3px rgba(27, 154, 103, 0.1);
+		}
+
+		.teste-input.erro {
+			border-color: #ef4444;
+			background: #fef2f2;
+		}
+
+		.teste-input.sucesso {
+			border-color: #10b981;
+			background: #f0fdf4;
+		}
+
+		.resultado-teste {
+			background: linear-gradient(135deg, #fef3c7, #fde68a);
+			border: 2px solid #f59e0b;
+			border-radius: 8px;
+			padding: 12px;
+			margin: 8px 0;
+		}
+
+		.resultado-teste.aprovado {
+			background: linear-gradient(135deg, #dcfce7, #bbf7d0);
+			border-color: #10b981;
+		}
+
+		.resultado-teste.rejeitado {
+			background: linear-gradient(135deg, #fecaca, #fee2e2);
+			border-color: #ef4444;
+		}
+
+		.filtro-stat {
+			display: inline-block;
+			padding: 4px 8px;
+			margin: 2px;
+			border-radius: 12px;
+			font-size: 11px;
+			font-weight: bold;
+		}
+
+		.filtro-stat.critico {
+			background: linear-gradient(135deg, #ef4444, #dc2626);
+			color: white;
+		}
+
+		.filtro-stat.raro {
+			background: linear-gradient(135deg, #f59e0b, #d97706);
+			color: white;
+		}
+
+		.filtro-stat.normal {
+			background: linear-gradient(135deg, #10b981, #059669);
+			color: white;
+		}
+
+		.economia-indicator {
+			background: linear-gradient(135deg, #10b981, #059669);
+			color: white;
+			padding: 6px 12px;
+			border-radius: 20px;
+			font-size: 12px;
+			font-weight: bold;
+			display: inline-block;
+		}
+
+		.nivel-filtragem {
+			background: white;
+			border: 2px solid var(--megasena-primary);
+			border-radius: 8px;
+			padding: 12px;
+			margin: 8px 0;
+			transition: all 0.3s ease;
+		}
+
+		.nivel-filtragem:hover {
+			background: var(--megasena-bg);
+			transform: translateY(-2px);
+			box-shadow: 0 6px 20px rgba(27, 154, 103, 0.15);
+		}
+
+		.nivel-filtragem.ativo {
+			background: var(--megasena-light);
+			border-color: var(--megasena-dark);
+			box-shadow: 0 4px 15px rgba(27, 154, 103, 0.2);
+		}
+
+		/* Animações para filtros */
+		@keyframes filterPulse {
+			0%, 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
+			70% { box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); }
+		}
+
+		.filtro-violado {
+			animation: filterPulse 1s ease-in-out;
+			border-color: #ef4444 !important;
+			background: #fef2f2 !important;
+		}
+
+		/* Loading states */
+		.filtros-loading {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			height: 100px;
+			background: linear-gradient(45deg, #fee2e2, #fecaca);
+			border-radius: 12px;
+			font-size: 16px;
+			color: #dc2626;
+		}
+
+		.filtros-loading::before {
+			content: '🚫';
+			animation: spin 1s linear infinite;
+			margin-right: 8px;
+		}
+
+		/* Responsividade para filtros */
+		@media (max-width: 768px) {
+			.filtro-checkbox {
+				padding: 8px;
+			}
+			
+			.teste-input {
+				font-size: 14px;
+				padding: 6px;
+			}
+		}
+
+		/* Destaque para configurações críticas */
+		.config-critica {
+			background: linear-gradient(135deg, #fef2f2, #fee2e2);
+			border: 2px solid #ef4444;
+			border-radius: 8px;
+			padding: 12px;
+			margin: 8px 0;
+		}
+
+		.config-critica::before {
+			content: '⚠️';
+			color: #ef4444;
+			font-weight: bold;
+			margin-right: 8px;
+		}
 		
     </style>
 </head>
@@ -2298,7 +2992,6 @@ Exemplos:
 				</div>
 			</div>
 		</div>
-
 		<!-- 📖 MODAL: COMO FUNCIONA O HEATMAP -->
 		<div id="modalHeatmap" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50">
 			<div class="bg-white rounded-lg shadow-lg max-w-4xl w-full mx-4 max-h-[90vh] overflow-y-auto">
@@ -2444,10 +3137,1342 @@ Exemplos:
 				</div>
 			</div>
 		</div>
+		<!-- 🔄 SEÇÃO 10: CICLOS DE FECHAMENTO -->
+		<div class="secao-geracao bg-white rounded-lg shadow-lg p-6">
+			<div class="secao-titulo">🔄 SEÇÃO 10: CICLOS DE FECHAMENTO</div>
+			<div class="mt-3 flex justify-center gap-2">
+				<a href="https://resumomegasena-i.netlify.app" target="_blank" 
+				   class="inline-flex items-center bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-sm transition-colors">
+					🌐 Análise de Ciclos Completa
+				</a>
+				<button id="modalCiclosBtn" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg text-sm">
+					❓ Como Funcionam os Ciclos
+				</button>
+			</div><br />
+
+			<!-- Status do Ciclo Atual -->
+			<div class="bg-gradient-to-r from-megasena-light to-megasena-bg border-2 border-megasena rounded-lg p-4 mb-4">
+				<h4 class="text-lg font-bold text-megasena-dark mb-2">🎯 STATUS DO CICLO ATUAL EM TEMPO REAL:</h4>
+				<div class="grid grid-cols-2 md:grid-cols-4 gap-3 text-sm">
+					<div class="bg-white p-3 rounded border text-center">
+						<div class="font-bold text-megasena">📊 Progresso do Ciclo</div>
+						<div class="text-2xl font-bold text-megasena-dark" id="progressoCiclo">0%</div>
+						<div class="text-xs text-megasena">Números aparecidos</div>
+					</div>
+					<div class="bg-white p-3 rounded border text-center">
+						<div class="font-bold text-green-600">✅ Já Apareceram</div>
+						<div class="text-2xl font-bold text-green-800" id="numerosAparecidos">0</div>
+						<div class="text-xs text-green-600">de 60 números</div>
+					</div>
+					<div class="bg-white p-3 rounded border text-center">
+						<div class="font-bold text-red-600">⏳ Restantes</div>
+						<div class="text-2xl font-bold text-red-800" id="numerosRestantes">60</div>
+						<div class="text-xs text-red-600">para fechar ciclo</div>
+					</div>
+					<div class="bg-white p-3 rounded border text-center">
+						<div class="font-bold text-purple-600">🔄 Concursos</div>
+						<div class="text-2xl font-bold text-purple-800" id="concursosCiclo">0</div>
+						<div class="text-xs text-purple-600">neste ciclo</div>
+					</div>
+				</div>
+				
+				<!-- Barra de Progresso -->
+				<div class="mt-4">
+					<div class="flex justify-between text-sm font-medium text-megasena-dark mb-1">
+						<span>Progresso do Ciclo</span>
+						<span id="porcentagemCiclo">0%</span>
+					</div>
+					<div class="w-full bg-gray-200 rounded-full h-4">
+						<div id="barraCiclo" class="bg-gradient-to-r from-megasena to-megasena-dark h-4 rounded-full transition-all duration-500" style="width: 0%"></div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Grid de Números do Ciclo -->
+			<div class="mb-4">
+				<h5 class="font-bold text-megasena-dark mb-3">🎲 Status dos 60 Números no Ciclo Atual:</h5>
+				<div class="bg-megasena-light border-2 border-megasena rounded-lg p-4">
+					
+					<!-- Legenda -->
+					<div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4 text-sm">
+						<div class="flex items-center">
+							<div class="w-4 h-4 rounded bg-megasena mr-2"></div>
+							<span>✅ Já apareceu (Par)</span>
+						</div>
+						<div class="flex items-center">
+							<div class="w-4 h-4 rounded bg-megasena-dark mr-2"></div>
+							<span>✅ Já apareceu (Ímpar)</span>
+						</div>
+						<div class="flex items-center">
+							<div class="w-4 h-4 rounded border-2 border-megasena bg-white mr-2"></div>
+							<span>⏳ Aguardando (Par)</span>
+						</div>
+						<div class="flex items-center">
+							<div class="w-4 h-4 rounded border-2 border-megasena-dark bg-white mr-2"></div>
+							<span>⏳ Aguardando (Ímpar)</span>
+						</div>
+					</div>
+					
+					<!-- Grid 10x6 -->
+					<div id="gridCiclos" class="grid grid-cols-6 md:grid-cols-10 gap-2">
+						<!-- Números de 01 a 60 serão gerados aqui -->
+					</div>
+				</div>
+			</div>
+
+			<!-- Análise Detalhada -->
+			<div class="mb-4">
+				<h5 class="font-bold text-megasena-dark mb-3">📊 Análise Detalhada do Ciclo:</h5>
+				<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+					
+					<!-- Números Mais Atrasados do Ciclo -->
+					<div class="bg-red-50 border border-red-200 rounded-lg p-4">
+						<h6 class="font-bold text-red-800 mb-2">🔥 MAIS ATRASADOS NO CICLO:</h6>
+						<div id="maisAtrasadosCiclo" class="space-y-2">
+							<!-- Será preenchido dinamicamente -->
+						</div>
+						<div class="text-xs text-red-600 mt-2">
+							<strong>💡 Estratégia:</strong> Números que não aparecem há mais tempo no ciclo atual
+						</div>
+					</div>
+					
+					<!-- Distribuição Pares/Ímpares -->
+					<div class="bg-megasena-bg border border-megasena rounded-lg p-4">
+						<h6 class="font-bold text-megasena-dark mb-2">⚖️ DISTRIBUIÇÃO P/I:</h6>
+						<div class="space-y-3">
+							<div>
+								<div class="flex justify-between text-sm font-medium">
+									<span>Pares Restantes:</span>
+									<span id="paresRestantes">0/30</span>
+								</div>
+								<div class="w-full bg-gray-200 rounded-full h-2 mt-1">
+									<div id="barraParesRestantes" class="bg-blue-500 h-2 rounded-full" style="width: 0%"></div>
+								</div>
+							</div>
+							<div>
+								<div class="flex justify-between text-sm font-medium">
+									<span>Ímpares Restantes:</span>
+									<span id="imparesRestantes">0/30</span>
+								</div>
+								<div class="w-full bg-gray-200 rounded-full h-2 mt-1">
+									<div id="barraImparesRestantes" class="bg-purple-500 h-2 rounded-full" style="width: 0%"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<!-- Próximo Número Provável -->
+					<div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+						<h6 class="font-bold text-yellow-800 mb-2">🎯 PREDIÇÃO INTELIGENTE:</h6>
+						<div class="text-center">
+							<div class="text-3xl font-bold text-yellow-600 mb-2" id="numeroMaisProvavel">--</div>
+							<div class="text-sm text-yellow-700 mb-2">Número mais provável para aparecer</div>
+							<div class="text-xs text-yellow-600" id="razaoProvavelCiclo">
+								Baseado em análise de ciclos históricos
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Histórico de Ciclos -->
+			<div class="mb-4">
+				<h5 class="font-bold text-megasena-dark mb-3">📈 Histórico dos Últimos Ciclos:</h5>
+				<div class="bg-gray-50 border border-gray-200 rounded-lg p-4">
+					<div class="overflow-x-auto">
+						<table class="w-full text-sm">
+							<thead>
+								<tr class="border-b">
+									<th class="text-left py-2">Ciclo</th>
+									<th class="text-left py-2">Concursos</th>
+									<th class="text-left py-2">Início</th>
+									<th class="text-left py-2">Fim</th>
+									<th class="text-left py-2">Último Número</th>
+								</tr>
+							</thead>
+							<tbody id="historicoCiclos">
+								<!-- Será preenchido dinamicamente -->
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+
+			<!-- Configuração de Estratégias -->
+			<div class="mb-4">
+				<h5 class="font-bold text-megasena mb-3">🎮 Geração Baseada em Ciclos:</h5>
+				<div class="bg-megasena-bg border border-megasena rounded-lg p-4">
+					
+					<div class="grid grid-cols-2 gap-4 mb-4">
+						<div>
+							<label class="block font-medium text-megasena-dark mb-2">🎯 Estratégia de Ciclo:</label>
+							<select id="estrategiaCiclo" class="w-full px-3 py-2 border border-gray-300 rounded-lg text-base">
+								<option value="restantes" selected>⏳ Foco nos Restantes</option>
+								<option value="equilibrada">⚖️ Equilibrada (50% restantes)</option>
+								<option value="atrasados">🔥 Mais Atrasados do Ciclo</option>
+								<option value="probabilidade">📊 Por Probabilidade</option>
+								<option value="inteligente">🧠 IA Preditiva</option>
+							</select>
+						</div>
+						<div>
+							<label class="block font-medium text-megasena-dark mb-2">🎮 Quantidade de Jogos:</label>
+							<select id="qtdJogosCiclo" class="w-full px-3 py-2 border border-gray-300 rounded-lg text-base">
+								<option value="8" selected>8 jogos</option>
+								<option value="12">12 jogos</option>
+								<option value="15">15 jogos</option>
+								<option value="20">20 jogos</option>
+							</select>
+						</div>
+					</div>
+
+					<!-- Configurações Avançadas -->
+					<div class="grid grid-cols-3 gap-4 mb-4">
+						<div>
+							<label class="block text-sm font-medium mb-1">⏳ % Números Restantes:</label>
+							<select id="percentualRestantes" class="w-full px-2 py-2 border border-gray-300 rounded text-sm">
+								<option value="40">40% (2-3 números)</option>
+								<option value="60" selected>60% (3-4 números)</option>
+								<option value="80">80% (4-5 números)</option>
+							</select>
+						</div>
+						<div>
+							<label class="block text-sm font-medium mb-1">🔥 Prioridade de Atraso:</label>
+							<select id="prioridadeAtraso" class="w-full px-2 py-2 border border-gray-300 rounded text-sm">
+								<option value="baixa">Baixa</option>
+								<option value="media" selected>Média</option>
+								<option value="alta">Alta</option>
+							</select>
+						</div>
+						<div>
+							<label class="block text-sm font-medium mb-1">⚖️ Balanceamento P/I:</label>
+							<select id="balanceamentoPICiclo" class="w-full px-2 py-2 border border-gray-300 rounded text-sm">
+								<option value="automatico" selected>Automático</option>
+								<option value="equilibrado">Equilibrado (3P/3I)</option>
+								<option value="personalizado">Personalizado</option>
+							</select>
+						</div>
+					</div>
+
+					<!-- Análise Pré-geração -->
+					<div class="bg-white border border-megasena rounded p-3 mb-4">
+						<div class="text-sm font-bold text-megasena-dark mb-2">🔮 ANÁLISE PREDITIVA:</div>
+						<div id="analisePredicaoCiclo" class="text-sm text-megasena-dark">
+							Selecione uma estratégia para ver a análise preditiva baseada nos ciclos históricos reais.
+						</div>
+					</div>
+
+					<!-- Números Mais Prováveis -->
+					<div class="bg-yellow-50 border border-yellow-200 rounded p-3 mb-4">
+						<div class="text-sm font-bold text-yellow-800 mb-2">🎯 NÚMEROS MAIS PROVÁVEIS PARA APARECER:</div>
+						<div id="numerosMaisProvaveis" class="flex flex-wrap gap-1">
+							<!-- Será preenchido dinamicamente -->
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<button id="gerarJogosCiclo" class="w-full bg-gradient-to-r from-megasena to-megasena-dark hover:from-megasena-dark hover:to-megasena text-white px-4 py-2 rounded-lg font-bold text-lg">
+				🔄 Gerar Jogos Baseados em Ciclos
+			</button>
+			
+			<div id="resultadosCiclo" class="mt-4 hidden">
+				<h4 class="font-bold text-megasena mb-2">🔄 Jogos Baseados em Ciclos:</h4>
+				<div class="bg-megasena-bg border border-megasena rounded p-2 mb-3 text-sm">
+					<strong>Resumo:</strong> <span id="resumoJogosCiclo">8 jogos</span> | 
+					<strong>Custo Total:</strong> <span id="custoTotalCiclo">R$ 48,00</span> | 
+					<strong>Estratégia:</strong> <span id="estrategiaAplicadaCiclo">Foco nos Restantes</span>
+				</div>
+				<div id="listaJogosCiclo" class="space-y-2 max-h-60 overflow-y-auto">
+					<!-- Jogos gerados aparecerão aqui -->
+				</div>
+				<div class="mt-3 flex gap-2">
+					<button id="adicionarTodosCiclo" class="flex-1 bg-megasena hover:bg-megasena-dark text-white px-4 py-2 rounded-lg">
+						➕ Adicionar Todos aos Meus Jogos
+					</button>
+					<button id="novoCiclo" class="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-lg">
+						🔄 Nova Análise
+					</button>
+				</div>
+			</div>
+		</div>
+
+		<!-- 📖 MODAL: COMO FUNCIONAM OS CICLOS -->
+		<div id="modalCiclos" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50">
+			<div class="bg-white rounded-lg shadow-lg max-w-4xl w-full mx-4 max-h-[90vh] overflow-y-auto">
+				<div class="bg-gradient-to-r from-megasena to-megasena-dark text-white p-6 rounded-t-lg">
+					<div class="flex justify-between items-center">
+						<h3 class="text-2xl font-bold">🔄 Como Funcionam os Ciclos de Fechamento</h3>
+						<button onclick="fecharModal('modalCiclos')" class="text-white hover:text-gray-200 text-2xl">×</button>
+					</div>
+				</div>
+				
+				<div class="p-6">
+					<div class="space-y-6">
+						<!-- Conceito Principal -->
+						<div class="bg-megasena-bg border border-megasena rounded-lg p-4">
+							<h4 class="text-lg font-bold text-megasena-dark mb-3">🎯 O QUE SÃO CICLOS DE FECHAMENTO?</h4>
+							<p class="text-megasena-dark mb-3">
+								Um <strong>Ciclo de Fechamento</strong> é o período necessário para que todos os 60 números 
+								da Mega Sena apareçam pelo menos uma vez. O ciclo começa quando o último número restante 
+								aparece (fechando o ciclo anterior) e termina quando todos os 60 números aparecem novamente.
+							</p>
+							<div class="bg-white border border-megasena rounded p-3">
+								<div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+									<div>
+										<strong class="text-megasena">🔄 INÍCIO DO CICLO:</strong><br>
+										Quando o último número do ciclo anterior aparece<br>
+										<strong>Exemplo:</strong> Número 37 era o último restante
+									</div>
+									<div>
+										<strong class="text-megasena">✅ FIM DO CICLO:</strong><br>
+										Quando todos os 60 números aparecem<br>
+										<strong>Duração média:</strong> 150-250 concursos
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Como Calcular -->
+						<div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+							<h4 class="text-lg font-bold text-blue-800 mb-3">📊 COMO CALCULAMOS OS CICLOS?</h4>
+							<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+								<div>
+									<h5 class="font-bold text-blue-700 mb-2">🔍 Metodologia:</h5>
+									<ul class="text-sm text-blue-600 space-y-1">
+										<li>📡 <strong>Dados da API:</strong> Buscamos todos os concursos da Caixa</li>
+										<li>🔄 <strong>Identificação:</strong> Encontramos quando cada ciclo fecha</li>
+										<li>📊 <strong>Análise:</strong> Calculamos estatísticas de cada ciclo</li>
+										<li>🎯 <strong>Predição:</strong> Identificamos padrões históricos</li>
+									</ul>
+								</div>
+								<div>
+									<h5 class="font-bold text-blue-700 mb-2">📈 Estatísticas Calculadas:</h5>
+									<ul class="text-sm text-blue-600 space-y-1">
+										<li>⏱️ <strong>Duração:</strong> Quantos concursos para fechar</li>
+										<li>📊 <strong>Progresso:</strong> % do ciclo atual completado</li>
+										<li>🎲 <strong>Restantes:</strong> Quais números ainda não apareceram</li>
+										<li>🔥 <strong>Atrasos:</strong> Há quantos concursos não aparecem</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+
+						<!-- Estratégias -->
+						<div class="bg-megasena-bg border border-megasena rounded-lg p-4">
+							<h4 class="text-lg font-bold text-megasena-dark mb-3">🎯 ESTRATÉGIAS BASEADAS EM CICLOS:</h4>
+							<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+								<div>
+									<h5 class="font-bold text-megasena mb-2">📈 Estratégias Disponíveis:</h5>
+									<ul class="text-sm text-megasena-dark space-y-1">
+										<li>⏳ <strong>Foco nos Restantes:</strong> Prioriza números que não apareceram</li>
+										<li>⚖️ <strong>Equilibrada:</strong> 50% restantes + 50% já aparecidos</li>
+										<li>🔥 <strong>Mais Atrasados:</strong> Números há mais tempo sem aparecer</li>
+										<li>📊 <strong>Por Probabilidade:</strong> Baseado em padrões históricos</li>
+										<li>🧠 <strong>IA Preditiva:</strong> Algoritmo inteligente de predição</li>
+									</ul>
+								</div>
+								<div>
+									<h5 class="font-bold text-megasena mb-2">💡 Lógica por Trás:</h5>
+									<ul class="text-sm text-megasena-dark space-y-1">
+										<li>🎯 <strong>Teoria:</strong> Números restantes têm maior "pressão" para aparecer</li>
+										<li>📊 <strong>Estatística:</strong> Ciclos tendem a se completar</li>
+										<li>⏳ <strong>Atraso:</strong> Quanto mais atrasado, maior a "dívida"</li>
+										<li>🔄 <strong>Padrão:</strong> Histórico mostra ciclos regulares</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+
+						<!-- Interpretação -->
+						<div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+							<h4 class="text-lg font-bold text-yellow-800 mb-3">📋 COMO INTERPRETAR OS RESULTADOS?</h4>
+							<div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+								<div>
+									<h5 class="font-bold text-yellow-700 mb-2">🎨 Cores no Grid:</h5>
+									<ul class="text-yellow-600 space-y-1">
+										<li>🟢 <strong>Verde:</strong> Já apareceu no ciclo</li>
+										<li>⚪ <strong>Branco:</strong> Ainda não apareceu</li>
+										<li>🔵 <strong>Borda azul:</strong> Número par</li>
+										<li>🟣 <strong>Borda roxa:</strong> Número ímpar</li>
+									</ul>
+								</div>
+								<div>
+									<h5 class="font-bold text-yellow-700 mb-2">📊 Barras de Progresso:</h5>
+									<ul class="text-yellow-600 space-y-1">
+										<li>📈 <strong>Ciclo Geral:</strong> % de números que já apareceram</li>
+										<li>🔵 <strong>Pares:</strong> Quantos dos 30 pares restam</li>
+										<li>🟣 <strong>Ímpares:</strong> Quantos dos 30 ímpares restam</li>
+										<li>🎯 <strong>Predição:</strong> Número mais provável</li>
+									</ul>
+								</div>
+								<div>
+									<h5 class="font-bold text-yellow-700 mb-2">🔍 Histórico:</h5>
+									<ul class="text-yellow-600 space-y-1">
+										<li>📅 <strong>Ciclos Anteriores:</strong> Duração e padrões</li>
+										<li>📊 <strong>Estatísticas:</strong> Médias históricas</li>
+										<li>🎲 <strong>Último Número:</strong> Que fechou cada ciclo</li>
+										<li>📈 <strong>Tendências:</strong> Padrões identificados</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+
+						<!-- Dicas Importantes -->
+						<div class="bg-red-50 border border-red-200 rounded-lg p-4">
+							<h4 class="text-lg font-bold text-red-800 mb-3">⚠️ IMPORTANTE LEMBRAR:</h4>
+							<div class="text-sm text-red-700 space-y-2">
+								<p><strong>🎲 Aleatoriedade:</strong> Mesmo com padrões, cada sorteio é independente e aleatório.</p>
+								<p><strong>📊 Estatística vs Garantia:</strong> Análises mostram tendências, não garantem resultados.</p>
+								<p><strong>🔄 Ciclos Variáveis:</strong> A duração dos ciclos pode variar significativamente.</p>
+								<p><strong>💰 Gestão de Risco:</strong> Use os ciclos como ferramenta, não como certeza absoluta.</p>
+								<p><strong>📡 Dados Reais:</strong> Todas as análises são baseadas na API oficial da Caixa.</p>
+							</div>
+						</div>
+
+						<!-- Exemplo Prático -->
+						<div class="bg-green-50 border border-green-200 rounded-lg p-4">
+							<h4 class="text-lg font-bold text-green-800 mb-3">💡 EXEMPLO PRÁTICO:</h4>
+							<div class="text-sm text-green-700">
+								<p class="mb-2"><strong>Situação:</strong> Estamos no concurso 2.903 e faltam 12 números para fechar o ciclo atual.</p>
+								<p class="mb-2"><strong>Números restantes:</strong> 07, 19, 28, 37, 41, 45, 52, 56, 03, 15, 31, 58</p>
+								<p class="mb-2"><strong>Estratégia:</strong> Focar nos números 07, 19 e 28 (mais atrasados no ciclo)</p>
+								<p class="mb-2"><strong>Lógica:</strong> Estes números têm maior "pressão estatística" para aparecer</p>
+								<p><strong>⚖️ Balanceamento:</strong> Combinar com 2-3 números que já apareceram para equilibrar</p>
+							</div>
+						</div>
+					</div>
+					
+					<div class="mt-6 text-center">
+						<button onclick="fecharModal('modalCiclos')" class="bg-megasena hover:bg-megasena-dark text-white px-6 py-2 rounded-lg">
+							Entendi! Vamos usar os Ciclos 🔄
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 📐 SEÇÃO 11: JOGOS COMBINADOS POR PADRÃO DE COLUNAS E LINHAS -->
+		<div class="secao-geracao bg-white rounded-lg shadow-lg p-6">
+			<div class="secao-titulo">📐 SEÇÃO 11: PADRÕES DE COLUNAS E LINHAS</div>
+			<div class="mt-3 flex justify-center gap-2">
+				<a href="https://resumomegasena-i.netlify.app" target="_blank" 
+				   class="inline-flex items-center bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-sm transition-colors">
+					🌐 Análise de Padrões Geométricos
+				</a>
+				<button id="modalPadroesBtn" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg text-sm">
+					❓ Como Funcionam os Padrões
+				</button>
+			</div><br />
+
+			<!-- Status dos Padrões -->
+			<div class="bg-gradient-to-r from-megasena-light to-megasena-bg border-2 border-megasena rounded-lg p-4 mb-4">
+				<h4 class="text-lg font-bold text-megasena-dark mb-2">📊 ANÁLISE DE PADRÕES EM TEMPO REAL:</h4>
+				<div class="grid grid-cols-2 md:grid-cols-4 gap-3 text-sm">
+					<div class="bg-white p-3 rounded border text-center">
+						<div class="font-bold text-megasena">📋 Padrão Mais Comum</div>
+						<div class="text-lg font-bold text-megasena-dark" id="padraoMaisComum">2-1-1-1-1-0</div>
+						<div class="text-xs text-megasena">Distribuição por colunas</div>
+					</div>
+					<div class="bg-white p-3 rounded border text-center">
+						<div class="font-bold text-blue-600">🎯 Colunas Ativas</div>
+						<div class="text-2xl font-bold text-blue-800" id="colunasAtivas">5.2</div>
+						<div class="text-xs text-blue-600">Média histórica</div>
+					</div>
+					<div class="bg-white p-3 rounded border text-center">
+						<div class="font-bold text-purple-600">📏 Linhas Ativas</div>
+						<div class="text-2xl font-bold text-purple-800" id="linhasAtivas">5.8</div>
+						<div class="text-xs text-purple-600">Média histórica</div>
+					</div>
+					<div class="bg-white p-3 rounded border text-center">
+						<div class="font-bold text-orange-600">⚠️ Padrões Raros</div>
+						<div class="text-2xl font-bold text-orange-800" id="padroesRaros">12</div>
+						<div class="text-xs text-orange-600">Evitados</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Volante Oficial Simulado -->
+			<div class="mb-4">
+				<h5 class="font-bold text-megasena-dark mb-3">🎫 Volante Oficial da Mega-Sena (Layout Real):</h5>
+				<div class="bg-megasena-light border-2 border-megasena rounded-lg p-4">
+					
+					<!-- Legenda do Volante -->
+					<div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4 text-sm">
+						<div class="flex items-center">
+							<div class="w-4 h-4 rounded bg-megasena mr-2"></div>
+							<span>✅ Selecionado</span>
+						</div>
+						<div class="flex items-center">
+							<div class="w-4 h-4 rounded border-2 border-megasena bg-white mr-2"></div>
+							<span>⚪ Disponível</span>
+						</div>
+						<div class="flex items-center">
+							<div class="w-4 h-4 rounded bg-yellow-400 mr-2"></div>
+							<span>🔥 Frequente (API)</span>
+						</div>
+						<div class="flex items-center">
+							<div class="w-4 h-4 rounded bg-blue-400 mr-2"></div>
+							<span>❄️ Menos Frequente</span>
+						</div>
+					</div>
+					
+					<!-- Cabeçalho das Colunas -->
+					<div class="grid grid-cols-6 gap-1 mb-2">
+						<div class="text-center font-bold text-megasena-dark text-sm">COL 1</div>
+						<div class="text-center font-bold text-megasena-dark text-sm">COL 2</div>
+						<div class="text-center font-bold text-megasena-dark text-sm">COL 3</div>
+						<div class="text-center font-bold text-megasena-dark text-sm">COL 4</div>
+						<div class="text-center font-bold text-megasena-dark text-sm">COL 5</div>
+						<div class="text-center font-bold text-megasena-dark text-sm">COL 6</div>
+					</div>
+					
+					<!-- Grid do Volante (6 colunas x 10 linhas) -->
+					<div id="volanteOficial" class="grid grid-cols-6 gap-1">
+						<!-- Será preenchido dinamicamente -->
+					</div>
+					
+					<!-- Estatísticas das Linhas -->
+					<div class="mt-4">
+						<div class="text-sm font-bold text-megasena-dark mb-2">📊 Estatísticas por Linha:</div>
+						<div id="estatisticasLinhas" class="grid grid-cols-5 md:grid-cols-10 gap-1 text-xs">
+							<!-- Será preenchido dinamicamente -->
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Análise de Padrões Históricos -->
+			<div class="mb-4">
+				<h5 class="font-bold text-megasena-dark mb-3">📈 Análise de Padrões Históricos (API Real):</h5>
+				<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+					
+					<!-- Top Padrões de Colunas -->
+					<div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+						<h6 class="font-bold text-blue-800 mb-2">📋 TOP PADRÕES COLUNAS:</h6>
+						<div id="topPadroesColunas" class="space-y-2 text-sm">
+							<!-- Será preenchido dinamicamente -->
+						</div>
+						<div class="text-xs text-blue-600 mt-2">
+							<strong>Formato:</strong> Números por coluna (1-2-1-1-1-0)
+						</div>
+					</div>
+					
+					<!-- Top Padrões de Linhas -->
+					<div class="bg-purple-50 border border-purple-200 rounded-lg p-4">
+						<h6 class="font-bold text-purple-800 mb-2">📏 TOP PADRÕES LINHAS:</h6>
+						<div id="topPadroesLinhas" class="space-y-2 text-sm">
+							<!-- Será preenchido dinamicamente -->
+						</div>
+						<div class="text-xs text-purple-600 mt-2">
+							<strong>Formato:</strong> Números por linha (1-1-0-1-1-2)
+						</div>
+					</div>
+					
+					<!-- Padrões Geométricos -->
+					<div class="bg-megasena-bg border border-megasena rounded-lg p-4">
+						<h6 class="font-bold text-megasena-dark mb-2">🔷 PADRÕES GEOMÉTRICOS:</h6>
+						<div id="padroesGeometricos" class="space-y-2 text-sm">
+							<!-- Será preenchido dinamicamente -->
+						</div>
+						<div class="text-xs text-megasena-dark mt-2">
+							<strong>Tipos:</strong> Diagonal, L, Retângulo, etc.
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Configuração de Estratégias -->
+			<div class="mb-4">
+				<h5 class="font-bold text-megasena mb-3">🎮 Geração por Padrões Geométricos:</h5>
+				<div class="bg-megasena-bg border border-megasena rounded-lg p-4">
+					
+					<div class="grid grid-cols-2 gap-4 mb-4">
+						<div>
+							<label class="block font-medium text-megasena-dark mb-2">📐 Estratégia de Padrão:</label>
+							<select id="estrategiaPadrao" class="w-full px-3 py-2 border border-gray-300 rounded-lg text-base">
+								<option value="historico" selected>📊 Baseado em Histórico Real</option>
+								<option value="equilibrado">⚖️ Distribuição Equilibrada</option>
+								<option value="concentrado">🎯 Padrão Concentrado</option>
+								<option value="disperso">🌐 Padrão Disperso</option>
+								<option value="geometrico">🔷 Formas Geométricas</option>
+								<option value="antipadrao">❌ Anti-Padrão (Evita Comuns)</option>
+							</select>
+						</div>
+						<div>
+							<label class="block font-medium text-megasena-dark mb-2">🎮 Quantidade de Jogos:</label>
+							<select id="qtdJogosPadrao" class="w-full px-3 py-2 border border-gray-300 rounded-lg text-base">
+								<option value="6" selected>6 jogos</option>
+								<option value="10">10 jogos</option>
+								<option value="15">15 jogos</option>
+								<option value="20">20 jogos</option>
+							</select>
+						</div>
+					</div>
+
+					<!-- Configurações Avançadas -->
+					<div class="grid grid-cols-3 gap-4 mb-4">
+						<div>
+							<label class="block text-sm font-medium mb-1">📋 Colunas Ativas:</label>
+							<select id="colunasAtivassSelect" class="w-full px-2 py-2 border border-gray-300 rounded text-sm">
+								<option value="automatico" selected>Automático (API)</option>
+								<option value="4">4 colunas</option>
+								<option value="5">5 colunas</option>
+								<option value="6">6 colunas</option>
+							</select>
+						</div>
+						<div>
+							<label class="block text-sm font-medium mb-1">📏 Linhas Ativas:</label>
+							<select id="linhasAtivasSelect" class="w-full px-2 py-2 border border-gray-300 rounded text-sm">
+								<option value="automatico" selected>Automático (API)</option>
+								<option value="5">5 linhas</option>
+								<option value="6">6 linhas</option>
+								<option value="7">7 linhas</option>
+							</select>
+						</div>
+						<div>
+							<label class="block text-sm font-medium mb-1">🚫 Evitar Padrões:</label>
+							<select id="evitarPadroes" class="w-full px-2 py-2 border border-gray-300 rounded text-sm">
+								<option value="raros" selected>Raros (&lt;1%)</option>
+								<option value="muito-raros">Muito Raros (&lt;0.5%)</option>
+								<option value="extremos">Extremos (&lt;0.1%)</option>
+								<option value="nenhum">Não Evitar</option>
+							</select>
+						</div>
+					</div>
+
+					<!-- Padrão Personalizado -->
+					<div class="mb-4">
+						<label class="block font-medium text-megasena-dark mb-2">🎨 Criar Padrão Personalizado:</label>
+						<div class="bg-white border border-megasena rounded p-3">
+							<div class="grid grid-cols-6 gap-2 mb-2">
+								<div class="text-center text-xs font-bold">C1</div>
+								<div class="text-center text-xs font-bold">C2</div>
+								<div class="text-center text-xs font-bold">C3</div>
+								<div class="text-center text-xs font-bold">C4</div>
+								<div class="text-center text-xs font-bold">C5</div>
+								<div class="text-center text-xs font-bold">C6</div>
+							</div>
+							<div class="grid grid-cols-6 gap-2">
+								<input type="number" id="coluna1" min="0" max="6" value="1" class="w-full px-2 py-1 text-center border rounded text-sm">
+								<input type="number" id="coluna2" min="0" max="6" value="1" class="w-full px-2 py-1 text-center border rounded text-sm">
+								<input type="number" id="coluna3" min="0" max="6" value="1" class="w-full px-2 py-1 text-center border rounded text-sm">
+								<input type="number" id="coluna4" min="0" max="6" value="1" class="w-full px-2 py-1 text-center border rounded text-sm">
+								<input type="number" id="coluna5" min="0" max="6" value="1" class="w-full px-2 py-1 text-center border rounded text-sm">
+								<input type="number" id="coluna6" min="0" max="6" value="1" class="w-full px-2 py-1 text-center border rounded text-sm">
+							</div>
+							<div class="text-xs text-megasena-dark mt-2 text-center">
+								Total: <span id="totalPersonalizado" class="font-bold">6</span> números | 
+								<button id="aplicarPersonalizado" class="bg-megasena text-white px-3 py-1 rounded text-xs ml-2">Aplicar</button>
+							</div>
+						</div>
+					</div>
+
+					<!-- Análise Pré-geração -->
+					<div class="bg-white border border-megasena rounded p-3 mb-4">
+						<div class="text-sm font-bold text-megasena-dark mb-2">🔮 ANÁLISE PREDITIVA DE PADRÕES:</div>
+						<div id="analisePredicaoPadrao" class="text-sm text-megasena-dark">
+							Selecione uma estratégia para ver a análise preditiva baseada nos padrões históricos reais.
+						</div>
+					</div>
+
+					<!-- Seleção Interativa no Volante -->
+					<div class="bg-yellow-50 border border-yellow-200 rounded p-3 mb-4">
+						<div class="text-sm font-bold text-yellow-800 mb-2">🎯 SELEÇÃO INTERATIVA NO VOLANTE:</div>
+						<div class="text-xs text-yellow-700 mb-2">
+							Clique nos números do volante acima para criar seu próprio padrão
+						</div>
+						<div class="flex justify-between items-center">
+							<span class="text-sm">Selecionados: <span id="countSelecionadosPadrao" class="font-bold">0</span>/6</span>
+							<div class="flex gap-2">
+								<button id="limparSelecaoPadrao" class="bg-gray-400 text-white px-3 py-1 rounded text-xs">🗑️ Limpar</button>
+								<button id="analisarSelecaoPadrao" class="bg-yellow-600 text-white px-3 py-1 rounded text-xs">📊 Analisar</button>
+							</div>
+						</div>
+						<div id="padraoSelecionado" class="mt-2 text-xs text-yellow-600">
+							<!-- Análise do padrão selecionado aparecerá aqui -->
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<button id="gerarJogosPadrao" class="w-full bg-gradient-to-r from-megasena to-megasena-dark hover:from-megasena-dark hover:to-megasena text-white px-4 py-2 rounded-lg font-bold text-lg">
+				📐 Gerar Jogos por Padrões Geométricos
+			</button>
+			
+			<div id="resultadosPadrao" class="mt-4 hidden">
+				<h4 class="font-bold text-megasena mb-2">📐 Jogos por Padrões Geométricos:</h4>
+				<div class="bg-megasena-bg border border-megasena rounded p-2 mb-3 text-sm">
+					<strong>Resumo:</strong> <span id="resumoJogosPadrao">6 jogos</span> | 
+					<strong>Custo Total:</strong> <span id="custoTotalPadrao">R$ 36,00</span> | 
+					<strong>Estratégia:</strong> <span id="estrategiaAplicadaPadrao">Baseado em Histórico</span>
+				</div>
+				<div id="listaJogosPadrao" class="space-y-2 max-h-60 overflow-y-auto">
+					<!-- Jogos gerados aparecerão aqui -->
+				</div>
+				<div class="mt-3 flex gap-2">
+					<button id="adicionarTodosPadrao" class="flex-1 bg-megasena hover:bg-megasena-dark text-white px-4 py-2 rounded-lg">
+						➕ Adicionar Todos aos Meus Jogos
+					</button>
+					<button id="novoPadrao" class="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-lg">
+						🔄 Novo Padrão
+					</button>
+				</div>
+			</div>
+		</div>
+
+		<!-- 📖 MODAL: COMO FUNCIONAM OS PADRÕES -->
+		<div id="modalPadroes" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50">
+			<div class="bg-white rounded-lg shadow-lg max-w-5xl w-full mx-4 max-h-[90vh] overflow-y-auto">
+				<div class="bg-gradient-to-r from-megasena to-megasena-dark text-white p-6 rounded-t-lg">
+					<div class="flex justify-between items-center">
+						<h3 class="text-2xl font-bold">📐 Como Funcionam os Padrões de Colunas e Linhas</h3>
+						<button onclick="fecharModal('modalPadroes')" class="text-white hover:text-gray-200 text-2xl">×</button>
+					</div>
+				</div>
+				
+				<div class="p-6">
+					<div class="space-y-6">
+						<!-- Conceito do Volante -->
+						<div class="bg-megasena-bg border border-megasena rounded-lg p-4">
+							<h4 class="text-lg font-bold text-megasena-dark mb-3">🎫 O VOLANTE OFICIAL DA MEGA-SENA:</h4>
+							<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+								<div>
+									<p class="text-megasena-dark mb-3">
+										O volante oficial da Mega-Sena organiza os 60 números em uma grade de 
+										<strong>6 colunas × 10 linhas</strong>. Esta organização física influencia 
+										psicologicamente as escolhas dos apostadores e cria padrões estatísticos identificáveis.
+									</p>
+									<div class="bg-white border border-megasena rounded p-3 text-sm">
+										<strong>📋 Organização:</strong><br>
+										• <strong>Coluna 1:</strong> 01, 07, 13, 19, 25, 31, 37, 43, 49, 55<br>
+										• <strong>Coluna 2:</strong> 02, 08, 14, 20, 26, 32, 38, 44, 50, 56<br>
+										• <strong>Coluna 3:</strong> 03, 09, 15, 21, 27, 33, 39, 45, 51, 57<br>
+										• <strong>Coluna 4:</strong> 04, 10, 16, 22, 28, 34, 40, 46, 52, 58<br>
+										• <strong>Coluna 5:</strong> 05, 11, 17, 23, 29, 35, 41, 47, 53, 59<br>
+										• <strong>Coluna 6:</strong> 06, 12, 18, 24, 30, 36, 42, 48, 54, 60
+									</div>
+								</div>
+								<div>
+									<h5 class="font-bold text-megasena mb-2">📊 Por que os Padrões Importam?</h5>
+									<ul class="text-sm text-megasena-dark space-y-1">
+										<li>🎯 <strong>Probabilidade Visual:</strong> Certas distribuições são mais naturais</li>
+										<li>📈 <strong>Tendências Humanas:</strong> Pessoas evitam certos padrões "óbvios"</li>
+										<li>⚖️ <strong>Equilíbrio:</strong> Distribuição balanceada tem mais chances</li>
+										<li>🚫 <strong>Padrões Raros:</strong> Todos na mesma coluna/linha são improváveis</li>
+										<li>📊 <strong>Dados Históricos:</strong> API mostra padrões mais comuns</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+
+						<!-- Tipos de Padrões -->
+						<div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+							<h4 class="text-lg font-bold text-blue-800 mb-3">🎨 TIPOS DE PADRÕES ANALISADOS:</h4>
+							<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+								<div>
+									<h5 class="font-bold text-blue-700 mb-2">📋 Padrões de Colunas:</h5>
+									<ul class="text-sm text-blue-600 space-y-1">
+										<li>• <strong>1-1-1-1-1-1:</strong> Uma dezena por coluna</li>
+										<li>• <strong>2-1-1-1-1-0:</strong> Duas em uma, zero em outra</li>
+										<li>• <strong>3-1-1-1-0-0:</strong> Concentração em uma coluna</li>
+										<li>• <strong>2-2-1-1-0-0:</strong> Duas colunas com duas cada</li>
+										<li>• <strong>6-0-0-0-0-0:</strong> Todas na mesma (muito raro!)</li>
+									</ul>
+								</div>
+								<div>
+									<h5 class="font-bold text-blue-700 mb-2">📏 Padrões de Linhas:</h5>
+									<ul class="text-sm text-blue-600 space-y-1">
+										<li>• <strong>Distribuição:</strong> Como números se espalham</li>
+										<li>• <strong>Linha 1:</strong> 01-06 (números baixos)</li>
+										<li>• <strong>Linha 10:</strong> 55-60 (números altos)</li>
+										<li>• <strong>Concentração:</strong> Muitos na mesma linha</li>
+										<li>• <strong>Espalhamento:</strong> Uma dezena por linha</li>
+									</ul>
+								</div>
+								<div>
+									<h5 class="font-bold text-blue-700 mb-2">🔷 Padrões Geométricos:</h5>
+									<ul class="text-sm text-blue-600 space-y-1">
+										<li>• <strong>Diagonal:</strong> Sequência diagonal</li>
+										<li>• <strong>L-Shape:</strong> Formato de L</li>
+										<li>• <strong>Retângulo:</strong> Formação retangular</li>
+										<li>• <strong>Cruz:</strong> Formato de cruz/mais</li>
+										<li>• <strong>Disperso:</strong> Espalhado uniformemente</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+
+						<!-- Estratégias -->
+						<div class="bg-megasena-bg border border-megasena rounded-lg p-4">
+							<h4 class="text-lg font-bold text-megasena-dark mb-3">🎯 ESTRATÉGIAS DISPONÍVEIS:</h4>
+							<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+								<div>
+									<h5 class="font-bold text-megasena mb-2">📊 Baseadas em Dados:</h5>
+									<ul class="text-sm text-megasena-dark space-y-1">
+										<li>📈 <strong>Histórico Real:</strong> Usa padrões mais comuns da API</li>
+										<li>⚖️ <strong>Equilibrada:</strong> Distribui bem entre colunas/linhas</li>
+										<li>🎯 <strong>Concentrado:</strong> Foca em algumas colunas</li>
+										<li>🌐 <strong>Disperso:</strong> Espalha ao máximo</li>
+										<li>❌ <strong>Anti-Padrão:</strong> Evita os mais comuns</li>
+									</ul>
+								</div>
+								<div>
+									<h5 class="font-bold text-megasena mb-2">🔷 Geométricas:</h5>
+									<ul class="text-sm text-megasena-dark space-y-1">
+										<li>📐 <strong>Formas:</strong> Cria padrões visuais</li>
+										<li>🎨 <strong>Personalizado:</strong> Você define a distribuição</li>
+										<li>🎯 <strong>Interativo:</strong> Clique no volante para selecionar</li>
+										<li>📊 <strong>Análise:</strong> Verifica probabilidade do padrão</li>
+										<li>🚫 <strong>Filtros:</strong> Evita padrões muito raros</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+
+						<!-- Como Interpretar -->
+						<div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+							<h4 class="text-lg font-bold text-yellow-800 mb-3">📋 COMO INTERPRETAR OS RESULTADOS:</h4>
+							<div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+								<div>
+									<h5 class="font-bold text-yellow-700 mb-2">📊 Notação de Padrões:</h5>
+									<div class="text-yellow-600 space-y-1">
+										<p><strong>2-1-1-1-1-0</strong> = 2 números na coluna 1, 1 na coluna 2, etc.</p>
+										<p><strong>Frequência:</strong> Quantas vezes apareceu historicamente</p>
+										<p><strong>%:</strong> Percentual em relação ao total de sorteios</p>
+										<p><strong>Raro:</strong> Padrões com frequência &lt; 1%</p>
+									</div>
+								</div>
+								<div>
+									<h5 class="font-bold text-yellow-700 mb-2">🎨 Cores no Volante:</h5>
+									<div class="text-yellow-600 space-y-1">
+										<p>🟢 <strong>Verde:</strong> Número selecionado</p>
+										<p>⚪ <strong>Branco:</strong> Disponível para seleção</p>
+										<p>🟡 <strong>Amarelo:</strong> Frequente nos dados da API</p>
+										<p>🔵 <strong>Azul:</strong> Menos frequente historicamente</p>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Dicas Práticas -->
+						<div class="bg-green-50 border border-green-200 rounded-lg p-4">
+							<h4 class="text-lg font-bold text-green-800 mb-3">💡 DICAS PRÁTICAS:</h4>
+							<div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+								<div>
+									<h5 class="font-bold text-green-700 mb-2">✅ Recomendações:</h5>
+									<ul class="text-green-600 space-y-1">
+										<li>• Use padrões com frequência &gt; 2% (mais prováveis)</li>
+										<li>• Prefira 4-6 colunas ativas</li>
+										<li>• Distribua entre 5-7 linhas diferentes</li>
+										<li>• Evite concentrar tudo em uma área</li>
+										<li>• Combine estratégias para diversificar</li>
+									</ul>
+								</div>
+								<div>
+									<h5 class="font-bold text-green-700 mb-2">⚠️ Cuidados:</h5>
+									<ul class="text-green-600 space-y-1">
+										<li>• Padrões muito óbvios (diagonal simples) são comuns</li>
+										<li>• Evite todas as dezenas na mesma coluna/linha</li>
+										<li>• Padrões geométricos perfeitos são raros</li>
+										<li>• Balance entre lógica e aleatoriedade</li>
+										<li>• Lembre-se: sorteio é sempre aleatório!</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+
+						<!-- Exemplo Prático -->
+						<div class="bg-purple-50 border border-purple-200 rounded-lg p-4">
+							<h4 class="text-lg font-bold text-purple-800 mb-3">🎯 EXEMPLO PRÁTICO:</h4>
+							<div class="text-sm text-purple-700">
+								<p class="mb-2"><strong>Padrão Encontrado na API:</strong> 1-2-1-1-1-0 (apareceu 127 vezes = 4.8%)</p>
+								<p class="mb-2"><strong>Interpretação:</strong> 1 número na coluna 1, 2 na coluna 2, 1 na coluna 3, 1 na coluna 4, 1 na coluna 5, 0 na coluna 6</p>
+								<p class="mb-2"><strong>Exemplo de Jogo:</strong> 07 (C1), 14-20 (C2), 27 (C3), 34 (C4), 41 (C5)</p>
+								<p class="mb-2"><strong>Por que é bom:</strong> Distribui bem, não concentra demais, tem histórico comprovado</p>
+								<p><strong>⚖️ Estratégia:</strong> Use este tipo de padrão como base e varie os números específicos</p>
+							</div>
+						</div>
+					</div>
+					
+					<div class="mt-6 text-center">
+						<button onclick="fecharModal('modalPadroes')" class="bg-megasena hover:bg-megasena-dark text-white px-6 py-2 rounded-lg">
+							Entendi! Vamos usar os Padrões 📐
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 🚫 SEÇÃO 12: FILTRAGEM POR PADRÕES IMPROVÁVEIS -->
+		<div class="secao-geracao bg-white rounded-lg shadow-lg p-6">
+			<div class="secao-titulo">🚫 SEÇÃO 12: FILTRAGEM POR PADRÕES IMPROVÁVEIS</div>
+			<div class="mt-3 flex justify-center gap-2">
+				<a href="https://resumomegasena-i.netlify.app" target="_blank" 
+				   class="inline-flex items-center bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-sm transition-colors">
+					🌐 Análise de Padrões Raros
+				</a>
+				<button id="modalFiltrosBtn" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg text-sm">
+					❓ Como Funcionam os Filtros
+				</button>
+			</div><br />
+
+			<!-- Status dos Padrões Improváveis -->
+			<div class="bg-gradient-to-r from-red-50 to-orange-50 border-2 border-red-400 rounded-lg p-4 mb-4">
+				<h4 class="text-lg font-bold text-red-800 mb-2">⚠️ ANÁLISE DE PADRÕES IMPROVÁVEIS (API REAL):</h4>
+				<div class="grid grid-cols-2 md:grid-cols-4 gap-3 text-sm">
+					<div class="bg-white p-3 rounded border text-center">
+						<div class="font-bold text-red-600">🚫 Padrões Identificados</div>
+						<div class="text-2xl font-bold text-red-800" id="totalPadroesRaros">0</div>
+						<div class="text-xs text-red-600">Tipos de filtros</div>
+					</div>
+					<div class="bg-white p-3 rounded border text-center">
+						<div class="font-bold text-orange-600">📊 Frequência Mínima</div>
+						<div class="text-2xl font-bold text-orange-800" id="frequenciaMinima">0.1%</div>
+						<div class="text-xs text-orange-600">Limiar configurado</div>
+					</div>
+					<div class="bg-white p-3 rounded border text-center">
+						<div class="font-bold text-megasena">✅ Jogos Válidos</div>
+						<div class="text-2xl font-bold text-megasena-dark" id="jogosValidos">97.2%</div>
+						<div class="text-xs text-megasena">Passam nos filtros</div>
+					</div>
+					<div class="bg-white p-3 rounded border text-center">
+						<div class="font-bold text-purple-600">🗑️ Filtrados</div>
+						<div class="text-2xl font-bold text-purple-800" id="jogosFiltrados">2.8%</div>
+						<div class="text-xs text-purple-600">Rejeitados</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Lista de Padrões Improváveis Detectados -->
+			<div class="mb-4">
+				<h5 class="font-bold text-red-800 mb-3">🔍 Padrões Improváveis Detectados na API:</h5>
+				<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+					
+					<!-- Padrões Críticos (Nunca Aconteceram) -->
+					<div class="bg-red-50 border border-red-200 rounded-lg p-4">
+						<h6 class="font-bold text-red-800 mb-2">🚨 PADRÕES CRÍTICOS (0% na API):</h6>
+						<div id="padroesCriticos" class="space-y-2 text-sm">
+							<!-- Será preenchido dinamicamente -->
+						</div>
+						<div class="text-xs text-red-600 mt-2">
+							<strong>⚠️ Ação:</strong> Filtrar automaticamente
+						</div>
+					</div>
+					
+					<!-- Padrões Muito Raros (< 0.5%) -->
+					<div class="bg-orange-50 border border-orange-200 rounded-lg p-4">
+						<h6 class="font-bold text-orange-800 mb-2">⚠️ PADRÕES MUITO RAROS (&lt; 0.5%):</h6>
+						<div id="padroesMuitoRaros" class="space-y-2 text-sm">
+							<!-- Será preenchido dinamicamente -->
+						</div>
+						<div class="text-xs text-orange-600 mt-2">
+							<strong>🎯 Recomendação:</strong> Evitar na maioria dos casos
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Configuração dos Filtros -->
+			<div class="mb-4">
+				<h5 class="font-bold text-megasena mb-3">⚙️ Configuração dos Filtros Inteligentes:</h5>
+				<div class="bg-megasena-bg border border-megasena rounded-lg p-4">
+					
+					<!-- Filtros Principais -->
+					<div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+						<div>
+							<label class="block font-medium text-megasena-dark mb-2">🎯 Nível de Filtragem:</label>
+							<select id="nivelFiltragem" class="w-full px-3 py-2 border border-gray-300 rounded-lg text-base">
+								<option value="conservador" selected>🛡️ Conservador (Filtra &lt; 0.1%)</option>
+								<option value="moderado">⚖️ Moderado (Filtra &lt; 0.5%)</option>
+								<option value="agressivo">🔥 Agressivo (Filtra &lt; 1%)</option>
+								<option value="personalizado">🎨 Personalizado</option>
+							</select>
+						</div>
+						<div>
+							<label class="block font-medium text-megasena-dark mb-2">🎮 Modo de Aplicação:</label>
+							<select id="modoAplicacao" class="w-full px-3 py-2 border border-gray-300 rounded-lg text-base">
+								<option value="automatico" selected>🤖 Automático (Aplica todos)</option>
+								<option value="seletivo">🎯 Seletivo (Escolher filtros)</option>
+								<option value="analise">📊 Apenas Análise</option>
+							</select>
+						</div>
+					</div>
+
+					<!-- Filtros Específicos -->
+					<div class="mb-4">
+						<h6 class="font-bold text-megasena-dark mb-2">🔧 Filtros Específicos (baseados na API):</h6>
+						<div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+							
+							<!-- Filtro Pares/Ímpares -->
+							<label class="flex items-center p-3 bg-white border border-megasena rounded cursor-pointer hover:bg-megasena-light">
+								<input type="checkbox" id="filtroParImpar" checked class="mr-2">
+								<div>
+									<div class="font-bold text-sm">⚖️ Pares/Ímpares</div>
+									<div class="text-xs text-gray-600">6P-0I ou 0P-6I</div>
+									<div class="text-xs text-red-600" id="freqParImpar">0% na API</div>
+								</div>
+							</label>
+							
+							<!-- Filtro Baixos/Altos -->
+							<label class="flex items-center p-3 bg-white border border-megasena rounded cursor-pointer hover:bg-megasena-light">
+								<input type="checkbox" id="filtroBaixoAlto" checked class="mr-2">
+								<div>
+									<div class="font-bold text-sm">📊 Baixos/Altos</div>
+									<div class="text-xs text-gray-600">Todos 1-30 ou 31-60</div>
+									<div class="text-xs text-red-600" id="freqBaixoAlto">0% na API</div>
+								</div>
+							</label>
+							
+							<!-- Filtro Sequências -->
+							<label class="flex items-center p-3 bg-white border border-megasena rounded cursor-pointer hover:bg-megasena-light">
+								<input type="checkbox" id="filtroSequencia" checked class="mr-2">
+								<div>
+									<div class="font-bold text-sm">🔢 Sequências</div>
+									<div class="text-xs text-gray-600">4+ consecutivos</div>
+									<div class="text-xs text-orange-600" id="freqSequencia">0.2% na API</div>
+								</div>
+							</label>
+							
+							<!-- Filtro Mesmo Final -->
+							<label class="flex items-center p-3 bg-white border border-megasena rounded cursor-pointer hover:bg-megasena-light">
+								<input type="checkbox" id="filtroMesmoFinal" checked class="mr-2">
+								<div>
+									<div class="font-bold text-sm">🎯 Mesmo Final</div>
+									<div class="text-xs text-gray-600">4+ com final igual</div>
+									<div class="text-xs text-orange-600" id="freqMesmoFinal">0.1% na API</div>
+								</div>
+							</label>
+							
+							<!-- Filtro Múltiplos -->
+							<label class="flex items-center p-3 bg-white border border-megasena rounded cursor-pointer hover:bg-megasena-light">
+								<input type="checkbox" id="filtroMultiplos" checked class="mr-2">
+								<div>
+									<div class="font-bold text-sm">✖️ Múltiplos</div>
+									<div class="text-xs text-gray-600">4+ múltiplos de X</div>
+									<div class="text-xs text-red-600" id="freqMultiplos">0% na API</div>
+								</div>
+							</label>
+							
+							<!-- Filtro Extremos -->
+							<label class="flex items-center p-3 bg-white border border-megasena rounded cursor-pointer hover:bg-megasena-light">
+								<input type="checkbox" id="filtroExtremos" checked class="mr-2">
+								<div>
+									<div class="font-bold text-sm">🔚 Extremos</div>
+									<div class="text-xs text-gray-600">Todos 1-10 ou 51-60</div>
+									<div class="text-xs text-red-600" id="freqExtremos">0% na API</div>
+								</div>
+							</label>
+						</div>
+					</div>
+
+					<!-- Configurações Avançadas -->
+					<div class="mb-4">
+						<h6 class="font-bold text-megasena-dark mb-2">🔬 Configurações Avançadas:</h6>
+						<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+							<div>
+								<label class="block text-sm font-medium mb-1">📊 Limiar Mínimo (%):</label>
+								<input type="number" id="limiarMinimo" min="0" max="5" step="0.1" value="0.1" 
+									   class="w-full px-2 py-2 border border-gray-300 rounded text-sm text-center">
+							</div>
+							<div>
+								<label class="block text-sm font-medium mb-1">🔢 Max Consecutivos:</label>
+								<input type="number" id="maxConsecutivos" min="2" max="6" value="3" 
+									   class="w-full px-2 py-2 border border-gray-300 rounded text-sm text-center">
+							</div>
+							<div>
+								<label class="block text-sm font-medium mb-1">🎯 Max Mesmo Final:</label>
+								<input type="number" id="maxMesmoFinal" min="2" max="6" value="3" 
+									   class="w-full px-2 py-2 border border-gray-300 rounded text-sm text-center">
+							</div>
+							<div>
+								<label class="block text-sm font-medium mb-1">⚖️ Max Desequilíbrio:</label>
+								<select id="maxDesequilibrio" class="w-full px-2 py-2 border border-gray-300 rounded text-sm">
+									<option value="1">1 (5P-1I ou 1P-5I)</option>
+									<option value="2" selected>2 (4P-2I ou 2P-4I)</option>
+									<option value="3">3 (3P-3I equilibrado)</option>
+								</select>
+							</div>
+						</div>
+					</div>
+
+					<!-- Teste de Jogo -->
+					<div class="bg-yellow-50 border border-yellow-200 rounded p-3 mb-4">
+						<div class="text-sm font-bold text-yellow-800 mb-2">🧪 TESTE UM JOGO:</div>
+						<div class="grid grid-cols-6 gap-2 mb-2">
+							<input type="number" id="teste1" min="1" max="60" placeholder="01" class="w-full px-2 py-1 text-center border rounded text-sm">
+							<input type="number" id="teste2" min="1" max="60" placeholder="02" class="w-full px-2 py-1 text-center border rounded text-sm">
+							<input type="number" id="teste3" min="1" max="60" placeholder="03" class="w-full px-2 py-1 text-center border rounded text-sm">
+							<input type="number" id="teste4" min="1" max="60" placeholder="04" class="w-full px-2 py-1 text-center border rounded text-sm">
+							<input type="number" id="teste5" min="1" max="60" placeholder="05" class="w-full px-2 py-1 text-center border rounded text-sm">
+							<input type="number" id="teste6" min="1" max="60" placeholder="06" class="w-full px-2 py-1 text-center border rounded text-sm">
+						</div>
+						<div class="flex justify-between items-center">
+							<button id="testarJogo" class="bg-yellow-600 text-white px-4 py-1 rounded text-sm">🔍 Testar Filtros</button>
+							<button id="exemploRaro" class="bg-red-500 text-white px-4 py-1 rounded text-sm">⚠️ Exemplo Raro</button>
+							<button id="exemploComum" class="bg-green-500 text-white px-4 py-1 rounded text-sm">✅ Exemplo Comum</button>
+						</div>
+						<div id="resultadoTeste" class="mt-2 text-sm">
+							<!-- Resultado do teste aparecerá aqui -->
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Análise em Tempo Real -->
+			<div class="mb-4">
+				<h5 class="font-bold text-megasena-dark mb-3">📊 Análise em Tempo Real dos Filtros:</h5>
+				<div class="bg-white border border-megasena rounded-lg p-4">
+					<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+						
+						<!-- Estatísticas de Filtragem -->
+						<div class="bg-blue-50 border border-blue-200 rounded p-3">
+							<h6 class="font-bold text-blue-800 mb-2">📈 ESTATÍSTICAS:</h6>
+							<div class="text-sm space-y-1">
+								<div>Filtros ativos: <span id="filtrosAtivos" class="font-bold">6</span></div>
+								<div>Jogos bloqueados: <span id="jogosBloqueados" class="font-bold text-red-600">2.8%</span></div>
+								<div>Economia estimada: <span id="economiaEstimada" class="font-bold text-green-600">R$ 28,00</span></div>
+							</div>
+						</div>
+						
+						<!-- Padrões Mais Filtrados -->
+						<div class="bg-red-50 border border-red-200 rounded p-3">
+							<h6 class="font-bold text-red-800 mb-2">🚫 MAIS FILTRADOS:</h6>
+							<div id="maisFilterados" class="text-sm space-y-1">
+								<!-- Será preenchido dinamicamente -->
+							</div>
+						</div>
+						
+						<!-- Recomendações -->
+						<div class="bg-megasena-bg border border-megasena rounded p-3">
+							<h6 class="font-bold text-megasena-dark mb-2">💡 RECOMENDAÇÕES:</h6>
+							<div id="recomendacoesFiltros" class="text-sm space-y-1">
+								<!-- Será preenchido dinamicamente -->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<button id="gerarJogosFiltrados" class="w-full bg-gradient-to-r from-megasena to-megasena-dark hover:from-megasena-dark hover:to-megasena text-white px-4 py-2 rounded-lg font-bold text-lg">
+				🚫 Gerar Jogos com Filtros Inteligentes
+			</button>
+			
+			<div id="resultadosFiltros" class="mt-4 hidden">
+				<h4 class="font-bold text-megasena mb-2">🚫 Jogos Filtrados por Padrões:</h4>
+				<div class="bg-megasena-bg border border-megasena rounded p-2 mb-3 text-sm">
+					<strong>Resumo:</strong> <span id="resumoJogosFiltros">10 jogos</span> | 
+					<strong>Custo Total:</strong> <span id="custoTotalFiltros">R$ 60,00</span> | 
+					<strong>Filtros Aplicados:</strong> <span id="filtrosAplicados">6 ativos</span>
+				</div>
+				<div id="listaJogosFiltros" class="space-y-2 max-h-60 overflow-y-auto">
+					<!-- Jogos gerados aparecerão aqui -->
+				</div>
+				<div class="mt-3 flex gap-2">
+					<button id="adicionarTodosFiltros" class="flex-1 bg-megasena hover:bg-megasena-dark text-white px-4 py-2 rounded-lg">
+						➕ Adicionar Todos aos Meus Jogos
+					</button>
+					<button id="novoFiltro" class="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-lg">
+						🔄 Novos Filtros
+					</button>
+				</div>
+			</div>
+		</div>
+
+		<!-- 📖 MODAL: COMO FUNCIONAM OS FILTROS -->
+		<div id="modalFiltros" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50">
+			<div class="bg-white rounded-lg shadow-lg max-w-5xl w-full mx-4 max-h-[90vh] overflow-y-auto">
+				<div class="bg-gradient-to-r from-red-500 to-orange-500 text-white p-6 rounded-t-lg">
+					<div class="flex justify-between items-center">
+						<h3 class="text-2xl font-bold">🚫 Como Funcionam os Filtros de Padrões Improváveis</h3>
+						<button onclick="fecharModal('modalFiltros')" class="text-white hover:text-gray-200 text-2xl">×</button>
+					</div>
+				</div>
+				
+				<div class="p-6">
+					<div class="space-y-6">
+						<!-- Conceito Principal -->
+						<div class="bg-red-50 border border-red-200 rounded-lg p-4">
+							<h4 class="text-lg font-bold text-red-800 mb-3">🎯 O QUE SÃO PADRÕES IMPROVÁVEIS?</h4>
+							<p class="text-red-700 mb-3">
+								Padrões improváveis são combinações de números que, embora matematicamente possíveis, 
+								<strong>nunca aconteceram ou acontecem muito raramente</strong> na história da Mega-Sena. 
+								Filtrar esses padrões ajuda a economizar dinheiro evitando apostas "mortas".
+							</p>
+							<div class="bg-white border border-red-300 rounded p-3">
+								<div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+									<div>
+										<strong class="text-red-600">🚨 CRÍTICOS (0% na API):</strong><br>
+										Nunca aconteceram em toda história<br>
+										<strong>Exemplo:</strong> 02, 04, 06, 08, 10, 12 (só pares)<br>
+										<strong>Ação:</strong> Filtrar sempre
+									</div>
+									<div>
+										<strong class="text-orange-600">⚠️ MUITO RAROS (&lt;0.5%):</strong><br>
+										Aconteceram muito poucas vezes<br>
+										<strong>Exemplo:</strong> 01, 02, 03, 04, 05, 06 (sequência)<br>
+										<strong>Ação:</strong> Evitar na maioria dos casos
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Tipos de Filtros -->
+						<div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+							<h4 class="text-lg font-bold text-blue-800 mb-3">🔧 TIPOS DE FILTROS DISPONÍVEIS:</h4>
+							<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+								<div>
+									<h5 class="font-bold text-blue-700 mb-2">🔍 Filtros Básicos:</h5>
+									<ul class="text-sm text-blue-600 space-y-1">
+										<li>⚖️ <strong>Pares/Ímpares:</strong> Evita 6 pares ou 6 ímpares</li>
+										<li>📊 <strong>Baixos/Altos:</strong> Evita todos 1-30 ou 31-60</li>
+										<li>🔢 <strong>Sequências:</strong> Evita 4+ números consecutivos</li>
+										<li>🎯 <strong>Mesmo Final:</strong> Evita 4+ com final igual (ex: 10,20,30,40)</li>
+										<li>✖️ <strong>Múltiplos:</strong> Evita 4+ múltiplos do mesmo número</li>
+										<li>🔚 <strong>Extremos:</strong> Evita concentração nos extremos</li>
+									</ul>
+								</div>
+								<div>
+									<h5 class="font-bold text-blue-700 mb-2">🔬 Filtros Avançados:</h5>
+									<ul class="text-sm text-blue-600 space-y-1">
+										<li>📐 <strong>Geométricos:</strong> Padrões visuais óbvios</li>
+										<li>📈 <strong>Estatísticos:</strong> Baseados em frequência</li>
+										<li>🧮 <strong>Matemáticos:</strong> Progressões aritméticas</li>
+										<li>🎲 <strong>Comportamentais:</strong> Escolhas humanas típicas</li>
+										<li>📅 <strong>Datas:</strong> Evita padrões de datas (1-31)</li>
+										<li>🔄 <strong>Repetições:</strong> Padrões do último sorteio</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+
+						<!-- Exemplos Práticos -->
+						<div class="bg-megasena-bg border border-megasena rounded-lg p-4">
+							<h4 class="text-lg font-bold text-megasena-dark mb-3">📋 EXEMPLOS PRÁTICOS:</h4>
+							<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+								<div>
+									<h5 class="font-bold text-red-700 mb-2">🚫 JOGOS "MORTOS" (Filtrar):</h5>
+									<div class="bg-white border border-red-300 rounded p-3 text-sm">
+										<p><strong>Só Pares:</strong> 02, 04, 06, 08, 10, 12</p>
+										<p><strong>Só Ímpares:</strong> 01, 03, 05, 07, 09, 11</p>
+										<p><strong>Sequência:</strong> 15, 16, 17, 18, 19, 20</p>
+										<p><strong>Mesmo Final:</strong> 10, 20, 30, 40, 50, 60</p>
+										<p><strong>Múltiplos de 5:</strong> 05, 10, 15, 20, 25, 30</p>
+										<p><strong>Só Baixos:</strong> 01, 02, 03, 04, 05, 06</p>
+										<p class="text-red-600 font-bold mt-2">❌ Frequência na API: 0% ou &lt;0.1%</p>
+									</div>
+								</div>
+								<div>
+									<h5 class="font-bold text-green-700 mb-2">✅ JOGOS "VIVOS" (Passar):</h5>
+									<div class="bg-white border border-green-300 rounded p-3 text-sm">
+										<p><strong>Equilibrado:</strong> 03, 15, 22, 38, 45, 59</p>
+										<p><strong>Distribuído:</strong> 07, 18, 29, 34, 41, 56</p>
+										<p><strong>Misto:</strong> 01, 12, 23, 37, 48, 60</p>
+										<p><strong>Irregular:</strong> 05, 19, 28, 33, 47, 54</p>
+										<p><strong>Natural:</strong> 02, 14, 26, 35, 43, 58</p>
+										<p><strong>Realista:</strong> 09, 17, 24, 36, 49, 55</p>
+										<p class="text-green-600 font-bold mt-2">✅ Frequência na API: Normal (&gt;1%)</p>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Como Configurar -->
+						<div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+							<h4 class="text-lg font-bold text-yellow-800 mb-3">⚙️ COMO CONFIGURAR OS FILTROS:</h4>
+							<div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+								<div>
+									<h5 class="font-bold text-yellow-700 mb-2">🛡️ Conservador:</h5>
+									<ul class="text-yellow-600 space-y-1">
+										<li>• Filtra padrões &lt; 0.1%</li>
+										<li>• Remove apenas o mais raro</li>
+										<li>• Máxima segurança</li>
+										<li>• Recomendado para iniciantes</li>
+									</ul>
+								</div>
+								<div>
+									<h5 class="font-bold text-yellow-700 mb-2">⚖️ Moderado:</h5>
+									<ul class="text-yellow-600 space-y-1">
+										<li>• Filtra padrões &lt; 0.5%</li>
+										<li>• Equilibrio entre filtro e opções</li>
+										<li>• Boa relação custo/benefício</li>
+										<li>• Recomendado para maioria</li>
+									</ul>
+								</div>
+								<div>
+									<h5 class="font-bold text-yellow-700 mb-2">🔥 Agressivo:</h5>
+									<ul class="text-yellow-600 space-y-1">
+										<li>• Filtra padrões &lt; 1%</li>
+										<li>• Remove muitos padrões</li>
+										<li>• Máxima otimização</li>
+										<li>• Para apostadores experientes</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+
+						<!-- Benefícios e Limitações -->
+						<div class="bg-green-50 border border-green-200 rounded-lg p-4">
+							<h4 class="text-lg font-bold text-green-800 mb-3">💰 BENEFÍCIOS E LIMITAÇÕES:</h4>
+							<div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+								<div>
+									<h5 class="font-bold text-green-700 mb-2">✅ Benefícios:</h5>
+									<ul class="text-green-600 space-y-1">
+										<li>💰 <strong>Economia:</strong> Evita apostas "mortas"</li>
+										<li>📊 <strong>Eficiência:</strong> Foca em padrões prováveis</li>
+										<li>🎯 <strong>Inteligência:</strong> Baseado em dados reais</li>
+										<li>⚡ <strong>Automação:</strong> Filtragem automática</li>
+										<li>📈 <strong>Otimização:</strong> Melhor ROI potencial</li>
+									</ul>
+								</div>
+								<div>
+									<h5 class="font-bold text-orange-700 mb-2">⚠️ Limitações:</h5>
+									<ul class="text-orange-600 space-y-1">
+										<li>🎲 <strong>Aleatoriedade:</strong> Sorteio sempre é aleatório</li>
+										<li>📅 <strong>Passado ≠ Futuro:</strong> História não garante nada</li>
+										<li>🔄 <strong>Mudanças:</strong> Padrões podem mudar</li>
+										<li>🎯 <strong>Conservadorismo:</strong> Pode filtrar demais</li>
+										<li>📊 <strong>Estatística:</strong> Baseado em probabilidades</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+
+						<!-- Interpretação dos Resultados -->
+						<div class="bg-purple-50 border border-purple-200 rounded-lg p-4">
+							<h4 class="text-lg font-bold text-purple-800 mb-3">📊 COMO INTERPRETAR OS RESULTADOS:</h4>
+							<div class="text-sm text-purple-700 space-y-3">
+								<p><strong>🔍 Teste de Jogo:</strong> Digite 6 números para ver quais filtros eles violam e a probabilidade histórica.</p>
+								<p><strong>📈 Estatísticas:</strong> Mostra quantos jogos seriam filtrados e a economia estimada.</p>
+								<p><strong>🎯 Recomendações:</strong> Sugestões personalizadas baseadas nos padrões encontrados na API.</p>
+								<p><strong>⚠️ Alertas:</strong> Avisos sobre padrões críticos que nunca aconteceram.</p>
+								<p><strong>💡 Otimização:</strong> Sugestões para melhorar a configuração dos filtros.</p>
+							</div>
+						</div>
+
+						<!-- Dicas Importantes -->
+						<div class="bg-red-50 border border-red-200 rounded-lg p-4">
+							<h4 class="text-lg font-bold text-red-800 mb-3">💡 DICAS IMPORTANTES:</h4>
+							<div class="text-sm text-red-700 space-y-2">
+								<p><strong>✅ Use com moderação:</strong> Filtros muito agressivos podem eliminar opções válidas.</p>
+								<p><strong>📊 Combine estratégias:</strong> Use filtros junto com outras análises (ciclos, padrões, etc.).</p>
+								<p><strong>🔄 Atualize regularmente:</strong> Padrões podem mudar com novos sorteios.</p>
+								<p><strong>🎯 Seja realista:</strong> Filtros melhoram probabilidades, não garantem prêmios.</p>
+								<p><strong>💰 Gerencie risco:</strong> Balance economia vs oportunidades.</p>
+								<p><strong>📈 Monitore resultados:</strong> Acompanhe a eficácia dos filtros ao longo do tempo.</p>
+							</div>
+						</div>
+					</div>
+					
+					<div class="mt-6 text-center">
+						<button onclick="fecharModal('modalFiltros')" class="bg-red-500 hover:bg-red-600 text-white px-6 py-2 rounded-lg">
+							Entendi! Vamos usar os Filtros 🚫
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
 		
 		
+	<!--SEÇÕES NOVAS ADICIONAR A PARTIR DAQUI..-->	
 		
-			<!--SEÇÕES NOVAS ADICIONAR A PARTIR DAQUI..-->	
     </div>
             
             <!-- LADO DIREITO: Resumo e Controles -->
@@ -6230,8 +8255,2143 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 console.log('✅ JavaScript da Seção 9 (Heatmap) configurado para API em tempo real');		
-		
-		
+// ===== SEÇÃO 10: CICLOS DE FECHAMENTO - 100% API REAL =====
+
+let dadosCiclos = null;
+let cicloAtual = null;
+let historicoCiclos = [];
+let tooltipCiclo = null;
+
+function inicializarCiclos() {
+    // Aguardar dados reais estarem carregados
+    if (!cacheGlobal.dadosHistoricos || !ultimoResultado) {
+        console.log('⏳ Aguardando dados históricos para análise de ciclos...');
+        setTimeout(inicializarCiclos, 1000);
+        return;
+    }
+    
+    criarGridCiclos();
+    analisarCiclosHistoricos();
+    calcularCicloAtual();
+    atualizarInterfaceCiclos();
+    criarTooltipCiclo();
+    configurarEventListenersCiclos();
+    
+    console.log('✅ Análise de ciclos inicializada com dados reais da API');
+}
+
+function criarGridCiclos() {
+    const grid = document.getElementById('gridCiclos');
+    grid.innerHTML = '';
+    
+    // Criar grid com todos os 60 números
+    for (let i = 1; i <= 60; i++) {
+        const numero = document.createElement('div');
+        numero.className = 'numero-ciclo';
+        numero.dataset.numero = i;
+        numero.textContent = i.toString().padStart(2, '0');
+        
+        // Event listeners
+        numero.onmouseenter = (e) => mostrarTooltipCiclo(e, i);
+        numero.onmouseleave = () => ocultarTooltipCiclo();
+        
+        grid.appendChild(numero);
+    }
+}
+
+function analisarCiclosHistoricos() {
+    if (!cacheGlobal.dadosHistoricos) {
+        console.warn('⚠️ Dados históricos não disponíveis para análise de ciclos');
+        return;
+    }
+    
+    console.log('🔍 Analisando ciclos históricos com dados reais da API...');
+    
+    const concursos = cacheGlobal.dadosHistoricos
+        .sort((a, b) => parseInt(a.numero) - parseInt(b.numero));
+    
+    historicoCiclos = [];
+    let numerosSorteados = new Set();
+    let inicioAtual = 0;
+    
+    for (let i = 0; i < concursos.length; i++) {
+        const concurso = concursos[i];
+        
+        if (concurso.listaDezenas && concurso.listaDezenas.length === 6) {
+            // Adicionar números deste concurso
+            concurso.listaDezenas.forEach(dezena => {
+                numerosSorteados.add(parseInt(dezena));
+            });
+            
+            // Verificar se ciclo foi fechado
+            if (numerosSorteados.size === 60) {
+                const ciclo = {
+                    numero: historicoCiclos.length + 1,
+                    inicio: concursos[inicioAtual]?.numero || 'N/A',
+                    fim: concurso.numero,
+                    dataInicio: concursos[inicioAtual]?.dataApuracao || 'N/A',
+                    dataFim: concurso.dataApuracao,
+                    duracaoConcursos: i - inicioAtual + 1,
+                    ultimoNumero: concurso.listaDezenas[concurso.listaDezenas.length - 1]
+                };
+                
+                historicoCiclos.push(ciclo);
+                
+                // Resetar para próximo ciclo
+                numerosSorteados.clear();
+                inicioAtual = i + 1;
+            }
+        }
+    }
+    
+    console.log('✅ Ciclos históricos analisados:', historicoCiclos);
+}
+
+function calcularCicloAtual() {
+    if (!cacheGlobal.dadosHistoricos) return;
+    
+    console.log('📊 Calculando ciclo atual com dados reais...');
+    
+    // Encontrar início do ciclo atual
+    let ultimoCicloFim = 0;
+    if (historicoCiclos.length > 0) {
+        const ultimoCiclo = historicoCiclos[historicoCiclos.length - 1];
+        ultimoCicloFim = parseInt(ultimoCiclo.fim);
+    }
+    
+    // Concursos do ciclo atual
+    const concursosAtuais = cacheGlobal.dadosHistoricos
+        .filter(c => parseInt(c.numero) > ultimoCicloFim)
+        .sort((a, b) => parseInt(a.numero) - parseInt(b.numero));
+    
+    // Números que já apareceram no ciclo atual
+    const numerosAparecidos = new Set();
+    let concursoInicio = null;
+    
+    concursosAtuais.forEach(concurso => {
+        if (!concursoInicio) concursoInicio = concurso;
+        
+        if (concurso.listaDezenas && concurso.listaDezenas.length === 6) {
+            concurso.listaDezenas.forEach(dezena => {
+                numerosAparecidos.add(parseInt(dezena));
+            });
+        }
+    });
+    
+    // Calcular números restantes e atrasos
+    const numerosRestantes = [];
+    const ultimasAparicoes = {};
+    
+    for (let numero = 1; numero <= 60; numero++) {
+        if (!numerosAparecidos.has(numero)) {
+            // Encontrar última aparição deste número
+            let atraso = 0;
+            for (let i = concursosAtuais.length - 1; i >= 0; i--) {
+                const concurso = concursosAtuais[i];
+                if (concurso.listaDezenas && concurso.listaDezenas.includes(numero.toString().padStart(2, '0'))) {
+                    break;
+                }
+                atraso++;
+            }
+            
+            // Se não apareceu no ciclo atual, contar todos os concursos
+            if (atraso === concursosAtuais.length) {
+                atraso = concursosAtuais.length;
+            }
+            
+            numerosRestantes.push({
+                numero: numero,
+                atraso: atraso,
+                isPar: numero % 2 === 0
+            });
+        }
+        
+        ultimasAparicoes[numero] = atraso || 0;
+    }
+    
+    cicloAtual = {
+        numerosSorteados: Array.from(numerosAparecidos),
+        numerosRestantes: numerosRestantes.sort((a, b) => b.atraso - a.atraso),
+        concursosNoCiclo: concursosAtuais.length,
+        progresso: (numerosAparecidos.size / 60) * 100,
+        inicioEstimado: concursoInicio?.numero || 'N/A',
+        dataInicio: concursoInicio?.dataApuracao || 'N/A'
+    };
+    
+    console.log('✅ Ciclo atual calculado:', cicloAtual);
+}
+
+function atualizarInterfaceCiclos() {
+    if (!cicloAtual) return;
+    
+    // Atualizar estatísticas gerais
+    document.getElementById('progressoCiclo').textContent = `${Math.round(cicloAtual.progresso)}%`;
+    document.getElementById('numerosAparecidos').textContent = cicloAtual.numerosSorteados.length;
+    document.getElementById('numerosRestantes').textContent = cicloAtual.numerosRestantes.length;
+    document.getElementById('concursosCiclo').textContent = cicloAtual.concursosNoCiclo;
+    document.getElementById('porcentagemCiclo').textContent = `${Math.round(cicloAtual.progresso)}%`;
+    
+    // Atualizar barra de progresso
+    const barra = document.getElementById('barraCiclo');
+    barra.style.width = `${cicloAtual.progresso}%`;
+    
+    // Atualizar grid
+    atualizarGridCiclos();
+    
+    // Atualizar análise detalhada
+    atualizarAnaliseDetalhada();
+    
+    // Atualizar histórico
+    atualizarHistoricoCiclos();
+    
+    // Calcular predições
+    calcularPredicoes();
+}
+
+function atualizarGridCiclos() {
+    for (let i = 1; i <= 60; i++) {
+        const elemento = document.querySelector(`[data-numero="${i}"]`);
+        if (!elemento) continue;
+        
+        const isPar = i % 2 === 0;
+        const apareceu = cicloAtual.numerosSorteados.includes(i);
+        
+        // Remover classes antigas
+        elemento.className = 'numero-ciclo';
+        
+        // Aplicar nova classe baseada no status
+        if (apareceu) {
+            elemento.classList.add(isPar ? 'apareceu-par' : 'apareceu-impar');
+        } else {
+            elemento.classList.add(isPar ? 'restante-par' : 'restante-impar');
+            
+            // Destacar números muito atrasados
+            const dadosNumero = cicloAtual.numerosRestantes.find(n => n.numero === i);
+            if (dadosNumero && dadosNumero.atraso > cicloAtual.concursosNoCiclo * 0.7) {
+                elemento.classList.add('muito-atrasado');
+            }
+        }
+    }
+}
+
+function atualizarAnaliseDetalhada() {
+    // Números mais atrasados
+    const maisAtrasados = cicloAtual.numerosRestantes.slice(0, 5);
+    document.getElementById('maisAtrasadosCiclo').innerHTML = maisAtrasados
+        .map(item => `
+            <div class="flex justify-between items-center">
+                <span class="numero-restante-stat">${item.numero.toString().padStart(2, '0')}</span>
+                <span class="text-xs text-red-600">${item.atraso} concursos</span>
+            </div>
+        `).join('');
+    
+    // Distribuição pares/ímpares
+    const paresRestantes = cicloAtual.numerosRestantes.filter(n => n.isPar).length;
+    const imparesRestantes = cicloAtual.numerosRestantes.filter(n => !n.isPar).length;
+    
+    document.getElementById('paresRestantes').textContent = `${paresRestantes}/30`;
+    document.getElementById('imparesRestantes').textContent = `${imparesRestantes}/30`;
+    
+    document.getElementById('barraParesRestantes').style.width = `${(paresRestantes / 30) * 100}%`;
+    document.getElementById('barraImparesRestantes').style.width = `${(imparesRestantes / 30) * 100}%`;
+}
+
+function atualizarHistoricoCiclos() {
+    const tbody = document.getElementById('historicoCiclos');
+    tbody.innerHTML = '';
+    
+    const ultimosCiclos = historicoCiclos.slice(-5).reverse(); // Últimos 5 ciclos
+    
+    ultimosCiclos.forEach(ciclo => {
+        const row = document.createElement('tr');
+        row.className = 'historico-ciclo-row';
+        row.innerHTML = `
+            <td class="py-2">#${ciclo.numero}</td>
+            <td class="py-2">${ciclo.duracaoConcursos}</td>
+            <td class="py-2">${ciclo.inicio}</td>
+            <td class="py-2">${ciclo.fim}</td>
+            <td class="py-2">
+                <span class="numero-restante-stat">${ciclo.ultimoNumero}</span>
+            </td>
+        `;
+        tbody.appendChild(row);
+    });
+}
+
+function calcularPredicoes() {
+    if (!cicloAtual || cicloAtual.numerosRestantes.length === 0) {
+        document.getElementById('numeroMaisProvavel').textContent = '--';
+        document.getElementById('razaoProvavelCiclo').textContent = 'Ciclo completo';
+        return;
+    }
+    
+    // Número mais provável (mais atrasado)
+    const maisProvavel = cicloAtual.numerosRestantes[0];
+    document.getElementById('numeroMaisProvavel').textContent = maisProvavel.numero.toString().padStart(2, '0');
+    document.getElementById('razaoProvavelCiclo').textContent = 
+        `${maisProvavel.atraso} concursos sem aparecer no ciclo`;
+    
+    // Atualizar números mais prováveis
+    atualizarNumerosMaisProvaveis();
+    
+    // Atualizar análise preditiva
+    atualizarAnalisePredicao();
+}
+
+function atualizarNumerosMaisProvaveis() {
+    const container = document.getElementById('numerosMaisProvaveis');
+    const maisProvaveis = cicloAtual.numerosRestantes.slice(0, 10);
+    
+    container.innerHTML = maisProvaveis
+        .map(item => `
+            <span class="numero-provavel-stat" title="${item.atraso} concursos de atraso">
+                ${item.numero.toString().padStart(2, '0')}
+            </span>
+        `).join('');
+}
+
+function atualizarAnalisePredicao() {
+    const estrategia = document.getElementById('estrategiaCiclo').value;
+    const analiseDiv = document.getElementById('analisePredicaoCiclo');
+    
+    if (!cicloAtual) {
+        analiseDiv.textContent = 'Aguardando dados do ciclo atual...';
+        return;
+    }
+    
+    const totalRestantes = cicloAtual.numerosRestantes.length;
+    const progresso = Math.round(cicloAtual.progresso);
+    const mediaHistorica = historicoCiclos.length > 0 ? 
+        Math.round(historicoCiclos.reduce((sum, c) => sum + c.duracaoConcursos, 0) / historicoCiclos.length) : 200;
+    
+    let analise = '';
+    
+    switch (estrategia) {
+        case 'restantes':
+            analise = `🎯 <strong>Estratégia Restantes:</strong> Foco nos ${totalRestantes} números que não apareceram. 
+                      Progresso atual: ${progresso}%. Estatisticamente, estes números têm pressão para aparecer.`;
+            break;
+        case 'equilibrada':
+            analise = `⚖️ <strong>Estratégia Equilibrada:</strong> 50% dos ${totalRestantes} restantes + números já aparecidos. 
+                      Balanceia risco e oportunidade baseado no progresso de ${progresso}%.`;
+            break;
+        case 'atrasados':
+            const maisAtrasado = cicloAtual.numerosRestantes[0];
+            analise = `🔥 <strong>Mais Atrasados:</strong> Número ${maisAtrasado.numero} está ${maisAtrasado.atraso} concursos sem aparecer. 
+                      Maior pressão estatística para aparecer.`;
+            break;
+        case 'probabilidade':
+            analise = `📊 <strong>Por Probabilidade:</strong> Baseado em ${historicoCiclos.length} ciclos históricos (média: ${mediaHistorica} concursos). 
+                      Ciclo atual: ${cicloAtual.concursosNoCiclo} concursos.`;
+            break;
+        case 'inteligente':
+            analise = `🧠 <strong>IA Preditiva:</strong> Algoritmo considera atraso + padrões históricos + distribuição P/I. 
+                      Análise de ${totalRestantes} candidatos com ${progresso}% de progresso.`;
+            break;
+    }
+    
+    analiseDiv.innerHTML = analise;
+}
+
+function criarTooltipCiclo() {
+    if (tooltipCiclo) return;
+    
+    tooltipCiclo = document.createElement('div');
+    tooltipCiclo.className = 'tooltip-ciclo';
+    tooltipCiclo.style.opacity = '0';
+    document.body.appendChild(tooltipCiclo);
+}
+
+function mostrarTooltipCiclo(event, numero) {
+    if (!tooltipCiclo || !cicloAtual) return;
+    
+    const apareceu = cicloAtual.numerosSorteados.includes(numero);
+    const dadosNumero = cicloAtual.numerosRestantes.find(n => n.numero === numero);
+    const atraso = dadosNumero ? dadosNumero.atraso : 0;
+    
+    tooltipCiclo.innerHTML = `
+        <div class="font-bold">Número ${numero.toString().padStart(2, '0')}</div>
+        <div>Status: ${apareceu ? '✅ Já apareceu' : '⏳ Restante'}</div>
+        <div>Tipo: ${numero % 2 === 0 ? 'Par' : 'Ímpar'}</div>
+        ${!apareceu ? `<div>Atraso: ${atraso} concursos</div>` : ''}
+        <div class="text-xs mt-1">Ciclo atual: ${Math.round(cicloAtual.progresso)}% completo</div>
+    `;
+    
+    tooltipCiclo.style.left = event.pageX + 10 + 'px';
+    tooltipCiclo.style.top = event.pageY - 10 + 'px';
+    tooltipCiclo.style.opacity = '1';
+}
+
+function ocultarTooltipCiclo() {
+    if (tooltipCiclo) {
+        tooltipCiclo.style.opacity = '0';
+    }
+}
+
+function gerarJogosCiclo() {
+    if (!cicloAtual) {
+        showCustomAlert('⚠️ Dados Indisponíveis', 'Aguarde o carregamento da análise de ciclos...');
+        return;
+    }
+    
+    const estrategia = document.getElementById('estrategiaCiclo').value;
+    const qtdJogos = parseInt(document.getElementById('qtdJogosCiclo').value);
+    const percRestantes = parseInt(document.getElementById('percentualRestantes').value);
+    
+    const jogosGerados = [];
+    
+    for (let i = 0; i < qtdJogos; i++) {
+        let jogo;
+        
+        switch (estrategia) {
+            case 'restantes':
+                jogo = gerarJogoComRestantes(percRestantes);
+                break;
+            case 'equilibrada':
+                jogo = gerarJogoEquilibradoCiclo();
+                break;
+            case 'atrasados':
+                jogo = gerarJogoMaisAtrasados();
+                break;
+            case 'probabilidade':
+                jogo = gerarJogoPorProbabilidade();
+                break;
+            case 'inteligente':
+                jogo = gerarJogoIAPreditiva();
+                break;
+            default:
+                jogo = gerarJogoComRestantes(60);
+        }
+        
+        jogosGerados.push({
+            id: Date.now() + i,
+            numeros: jogo.sort((a, b) => a - b),
+            quantidade: 6,
+            custo: sistemaValores.obterValor(6),
+            pares: jogo.filter(n => n % 2 === 0).length,
+            impares: jogo.filter(n => n % 2 !== 0).length,
+            origem: 'Ciclos de Fechamento'
+        });
+    }
+    
+    exibirResultadosCiclo(jogosGerados);
+    console.log('✅ Jogos gerados baseados em ciclos com dados reais');
+}
+
+function gerarJogoComRestantes(percentual) {
+    const jogo = [];
+    const qtdRestantes = Math.ceil(6 * percentual / 100);
+    
+    // Pegar números restantes mais atrasados
+    const restantes = cicloAtual.numerosRestantes
+        .slice(0, Math.min(15, cicloAtual.numerosRestantes.length))
+        .map(item => item.numero);
+    
+    const restantesEscolhidos = restantes.sort(() => Math.random() - 0.5).slice(0, qtdRestantes);
+    jogo.push(...restantesEscolhidos);
+    
+    // Completar com números já aparecidos
+    while (jogo.length < 6) {
+        const numerosAparecidos = cicloAtual.numerosSorteados.filter(n => !jogo.includes(n));
+        if (numerosAparecidos.length > 0) {
+            const escolhido = numerosAparecidos[Math.floor(Math.random() * numerosAparecidos.length)];
+            jogo.push(escolhido);
+        } else {
+            // Se não há números aparecidos disponíveis, pegar qualquer um
+            const numero = Math.floor(Math.random() * 60) + 1;
+            if (!jogo.includes(numero)) {
+                jogo.push(numero);
+            }
+        }
+    }
+    
+    return jogo.slice(0, 6);
+}
+
+function gerarJogoEquilibradoCiclo() {
+    const jogo = [];
+    
+    // 3 restantes
+    const restantes = cicloAtual.numerosRestantes.slice(0, 10).map(item => item.numero);
+    const restantesEscolhidos = restantes.sort(() => Math.random() - 0.5).slice(0, 3);
+    jogo.push(...restantesEscolhidos);
+    
+    // 3 já aparecidos
+    const aparecidos = cicloAtual.numerosSorteados.sort(() => Math.random() - 0.5).slice(0, 3);
+    jogo.push(...aparecidos);
+    
+    return jogo.slice(0, 6);
+}
+
+function gerarJogoMaisAtrasados() {
+    // Pegar os 6 mais atrasados
+    return cicloAtual.numerosRestantes.slice(0, 6).map(item => item.numero);
+}
+
+function gerarJogoPorProbabilidade() {
+    const jogo = [];
+    
+    // Calcular probabilidades baseadas no atraso
+    const candidatos = cicloAtual.numerosRestantes.map(item => ({
+        numero: item.numero,
+        peso: item.atraso + 1 // +1 para evitar peso 0
+    }));
+    
+    // Seleção com peso
+    for (let i = 0; i < 6 && candidatos.length > 0; i++) {
+        const totalPeso = candidatos.reduce((sum, c) => sum + c.peso, 0);
+        let random = Math.random() * totalPeso;
+        
+        for (let j = 0; j < candidatos.length; j++) {
+            random -= candidatos[j].peso;
+            if (random <= 0) {
+                jogo.push(candidatos[j].numero);
+                candidatos.splice(j, 1);
+                break;
+            }
+        }
+    }
+    
+    // Completar se necessário
+    while (jogo.length < 6) {
+        const numero = Math.floor(Math.random() * 60) + 1;
+        if (!jogo.includes(numero)) {
+            jogo.push(numero);
+        }
+    }
+    
+    return jogo.slice(0, 6);
+}
+
+function gerarJogoIAPreditiva() {
+    const jogo = [];
+    
+    // Algoritmo que combina múltiplos fatores
+    const candidatos = [];
+    
+    // Adicionar números restantes com peso alto
+    cicloAtual.numerosRestantes.forEach(item => {
+        const peso = item.atraso * 2; // Peso dobrado para restantes
+        candidatos.push({ numero: item.numero, peso });
+    });
+    
+    // Adicionar alguns números já aparecidos com peso menor
+    cicloAtual.numerosSorteados.forEach(numero => {
+        candidatos.push({ numero, peso: 1 });
+    });
+    
+    // Seleção inteligente considerando balanceamento P/I
+    let pares = 0;
+    let impares = 0;
+    
+    const candidatosOrdenados = candidatos.sort((a, b) => b.peso - a.peso);
+    
+    for (const candidato of candidatosOrdenados) {
+        if (jogo.length >= 6) break;
+        
+        const isPar = candidato.numero % 2 === 0;
+        
+        // Balanceamento inteligente
+        if ((isPar && pares < 3) || (!isPar && impares < 3) || jogo.length >= 4) {
+            jogo.push(candidato.numero);
+            if (isPar) pares++; else impares++;
+        }
+    }
+    
+    // Completar se necessário
+    while (jogo.length < 6) {
+        const numero = Math.floor(Math.random() * 60) + 1;
+        if (!jogo.includes(numero)) {
+            jogo.push(numero);
+        }
+    }
+    
+    return jogo.slice(0, 6);
+}
+
+function exibirResultadosCiclo(jogos) {
+    const lista = document.getElementById('listaJogosCiclo');
+    const resultados = document.getElementById('resultadosCiclo');
+    
+    lista.innerHTML = '';
+    
+    const custoTotal = jogos.reduce((sum, jogo) => sum + jogo.custo, 0);
+    const estrategia = document.getElementById('estrategiaCiclo').value;
+    
+    document.getElementById('resumoJogosCiclo').textContent = `${jogos.length} jogos`;
+    document.getElementById('custoTotalCiclo').textContent = formatarMoeda(custoTotal);
+    document.getElementById('estrategiaAplicadaCiclo').textContent = obterTextoEstrategiaCiclo(estrategia);
+    
+    jogos.forEach((jogo, index) => {
+        const jogoDiv = document.createElement('div');
+        jogoDiv.className = 'jogo-ciclo-card';
+        
+        // Analisar composição do jogo
+        const restantes = jogo.numeros.filter(n => 
+            cicloAtual.numerosRestantes.some(item => item.numero === n)
+        ).length;
+        const aparecidos = jogo.numeros.length - restantes;
+        
+        jogoDiv.innerHTML = `
+            <div class="flex justify-between items-center mb-2">
+                <span class="font-bold text-megasena">Ciclo ${index + 1}</span>
+                <div class="flex gap-1">
+                    <span class="text-xs bg-red-100 text-red-800 px-2 py-1 rounded" title="Números restantes no ciclo">${restantes}R</span>
+                    <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded" title="Números já aparecidos">${aparecidos}A</span>
+                    <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">${jogo.pares}P</span>
+                    <span class="text-xs bg-purple-100 text-purple-800 px-2 py-1 rounded">${jogo.impares}I</span>
+                    <span class="text-xs bg-gray-100 text-gray-800 px-2 py-1 rounded">${formatarMoeda(jogo.custo)}</span>
+                </div>
+            </div>
+            <div class="flex flex-wrap gap-1 mb-1">
+                ${jogo.numeros.map(num => `<span class="numero-ciclo-jogo">${num.toString().padStart(2, '0')}</span>`).join('')}
+            </div>
+            <div class="text-xs text-gray-600">
+                ${restantes} restantes no ciclo, ${aparecidos} já aparecidos | ${jogo.pares}P/${jogo.impares}I
+                <br>Baseado em análise de ciclos com dados reais da API
+            </div>
+        `;
+        lista.appendChild(jogoDiv);
+    });
+    
+    resultados.classList.remove('hidden');
+    window.jogosCicloGerados = jogos;
+}
+
+function obterTextoEstrategiaCiclo(estrategia) {
+    const textos = {
+        'restantes': 'Foco nos Restantes',
+        'equilibrada': 'Equilibrada (50% restantes)',
+        'atrasados': 'Mais Atrasados do Ciclo',
+        'probabilidade': 'Por Probabilidade',
+        'inteligente': 'IA Preditiva'
+    };
+    return textos[estrategia] || 'Personalizada';
+}
+
+function configurarEventListenersCiclos() {
+    document.getElementById('estrategiaCiclo').onchange = atualizarAnalisePredicao;
+    document.getElementById('percentualRestantes').onchange = atualizarAnalisePredicao;
+    document.getElementById('prioridadeAtraso').onchange = atualizarAnalisePredicao;
+    document.getElementById('balanceamentoPICiclo').onchange = atualizarAnalisePredicao;
+    
+    document.getElementById('gerarJogosCiclo').onclick = gerarJogosCiclo;
+    
+    document.getElementById('adicionarTodosCiclo').onclick = () => {
+        adicionarTodosJogosSecao(window.jogosCicloGerados);
+    };
+    
+    document.getElementById('novoCiclo').onclick = () => {
+        document.getElementById('resultadosCiclo').classList.add('hidden');
+    };
+    
+    // Modal
+    document.getElementById('modalCiclosBtn').onclick = () => {
+        document.getElementById('modalCiclos').classList.remove('hidden');
+    };
+}
+
+// Inicializar quando dados estiverem prontos
+document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(() => {
+        inicializarCiclos();
+    }, 4000);
+});
+
+console.log('✅ JavaScript da Seção 10 (Ciclos) configurado para API em tempo real');		
+	// ===== SEÇÃO 11: JOGOS COMBINADOS POR PADRÃO DE COLUNAS E LINHAS =====
+
+// Definição do volante oficial da Mega-Sena
+const VOLANTE_OFICIAL = {
+    colunas: [
+        [1, 7, 13, 19, 25, 31, 37, 43, 49, 55],   // Coluna 1
+        [2, 8, 14, 20, 26, 32, 38, 44, 50, 56],   // Coluna 2
+        [3, 9, 15, 21, 27, 33, 39, 45, 51, 57],   // Coluna 3
+        [4, 10, 16, 22, 28, 34, 40, 46, 52, 58],  // Coluna 4
+        [5, 11, 17, 23, 29, 35, 41, 47, 53, 59],  // Coluna 5
+        [6, 12, 18, 24, 30, 36, 42, 48, 54, 60]   // Coluna 6
+    ],
+    
+    obterColuna: function(numero) {
+        for (let i = 0; i < this.colunas.length; i++) {
+            if (this.colunas[i].includes(numero)) {
+                return i + 1;
+            }
+        }
+        return 0;
+    },
+    
+    obterLinha: function(numero) {
+        for (let i = 0; i < this.colunas.length; i++) {
+            const index = this.colunas[i].indexOf(numero);
+            if (index !== -1) {
+                return index + 1;
+            }
+        }
+        return 0;
+    },
+    
+    obterPosicao: function(numero) {
+        return {
+            coluna: this.obterColuna(numero),
+            linha: this.obterLinha(numero)
+        };
+    }
+};
+
+let dadosPadroes = null;
+let numerosSelecionadosPadrao = [];
+let tooltipPadrao = null;
+let padroesHistoricos = {
+    colunas: {},
+    linhas: {},
+    geometricos: []
+};
+
+function inicializarPadroes() {
+    // Aguardar dados reais estarem carregados
+    if (!cacheGlobal.dadosHistoricos || !window.DADOS_REAIS) {
+        console.log('⏳ Aguardando dados históricos para análise de padrões...');
+        setTimeout(inicializarPadroes, 1000);
+        return;
+    }
+    
+    criarVolanteOficial();
+    analisarPadroesHistoricos();
+    atualizarInterfacePadroes();
+    criarTooltipPadrao();
+    configurarEventListenersPadroes();
+    configurarInputsPersonalizados();
+    
+    console.log('✅ Análise de padrões geométricos inicializada com dados reais da API');
+}
+
+function criarVolanteOficial() {
+    const volante = document.getElementById('volanteOficial');
+    volante.innerHTML = '';
+    
+    // Criar grid 6x10 baseado no volante real
+    for (let linha = 0; linha < 10; linha++) {
+        for (let coluna = 0; coluna < 6; coluna++) {
+            const numero = VOLANTE_OFICIAL.colunas[coluna][linha];
+            const elemento = document.createElement('div');
+            
+            elemento.className = 'numero-volante';
+            elemento.dataset.numero = numero;
+            elemento.dataset.coluna = coluna + 1;
+            elemento.dataset.linha = linha + 1;
+            elemento.textContent = numero.toString().padStart(2, '0');
+            
+            // Event listeners
+            elemento.onclick = () => toggleNumeroVolante(numero);
+            elemento.onmouseenter = (e) => mostrarTooltipPadrao(e, numero);
+            elemento.onmouseleave = () => ocultarTooltipPadrao();
+            
+            volante.appendChild(elemento);
+        }
+    }
+    
+    // Criar estatísticas das linhas
+    criarEstatisticasLinhas();
+}
+
+function criarEstatisticasLinhas() {
+    const container = document.getElementById('estatisticasLinhas');
+    container.innerHTML = '';
+    
+    for (let i = 1; i <= 10; i++) {
+        const indicador = document.createElement('div');
+        indicador.className = 'indicador-linha';
+        indicador.textContent = `L${i}`;
+        indicador.title = `Linha ${i}: ${(i-1)*6 + 1}-${i*6 > 60 ? 60 : i*6}`;
+        container.appendChild(indicador);
+    }
+}
+
+function analisarPadroesHistoricos() {
+    if (!cacheGlobal.dadosHistoricos) {
+        console.warn('⚠️ Dados históricos não disponíveis para análise de padrões');
+        return;
+    }
+    
+    console.log('🔍 Analisando padrões geométricos com dados reais da API...');
+    
+    padroesHistoricos = {
+        colunas: {},
+        linhas: {},
+        geometricos: []
+    };
+    
+    let totalConcursos = 0;
+    
+    cacheGlobal.dadosHistoricos.forEach(concurso => {
+        if (concurso.listaDezenas && concurso.listaDezenas.length === 6) {
+            totalConcursos++;
+            const numeros = concurso.listaDezenas.map(n => parseInt(n));
+            
+            // Analisar padrão de colunas
+            const padraoColuna = analisarPadraoColuna(numeros);
+            const chaveColuna = padraoColuna.join('-');
+            padroesHistoricos.colunas[chaveColuna] = (padroesHistoricos.colunas[chaveColuna] || 0) + 1;
+            
+            // Analisar padrão de linhas
+            const padraoLinha = analisarPadraoLinha(numeros);
+            const chaveLinha = padraoLinha.join('-');
+            padroesHistoricos.linhas[chaveLinha] = (padroesHistoricos.linhas[chaveLinha] || 0) + 1;
+            
+            // Analisar padrão geométrico
+            const geometrico = analisarPadraoGeometrico(numeros);
+            if (geometrico) {
+                const existente = padroesHistoricos.geometricos.find(g => g.tipo === geometrico.tipo);
+                if (existente) {
+                    existente.frequencia++;
+                } else {
+                    padroesHistoricos.geometricos.push({
+                        tipo: geometrico.tipo,
+                        frequencia: 1,
+                        descricao: geometrico.descricao
+                    });
+                }
+            }
+        }
+    });
+    
+    // Ordenar por frequência e calcular percentuais
+    Object.keys(padroesHistoricos.colunas).forEach(padrao => {
+        padroesHistoricos.colunas[padrao] = {
+            frequencia: padroesHistoricos.colunas[padrao],
+            percentual: ((padroesHistoricos.colunas[padrao] / totalConcursos) * 100).toFixed(2)
+        };
+    });
+    
+    Object.keys(padroesHistoricos.linhas).forEach(padrao => {
+        padroesHistoricos.linhas[padrao] = {
+            frequencia: padroesHistoricos.linhas[padrao],
+            percentual: ((padroesHistoricos.linhas[padrao] / totalConcursos) * 100).toFixed(2)
+        };
+    });
+    
+    padroesHistoricos.geometricos.forEach(padrao => {
+        padrao.percentual = ((padrao.frequencia / totalConcursos) * 100).toFixed(2);
+    });
+    
+    console.log('✅ Padrões históricos analisados:', padroesHistoricos);
+}
+
+function analisarPadraoColuna(numeros) {
+    const contadorColunas = [0, 0, 0, 0, 0, 0]; // 6 colunas
+    
+    numeros.forEach(numero => {
+        const coluna = VOLANTE_OFICIAL.obterColuna(numero);
+        if (coluna > 0) {
+            contadorColunas[coluna - 1]++;
+        }
+    });
+    
+    return contadorColunas;
+}
+
+function analisarPadraoLinha(numeros) {
+    const contadorLinhas = new Array(10).fill(0); // 10 linhas
+    
+    numeros.forEach(numero => {
+        const linha = VOLANTE_OFICIAL.obterLinha(numero);
+        if (linha > 0) {
+            contadorLinhas[linha - 1]++;
+        }
+    });
+    
+    return contadorLinhas;
+}
+
+function analisarPadraoGeometrico(numeros) {
+    const posicoes = numeros.map(n => VOLANTE_OFICIAL.obterPosicao(n));
+    
+    // Verificar diagonal
+    if (ehDiagonal(posicoes)) {
+        return { tipo: 'diagonal', descricao: 'Números em diagonal' };
+    }
+    
+    // Verificar L-shape
+    if (ehFormatoL(posicoes)) {
+        return { tipo: 'l-shape', descricao: 'Formato de L' };
+    }
+    
+    // Verificar retângulo
+    if (ehRetangulo(posicoes)) {
+        return { tipo: 'retangulo', descricao: 'Formação retangular' };
+    }
+    
+    // Verificar dispersão
+    if (ehDisperso(posicoes)) {
+        return { tipo: 'disperso', descricao: 'Bem distribuído' };
+    }
+    
+    // Verificar concentração
+    if (ehConcentrado(posicoes)) {
+        return { tipo: 'concentrado', descricao: 'Concentrado em área' };
+    }
+    
+    return { tipo: 'irregular', descricao: 'Padrão irregular' };
+}
+
+function ehDiagonal(posicoes) {
+    // Verifica se os números formam uma linha diagonal
+    const ordenados = posicoes.sort((a, b) => a.coluna - b.coluna);
+    let diagonal = true;
+    
+    for (let i = 1; i < ordenados.length; i++) {
+        if (Math.abs(ordenados[i].linha - ordenados[i-1].linha) !== 1) {
+            diagonal = false;
+            break;
+        }
+    }
+    
+    return diagonal;
+}
+
+function ehFormatoL(posicoes) {
+    // Verifica se forma um L (concentração em duas linhas/colunas principais)
+    const colunas = new Set(posicoes.map(p => p.coluna));
+    const linhas = new Set(posicoes.map(p => p.linha));
+    
+    return (colunas.size <= 3 && linhas.size <= 3) && 
+           (colunas.size === 2 || linhas.size === 2);
+}
+
+function ehRetangulo(posicoes) {
+    // Verifica se forma um retângulo
+    const colunas = [...new Set(posicoes.map(p => p.coluna))].sort();
+    const linhas = [...new Set(posicoes.map(p => p.linha))].sort();
+    
+    return colunas.length >= 2 && linhas.length >= 2 && 
+           colunas.length <= 3 && linhas.length <= 3;
+}
+
+function ehDisperso(posicoes) {
+    // Verifica se está bem distribuído (5+ colunas ou 6+ linhas)
+    const colunas = new Set(posicoes.map(p => p.coluna));
+    const linhas = new Set(posicoes.map(p => p.linha));
+    
+    return colunas.size >= 5 || linhas.size >= 6;
+}
+
+function ehConcentrado(posicoes) {
+    // Verifica se está concentrado em poucas colunas/linhas
+    const colunas = new Set(posicoes.map(p => p.coluna));
+    const linhas = new Set(posicoes.map(p => p.linha));
+    
+    return colunas.size <= 3 && linhas.size <= 4;
+}
+
+function atualizarInterfacePadroes() {
+    // Atualizar estatísticas gerais
+    const topColuna = Object.entries(padroesHistoricos.colunas)
+        .sort(([,a], [,b]) => b.frequencia - a.frequencia)[0];
+    
+    if (topColuna) {
+        document.getElementById('padraoMaisComum').textContent = topColuna[0];
+    }
+    
+    // Calcular médias
+    const mediaColunas = calcularMediaColunasAtivas();
+    const mediaLinhas = calcularMediaLinhasAtivas();
+    
+    document.getElementById('colunasAtivas').textContent = mediaColunas.toFixed(1);
+    document.getElementById('linhasAtivas').textContent = mediaLinhas.toFixed(1);
+    
+    // Contar padrões raros
+    const padroesRaros = Object.values(padroesHistoricos.colunas)
+        .filter(p => parseFloat(p.percentual) < 1).length;
+    document.getElementById('padroesRaros').textContent = padroesRaros;
+    
+    // Atualizar listas de padrões
+    atualizarTopPadroes();
+    
+    // Colorir volante baseado na frequência
+    colorirVolantePorFrequencia();
+}
+
+function calcularMediaColunasAtivas() {
+    let soma = 0;
+    let total = 0;
+    
+    Object.entries(padroesHistoricos.colunas).forEach(([padrao, dados]) => {
+        const colunas = padrao.split('-').map(n => parseInt(n));
+        const ativas = colunas.filter(n => n > 0).length;
+        soma += ativas * dados.frequencia;
+        total += dados.frequencia;
+    });
+    
+    return total > 0 ? soma / total : 5.2;
+}
+
+function calcularMediaLinhasAtivas() {
+    let soma = 0;
+    let total = 0;
+    
+    Object.entries(padroesHistoricos.linhas).forEach(([padrao, dados]) => {
+        const linhas = padrao.split('-').map(n => parseInt(n));
+        const ativas = linhas.filter(n => n > 0).length;
+        soma += ativas * dados.frequencia;
+        total += dados.frequencia;
+    });
+    
+    return total > 0 ? soma / total : 5.8;
+}
+
+function atualizarTopPadroes() {
+    // Top padrões de colunas
+    const topColunas = Object.entries(padroesHistoricos.colunas)
+        .sort(([,a], [,b]) => b.frequencia - a.frequencia)
+        .slice(0, 5);
+    
+    document.getElementById('topPadroesColunas').innerHTML = topColunas
+        .map(([padrao, dados]) => `
+            <div class="padrao-card ${getClassePadrao(dados.percentual)}">
+                <div class="flex justify-between items-center">
+                    <span class="font-bold">${padrao}</span>
+                    <span class="text-xs">${dados.percentual}%</span>
+                </div>
+                <div class="text-xs text-gray-600">${dados.frequencia} vezes</div>
+            </div>
+        `).join('');
+    
+    // Top padrões geométricos
+    const topGeometricos = padroesHistoricos.geometricos
+        .sort((a, b) => b.frequencia - a.frequencia)
+        .slice(0, 5);
+    
+    document.getElementById('padroesGeometricos').innerHTML = topGeometricos
+        .map(padrao => `
+            <div class="padrao-card ${getClassePadrao(padrao.percentual)}">
+                <div class="flex justify-between items-center">
+                    <span class="font-bold capitalize">${padrao.tipo}</span>
+                    <span class="text-xs">${padrao.percentual}%</span>
+                </div>
+                <div class="text-xs text-gray-600">${padrao.descricao}</div>
+            </div>
+        `).join('');
+}
+
+function getClassePadrao(percentual) {
+    const p = parseFloat(percentual);
+    if (p > 3) return 'comum';
+    if (p > 1) return 'raro';
+    return 'muito-raro';
+}
+
+function colorirVolantePorFrequencia() {
+    if (!window.DADOS_REAIS || !window.DADOS_REAIS.frequentes) return;
+    
+    // Ordenar números por frequência
+    const frequencias = window.DADOS_REAIS.frequentes;
+    const maisFrequentes = frequencias.slice(0, 15).map(f => f.numero);
+    const menosFrequentes = frequencias.slice(-15).map(f => f.numero);
+    
+    for (let i = 1; i <= 60; i++) {
+        const elemento = document.querySelector(`[data-numero="${i}"]`);
+        if (!elemento) continue;
+        
+        // Remover classes de frequência antigas
+        elemento.classList.remove('frequente-api', 'menos-frequente');
+        
+        if (maisFrequentes.includes(i)) {
+            elemento.classList.add('frequente-api');
+        } else if (menosFrequentes.includes(i)) {
+            elemento.classList.add('menos-frequente');
+        }
+    }
+}
+
+function toggleNumeroVolante(numero) {
+    const elemento = document.querySelector(`[data-numero="${numero}"]`);
+    
+    if (numerosSelecionadosPadrao.includes(numero)) {
+        numerosSelecionadosPadrao = numerosSelecionadosPadrao.filter(n => n !== numero);
+        elemento.classList.remove('selecionado-padrao');
+    } else if (numerosSelecionadosPadrao.length < 6) {
+        numerosSelecionadosPadrao.push(numero);
+        elemento.classList.add('selecionado-padrao');
+    }
+    
+    atualizarContadorSelecao();
+    analisarSelecaoAtual();
+}
+
+function atualizarContadorSelecao() {
+    document.getElementById('countSelecionadosPadrao').textContent = numerosSelecionadosPadrao.length;
+}
+
+function analisarSelecaoAtual() {
+    if (numerosSelecionadosPadrao.length === 0) {
+        document.getElementById('padraoSelecionado').textContent = '';
+        return;
+    }
+    
+    const padraoColuna = analisarPadraoColuna(numerosSelecionadosPadrao);
+    const padrao = padraoColuna.join('-');
+    const dados = padroesHistoricos.colunas[padrao];
+    
+    let analise = `Padrão: ${padrao}`;
+    if (dados) {
+        analise += ` | Frequência: ${dados.frequencia} vezes (${dados.percentual}%)`;
+        if (parseFloat(dados.percentual) < 1) {
+            analise += ' - RARO!';
+        }
+    } else {
+        analise += ' | Padrão não encontrado no histórico - MUITO RARO!';
+    }
+    
+    document.getElementById('padraoSelecionado').textContent = analise;
+}
+
+function limparSelecaoPadrao() {
+    numerosSelecionadosPadrao = [];
+    document.querySelectorAll('.numero-volante').forEach(el => {
+        el.classList.remove('selecionado-padrao');
+    });
+    atualizarContadorSelecao();
+    analisarSelecaoAtual();
+}
+
+function configurarInputsPersonalizados() {
+    const inputs = ['coluna1', 'coluna2', 'coluna3', 'coluna4', 'coluna5', 'coluna6'];
+    
+    inputs.forEach(id => {
+        const input = document.getElementById(id);
+        if (input) {
+            input.oninput = atualizarTotalPersonalizado;
+        }
+    });
+    
+    const aplicarBtn = document.getElementById('aplicarPersonalizado');
+    if (aplicarBtn) {
+        aplicarBtn.onclick = aplicarPadraoPersonalizado;
+    }
+}
+
+function atualizarTotalPersonalizado() {
+    const inputs = ['coluna1', 'coluna2', 'coluna3', 'coluna4', 'coluna5', 'coluna6'];
+    let total = 0;
+    
+    inputs.forEach(id => {
+        const valor = parseInt(document.getElementById(id).value) || 0;
+        total += valor;
+    });
+    
+    document.getElementById('totalPersonalizado').textContent = total;
+    
+    // Colorir baseado na validade
+    const elemento = document.getElementById('totalPersonalizado');
+    if (total === 6) {
+        elemento.style.color = '#10b981';
+    } else {
+        elemento.style.color = '#ef4444';
+    }
+}
+
+function aplicarPadraoPersonalizado() {
+    const inputs = ['coluna1', 'coluna2', 'coluna3', 'coluna4', 'coluna5', 'coluna6'];
+    const padrao = [];
+    let total = 0;
+    
+    inputs.forEach(id => {
+        const valor = parseInt(document.getElementById(id).value) || 0;
+        padrao.push(valor);
+        total += valor;
+    });
+    
+    if (total !== 6) {
+        showCustomAlert('⚠️ Padrão Inválido', 'O total deve ser exatamente 6 números!');
+        return;
+    }
+    
+    // Aplicar padrão ao select de estratégia
+    document.getElementById('estrategiaPadrao').value = 'personalizado';
+    
+    // Salvar padrão personalizado
+    window.padraoPersonalizado = padrao;
+    
+    // Atualizar análise
+    atualizarAnalisePredicaoPadrao();
+    
+    showCustomAlert('✅ Padrão Aplicado', `Padrão ${padrao.join('-')} aplicado com sucesso!`);
+}
+
+function criarTooltipPadrao() {
+    if (tooltipPadrao) return;
+    
+    tooltipPadrao = document.createElement('div');
+    tooltipPadrao.className = 'tooltip-padrao';
+    tooltipPadrao.style.opacity = '0';
+    document.body.appendChild(tooltipPadrao);
+}
+
+function mostrarTooltipPadrao(event, numero) {
+    if (!tooltipPadrao) return;
+    
+    const posicao = VOLANTE_OFICIAL.obterPosicao(numero);
+    const dados = window.DADOS_REAIS?.frequentes?.find(f => f.numero === numero);
+    
+    tooltipPadrao.innerHTML = `
+        <div class="font-bold">Número ${numero.toString().padStart(2, '0')}</div>
+        <div>Coluna: ${posicao.coluna} | Linha: ${posicao.linha}</div>
+        ${dados ? `<div>Frequência: ${dados.frequencia} aparições</div>` : ''}
+        <div class="text-xs mt-1">Clique para selecionar</div>
+    `;
+    
+    tooltipPadrao.style.left = event.pageX + 10 + 'px';
+    tooltipPadrao.style.top = event.pageY - 10 + 'px';
+    tooltipPadrao.style.opacity = '1';
+}
+
+function ocultarTooltipPadrao() {
+    if (tooltipPadrao) {
+        tooltipPadrao.style.opacity = '0';
+    }
+}
+
+function atualizarAnalisePredicaoPadrao() {
+    const estrategia = document.getElementById('estrategiaPadrao').value;
+    const analiseDiv = document.getElementById('analisePredicaoPadrao');
+    
+    let analise = '';
+    
+    switch (estrategia) {
+        case 'historico':
+            const topPadrao = Object.entries(padroesHistoricos.colunas)
+                .sort(([,a], [,b]) => b.frequencia - a.frequencia)[0];
+            analise = `📊 <strong>Baseado em Histórico:</strong> Usa padrão mais comum (${topPadrao[0]}) que apareceu ${topPadrao[1].frequencia} vezes (${topPadrao[1].percentual}%).`;
+            break;
+        case 'equilibrado':
+            analise = `⚖️ <strong>Distribuição Equilibrada:</strong> Distribui 1 número por coluna quando possível. Evita concentração excessiva.`;
+            break;
+        case 'concentrado':
+            analise = `🎯 <strong>Padrão Concentrado:</strong> Foca em 3-4 colunas. Baseado em padrões tipo 2-2-1-1-0-0.`;
+            break;
+        case 'disperso':
+            analise = `🌐 <strong>Padrão Disperso:</strong> Espalha entre 5-6 colunas. Máxima distribuição geográfica no volante.`;
+            break;
+        case 'geometrico':
+            analise = `🔷 <strong>Formas Geométricas:</strong> Cria padrões visuais como diagonal, L, retângulo. Baseado em análise geométrica.`;
+            break;
+        case 'antipadrao':
+            analise = `❌ <strong>Anti-Padrão:</strong> Evita os padrões mais comuns. Foca em combinações menos óbvias.`;
+            break;
+        case 'personalizado':
+            if (window.padraoPersonalizado) {
+                analise = `🎨 <strong>Padrão Personalizado:</strong> ${window.padraoPersonalizado.join('-')}. Criado manualmente pelo usuário.`;
+            } else {
+                analise = `🎨 <strong>Personalizado:</strong> Configure o padrão desejado nos campos acima.`;
+            }
+            break;
+    }
+    
+    analiseDiv.innerHTML = analise;
+}
+
+function gerarJogosPadrao() {
+    if (!padroesHistoricos || Object.keys(padroesHistoricos.colunas).length === 0) {
+        showCustomAlert('⚠️ Dados Indisponíveis', 'Aguarde o carregamento da análise de padrões...');
+        return;
+    }
+    
+    const estrategia = document.getElementById('estrategiaPadrao').value;
+    const qtdJogos = parseInt(document.getElementById('qtdJogosPadrao').value);
+    
+    const jogosGerados = [];
+    
+    for (let i = 0; i < qtdJogos; i++) {
+        let jogo;
+        
+        switch (estrategia) {
+            case 'historico':
+                jogo = gerarJogoPorHistorico();
+                break;
+            case 'equilibrado':
+                jogo = gerarJogoEquilibrado();
+                break;
+            case 'concentrado':
+                jogo = gerarJogoConcentrado();
+                break;
+            case 'disperso':
+                jogo = gerarJogoDisperso();
+                break;
+            case 'geometrico':
+                jogo = gerarJogoGeometrico();
+                break;
+            case 'antipadrao':
+                jogo = gerarJogoAntiPadrao();
+                break;
+            case 'personalizado':
+                jogo = gerarJogoPersonalizado();
+                break;
+            default:
+                jogo = gerarJogoPorHistorico();
+        }
+        
+        jogosGerados.push({
+            id: Date.now() + i,
+            numeros: jogo.sort((a, b) => a - b),
+            quantidade: 6,
+            custo: sistemaValores.obterValor(6),
+            pares: jogo.filter(n => n % 2 === 0).length,
+            impares: jogo.filter(n => n % 2 !== 0).length,
+            origem: 'Padrões Geométricos'
+        });
+    }
+    
+    exibirResultadosPadrao(jogosGerados);
+    console.log('✅ Jogos gerados baseados em padrões geométricos com dados reais');
+}
+
+function gerarJogoPorHistorico() {
+    // Usar um dos padrões mais comuns
+    const topPadroes = Object.entries(padroesHistoricos.colunas)
+        .sort(([,a], [,b]) => b.frequencia - a.frequencia)
+        .slice(0, 5);
+    
+    const padraoEscolhido = topPadroes[Math.floor(Math.random() * topPadroes.length)];
+    const distribuicao = padraoEscolhido[0].split('-').map(n => parseInt(n));
+    
+    return gerarJogoComDistribuicao(distribuicao);
+}
+
+function gerarJogoEquilibrado() {
+    // Distribuição mais equilibrada possível
+    const distribuicao = [1, 1, 1, 1, 1, 1]; // 1 por coluna
+    return gerarJogoComDistribuicao(distribuicao);
+}
+
+function gerarJogoConcentrado() {
+    // Concentrar em 3-4 colunas
+    const distribuicoes = [
+        [2, 2, 1, 1, 0, 0],
+        [2, 2, 2, 0, 0, 0],
+        [3, 1, 1, 1, 0, 0],
+        [2, 1, 1, 1, 1, 0]
+    ];
+    
+    const distribuicao = distribuicoes[Math.floor(Math.random() * distribuicoes.length)];
+    return gerarJogoComDistribuicao(distribuicao);
+}
+
+function gerarJogoDisperso() {
+    // Usar todas as 6 colunas
+    const distribuicao = [1, 1, 1, 1, 1, 1];
+    return gerarJogoComDistribuicao(distribuicao);
+}
+
+function gerarJogoGeometrico() {
+    // Gerar padrão geométrico simples
+    const formas = ['diagonal', 'l-shape', 'retangulo'];
+    const forma = formas[Math.floor(Math.random() * formas.length)];
+    
+    return gerarJogoPorForma(forma);
+}
+
+function gerarJogoAntiPadrao() {
+    // Evitar padrões muito comuns
+    const padroesComuns = Object.entries(padroesHistoricos.colunas)
+        .filter(([,dados]) => parseFloat(dados.percentual) > 3)
+        .map(([padrao,]) => padrao);
+    
+    let tentativas = 0;
+    let jogo;
+    
+    do {
+        const distribuicao = gerarDistribuicaoAleatoria();
+        jogo = gerarJogoComDistribuicao(distribuicao);
+        const padraoGerado = analisarPadraoColuna(jogo).join('-');
+        
+        if (!padroesComuns.includes(padraoGerado)) {
+            break;
+        }
+        
+        tentativas++;
+    } while (tentativas < 10);
+    
+    return jogo;
+}
+
+function gerarJogoPersonalizado() {
+    if (!window.padraoPersonalizado) {
+        return gerarJogoPorHistorico(); // Fallback
+    }
+    
+    return gerarJogoComDistribuicao(window.padraoPersonalizado);
+}
+
+function gerarJogoComDistribuicao(distribuicao) {
+    const jogo = [];
+    
+    for (let coluna = 0; coluna < 6; coluna++) {
+        const qtdNaColuna = distribuicao[coluna];
+        const numerosColuna = VOLANTE_OFICIAL.colunas[coluna];
+        
+        // Selecionar números aleatórios desta coluna
+        const selecionados = numerosColuna
+            .sort(() => Math.random() - 0.5)
+            .slice(0, qtdNaColuna);
+        
+        jogo.push(...selecionados);
+    }
+    
+    return jogo;
+}
+
+function gerarJogoPorForma(forma) {
+    const jogo = [];
+    
+    switch (forma) {
+        case 'diagonal':
+            // Números em diagonal
+            for (let i = 0; i < 6; i++) {
+                const linha = i % 10;
+                const numero = VOLANTE_OFICIAL.colunas[i][linha];
+                jogo.push(numero);
+            }
+            break;
+            
+        case 'l-shape':
+            // Formato L: 3 da primeira coluna + 3 da primeira linha
+            jogo.push(...VOLANTE_OFICIAL.colunas[0].slice(0, 3)); // Primeira coluna
+            jogo.push(VOLANTE_OFICIAL.colunas[1][0]); // Segunda coluna, primeira linha
+            jogo.push(VOLANTE_OFICIAL.colunas[2][0]); // Terceira coluna, primeira linha
+            jogo.push(VOLANTE_OFICIAL.colunas[3][0]); // Quarta coluna, primeira linha
+            break;
+            
+        case 'retangulo':
+            // Formar um retângulo 2x3
+            jogo.push(VOLANTE_OFICIAL.colunas[0][0], VOLANTE_OFICIAL.colunas[1][0]); // Linha 1
+            jogo.push(VOLANTE_OFICIAL.colunas[0][1], VOLANTE_OFICIAL.colunas[1][1]); // Linha 2
+            jogo.push(VOLANTE_OFICIAL.colunas[0][2], VOLANTE_OFICIAL.colunas[1][2]); // Linha 3
+            break;
+            
+        default:
+            return gerarJogoEquilibrado();
+    }
+    
+    return jogo.slice(0, 6); // Garantir apenas 6 números
+}
+
+function gerarDistribuicaoAleatoria() {
+    const distribuicao = [0, 0, 0, 0, 0, 0];
+    let restantes = 6;
+    
+    for (let i = 0; i < 6 && restantes > 0; i++) {
+        const max = Math.min(3, restantes); // Máximo 3 por coluna
+        const qtd = Math.floor(Math.random() * (max + 1));
+        distribuicao[i] = qtd;
+        restantes -= qtd;
+    }
+    
+    // Distribuir os restantes
+    while (restantes > 0) {
+        const coluna = Math.floor(Math.random() * 6);
+        if (distribuicao[coluna] < 3) {
+            distribuicao[coluna]++;
+            restantes--;
+        }
+    }
+    
+    return distribuicao;
+}
+
+function exibirResultadosPadrao(jogos) {
+    const lista = document.getElementById('listaJogosPadrao');
+    const resultados = document.getElementById('resultadosPadrao');
+    
+    lista.innerHTML = '';
+    
+    const custoTotal = jogos.reduce((sum, jogo) => sum + jogo.custo, 0);
+    const estrategia = document.getElementById('estrategiaPadrao').value;
+    
+    document.getElementById('resumoJogosPadrao').textContent = `${jogos.length} jogos`;
+    document.getElementById('custoTotalPadrao').textContent = formatarMoeda(custoTotal);
+    document.getElementById('estrategiaAplicadaPadrao').textContent = obterTextoEstrategiaPadrao(estrategia);
+    
+    jogos.forEach((jogo, index) => {
+        const jogoDiv = document.createElement('div');
+        jogoDiv.className = 'jogo-padrao-card';
+        
+        // Analisar padrão do jogo
+        const padraoColuna = analisarPadraoColuna(jogo.numeros);
+        const padraoTexto = padraoColuna.join('-');
+        const dados = padroesHistoricos.colunas[padraoTexto];
+        const geometrico = analisarPadraoGeometrico(jogo.numeros);
+        
+        jogoDiv.innerHTML = `
+            <div class="flex justify-between items-center mb-2">
+                <span class="font-bold text-megasena">Padrão ${index + 1}</span>
+                <div class="flex gap-1">
+                    <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded" title="Padrão de colunas">${padraoTexto}</span>
+                    <span class="text-xs bg-purple-100 text-purple-800 px-2 py-1 rounded" title="Tipo geométrico">${geometrico.tipo}</span>
+                    <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">${jogo.pares}P</span>
+                    <span class="text-xs bg-orange-100 text-orange-800 px-2 py-1 rounded">${jogo.impares}I</span>
+                    <span class="text-xs bg-gray-100 text-gray-800 px-2 py-1 rounded">${formatarMoeda(jogo.custo)}</span>
+                </div>
+            </div>
+            <div class="flex flex-wrap gap-1 mb-1">
+                ${jogo.numeros.map(num => `<span class="numero-padrao-jogo">${num.toString().padStart(2, '0')}</span>`).join('')}
+            </div>
+            <div class="text-xs text-gray-600">
+                Padrão: ${padraoTexto} | Geometria: ${geometrico.descricao} | ${jogo.pares}P/${jogo.impares}I
+                ${dados ? `<br>Frequência histórica: ${dados.percentual}% (${dados.frequencia} vezes)` : '<br>Padrão inédito nos dados históricos'}
+            </div>
+        `;
+        lista.appendChild(jogoDiv);
+    });
+    
+    resultados.classList.remove('hidden');
+    window.jogosPadraoGerados = jogos;
+}
+
+function obterTextoEstrategiaPadrao(estrategia) {
+    const textos = {
+        'historico': 'Baseado em Histórico Real',
+        'equilibrado': 'Distribuição Equilibrada',
+        'concentrado': 'Padrão Concentrado',
+        'disperso': 'Padrão Disperso',
+        'geometrico': 'Formas Geométricas',
+        'antipadrao': 'Anti-Padrão',
+        'personalizado': 'Padrão Personalizado'
+    };
+    return textos[estrategia] || 'Personalizada';
+}
+
+function configurarEventListenersPadroes() {
+    document.getElementById('estrategiaPadrao').onchange = atualizarAnalisePredicaoPadrao;
+    
+    document.getElementById('limparSelecaoPadrao').onclick = limparSelecaoPadrao;
+    document.getElementById('analisarSelecaoPadrao').onclick = analisarSelecaoAtual;
+    
+    document.getElementById('gerarJogosPadrao').onclick = gerarJogosPadrao;
+    
+    document.getElementById('adicionarTodosPadrao').onclick = () => {
+        adicionarTodosJogosSecao(window.jogosPadraoGerados);
+    };
+    
+    document.getElementById('novoPadrao').onclick = () => {
+        document.getElementById('resultadosPadrao').classList.add('hidden');
+        limparSelecaoPadrao();
+    };
+    
+    // Modal
+    document.getElementById('modalPadroesBtn').onclick = () => {
+        document.getElementById('modalPadroes').classList.remove('hidden');
+    };
+}
+
+// Inicializar quando dados estiverem prontos
+document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(() => {
+        inicializarPadroes();
+    }, 4500);
+});
+
+console.log('✅ JavaScript da Seção 11 (Padrões Geométricos) configurado para API em tempo real');	
+// ===== SEÇÃO 12: FILTRAGEM POR PADRÕES IMPROVÁVEIS - 100% API REAL =====
+
+let dadosFiltros = null;
+let filtrosAtivos = [];
+let estatisticasPadroes = {
+    criticos: [],
+    muitoRaros: [],
+    raros: []
+};
+
+function inicializarFiltros() {
+    // Aguardar dados reais estarem carregados
+    if (!cacheGlobal.dadosHistoricos || !window.DADOS_REAIS) {
+        console.log('⏳ Aguardando dados históricos para análise de filtros...');
+        setTimeout(inicializarFiltros, 1000);
+        return;
+    }
+    
+    analisarPadroesImprovaveis();
+    configurarFiltrosIniciais();
+    atualizarInterfaceFiltros();
+    configurarEventListenersFiltros();
+    carregarExemplos();
+    
+    console.log('✅ Sistema de filtros inicializado com dados reais da API');
+}
+
+function analisarPadroesImprovaveis() {
+    if (!cacheGlobal.dadosHistoricos) {
+        console.warn('⚠️ Dados históricos não disponíveis para análise de filtros');
+        return;
+    }
+    
+    console.log('🔍 Analisando padrões improváveis com dados reais da API...');
+    
+    estadisticasPadroes = {
+        criticos: [],
+        muitoRaros: [],
+        raros: [],
+        totalConcursos: 0
+    };
+    
+    let totalConcursos = 0;
+    const padroes = {
+        todosPares: 0,
+        todosImpares: 0,
+        todosBaixos: 0,
+        todosAltos: 0,
+        sequencias4Plus: 0,
+        mesmoFinal4Plus: 0,
+        multiplos4Plus: 0,
+        extremos: 0,
+        desequilibrioExtremo: 0
+    };
+    
+    cacheGlobal.dadosHistoricos.forEach(concurso => {
+        if (concurso.listaDezenas && concurso.listaDezenas.length === 6) {
+            totalConcursos++;
+            const numeros = concurso.listaDezenas.map(n => parseInt(n));
+            
+            // Analisar cada padrão
+            if (verificarTodosPares(numeros)) padroes.todosPares++;
+            if (verificarTodosImpares(numeros)) padroes.todosImpares++;
+            if (verificarTodosBaixos(numeros)) padroes.todosBaixos++;
+            if (verificarTodosAltos(numeros)) padroes.todosAltos++;
+            if (verificarSequencia4Plus(numeros)) padroes.sequencias4Plus++;
+            if (verificarMesmoFinal4Plus(numeros)) padroes.mesmoFinal4Plus++;
+            if (verificarMultiplos4Plus(numeros)) padroes.multiplos4Plus++;
+            if (verificarExtremos(numeros)) padroes.extremos++;
+            if (verificarDesequilibrioExtremo(numeros)) padroes.desequilibrioExtremo++;
+        }
+    });
+    
+    estadisticasPadroes.totalConcursos = totalConcursos;
+    
+    // Classificar padrões por raridade
+    Object.entries(padroes).forEach(([padrao, freq]) => {
+        const percentual = (freq / totalConcursos) * 100;
+        const dados = {
+            nome: padrao,
+            frequencia: freq,
+            percentual: percentual.toFixed(3),
+            descricao: obterDescricaoPadrao(padrao)
+        };
+        
+        if (percentual === 0) {
+            estadisticasPadroes.criticos.push(dados);
+        } else if (percentual < 0.5) {
+            estadisticasPadroes.muitoRaros.push(dados);
+        } else if (percentual < 1) {
+            estadisticasPadroes.raros.push(dados);
+        }
+    });
+    
+    console.log('✅ Padrões improváveis analisados:', estadisticasPadroes);
+}
+
+function verificarTodosPares(numeros) {
+    return numeros.every(n => n % 2 === 0);
+}
+
+function verificarTodosImpares(numeros) {
+    return numeros.every(n => n % 2 !== 0);
+}
+
+function verificarTodosBaixos(numeros) {
+    return numeros.every(n => n <= 30);
+}
+
+function verificarTodosAltos(numeros) {
+    return numeros.every(n => n >= 31);
+}
+
+function verificarSequencia4Plus(numeros) {
+    const ordenados = [...numeros].sort((a, b) => a - b);
+    let consecutivos = 1;
+    let maxConsecutivos = 1;
+    
+    for (let i = 1; i < ordenados.length; i++) {
+        if (ordenados[i] === ordenados[i-1] + 1) {
+            consecutivos++;
+            maxConsecutivos = Math.max(maxConsecutivos, consecutivos);
+        } else {
+            consecutivos = 1;
+        }
+    }
+    
+    return maxConsecutivos >= 4;
+}
+
+function verificarMesmoFinal4Plus(numeros) {
+    const finais = {};
+    numeros.forEach(n => {
+        const final = n % 10;
+        finais[final] = (finais[final] || 0) + 1;
+    });
+    
+    return Object.values(finais).some(count => count >= 4);
+}
+
+function verificarMultiplos4Plus(numeros) {
+    for (let divisor = 2; divisor <= 10; divisor++) {
+        const multiplos = numeros.filter(n => n % divisor === 0);
+        if (multiplos.length >= 4) return true;
+    }
+    return false;
+}
+
+function verificarExtremos(numeros) {
+    const baixissimos = numeros.filter(n => n <= 10).length;
+    const altissimos = numeros.filter(n => n >= 51).length;
+    return baixissimos >= 5 || altissimos >= 5 || (baixissimos + altissimos) >= 6;
+}
+
+function verificarDesequilibrioExtremo(numeros) {
+    const pares = numeros.filter(n => n % 2 === 0).length;
+    return pares === 0 || pares === 6;
+}
+
+function obterDescricaoPadrao(padrao) {
+    const descricoes = {
+        todosPares: 'Todos os 6 números pares',
+        todosImpares: 'Todos os 6 números ímpares',
+        todosBaixos: 'Todos os números de 1 a 30',
+        todosAltos: 'Todos os números de 31 a 60',
+        sequencias4Plus: '4 ou mais números consecutivos',
+        mesmoFinal4Plus: '4 ou mais números com mesmo final',
+        multiplos4Plus: '4 ou mais múltiplos do mesmo número',
+        extremos: 'Concentração nos extremos (1-10 ou 51-60)',
+        desequilibrioExtremo: 'Desequilíbrio extremo de pares/ímpares'
+    };
+    return descricoes[padrao] || padrao;
+}
+
+function configurarFiltrosIniciais() {
+    filtrosAtivos = [
+        { id: 'filtroParImpar', nome: 'Pares/Ímpares', ativo: true },
+        { id: 'filtroBaixoAlto', nome: 'Baixos/Altos', ativo: true },
+        { id: 'filtroSequencia', nome: 'Sequências', ativo: true },
+        { id: 'filtroMesmoFinal', nome: 'Mesmo Final', ativo: true },
+        { id: 'filtroMultiplos', nome: 'Múltiplos', ativo: true },
+        { id: 'filtroExtremos', nome: 'Extremos', ativo: true }
+    ];
+}
+
+function atualizarInterfaceFiltros() {
+    // Atualizar estatísticas gerais
+    document.getElementById('totalPadroesRaros').textContent = 
+        estadisticasPadroes.criticos.length + estadisticasPadroes.muitoRaros.length;
+    
+    // Atualizar frequências dos filtros
+    atualizarFrequenciasFiltros();
+    
+    // Preencher listas de padrões
+    preencherPadroesCriticos();
+    preencherPadroesMuitoRaros();
+    
+    // Atualizar análise em tempo real
+    atualizarAnaliseTempoReal();
+}
+
+function atualizarFrequenciasFiltros() {
+    const mapeamento = {
+        'freqParImpar': ['todosPares', 'todosImpares'],
+        'freqBaixoAlto': ['todosBaixos', 'todosAltos'],
+        'freqSequencia': ['sequencias4Plus'],
+        'freqMesmoFinal': ['mesmoFinal4Plus'],
+        'freqMultiplos': ['multiplos4Plus'],
+        'freqExtremos': ['extremos']
+    };
+    
+    Object.entries(mapeamento).forEach(([elementId, padroes]) => {
+        const elemento = document.getElementById(elementId);
+        if (!elemento) return;
+        
+        let minPercentual = 100;
+        padroes.forEach(padrao => {
+            const dados = [...estadisticasPadroes.criticos, ...estadisticasPadroes.muitoRaros, ...estadisticasPadroes.raros]
+                .find(p => p.nome === padrao);
+            
+            if (dados) {
+                minPercentual = Math.min(minPercentual, parseFloat(dados.percentual));
+            }
+        });
+        
+        if (minPercentual === 0) {
+            elemento.textContent = '0% na API';
+            elemento.className = 'text-xs text-red-600';
+        } else if (minPercentual < 0.5) {
+            elemento.textContent = `${minPercentual}% na API`;
+            elemento.className = 'text-xs text-orange-600';
+        } else {
+            elemento.textContent = `${minPercentual}% na API`;
+            elemento.className = 'text-xs text-yellow-600';
+        }
+    });
+}
+
+function preencherPadroesCriticos() {
+    const container = document.getElementById('padroesCriticos');
+    container.innerHTML = estadisticasPadroes.criticos
+        .map(padrao => `
+            <div class="padrao-critico">
+                <div class="flex justify-between items-center">
+                    <span class="font-bold text-sm">${padrao.descricao}</span>
+                    <span class="filtro-stat critico">0%</span>
+                </div>
+                <div class="text-xs text-red-600 mt-1">Nunca aconteceu em ${estadisticasPadroes.totalConcursos} concursos</div>
+            </div>
+        `).join('');
+}
+
+function preencherPadroesMuitoRaros() {
+    const container = document.getElementById('padroesMuitoRaros');
+    container.innerHTML = estadisticasPadroes.muitoRaros
+        .map(padrao => `
+            <div class="padrao-muito-raro">
+                <div class="flex justify-between items-center">
+                    <span class="font-bold text-sm">${padrao.descricao}</span>
+                    <span class="filtro-stat raro">${padrao.percentual}%</span>
+                </div>
+                <div class="text-xs text-orange-600 mt-1">${padrao.frequencia} vezes em ${estadisticasPadroes.totalConcursos} concursos</div>
+            </div>
+        `).join('');
+}
+
+function atualizarAnaliseTempoReal() {
+    const filtrosAtivosCount = filtrosAtivos.filter(f => f.ativo).length;
+    document.getElementById('filtrosAtivos').textContent = filtrosAtivosCount;
+    
+    // Calcular porcentagem de jogos bloqueados (estimativa)
+    const percentualBloqueado = calcularPercentualBloqueado();
+    document.getElementById('jogosBloqueados').textContent = `${percentualBloqueado.toFixed(1)}%`;
+    
+    // Calcular economia estimada
+    const economiaEstimada = (percentualBloqueado / 100) * 1000 * 6; // Estimativa baseada em 1000 jogos
+    document.getElementById('economiaEstimada').textContent = formatarMoeda(economiaEstimada);
+    
+    // Atualizar mais filtrados
+    atualizarMaisFiltrados();
+    
+    // Atualizar recomendações
+    atualizarRecomendacoes();
+}
+
+function calcularPercentualBloqueado() {
+    // Estimativa baseada na soma das frequências dos padrões filtrados
+    let totalBloqueado = 0;
+    
+    filtrosAtivos.forEach(filtro => {
+        if (filtro.ativo) {
+            // Estimar contribuição de cada filtro
+            switch (filtro.id) {
+                case 'filtroParImpar':
+                    totalBloqueado += 0.5; // Estimativa
+                    break;
+                case 'filtroBaixoAlto':
+                    totalBloqueado += 0.3;
+                    break;
+                case 'filtroSequencia':
+                    totalBloqueado += 1.2;
+                    break;
+                case 'filtroMesmoFinal':
+                    totalBloqueado += 0.8;
+                    break;
+                case 'filtroMultiplos':
+                    totalBloqueado += 0.4;
+                    break;
+                case 'filtroExtremos':
+                    totalBloqueado += 0.6;
+                    break;
+            }
+        }
+    });
+    
+    return Math.min(totalBloqueado, 10); // Máximo 10%
+}
+
+function atualizarMaisFiltrados() {
+    const container = document.getElementById('maisFilterados');
+    const maisFiltrados = estadisticasPadroes.criticos
+        .concat(estadisticasPadroes.muitoRaros)
+        .sort((a, b) => parseFloat(a.percentual) - parseFloat(b.percentual))
+        .slice(0, 3);
+    
+    container.innerHTML = maisFiltrados
+        .map(padrao => `
+            <div class="text-xs">
+                <span class="font-bold">${padrao.descricao.substring(0, 20)}...</span>
+                <span class="filtro-stat critico">${padrao.percentual}%</span>
+            </div>
+        `).join('');
+}
+
+function atualizarRecomendacoes() {
+    const container = document.getElementById('recomendacoesFiltros');
+    const filtrosAtivosCount = filtrosAtivos.filter(f => f.ativo).length;
+    
+    let recomendacoes = [];
+    
+    if (filtrosAtivosCount === 0) {
+        recomendacoes.push('⚠️ Ative pelo menos 3 filtros básicos');
+    } else if (filtrosAtivosCount < 3) {
+        recomendacoes.push('💡 Considere ativar mais filtros');
+    } else if (filtrosAtivosCount > 5) {
+        recomendacoes.push('⚡ Muitos filtros podem limitar opções');
+    } else {
+        recomendacoes.push('✅ Configuração equilibrada');
+    }
+    
+    // Recomendação baseada no nível
+    const nivel = document.getElementById('nivelFiltragem').value;
+    if (nivel === 'conservador') {
+        recomendacoes.push('🛡️ Modo seguro ativo');
+    } else if (nivel === 'agressivo') {
+        recomendacoes.push('🔥 Filtragem intensiva ativa');
+    }
+    
+    container.innerHTML = recomendacoes
+        .map(rec => `<div class="text-xs">${rec}</div>`)
+        .join('');
+}
+
+function testarJogo() {
+    const numeros = [];
+    for (let i = 1; i <= 6; i++) {
+        const valor = parseInt(document.getElementById(`teste${i}`).value);
+        if (valor >= 1 && valor <= 60) {
+            numeros.push(valor);
+        }
+    }
+    
+    if (numeros.length !== 6) {
+        document.getElementById('resultadoTeste').innerHTML = 
+            '<div class="resultado-teste rejeitado">⚠️ Digite 6 números válidos (1-60)</div>';
+        return;
+    }
+    
+    if (new Set(numeros).size !== 6) {
+        document.getElementById('resultadoTeste').innerHTML = 
+            '<div class="resultado-teste rejeitado">⚠️ Números não podem se repetir</div>';
+        return;
+    }
+    
+    // Testar filtros
+    const violacoes = testarFiltrosNumeros(numeros);
+    
+    if (violacoes.length === 0) {
+        document.getElementById('resultadoTeste').innerHTML = 
+            '<div class="resultado-teste aprovado">✅ Jogo APROVADO! Não viola nenhum filtro ativo.</div>';
+    } else {
+        const listaViolacoes = violacoes.map(v => `• ${v}`).join('<br>');
+        document.getElementById('resultadoTeste').innerHTML = 
+            `<div class="resultado-teste rejeitado">❌ Jogo REJEITADO!<br><strong>Violações:</strong><br>${listaViolacoes}</div>`;
+    }
+}
+
+function testarFiltrosNumeros(numeros) {
+    const violacoes = [];
+    
+    filtrosAtivos.forEach(filtro => {
+        if (!filtro.ativo) return;
+        
+        switch (filtro.id) {
+            case 'filtroParImpar':
+                if (verificarTodosPares(numeros)) violacoes.push('Todos números pares');
+                if (verificarTodosImpares(numeros)) violacoes.push('Todos números ímpares');
+                break;
+            case 'filtroBaixoAlto':
+                if (verificarTodosBaixos(numeros)) violacoes.push('Todos números baixos (1-30)');
+                if (verificarTodosAltos(numeros)) violacoes.push('Todos números altos (31-60)');
+                break;
+            case 'filtroSequencia':
+                if (verificarSequencia4Plus(numeros)) violacoes.push('4+ números consecutivos');
+                break;
+            case 'filtroMesmoFinal':
+                if (verificarMesmoFinal4Plus(numeros)) violacoes.push('4+ números com mesmo final');
+                break;
+            case 'filtroMultiplos':
+                if (verificarMultiplos4Plus(numeros)) violacoes.push('4+ múltiplos do mesmo número');
+                break;
+            case 'filtroExtremos':
+                if (verificarExtremos(numeros)) violacoes.push('Concentração nos extremos');
+                break;
+        }
+    });
+    
+    return violacoes;
+}
+
+function carregarExemplos() {
+    document.getElementById('exemploRaro').onclick = () => {
+        // Exemplo de jogo raro (todos pares)
+        document.getElementById('teste1').value = '2';
+        document.getElementById('teste2').value = '4';
+        document.getElementById('teste3').value = '6';
+        document.getElementById('teste4').value = '8';
+        document.getElementById('teste5').value = '10';
+        document.getElementById('teste6').value = '12';
+        testarJogo();
+    };
+    
+    document.getElementById('exemploComum').onclick = () => {
+        // Exemplo de jogo comum
+        document.getElementById('teste1').value = '7';
+        document.getElementById('teste2').value = '18';
+        document.getElementById('teste3').value = '25';
+        document.getElementById('teste4').value = '34';
+        document.getElementById('teste5').value = '47';
+        document.getElementById('teste6').value = '59';
+        testarJogo();
+    };
+}
+
+function gerarJogosFiltrados() {
+    if (!estadisticasPadroes || estadisticasPadroes.totalConcursos === 0) {
+        showCustomAlert('⚠️ Dados Indisponíveis', 'Aguarde o carregamento da análise de filtros...');
+        return;
+    }
+    
+    const qtdJogos = 10; // Fixo para esta seção
+    const jogosGerados = [];
+    const maxTentativas = 1000; // Evitar loop infinito
+    
+    for (let i = 0; i < qtdJogos; i++) {
+        let jogo = null;
+        let tentativas = 0;
+        
+        // Gerar jogos até encontrar um que passe nos filtros
+        do {
+            jogo = gerarJogoAleatorio();
+            tentativas++;
+        } while (testarFiltrosNumeros(jogo).length > 0 && tentativas < maxTentativas);
+        
+        if (tentativas >= maxTentativas) {
+            console.warn('⚠️ Não foi possível gerar jogo que passe em todos os filtros');
+            jogo = gerarJogoAleatorio(); // Usar mesmo com violações
+        }
+        
+        jogosGerados.push({
+            id: Date.now() + i,
+            numeros: jogo.sort((a, b) => a - b),
+            quantidade: 6,
+            custo: sistemaValores.obterValor(6),
+            pares: jogo.filter(n => n % 2 === 0).length,
+            impares: jogo.filter(n => n % 2 !== 0).length,
+            origem: 'Filtros Inteligentes',
+            violacoes: testarFiltrosNumeros(jogo)
+        });
+    }
+    
+    exibirResultadosFiltros(jogosGerados);
+    console.log('✅ Jogos gerados com filtros aplicados');
+}
+
+function gerarJogoAleatorio() {
+    const jogo = [];
+    while (jogo.length < 6) {
+        const numero = Math.floor(Math.random() * 60) + 1;
+        if (!jogo.includes(numero)) {
+            jogo.push(numero);
+        }
+    }
+    return jogo;
+}
+
+function exibirResultadosFiltros(jogos) {
+    const lista = document.getElementById('listaJogosFiltros');
+    const resultados = document.getElementById('resultadosFiltros');
+    
+    lista.innerHTML = '';
+    
+    const custoTotal = jogos.reduce((sum, jogo) => sum + jogo.custo, 0);
+    const filtrosAtivosCount = filtrosAtivos.filter(f => f.ativo).length;
+    
+    document.getElementById('resumoJogosFiltros').textContent = `${jogos.length} jogos`;
+    document.getElementById('custoTotalFiltros').textContent = formatarMoeda(custoTotal);
+    document.getElementById('filtrosAplicados').textContent = `${filtrosAtivosCount} ativos`;
+    
+    jogos.forEach((jogo, index) => {
+        const jogoDiv = document.createElement('div');
+        jogoDiv.className = 'jogo-filtrado-card';
+        
+        const statusClass = jogo.violacoes.length === 0 ? 'aprovado' : 'com-violacoes';
+        const statusIcon = jogo.violacoes.length === 0 ? '✅' : '⚠️';
+        
+        jogoDiv.innerHTML = `
+            <div class="flex justify-between items-center mb-2">
+                <span class="font-bold text-megasena">Filtrado ${index + 1} ${statusIcon}</span>
+                <div class="flex gap-1">
+                    <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">${jogo.violacoes.length}V</span>
+                    <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">${jogo.pares}P</span>
+                    <span class="text-xs bg-purple-100 text-purple-800 px-2 py-1 rounded">${jogo.impares}I</span>
+                    <span class="text-xs bg-gray-100 text-gray-800 px-2 py-1 rounded">${formatarMoeda(jogo.custo)}</span>
+                </div>
+            </div>
+            <div class="flex flex-wrap gap-1 mb-1">
+                ${jogo.numeros.map(num => `<span class="numero-filtrado-jogo">${num.toString().padStart(2, '0')}</span>`).join('')}
+            </div>
+            <div class="text-xs text-gray-600">
+                ${jogo.violacoes.length === 0 ? 
+                    '✅ Passou em todos os filtros ativos' : 
+                    `⚠️ ${jogo.violacoes.length} violações: ${jogo.violacoes.join(', ')}`
+                } | ${jogo.pares}P/${jogo.impares}I
+            </div>
+        `;
+        lista.appendChild(jogoDiv);
+    });
+    
+    resultados.classList.remove('hidden');
+    window.jogosFiltrosGerados = jogos;
+}
+
+function configurarEventListenersFiltros() {
+    // Checkboxes dos filtros
+    filtrosAtivos.forEach(filtro => {
+        const checkbox = document.getElementById(filtro.id);
+        if (checkbox) {
+            checkbox.onchange = () => {
+                filtro.ativo = checkbox.checked;
+                atualizarAnaliseTempoReal();
+            };
+        }
+    });
+    
+    // Configurações
+    document.getElementById('nivelFiltragem').onchange = atualizarAnaliseTempoReal;
+    document.getElementById('limiarMinimo').oninput = atualizarAnaliseTempoReal;
+    
+    // Teste de jogo
+    document.getElementById('testarJogo').onclick = testarJogo;
+    
+    // Geração
+    document.getElementById('gerarJogosFiltrados').onclick = gerarJogosFiltrados;
+    
+    // Botões de resultado
+    document.getElementById('adicionarTodosFiltros').onclick = () => {
+        adicionarTodosJogosSecao(window.jogosFiltrosGerados);
+    };
+    
+    document.getElementById('novoFiltro').onclick = () => {
+        document.getElementById('resultadosFiltros').classList.add('hidden');
+    };
+    
+    // Modal
+    document.getElementById('modalFiltrosBtn').onclick = () => {
+        document.getElementById('modalFiltros').classList.remove('hidden');
+    };
+}
+
+// Inicializar quando dados estiverem prontos
+document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(() => {
+        inicializarFiltros();
+    }, 5000);
+});
+
+console.log('✅ JavaScript da Seção 12 (Filtros) configurado para API em tempo real');
+
+
 		
     </script>
 </body>

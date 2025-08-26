@@ -575,6 +575,9 @@ SEÇÃO 6: FECHAMENTO INTELIGENTE
 SEÇÃO 7: NÚMEROS GÊMEOS E INVERTIDOS
 SEÇÃO 8: ANÁLISE DE ATRASOS E FREQUÊNCIA CRUZADA
 SEÇÃO 9: MAPA DE CALOR DAS DEZENAS (HEATMAP)
+SEÇÃO 10: CICLOS DE FECHAMENTO
+SEÇÃO 11: JOGOS COMBINADOS POR PADRÃO DE COLUNAS E LINHAS
+SEÇÃO 12: FILTRAGEM POR PADRÕES IMPROVÁVEIS
 
 
 
@@ -583,4 +586,33 @@ SEÇÃO 9: MAPA DE CALOR DAS DEZENAS (HEATMAP)
 use sempre a api para trazer as informações em tempo real
 NUNCA TRAGA DADOS SIMULADOS...
 SEMPRE ADICIONE UM MODAL COM A INFORMAÇÃO (COMO FUNCIONA)
+Use cores da modalidade (mega sena)
+https://servicebus2.caixa.gov.br/portaldeloterias/api/megasena	
+A aplicação deve buscar SEMPRE os dados reais da API e usar essas informações para gerar estratégias dinâmicas e inteligentes
+QUERO GERAR OS PALPITES baseados nos valores das estatiscicas reais... 
+
+#1B9A67	E SUAS VARIAÇÕES DO 0% ATÉ 100%		
+
+Lighter / Darker:
+100% 		 #ffffff
+95% 		 #e9fbf4
+90% 		 #d4f7e9
+85% 		 #bef4de
+80% 		 #a8f0d3
+75% 		 #93ecc8
+70% 		 #7de8bd
+65% 		 #67e4b2
+60% 		 #52e0a7
+55% 		 #3cdd9c
+50% 		 #26d991
+45% 		 #22c383
+40% 		 #1fad74
+35%          #1b9a67 //cor pricipal
+30% 		 #178257
+25% 		 #136c49
+20% 		 #0f573a
+15% 		 #0b412c
+10% 		 #082b1d
+5% 		     #04160f
+0% 		     #000000
 
