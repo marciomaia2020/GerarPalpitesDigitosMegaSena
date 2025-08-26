@@ -1,5 +1,6 @@
 # GerarPalpitesDigitosMegaSena.
 
+
 Funcionalidades Implementadas:
 🎯 Interface Principal:
 Último resultado exibido conforme modelo das imagens
@@ -560,3 +561,26 @@ Instruções detalhadas
 TXT, HTML e XLSX com análise P/I
 Dados históricos incluídos
 Agora o sistema está 100% completo com TODAS as funcionalidades originais MAIS as novas solicitadas!
+
+
+
+
+
+SEÇÃO 1: CRIAÇÃO MANUAL DE JOGOS
+SEÇÃO 2: GERAÇÃO MINIMALISTA (Menos Jogos)
+SEÇÃO 3: ANÁLISE POR POSIÇÕES (1ª a 6ª)
+SEÇÃO 4: RESULTADOS ALTERADOS (Variações)
+SEÇÃO 5: REGRAS FIXAS AVANÇADAS
+SEÇÃO 6: FECHAMENTO INTELIGENTE
+SEÇÃO 7: NÚMEROS GÊMEOS E INVERTIDOS
+SEÇÃO 8: ANÁLISE DE ATRASOS E FREQUÊNCIA CRUZADA
+SEÇÃO 9: MAPA DE CALOR DAS DEZENAS (HEATMAP)
+
+
+
+
+
+use sempre a api para trazer as informações em tempo real
+NUNCA TRAGA DADOS SIMULADOS...
+SEMPRE ADICIONE UM MODAL COM A INFORMAÇÃO (COMO FUNCIONA)
+

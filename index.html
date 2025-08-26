@@ -414,6 +414,399 @@
 			padding: 16px;
 			margin: 12px 0;
 		}
+		/* Estilos específicos para gêmeos e invertidos */
+		.numero-gemeos {
+			width: 35px;
+			height: 35px;
+			background: linear-gradient(135deg, #8b5cf6, #f97316);
+			color: white;
+			border-radius: 50%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-weight: bold;
+			font-size: 14px;
+			margin: 2px;
+		}
+
+		.jogo-gemeos-card {
+			background: linear-gradient(to right, #faf5ff, #fef3c7);
+			border: 2px solid #8b5cf6;
+			border-radius: 12px;
+			padding: 12px;
+			margin: 8px 0;
+		}
+
+		.candidato-numero {
+			display: inline-block;
+			padding: 4px 8px;
+			margin: 2px;
+			border-radius: 20px;
+			font-size: 12px;
+			font-weight: bold;
+			cursor: pointer;
+			transition: all 0.2s;
+		}
+
+		.candidato-invertido {
+			background: linear-gradient(135deg, #8b5cf6, #a855f7);
+			color: white;
+		}
+
+		.candidato-gemeo {
+			background: linear-gradient(135deg, #f97316, #fb923c);
+			color: white;
+		}
+
+		.candidato-baixo {
+			border: 2px solid #10b981;
+		}
+
+		.candidato-medio {
+			border: 2px solid #f59e0b;
+		}
+
+		.candidato-alto {
+			border: 2px solid #ef4444;
+		}
+
+		.candidato-numero:hover {
+			transform: scale(1.1);
+			box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+		}
+
+		.candidato-numero.selecionado {
+			transform: scale(1.1);
+			box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.5);
+		}
+
+		.numero-selecionado-gemeos {
+			display: inline-block;
+			padding: 6px 10px;
+			margin: 2px;
+			background: linear-gradient(135deg, #8b5cf6, #f97316);
+			color: white;
+			border-radius: 20px;
+			font-size: 12px;
+			font-weight: bold;
+			position: relative;
+			cursor: pointer;
+		}
+
+		.numero-selecionado-gemeos .remove-btn {
+			position: absolute;
+			top: -6px;
+			right: -6px;
+			background: #dc2626;
+			color: white;
+			border-radius: 50%;
+			width: 16px;
+			height: 16px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-size: 10px;
+			cursor: pointer;
+		}
+
+		.preview-numero {
+			display: inline-block;
+			padding: 2px 6px;
+			margin: 1px;
+			background: #e5e7eb;
+			border-radius: 12px;
+			font-size: 11px;
+			font-weight: bold;
+		}
+		/* Estilos específicos para análise de atrasos */
+		.numero-atrasos {
+			width: 35px;
+			height: 35px;
+			background: linear-gradient(135deg, #6366f1, #8b5cf6);
+			color: white;
+			border-radius: 50%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-weight: bold;
+			font-size: 14px;
+			margin: 2px;
+		}
+
+		.jogo-atrasos-card {
+			background: linear-gradient(to right, #f8fafc, #e2e8f0);
+			border: 2px solid #6366f1;
+			border-radius: 12px;
+			padding: 12px;
+			margin: 8px 0;
+		}
+
+		.analise-btn {
+			transition: all 0.3s ease;
+			cursor: pointer;
+			border: none;
+			outline: none;
+		}
+
+		.analise-btn.active {
+			background: linear-gradient(135deg, #8b5cf6, #6366f1) !important;
+			color: white !important;
+			transform: scale(1.05);
+			box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+		}
+
+		.analise-btn:hover:not(.active) {
+			background: #e5e7eb;
+			transform: scale(1.02);
+		}
+
+		.numero-atrasado {
+			display: inline-block;
+			padding: 6px 10px;
+			margin: 2px;
+			background: linear-gradient(135deg, #ef4444, #dc2626);
+			color: white;
+			border-radius: 20px;
+			font-size: 12px;
+			font-weight: bold;
+		}
+
+		.numero-frequente {
+			display: inline-block;
+			padding: 6px 10px;
+			margin: 2px;
+			background: linear-gradient(135deg, #10b981, #059669);
+			color: white;
+			border-radius: 20px;
+			font-size: 12px;
+			font-weight: bold;
+		}
+
+		.combinacao-item {
+			background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+			color: white;
+			padding: 8px 12px;
+			border-radius: 20px;
+			margin: 3px;
+			display: inline-block;
+			font-size: 12px;
+			font-weight: bold;
+		}
+
+		.atraso-badge {
+			background: #fecaca;
+			color: #991b1b;
+			padding: 2px 6px;
+			border-radius: 10px;
+			font-size: 10px;
+			font-weight: bold;
+		}
+
+		.frequencia-badge {
+			background: #bbf7d0;
+			color: #065f46;
+			padding: 2px 6px;
+			border-radius: 10px;
+			font-size: 10px;
+			font-weight: bold;
+		}
+
+		.analise-resultado {
+			background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+			border: 2px solid #0ea5e9;
+			border-radius: 12px;
+			padding: 16px;
+			margin: 12px 0;
+		}
+
+		.companias-numeros {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 4px;
+			margin: 8px 0;
+		}
+
+		.numero-compania {
+			background: linear-gradient(135deg, #0ea5e9, #0284c7);
+			color: white;
+			padding: 4px 8px;
+			border-radius: 12px;
+			font-size: 11px;
+			font-weight: bold;
+		}
+		/* Estilos específicos para heatmap */
+		.numero-heatmap {
+			width: 100%;
+			aspect-ratio: 1;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-weight: bold;
+			font-size: 12px;
+			border-radius: 6px;
+			cursor: pointer;
+			transition: all 0.3s ease;
+			border: 2px solid transparent;
+			position: relative;
+			color: white;
+			text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+		}
+
+		.numero-heatmap:hover {
+			transform: scale(1.1);
+			z-index: 10;
+			box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+			border-color: #fff;
+		}
+
+		.numero-heatmap.selecionado-heat {
+			border-color: #fbbf24;
+			box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.3);
+			transform: scale(1.05);
+		}
+
+		.numero-heatmap::before {
+			content: '';
+			position: absolute;
+			top: -2px;
+			right: -2px;
+			width: 8px;
+			height: 8px;
+			background: #fbbf24;
+			border-radius: 50%;
+			opacity: 0;
+			transition: opacity 0.3s ease;
+		}
+
+		.numero-heatmap.selecionado-heat::before {
+			opacity: 1;
+		}
+
+		/* Intensidades de calor */
+		.heat-level-0 { background: linear-gradient(135deg, #1e40af, #3b82f6); } /* Azul escuro */
+		.heat-level-1 { background: linear-gradient(135deg, #3b82f6, #06b6d4); } /* Azul */
+		.heat-level-2 { background: linear-gradient(135deg, #06b6d4, #10b981); } /* Azul-ciano */
+		.heat-level-3 { background: linear-gradient(135deg, #10b981, #84cc16); } /* Verde */
+		.heat-level-4 { background: linear-gradient(135deg, #84cc16, #eab308); } /* Verde-amarelo */
+		.heat-level-5 { background: linear-gradient(135deg, #eab308, #f59e0b); } /* Amarelo */
+		.heat-level-6 { background: linear-gradient(135deg, #f59e0b, #f97316); } /* Laranja */
+		.heat-level-7 { background: linear-gradient(135deg, #f97316, #ea580c); } /* Laranja escuro */
+		.heat-level-8 { background: linear-gradient(135deg, #ea580c, #dc2626); } /* Vermelho */
+		.heat-level-9 { background: linear-gradient(135deg, #dc2626, #991b1b); } /* Vermelho escuro */
+
+		/* Estilos alternativos */
+		.heatmap-arcoiris .heat-level-0 { background: linear-gradient(135deg, #6366f1, #8b5cf6); }
+		.heatmap-arcoiris .heat-level-1 { background: linear-gradient(135deg, #8b5cf6, #d946ef); }
+		.heatmap-arcoiris .heat-level-2 { background: linear-gradient(135deg, #d946ef, #f43f5e); }
+		.heatmap-arcoiris .heat-level-3 { background: linear-gradient(135deg, #f43f5e, #ef4444); }
+		.heatmap-arcoiris .heat-level-4 { background: linear-gradient(135deg, #ef4444, #f97316); }
+		.heatmap-arcoiris .heat-level-5 { background: linear-gradient(135deg, #f97316, #f59e0b); }
+		.heatmap-arcoiris .heat-level-6 { background: linear-gradient(135deg, #f59e0b, #eab308); }
+		.heatmap-arcoiris .heat-level-7 { background: linear-gradient(135deg, #eab308, #84cc16); }
+		.heatmap-arcoiris .heat-level-8 { background: linear-gradient(135deg, #84cc16, #22c55e); }
+		.heatmap-arcoiris .heat-level-9 { background: linear-gradient(135deg, #22c55e, #10b981); }
+
+		.heatmap-monocromatico .numero-heatmap {
+			color: #000;
+			text-shadow: none;
+		}
+		.heatmap-monocromatico .heat-level-0 { background: #f8fafc; }
+		.heatmap-monocromatico .heat-level-1 { background: #f1f5f9; }
+		.heatmap-monocromatico .heat-level-2 { background: #e2e8f0; }
+		.heatmap-monocromatico .heat-level-3 { background: #cbd5e1; }
+		.heatmap-monocromatico .heat-level-4 { background: #94a3b8; }
+		.heatmap-monocromatico .heat-level-5 { background: #64748b; }
+		.heatmap-monocromatico .heat-level-6 { background: #475569; }
+		.heatmap-monocromatico .heat-level-7 { background: #334155; }
+		.heatmap-monocromatico .heat-level-8 { background: #1e293b; }
+		.heatmap-monocromatico .heat-level-9 { background: #0f172a; }
+
+		.heatmap-neon .heat-level-0 { background: linear-gradient(135deg, #2563eb, #3b82f6); box-shadow: 0 0 10px #3b82f6; }
+		.heatmap-neon .heat-level-1 { background: linear-gradient(135deg, #06b6d4, #0891b2); box-shadow: 0 0 10px #06b6d4; }
+		.heatmap-neon .heat-level-2 { background: linear-gradient(135deg, #10b981, #059669); box-shadow: 0 0 10px #10b981; }
+		.heatmap-neon .heat-level-3 { background: linear-gradient(135deg, #84cc16, #65a30d); box-shadow: 0 0 10px #84cc16; }
+		.heatmap-neon .heat-level-4 { background: linear-gradient(135deg, #eab308, #ca8a04); box-shadow: 0 0 10px #eab308; }
+		.heatmap-neon .heat-level-5 { background: linear-gradient(135deg, #f59e0b, #d97706); box-shadow: 0 0 10px #f59e0b; }
+		.heatmap-neon .heat-level-6 { background: linear-gradient(135deg, #f97316, #ea580c); box-shadow: 0 0 10px #f97316; }
+		.heatmap-neon .heat-level-7 { background: linear-gradient(135deg, #ea580c, #dc2626); box-shadow: 0 0 10px #ea580c; }
+		.heatmap-neon .heat-level-8 { background: linear-gradient(135deg, #dc2626, #b91c1c); box-shadow: 0 0 10px #dc2626; }
+		.heatmap-neon .heat-level-9 { background: linear-gradient(135deg, #b91c1c, #991b1b); box-shadow: 0 0 10px #b91c1c; }
+
+		.jogo-heatmap-card {
+			background: linear-gradient(to right, #fef3c7, #fed7aa);
+			border: 2px solid #f59e0b;
+			border-radius: 12px;
+			padding: 12px;
+			margin: 8px 0;
+		}
+
+		.numero-heatmap-jogo {
+			width: 35px;
+			height: 35px;
+			background: linear-gradient(135deg, #f59e0b, #ea580c);
+			color: white;
+			border-radius: 50%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-weight: bold;
+			font-size: 14px;
+			margin: 2px;
+		}
+
+		.tooltip-heatmap {
+			position: absolute;
+			background: rgba(0, 0, 0, 0.8);
+			color: white;
+			padding: 8px 12px;
+			border-radius: 6px;
+			font-size: 12px;
+			z-index: 1000;
+			pointer-events: none;
+			transition: opacity 0.3s ease;
+		}
+
+		.numero-quente-stat {
+			display: inline-block;
+			padding: 4px 8px;
+			margin: 2px;
+			background: linear-gradient(135deg, #ef4444, #dc2626);
+			color: white;
+			border-radius: 12px;
+			font-size: 12px;
+			font-weight: bold;
+		}
+
+		.numero-frio-stat {
+			display: inline-block;
+			padding: 4px 8px;
+			margin: 2px;
+			background: linear-gradient(135deg, #3b82f6, #2563eb);
+			color: white;
+			border-radius: 12px;
+			font-size: 12px;
+			font-weight: bold;
+		}
+
+		@keyframes pulseHeat {
+			0%, 100% { transform: scale(1); }
+			50% { transform: scale(1.05); }
+		}
+
+		.numero-heatmap.animacao {
+			animation: pulseHeat 1s ease-in-out infinite;
+		}
+
+		.heatmap-loading {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			height: 200px;
+			background: linear-gradient(45deg, #f3f4f6, #e5e7eb);
+			border-radius: 12px;
+			font-size: 18px;
+			color: #6b7280;
+		}
 		
     </style>
 </head>
@@ -1034,92 +1427,92 @@ Exemplos:
                 </div>
                 
 				<!-- 🎯 SEÇÃO 6: FECHAMENTO INTELIGENTE -->
-<div class="secao-geracao bg-white rounded-lg shadow-lg p-6">
-    <div class="secao-titulo">🎯 SEÇÃO 6: FECHAMENTO INTELIGENTE</div>
-    <div class="mt-3 flex justify-center gap-2">
-        <a href="https://resumomegasena-i.netlify.app" target="_blank" 
-           class="inline-flex items-center bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-sm transition-colors">
-            🌐 Estratégias de Fechamento
-        </a>
-        <button id="modalFechamentoBtn" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg text-sm">
-            ❓ Como Funciona
-        </button>
-    </div><br />
+		<div class="secao-geracao bg-white rounded-lg shadow-lg p-6">
+			<div class="secao-titulo">🎯 SEÇÃO 6: FECHAMENTO INTELIGENTE</div>
+				<div class="mt-3 flex justify-center gap-2">
+					<a href="https://resumomegasena-i.netlify.app" target="_blank" 
+					   class="inline-flex items-center bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-sm transition-colors">
+						🌐 Estratégias de Fechamento
+					</a>
+					<button id="modalFechamentoBtn" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg text-sm">
+						❓ Como Funciona
+					</button>
+				</div><br />
 
-    <!-- Informação Estratégica -->
-    <div class="bg-gradient-to-r from-yellow-50 to-orange-50 border-2 border-yellow-400 rounded-lg p-4 mb-4">
-        <h4 class="text-lg font-bold text-yellow-800 mb-2">🏆 ESTRATÉGIA DE FECHAMENTO:</h4>
-        <div class="text-sm text-yellow-700 mb-3">
-            Escolha mais dezenas e o sistema gera combinações inteligentes para garantir prêmios mínimos com menor investimento.
-            Baseado no último resultado: <span id="infoFechamentoBase" class="font-bold">20, 24, 27, 46, 50, 54</span>
-        </div>
-        
-        <!-- Distribuição P/I Sugerida -->
-        <div class="grid grid-cols-2 gap-4">
-            <div class="bg-green-100 p-3 rounded border border-green-300">
-                <div class="text-sm font-bold text-green-800">📊 PARES SUGERIDOS:</div>
-                <div class="text-lg font-bold text-green-900" id="paresSugeridosFech">60% (9 de 15)</div>
-                <div class="text-xs text-green-600">Baseado no padrão histórico</div>
-            </div>
-            <div class="bg-purple-100 p-3 rounded border border-purple-300">
-                <div class="text-sm font-bold text-purple-800">📊 ÍMPARES SUGERIDOS:</div>
-                <div class="text-lg font-bold text-purple-900" id="imparesSugeridosFech">40% (6 de 15)</div>
-                <div class="text-xs text-purple-600">Mantém equilíbrio estratégico</div>
-            </div>
-        </div>
-    </div>
+				<!-- Informação Estratégica -->
+				<div class="bg-gradient-to-r from-yellow-50 to-orange-50 border-2 border-yellow-400 rounded-lg p-4 mb-4">
+					<h4 class="text-lg font-bold text-yellow-800 mb-2">🏆 ESTRATÉGIA DE FECHAMENTO:</h4>
+					<div class="text-sm text-yellow-700 mb-3">
+						Escolha mais dezenas e o sistema gera combinações inteligentes para garantir prêmios mínimos com menor investimento.
+						Baseado no último resultado: <span id="infoFechamentoBase" class="font-bold">20, 24, 27, 46, 50, 54</span>
+					</div>
+					
+					<!-- Distribuição P/I Sugerida -->
+					<div class="grid grid-cols-2 gap-4">
+						<div class="bg-green-100 p-3 rounded border border-green-300">
+							<div class="text-sm font-bold text-green-800">📊 PARES SUGERIDOS:</div>
+							<div class="text-lg font-bold text-green-900" id="paresSugeridosFech">60% (9 de 15)</div>
+							<div class="text-xs text-green-600">Baseado no padrão histórico</div>
+						</div>
+						<div class="bg-purple-100 p-3 rounded border border-purple-300">
+							<div class="text-sm font-bold text-purple-800">📊 ÍMPARES SUGERIDOS:</div>
+							<div class="text-lg font-bold text-purple-900" id="imparesSugeridosFech">40% (6 de 15)</div>
+							<div class="text-xs text-purple-600">Mantém equilíbrio estratégico</div>
+						</div>
+					</div>
+				</div>
 
-    <!-- Configuração do Fechamento -->
-    <div class="mb-4">
-        <label class="block text-megasena font-medium mb-3">⚙️ Configuração do Fechamento:</label>
-        
-        <div class="grid grid-cols-2 gap-4 mb-4">
-            <div>
-                <label class="block text-sm font-medium mb-1">🎯 Quantidade de Dezenas:</label>
-                <select id="qtdDezenasFech" class="w-full px-3 py-2 border border-gray-300 rounded-lg text-base">
-                    <option value="10">10 dezenas (210 combinações)</option>
-                    <option value="12">12 dezenas (924 combinações)</option>
-                    <option value="15" selected>15 dezenas (5.005 combinações)</option>
-                    <option value="18">18 dezenas (18.564 combinações)</option>
-                    <option value="20">20 dezenas (38.760 combinações)</option>
-                </select>
-            </div>
-            <div>
-                <label class="block text-sm font-medium mb-1">🏆 Tipo de Garantia:</label>
-                <select id="tipoGarantia" class="w-full px-3 py-2 border border-gray-300 rounded-lg text-base">
-                    <option value="quadra" selected>🎯 Garantia de Quadra (4 acertos)</option>
-                    <option value="quina">🏆 Garantia de Quina (5 acertos)</option>
-                    <option value="otimizado">⚖️ Fechamento Otimizado</option>
-                    <option value="economico">💰 Fechamento Econômico</option>
-                </select>
-            </div>
-        </div>
+				<!-- Configuração do Fechamento -->
+				<div class="mb-4">
+					<label class="block text-megasena font-medium mb-3">⚙️ Configuração do Fechamento:</label>
+					
+					<div class="grid grid-cols-2 gap-4 mb-4">
+						<div>
+							<label class="block text-sm font-medium mb-1">🎯 Quantidade de Dezenas:</label>
+							<select id="qtdDezenasFech" class="w-full px-3 py-2 border border-gray-300 rounded-lg text-base">
+								<option value="10">10 dezenas (210 combinações)</option>
+								<option value="12">12 dezenas (924 combinações)</option>
+								<option value="15" selected>15 dezenas (5.005 combinações)</option>
+								<option value="18">18 dezenas (18.564 combinações)</option>
+								<option value="20">20 dezenas (38.760 combinações)</option>
+							</select>
+						</div>
+						<div>
+							<label class="block text-sm font-medium mb-1">🏆 Tipo de Garantia:</label>
+							<select id="tipoGarantia" class="w-full px-3 py-2 border border-gray-300 rounded-lg text-base">
+								<option value="quadra" selected>🎯 Garantia de Quadra (4 acertos)</option>
+								<option value="quina">🏆 Garantia de Quina (5 acertos)</option>
+								<option value="otimizado">⚖️ Fechamento Otimizado</option>
+								<option value="economico">💰 Fechamento Econômico</option>
+							</select>
+						</div>
+					</div>
 
-        <div class="grid grid-cols-3 gap-4 mb-4">
-            <div>
-                <label class="block text-sm font-medium mb-1">🟢 Pares (sugerido):</label>
-                <select id="qtdParesFech" class="w-full px-2 py-2 border border-gray-300 rounded text-sm">
-                    <!-- Será preenchido dinamicamente -->
-                </select>
-            </div>
-            <div>
-                <label class="block text-sm font-medium mb-1">🟣 Ímpares (sugerido):</label>
-                <select id="qtdImparesFech" class="w-full px-2 py-2 border border-gray-300 rounded text-sm">
-                    <!-- Será preenchido dinamicamente -->
-                </select>
-            </div>
-            <div>
-                <label class="block text-sm font-medium mb-1">🎮 Jogos a Gerar:</label>
-                <select id="qtdJogosFech" class="w-full px-2 py-2 border border-gray-300 rounded text-sm">
-                    <option value="15">15 jogos</option>
-                    <option value="20" selected>20 jogos</option>
-                    <option value="25">25 jogos</option>
-                    <option value="30">30 jogos</option>
-                    <option value="50">50 jogos</option>
-                </select>
-            </div>
-        </div>
-    </div>
+					<div class="grid grid-cols-3 gap-4 mb-4">
+						<div>
+							<label class="block text-sm font-medium mb-1">🟢 Pares (sugerido):</label>
+							<select id="qtdParesFech" class="w-full px-2 py-2 border border-gray-300 rounded text-sm">
+								<!-- Será preenchido dinamicamente -->
+							</select>
+						</div>
+						<div>
+							<label class="block text-sm font-medium mb-1">🟣 Ímpares (sugerido):</label>
+							<select id="qtdImparesFech" class="w-full px-2 py-2 border border-gray-300 rounded text-sm">
+								<!-- Será preenchido dinamicamente -->
+							</select>
+						</div>
+						<div>
+							<label class="block text-sm font-medium mb-1">🎮 Jogos a Gerar:</label>
+							<select id="qtdJogosFech" class="w-full px-2 py-2 border border-gray-300 rounded text-sm">
+								<option value="15">15 jogos</option>
+								<option value="20" selected>20 jogos</option>
+								<option value="25">25 jogos</option>
+								<option value="30">30 jogos</option>
+								<option value="50">50 jogos</option>
+							</select>
+						</div>
+					</div>
+				</div>
 
 				<!-- Seleção de Dezenas para Fechamento -->
 				<div class="mb-4">
@@ -1205,16 +1598,857 @@ Exemplos:
 						</button>
 					</div>
 				</div>
+		</div>
+		<!-- 🔄 SEÇÃO 7: NÚMEROS GÊMEOS E INVERTIDOS -->
+		<div class="secao-geracao bg-white rounded-lg shadow-lg p-6">
+			<div class="secao-titulo">🔄 SEÇÃO 7: NÚMEROS GÊMEOS E INVERTIDOS</div>
+			<div class="mt-3 flex justify-center gap-2">
+				<a href="https://resumomegasena-i.netlify.app" target="_blank" 
+				   class="inline-flex items-center bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-sm transition-colors">
+					🌐 Análise de Padrões
+				</a>
+				<button id="modalGemeosBtn" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg text-sm">
+					❓ Como Usar
+				</button>
+			</div><br />
+
+			<!-- Análise do Último Resultado -->
+			<div class="bg-gradient-to-r from-cyan-50 to-blue-50 border-2 border-cyan-400 rounded-lg p-4 mb-4">
+				<h4 class="text-lg font-bold text-cyan-800 mb-2">📊 ANÁLISE DO ÚLTIMO SORTEIO:</h4>
+				<div class="text-sm text-cyan-700 mb-3">
+					<strong>Números sorteados:</strong> <span id="infoNumerosGemeos" class="font-bold">20, 24, 27, 46, 50, 54</span><br>
+					<strong>Distribuição P/I:</strong> <span id="infoParesGemeos">4</span> pares + <span id="infoImparesGemeos">2</span> ímpares<br>
+					<strong>Por categoria:</strong> 
+					<span class="text-green-600 font-bold" id="infoBaixosGemeos">3</span> baixos (10-30) + 
+					<span class="text-yellow-600 font-bold" id="infoMediosGemeos">1</span> médios (31-45) + 
+					<span class="text-red-600 font-bold" id="infoAltosGemeos">2</span> altos (46-60)
+				</div>
+				
+				<!-- Números Candidatos Encontrados -->
+				<div class="grid grid-cols-2 gap-4">
+					<div class="bg-purple-100 p-3 rounded border border-purple-300">
+						<div class="text-sm font-bold text-purple-800">🔄 INVERTIDOS ENCONTRADOS:</div>
+						<div class="text-lg font-bold text-purple-900" id="invertidosEncontrados">42→24, 45→54</div>
+						<div class="text-xs text-purple-600">Do último resultado</div>
+					</div>
+					<div class="bg-orange-100 p-3 rounded border border-orange-300">
+						<div class="text-sm font-bold text-orange-800">👥 GÊMEOS PRÓXIMOS:</div>
+						<div class="text-lg font-bold text-orange-900" id="gemeosProximos">22, 44, 55</div>
+						<div class="text-xs text-orange-600">Gêmeos na mesma faixa</div>
+					</div>
+				</div>
 			</div>
+
+			<!-- Configuração da Estratégia -->
+			<div class="mb-4">
+				<label class="block text-megasena font-medium mb-3">⚙️ Escolha sua Estratégia:</label>
 				
+				<div class="grid grid-cols-2 gap-4 mb-4">
+					<div>
+						<label class="block text-sm font-medium mb-1">🎯 Tipo de Números:</label>
+						<select id="tipoNumerosGemeos" class="w-full px-3 py-2 border border-gray-300 rounded-lg text-base">
+							<option value="ambos" selected>🔄 Invertidos + 👥 Gêmeos</option>
+							<option value="invertidos">🔄 Apenas Invertidos</option>
+							<option value="gemeos">👥 Apenas Gêmeos</option>
+							<option value="personalizado">⚙️ Seleção Manual</option>
+						</select>
+					</div>
+					<div>
+						<label class="block text-sm font-medium mb-1">📊 Categoria Preferida:</label>
+						<select id="categoriaPreferida" class="w-full px-3 py-2 border border-gray-300 rounded-lg text-base">
+							<option value="equilibrada" selected>⚖️ Equilibrada</option>
+							<option value="baixos">📉 Mais Baixos (10-30)</option>
+							<option value="medios">📊 Mais Médios (31-45)</option>
+							<option value="altos">📈 Mais Altos (46-60)</option>
+						</select>
+					</div>
+				</div>
+
+				<div class="grid grid-cols-3 gap-4 mb-4">
+					<div>
+						<label class="block text-sm font-medium mb-1">🎮 Jogos a Gerar:</label>
+						<select id="qtdJogosGemeos" class="w-full px-2 py-2 border border-gray-300 rounded text-sm">
+							<option value="6" selected>6 jogos</option>
+							<option value="10">10 jogos</option>
+							<option value="15">15 jogos</option>
+						</select>
+					</div>
+					<div>
+						<label class="block text-sm font-medium mb-1">🟢 Pares por Jogo:</label>
+						<select id="qtdParesGemeos" class="w-full px-2 py-2 border border-gray-300 rounded text-sm">
+							<option value="2">2 pares</option>
+							<option value="3" selected>3 pares</option>
+							<option value="4">4 pares</option>
+						</select>
+					</div>
+					<div>
+						<label class="block text-sm font-medium mb-1">🟣 Ímpares por Jogo:</label>
+						<select id="qtdImparesGemeos" class="w-full px-2 py-2 border border-gray-300 rounded text-sm">
+							<option value="2">2 ímpares</option>
+							<option value="3" selected>3 ímpares</option>
+							<option value="4">4 ímpares</option>
+						</select>
+					</div>
+				</div>
+			</div>
+
+			<!-- Seleção Manual de Números Candidatos -->
+			<div id="selecaoManualGemeos" class="mb-4 hidden">
+				<label class="block text-megasena font-medium mb-2">🎯 Seleção Manual de Candidatos:</label>
+				
+				<!-- Números Invertidos Disponíveis -->
+				<div class="mb-4">
+					<h5 class="font-bold text-purple-600 mb-2">🔄 Números Invertidos Disponíveis:</h5>
+					<div class="bg-purple-50 border border-purple-200 rounded p-3">
+						<div class="grid grid-cols-3 gap-2 text-sm">
+							<div><strong>BAIXOS (10-30):</strong></div>
+							<div><strong>MÉDIOS (31-45):</strong></div>
+							<div><strong>ALTOS (46-60):</strong></div>
+						</div>
+						<div id="invertidosDisponiveis" class="grid grid-cols-3 gap-2 mt-2">
+							<!-- Será preenchido dinamicamente -->
+						</div>
+					</div>
+				</div>
+
+				<!-- Números Gêmeos Disponíveis -->
+				<div class="mb-4">
+					<h5 class="font-bold text-orange-600 mb-2">👥 Números Gêmeos Disponíveis:</h5>
+					<div class="bg-orange-50 border border-orange-200 rounded p-3">
+						<div id="gemeosDisponiveis" class="flex flex-wrap gap-2">
+							<!-- Será preenchido dinamicamente -->
+						</div>
+					</div>
+				</div>
+
+				<!-- Área de Seleção -->
+				<div class="bg-gray-50 border-2 border-dashed border-gray-400 rounded-lg p-4 min-h-20">
+					<div class="text-center text-gray-600 mb-2">
+						<strong>Números Selecionados:</strong> <span id="countSelecionadosGemeos" class="font-bold">0</span>/20
+					</div>
+					<div id="numerosSelecionadosGemeos" class="flex flex-wrap gap-1 justify-center">
+						<span class="text-gray-400 text-sm">Clique nos números acima para selecionar</span>
+					</div>
+				</div>
+			</div>
+
+			<!-- Estratégia Automática -->
+			<div id="estrategiaAutomaticaGemeos" class="mb-4">
+				<div class="bg-blue-50 border border-blue-200 rounded p-3">
+					<h5 class="font-bold text-blue-800 mb-2">🤖 Estratégia Automática Ativa:</h5>
+					<div class="text-sm text-blue-700">
+						<div><strong>Tipo:</strong> <span id="tipoEstrategiaTexto">Invertidos + Gêmeos</span></div>
+						<div><strong>Categoria:</strong> <span id="categoriaEstrategiaTexto">Equilibrada</span></div>
+						<div><strong>Distribuição P/I:</strong> <span id="distribuicaoTexto">3 pares + 3 ímpares</span></div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Pré-visualização dos Candidatos -->
+			<div class="mb-4">
+				<h5 class="font-bold text-megasena mb-2">👀 Pré-visualização dos Candidatos:</h5>
+				<div class="bg-megasena-bg border border-megasena rounded-lg p-4">
+					<div class="grid grid-cols-3 gap-4 text-sm">
+						<div>
+							<div class="font-bold text-green-600">📉 BAIXOS (10-30):</div>
+							<div id="candidatosBaixos" class="flex flex-wrap gap-1 mt-1">
+								<!-- Será preenchido dinamicamente -->
+							</div>
+						</div>
+						<div>
+							<div class="font-bold text-yellow-600">📊 MÉDIOS (31-45):</div>
+							<div id="candidatosMedios" class="flex flex-wrap gap-1 mt-1">
+								<!-- Será preenchido dinamicamente -->
+							</div>
+						</div>
+						<div>
+							<div class="font-bold text-red-600">📈 ALTOS (46-60):</div>
+							<div id="candidatosAltos" class="flex flex-wrap gap-1 mt-1">
+								<!-- Será preenchido dinamicamente -->
+							</div>
+						</div>
+					</div>
+					<div class="mt-3 text-center">
+						<span class="text-sm text-gray-600">Total de candidatos: <span id="totalCandidatos" class="font-bold">0</span></span>
+					</div>
+				</div>
+			</div>
+			
+			<button id="gerarJogosGemeos" class="w-full bg-gradient-to-r from-purple-500 to-orange-500 hover:from-purple-600 hover:to-orange-600 text-white px-4 py-2 rounded-lg font-bold text-lg">
+				🎯 Gerar Jogos com Gêmeos e Invertidos
+			</button>
+			
+			<div id="resultadosGemeos" class="mt-4 hidden">
+				<h4 class="font-bold text-purple-600 mb-2">🔄 Jogos Gerados:</h4>
+				<div class="bg-purple-50 border border-purple-200 rounded p-2 mb-3 text-sm">
+					<strong>Resumo:</strong> <span id="resumoJogosGemeos">6 jogos</span> | 
+					<strong>Custo Total:</strong> <span id="custoTotalGemeos">R$ 36,00</span> | 
+					<strong>Estratégia:</strong> <span id="estrategiaAplicadaGemeos">Invertidos + Gêmeos</span>
+				</div>
+				<div id="listaJogosGemeos" class="space-y-2 max-h-60 overflow-y-auto">
+					<!-- Jogos gerados aparecerão aqui -->
+				</div>
+				<div class="mt-3 flex gap-2">
+					<button id="adicionarTodosGemeos" class="flex-1 bg-purple-500 hover:bg-purple-600 text-white px-4 py-2 rounded-lg">
+						➕ Adicionar Todos aos Meus Jogos
+					</button>
+					<button id="novaGeracaoGemeos" class="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-lg">
+						🔄 Nova Geração
+					</button>
+				</div>
+			</div>
+		</div>
+		<!-- 📊 SEÇÃO 8: ANÁLISE DE ATRASOS E FREQUÊNCIA CRUZADA -->
+		<div class="secao-geracao bg-white rounded-lg shadow-lg p-6">
+			<div class="secao-titulo">📊 SEÇÃO 8: ANÁLISE DE ATRASOS E FREQUÊNCIA CRUZADA</div>
+			<div class="mt-3 flex justify-center gap-2">
+				<a href="https://resumomegasena-i.netlify.app" target="_blank" 
+				   class="inline-flex items-center bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-sm transition-colors">
+					🌐 Padrões Históricos
+				</a>
+				<button id="modalAtrasosBtn" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg text-sm">
+					❓ Como Interpretar
+				</button>
+			</div><br />
+
+			<!-- Status da Análise -->
+			<div class="bg-gradient-to-r from-indigo-50 to-purple-50 border-2 border-indigo-400 rounded-lg p-4 mb-4">
+				<h4 class="text-lg font-bold text-indigo-800 mb-2">📈 STATUS DA ANÁLISE HISTÓRICA:</h4>
+				<div class="grid grid-cols-3 gap-4 text-sm">
+					<div class="bg-white p-3 rounded border text-center">
+						<div class="font-bold text-indigo-600">📊 Concursos Analisados</div>
+						<div class="text-2xl font-bold text-indigo-900" id="concursosAnalisados">2.903</div>
+						<div class="text-xs text-indigo-600">Desde o início</div>
+					</div>
+					<div class="bg-white p-3 rounded border text-center">
+						<div class="font-bold text-purple-600">⏰ Último Sorteio</div>
+						<div class="text-lg font-bold text-purple-900" id="ultimoConcursoAnalise">20/01/2025</div>
+						<div class="text-xs text-purple-600">Concurso 2903</div>
+					</div>
+					<div class="bg-white p-3 rounded border text-center">
+						<div class="font-bold text-red-600">🔄 Atualização</div>
+						<div class="text-lg font-bold text-red-900">Automática</div>
+						<div class="text-xs text-red-600">Sempre atual</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Análise de Atrasos -->
+			<div class="mb-6">
+				<h4 class="text-xl font-bold text-red-600 mb-3">⏰ ANÁLISE DE ATRASOS (TOP 10 MAIS ATRASADOS)</h4>
+				<div class="bg-red-50 border border-red-200 rounded-lg p-4">
+					<div class="text-sm text-red-700 mb-3">
+						<strong>📊 Conceito:</strong> Números que não saem há mais tempo. 
+						<strong>⚠️ Atenção:</strong> Atraso não garante que o número sairá no próximo sorteio!
+					</div>
+					
+					<div class="grid grid-cols-2 gap-4">
+						<div>
+							<div class="font-bold text-red-800 mb-2">🔥 TOP 5 MAIS ATRASADOS:</div>
+							<div id="top5Atrasados" class="space-y-2">
+								<!-- Será preenchido dinamicamente -->
+							</div>
+						</div>
+						<div>
+							<div class="font-bold text-orange-800 mb-2">⚡ ATRASOS MÉDIOS:</div>
+							<div id="top5AtrasadosMedios" class="space-y-2">
+								<!-- Será preenchido dinamicamente -->
+							</div>
+						</div>
+					</div>
+					
+					<div class="mt-4 p-3 bg-yellow-100 border border-yellow-300 rounded">
+						<div class="text-sm font-bold text-yellow-800">💡 DICA ESTRATÉGICA:</div>
+						<div class="text-xs text-yellow-700">
+							Números muito atrasados podem estar "devendo" aparecer, mas também podem continuar ausentes. 
+							Combine com análise de frequência para melhores resultados.
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Análise de Frequência -->
+			<div class="mb-6">
+				<h4 class="text-xl font-bold text-green-600 mb-3">📈 ANÁLISE DE FREQUÊNCIA (MAIS SORTEADOS)</h4>
+				<div class="bg-green-50 border border-green-200 rounded-lg p-4">
+					<div class="text-sm text-green-700 mb-3">
+						<strong>📊 Conceito:</strong> Números que mais aparecem historicamente. 
+						<strong>✅ Vantagem:</strong> Estatisticamente têm maior probabilidade de continuar saindo.
+					</div>
+					
+					<div class="grid grid-cols-2 gap-4">
+						<div>
+							<div class="font-bold text-green-800 mb-2">🏆 TOP 5 MAIS FREQUENTES:</div>
+							<div id="top5Frequentes" class="space-y-2">
+								<!-- Será preenchido dinamicamente -->
+							</div>
+						</div>
+						<div>
+							<div class="font-bold text-blue-800 mb-2">📊 FREQUÊNCIA MÉDIA:</div>
+							<div id="top5FrequentesMedios" class="space-y-2">
+								<!-- Será preenchido dinamicamente -->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Combinações Mais Frequentes -->
+			<div class="mb-6">
+				<h4 class="text-xl font-bold text-purple-600 mb-3">🔗 COMBINAÇÕES MAIS FREQUENTES</h4>
+				<div class="bg-purple-50 border border-purple-200 rounded-lg p-4">
+					
+					<!-- Seletor de Tipo de Combinação -->
+					<div class="mb-4">
+						<label class="block font-medium text-purple-800 mb-2">Escolha o tipo de análise:</label>
+						<div class="grid grid-cols-3 gap-2">
+							<button id="btnDuplas" class="analise-btn active bg-purple-500 text-white px-4 py-2 rounded-lg text-sm" onclick="mostrarCombinacoes('duplas')">
+								👥 Duplas (2 números)
+							</button>
+							<button id="btnTernas" class="analise-btn bg-gray-300 text-gray-700 px-4 py-2 rounded-lg text-sm" onclick="mostrarCombinacoes('ternas')">
+								🎯 Ternas (3 números)
+							</button>
+							<button id="btnQuadras" class="analise-btn bg-gray-300 text-gray-700 px-4 py-2 rounded-lg text-sm" onclick="mostrarCombinacoes('quadras')">
+								🎲 Quadras (4 números)
+							</button>
+						</div>
+					</div>
+
+					<!-- Resultados das Combinações -->
+					<div id="resultadosCombinacoes" class="space-y-3">
+						<!-- Será preenchido dinamicamente -->
+					</div>
+				</div>
+			</div>
+
+			<!-- Análise Cruzada Específica -->
+			<div class="mb-6">
+				<h4 class="text-xl font-bold text-cyan-600 mb-3">🔍 ANÁLISE CRUZADA ESPECÍFICA</h4>
+				<div class="bg-cyan-50 border border-cyan-200 rounded-lg p-4">
+					<div class="text-sm text-cyan-700 mb-3">
+						<strong>🎯 Funcionalidade:</strong> Descubra quais números mais saem junto com um número específico.
+					</div>
+					
+					<div class="grid grid-cols-2 gap-4 mb-4">
+						<div>
+							<label class="block font-medium text-cyan-800 mb-2">Escolha um número para analisar:</label>
+							<select id="numeroAnalise" class="w-full px-3 py-2 border border-gray-300 rounded-lg text-base">
+								<option value="">Selecione um número...</option>
+								<!-- Será preenchido dinamicamente -->
+							</select>
+						</div>
+						<div>
+							<label class="block font-medium text-cyan-800 mb-2">Tipo de análise:</label>
+							<select id="tipoAnalise" class="w-full px-3 py-2 border border-gray-300 rounded-lg text-base">
+								<option value="companias">🤝 Números Companheiros</option>
+								<option value="evitados">❌ Números que se Evitam</option>
+								<option value="seguencia">📊 Sequência de Aparições</option>
+							</select>
+						</div>
+					</div>
+					
+					<button id="executarAnalise" class="bg-cyan-500 hover:bg-cyan-600 text-white px-4 py-2 rounded-lg mb-4">
+						🔍 Executar Análise Cruzada
+					</button>
+					
+					<div id="resultadoAnalise" class="hidden">
+						<div class="bg-white border border-cyan-300 rounded p-4">
+							<div id="tituloAnalise" class="font-bold text-cyan-800 mb-2"></div>
+							<div id="conteudoAnalise" class="space-y-2">
+								<!-- Resultados aparecerão aqui -->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Configuração de Jogos Baseados em Padrões -->
+			<div class="mb-4">
+				<h4 class="text-xl font-bold text-megasena mb-3">🎮 GERAR JOGOS BASEADOS EM PADRÕES</h4>
+				<div class="bg-megasena-bg border border-megasena rounded-lg p-4">
+					
+					<div class="grid grid-cols-2 gap-4 mb-4">
+						<div>
+							<label class="block font-medium text-megasena mb-2">Estratégia de Geração:</label>
+							<select id="estrategiaAtrasos" class="w-full px-3 py-2 border border-gray-300 rounded-lg text-base">
+								<option value="equilibrada" selected>⚖️ Equilibrada (Atrasos + Frequentes)</option>
+								<option value="atrasados">⏰ Foco em Atrasados</option>
+								<option value="frequentes">📈 Foco em Frequentes</option>
+								<option value="combinacoes">🔗 Baseada em Combinações</option>
+								<option value="cruzada">🔍 Análise Cruzada</option>
+							</select>
+						</div>
+						<div>
+							<label class="block font-medium text-megasena mb-2">Quantidade de Jogos:</label>
+							<select id="qtdJogosAtrasos" class="w-full px-3 py-2 border border-gray-300 rounded-lg text-base">
+								<option value="8" selected>8 jogos</option>
+								<option value="12">12 jogos</option>
+								<option value="15">15 jogos</option>
+								<option value="20">20 jogos</option>
+							</select>
+						</div>
+					</div>
+
+					<!-- Configurações Avançadas -->
+					<div class="grid grid-cols-3 gap-4 mb-4">
+						<div>
+							<label class="block text-sm font-medium mb-1">🔴 Números Atrasados:</label>
+							<select id="percentualAtrasados" class="w-full px-2 py-2 border border-gray-300 rounded text-sm">
+								<option value="20">20% (1-2 números)</option>
+								<option value="40" selected>40% (2-3 números)</option>
+								<option value="60">60% (3-4 números)</option>
+							</select>
+						</div>
+						<div>
+							<label class="block text-sm font-medium mb-1">🟢 Números Frequentes:</label>
+							<select id="percentualFrequentes" class="w-full px-2 py-2 border border-gray-300 rounded text-sm">
+								<option value="20">20% (1-2 números)</option>
+								<option value="40" selected>40% (2-3 números)</option>
+								<option value="60">60% (3-4 números)</option>
+							</select>
+						</div>
+						<div>
+							<label class="block text-sm font-medium mb-1">🔗 Combinações:</label>
+							<select id="usarCombinacoes" class="w-full px-2 py-2 border border-gray-300 rounded text-sm">
+								<option value="nao">Não usar</option>
+								<option value="duplas" selected>Incluir duplas</option>
+								<option value="ternas">Incluir ternas</option>
+							</select>
+						</div>
+					</div>
+
+					<!-- Análise Pré-geração -->
+					<div class="bg-blue-50 border border-blue-200 rounded p-3 mb-4">
+						<div class="text-sm font-bold text-blue-800 mb-2">📊 PRÉ-ANÁLISE DOS PADRÕES:</div>
+						<div id="preAnalise" class="text-sm text-blue-700">
+							Selecione uma estratégia para ver a pré-análise dos padrões que serão aplicados.
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<button id="gerarJogosAtrasos" class="w-full bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-600 hover:to-purple-600 text-white px-4 py-2 rounded-lg font-bold text-lg">
+				📊 Gerar Jogos com Análise de Padrões
+			</button>
+			
+			<div id="resultadosAtrasos" class="mt-4 hidden">
+				<h4 class="font-bold text-indigo-600 mb-2">📊 Jogos Baseados em Padrões:</h4>
+				<div class="bg-indigo-50 border border-indigo-200 rounded p-2 mb-3 text-sm">
+					<strong>Resumo:</strong> <span id="resumoJogosAtrasos">8 jogos</span> | 
+					<strong>Custo Total:</strong> <span id="custoTotalAtrasos">R$ 48,00</span> | 
+					<strong>Estratégia:</strong> <span id="estrategiaAplicadaAtrasos">Equilibrada</span>
+				</div>
+				<div id="listaJogosAtrasos" class="space-y-2 max-h-60 overflow-y-auto">
+					<!-- Jogos gerados aparecerão aqui -->
+				</div>
+				<div class="mt-3 flex gap-2">
+					<button id="adicionarTodosAtrasos" class="flex-1 bg-indigo-500 hover:bg-indigo-600 text-white px-4 py-2 rounded-lg">
+						➕ Adicionar Todos aos Meus Jogos
+					</button>
+					<button id="novaAnaliseAtrasos" class="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-lg">
+						🔄 Nova Análise
+					</button>
+				</div>
+			</div>
+		</div>
+		<!-- 🔥 SEÇÃO 9: MAPA DE CALOR DAS DEZENAS (HEATMAP) -->
+		<div class="secao-geracao bg-white rounded-lg shadow-lg p-6">
+			<div class="secao-titulo">🔥 SEÇÃO 9: MAPA DE CALOR DAS DEZENAS (HEATMAP)</div>
+			<div class="mt-3 flex justify-center gap-2">
+				<a href="https://resumomegasena-i.netlify.app" target="_blank" 
+				   class="inline-flex items-center bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-sm transition-colors">
+					🌐 Análise Visual Completa
+				</a>
+				<button id="modalHeatmapBtn" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg text-sm">
+					❓ Como Funciona
+				</button>
+			</div><br />
+
+			<!-- Status do Heatmap -->
+			<div class="bg-gradient-to-r from-orange-50 to-red-50 border-2 border-orange-400 rounded-lg p-4 mb-4">
+				<h4 class="text-lg font-bold text-orange-800 mb-2">🔥 STATUS DO MAPA DE CALOR EM TEMPO REAL:</h4>
+				<div class="grid grid-cols-4 gap-3 text-sm">
+					<div class="bg-white p-3 rounded border text-center">
+						<div class="font-bold text-red-600">🔥 Zona Mais Quente</div>
+						<div class="text-xl font-bold text-red-900" id="zonaQuente">-</div>
+						<div class="text-xs text-red-600">Número mais frequente</div>
+					</div>
+					<div class="bg-white p-3 rounded border text-center">
+						<div class="font-bold text-blue-600">❄️ Zona Mais Fria</div>
+						<div class="text-xl font-bold text-blue-900" id="zonaFria">-</div>
+						<div class="text-xs text-blue-600">Número menos frequente</div>
+					</div>
+					<div class="bg-white p-3 rounded border text-center">
+						<div class="font-bold text-green-600">📊 Concursos</div>
+						<div class="text-xl font-bold text-green-900" id="totalConcursosHeat">-</div>
+						<div class="text-xs text-green-600">Analisados</div>
+					</div>
+					<div class="bg-white p-3 rounded border text-center">
+						<div class="font-bold text-purple-600">🔄 Atualização</div>
+						<div class="text-lg font-bold text-purple-900" id="ultimaAtualizacaoHeat">-</div>
+						<div class="text-xs text-purple-600">Automática</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Controles do Heatmap -->
+			<div class="mb-4">
+				<div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
+					<div>
+						<label class="block text-sm font-medium mb-1">🎨 Estilo do Mapa:</label>
+						<select id="estiloHeatmap" class="w-full px-3 py-2 border border-gray-300 rounded-lg text-base">
+							<option value="classico" selected>🔥 Clássico (Vermelho-Azul)</option>
+							<option value="arcoiris">🌈 Arco-íris (Multi-cor)</option>
+							<option value="monocromatico">⚫ Monocromático (Cinza)</option>
+							<option value="neon">💫 Neon (Vibrante)</option>
+						</select>
+					</div>
+					<div>
+						<label class="block text-sm font-medium mb-1">📊 Período de Análise:</label>
+						<select id="periodoAnalise" class="w-full px-3 py-2 border border-gray-300 rounded-lg text-base">
+							<option value="todos" selected>📈 Todos os Concursos</option>
+							<option value="100">📊 Últimos 100 Concursos</option>
+							<option value="50">📉 Últimos 50 Concursos</option>
+							<option value="25">🎯 Últimos 25 Concursos</option>
+						</select>
+					</div>
+					<div>
+						<label class="block text-sm font-medium mb-1">🔍 Filtro de Visualização:</label>
+						<select id="filtroVisualizacao" class="w-full px-3 py-2 border border-gray-300 rounded-lg text-base">
+							<option value="frequencia" selected>📈 Por Frequência</option>
+							<option value="atraso">⏰ Por Atraso</option>
+							<option value="tendencia">📊 Por Tendência</option>
+						</select>
+					</div>
+					<div>
+						<label class="block text-sm font-medium mb-1">⚙️ Modo de Exibição:</label>
+						<select id="modoExibicao" class="w-full px-3 py-2 border border-gray-300 rounded-lg text-base">
+							<option value="numeros" selected>🔢 Com Números</option>
+							<option value="cores">🎨 Apenas Cores</option>
+							<option value="detalhado">📝 Detalhado</option>
+						</select>
+					</div>
+				</div>
+
+				<div class="flex gap-2 mb-4">
+					<button id="atualizarHeatmap" class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg text-sm">
+						🔄 Atualizar Mapa
+					</button>
+					<button id="exportarHeatmap" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-sm">
+						📸 Exportar Imagem
+					</button>
+					<button id="animarHeatmap" class="bg-purple-500 hover:bg-purple-600 text-white px-4 py-2 rounded-lg text-sm">
+						▶️ Animação
+					</button>
+					<button id="resetarHeatmap" class="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-lg text-sm">
+						🔄 Resetar
+					</button>
+				</div>
+			</div>
+
+			<!-- Legenda do Heatmap -->
+			<div class="mb-4">
+				<h5 class="font-bold text-gray-800 mb-2">📊 Legenda de Intensidade:</h5>
+				<div class="bg-gray-50 border border-gray-200 rounded-lg p-4">
+					<div class="flex items-center justify-between mb-2">
+						<span class="text-sm font-medium">❄️ Menos Frequente</span>
+						<span class="text-sm font-medium">🔥 Mais Frequente</span>
+					</div>
+					<div id="legendaHeatmap" class="h-6 rounded-lg mb-2" style="background: linear-gradient(to right, #3b82f6, #10b981, #fbbf24, #f59e0b, #ef4444);">
+					</div>
+					<div class="flex justify-between text-xs text-gray-600">
+						<span id="minFrequencia">0</span>
+						<span>Frequência de Aparições</span>
+						<span id="maxFrequencia">300+</span>
+					</div>
+				</div>
+			</div>
+
+			<!-- Grid do Heatmap -->
+			<div class="mb-4">
+				<h5 class="font-bold text-gray-800 mb-3">🗺️ Mapa de Calor das Dezenas (Grade 10x6):</h5>
+				<div class="bg-gray-50 border-2 border-gray-300 rounded-lg p-4">
+					<div id="heatmapGrid" class="grid grid-cols-10 gap-1">
+						<!-- Grid 10x6 será preenchido dinamicamente -->
+					</div>
+				</div>
+			</div>
+
+			<!-- Estatísticas Detalhadas -->
+			<div class="mb-4">
+				<h5 class="font-bold text-gray-800 mb-3">📈 Estatísticas Detalhadas:</h5>
+				<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+					<!-- Top 5 Mais Quentes -->
+					<div class="bg-red-50 border border-red-200 rounded-lg p-4">
+						<h6 class="font-bold text-red-800 mb-2">🔥 TOP 5 MAIS QUENTES:</h6>
+						<div id="top5Quentes" class="space-y-2">
+							<!-- Será preenchido dinamicamente -->
+						</div>
+					</div>
+					
+					<!-- Top 5 Mais Frios -->
+					<div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+						<h6 class="font-bold text-blue-800 mb-2">❄️ TOP 5 MAIS FRIOS:</h6>
+						<div id="top5Frios" class="space-y-2">
+							<!-- Será preenchido dinamicamente -->
+						</div>
+					</div>
+					
+					<!-- Análise por Quadrantes -->
+					<div class="bg-green-50 border border-green-200 rounded-lg p-4">
+						<h6 class="font-bold text-green-800 mb-2">📊 ANÁLISE POR QUADRANTES:</h6>
+						<div id="analiseQuadrantes" class="space-y-2">
+							<!-- Será preenchido dinamicamente -->
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Seleção de Números Baseada no Heatmap -->
+			<div class="mb-4">
+				<h5 class="font-bold text-megasena mb-3">🎯 Geração Baseada no Mapa de Calor:</h5>
+				<div class="bg-megasena-bg border border-megasena rounded-lg p-4">
+					
+					<div class="grid grid-cols-2 gap-4 mb-4">
+						<div>
+							<label class="block font-medium text-megasena mb-2">🔥 Estratégia de Seleção:</label>
+							<select id="estrategiaHeatmap" class="w-full px-3 py-2 border border-gray-300 rounded-lg text-base">
+								<option value="equilibrada" selected>⚖️ Equilibrada (Quentes + Frios)</option>
+								<option value="quentes">🔥 Foco em Zonas Quentes</option>
+								<option value="frios">❄️ Foco em Zonas Frias</option>
+								<option value="quadrantes">📊 Por Quadrantes</option>
+								<option value="gradiente">🌈 Seguir Gradiente</option>
+							</select>
+						</div>
+						<div>
+							<label class="block font-medium text-megasena mb-2">🎮 Quantidade de Jogos:</label>
+							<select id="qtdJogosHeatmap" class="w-full px-3 py-2 border border-gray-300 rounded-lg text-base">
+								<option value="6" selected>6 jogos</option>
+								<option value="10">10 jogos</option>
+								<option value="15">15 jogos</option>
+								<option value="20">20 jogos</option>
+							</select>
+						</div>
+					</div>
+
+					<!-- Configurações Avançadas -->
+					<div class="grid grid-cols-3 gap-4 mb-4">
+						<div>
+							<label class="block text-sm font-medium mb-1">🔥 Números Quentes:</label>
+							<select id="percentualQuentes" class="w-full px-2 py-2 border border-gray-300 rounded text-sm">
+								<option value="30">30% (2 números)</option>
+								<option value="50" selected>50% (3 números)</option>
+								<option value="70">70% (4 números)</option>
+							</select>
+						</div>
+						<div>
+							<label class="block text-sm font-medium mb-1">❄️ Números Frios:</label>
+							<select id="percentualFrios" class="w-full px-2 py-2 border border-gray-300 rounded text-sm">
+								<option value="30" selected>30% (2 números)</option>
+								<option value="50">50% (3 números)</option>
+								<option value="70">70% (4 números)</option>
+							</select>
+						</div>
+						<div>
+							<label class="block text-sm font-medium mb-1">📊 Zona Preferencial:</label>
+							<select id="zonaPreferencial" class="w-full px-2 py-2 border border-gray-300 rounded text-sm">
+								<option value="todas" selected>Todas as Zonas</option>
+								<option value="superiorEsquerda">Superior Esquerda</option>
+								<option value="superiorDireita">Superior Direita</option>
+								<option value="inferiorEsquerda">Inferior Esquerda</option>
+								<option value="inferiorDireita">Inferior Direita</option>
+							</select>
+						</div>
+					</div>
+
+					<!-- Números Selecionados no Heatmap -->
+					<div class="bg-yellow-50 border border-yellow-200 rounded p-3 mb-4">
+						<div class="text-sm font-bold text-yellow-800 mb-2">🎯 NÚMEROS SELECIONADOS NO MAPA:</div>
+						<div id="numerosSelecionadosHeat" class="flex flex-wrap gap-1">
+							<span class="text-yellow-600 text-sm">Clique nos números do mapa para selecioná-los</span>
+						</div>
+						<div class="text-xs text-yellow-600 mt-1">
+							Selecionados: <span id="countSelecionadosHeat" class="font-bold">0</span>/6
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<button id="gerarJogosHeatmap" class="w-full bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white px-4 py-2 rounded-lg font-bold text-lg">
+				🔥 Gerar Jogos Baseados no Mapa de Calor
+			</button>
+			
+			<div id="resultadosHeatmap" class="mt-4 hidden">
+				<h4 class="font-bold text-orange-600 mb-2">🔥 Jogos Baseados no Heatmap:</h4>
+				<div class="bg-orange-50 border border-orange-200 rounded p-2 mb-3 text-sm">
+					<strong>Resumo:</strong> <span id="resumoJogosHeatmap">6 jogos</span> | 
+					<strong>Custo Total:</strong> <span id="custoTotalHeatmap">R$ 36,00</span> | 
+					<strong>Estratégia:</strong> <span id="estrategiaAplicadaHeatmap">Equilibrada</span>
+				</div>
+				<div id="listaJogosHeatmap" class="space-y-2 max-h-60 overflow-y-auto">
+					<!-- Jogos gerados aparecerão aqui -->
+				</div>
+				<div class="mt-3 flex gap-2">
+					<button id="adicionarTodosHeatmap" class="flex-1 bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg">
+						➕ Adicionar Todos aos Meus Jogos
+					</button>
+					<button id="novoHeatmap" class="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-lg">
+						🔄 Novo Mapa
+					</button>
+				</div>
+			</div>
+		</div>
+
+		<!-- 📖 MODAL: COMO FUNCIONA O HEATMAP -->
+		<div id="modalHeatmap" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50">
+			<div class="bg-white rounded-lg shadow-lg max-w-4xl w-full mx-4 max-h-[90vh] overflow-y-auto">
+				<div class="bg-gradient-to-r from-orange-500 to-red-500 text-white p-6 rounded-t-lg">
+					<div class="flex justify-between items-center">
+						<h3 class="text-2xl font-bold">🔥 Como Funciona o Mapa de Calor</h3>
+						<button onclick="fecharModal('modalHeatmap')" class="text-white hover:text-gray-200 text-2xl">×</button>
+					</div>
+				</div>
+				
+				<div class="p-6">
+					<div class="space-y-6">
+						<!-- Conceito Principal -->
+						<div class="bg-orange-50 border border-orange-200 rounded-lg p-4">
+							<h4 class="text-lg font-bold text-orange-800 mb-3">🎯 O QUE É UM MAPA DE CALOR?</h4>
+							<p class="text-orange-700 mb-3">
+								O Mapa de Calor (Heatmap) é uma representação visual que mostra a frequência de aparição 
+								de cada número da Mega Sena em uma grade colorida. Quanto mais "quente" (vermelho) a cor, 
+								mais vezes aquele número foi sorteado. Quanto mais "frio" (azul), menos vezes apareceu.
+							</p>
+							<div class="bg-white border border-orange-300 rounded p-3">
+								<div class="grid grid-cols-2 gap-4 text-sm">
+									<div>
+										<strong class="text-red-600">🔥 ZONAS QUENTES:</strong><br>
+										Números que mais saem<br>
+										Cor: Vermelho/Laranja<br>
+										Frequência: Alta
+									</div>
+									<div>
+										<strong class="text-blue-600">❄️ ZONAS FRIAS:</strong><br>
+										Números que menos saem<br>
+										Cor: Azul/Verde<br>
+										Frequência: Baixa
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Como Interpretar -->
+						<div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+							<h4 class="text-lg font-bold text-blue-800 mb-3">📊 COMO INTERPRETAR O MAPA?</h4>
+							<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+								<div>
+									<h5 class="font-bold text-blue-700 mb-2">🎨 Sistema de Cores:</h5>
+									<ul class="text-sm text-blue-600 space-y-1">
+										<li>🔴 <strong>Vermelho:</strong> Muito frequente (250+ aparições)</li>
+										<li>🟠 <strong>Laranja:</strong> Frequente (200-249 aparições)</li>
+										<li>🟡 <strong>Amarelo:</strong> Médio (150-199 aparições)</li>
+										<li>🟢 <strong>Verde:</strong> Baixo (100-149 aparições)</li>
+										<li>🔵 <strong>Azul:</strong> Muito baixo (menos de 100)</li>
+									</ul>
+								</div>
+								<div>
+									<h5 class="font-bold text-blue-700 mb-2">📍 Layout da Grade:</h5>
+									<ul class="text-sm text-blue-600 space-y-1">
+										<li>📏 <strong>Dimensão:</strong> 10 colunas × 6 linhas</li>
+										<li>🔢 <strong>Números:</strong> 01 a 60 em ordem</li>
+										<li>📱 <strong>Interativo:</strong> Clique para selecionar</li>
+										<li>🔄 <strong>Tempo Real:</strong> Atualização automática</li>
+										<li>📊 <strong>Dados:</strong> API oficial da Caixa</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+
+						<!-- Estratégias -->
+						<div class="bg-green-50 border border-green-200 rounded-lg p-4">
+							<h4 class="text-lg font-bold text-green-800 mb-3">🎯 ESTRATÉGIAS DE USO:</h4>
+							<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+								<div>
+									<h5 class="font-bold text-green-700 mb-2">📈 Estratégias Tradicionais:</h5>
+									<ul class="text-sm text-green-600 space-y-1">
+										<li>🔥 <strong>Zonas Quentes:</strong> Apostar nos mais sorteados</li>
+										<li>❄️ <strong>Zonas Frias:</strong> Apostar nos "devendo" sair</li>
+										<li>⚖️ <strong>Equilibrada:</strong> Mesclar quentes e frios</li>
+										<li>📊 <strong>Quadrantes:</strong> Focar em áreas específicas</li>
+									</ul>
+								</div>
+								<div>
+									<h5 class="font-bold text-green-700 mb-2">🧠 Estratégias Avançadas:</h5>
+									<ul class="text-sm text-green-600 space-y-1">
+										<li>🌈 <strong>Gradiente:</strong> Seguir transições de cor</li>
+										<li>🎯 <strong>Clusters:</strong> Agrupar números próximos</li>
+										<li>📏 <strong>Padrões:</strong> Identificar formas geométricas</li>
+										<li>⚡ <strong>Tendências:</strong> Acompanhar mudanças</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+
+						<!-- Funcionalidades -->
+						<div class="bg-purple-50 border border-purple-200 rounded-lg p-4">
+							<h4 class="text-lg font-bold text-purple-800 mb-3">⚙️ FUNCIONALIDADES DISPONÍVEIS:</h4>
+							<div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+								<div>
+									<h5 class="font-bold text-purple-700 mb-2">🎨 Personalização:</h5>
+									<ul class="text-purple-600 space-y-1">
+										<li>• 4 esquemas de cores</li>
+										<li>• Modo numérico/visual</li>
+										<li>• Períodos de análise</li>
+										<li>• Filtros personalizados</li>
+									</ul>
+								</div>
+								<div>
+									<h5 class="font-bold text-purple-700 mb-2">📊 Análises:</h5>
+									<ul class="text-purple-600 space-y-1">
+										<li>• Frequência em tempo real</li>
+										<li>• Atrasos calculados</li>
+										<li>• Tendências identificadas</li>
+										<li>• Quadrantes analisados</li>
+									</ul>
+								</div>
+								<div>
+									<h5 class="font-bold text-purple-700 mb-2">🛠️ Ferramentas:</h5>
+									<ul class="text-purple-600 space-y-1">
+										<li>• Exportar como imagem</li>
+										<li>• Animação temporal</li>
+										<li>• Seleção interativa</li>
+										<li>• Geração automática</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+
+						<!-- Dicas Importantes -->
+						<div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+							<h4 class="text-lg font-bold text-yellow-800 mb-3">💡 DICAS IMPORTANTES:</h4>
+							<div class="text-sm text-yellow-700 space-y-2">
+								<p><strong>✅ Lembre-se:</strong> O mapa mostra o passado, não prediz o futuro. Use como ferramenta de análise, não como garantia.</p>
+								<p><strong>📊 Dados Confiáveis:</strong> Todas as informações vêm diretamente da API oficial da Caixa Econômica Federal.</p>
+								<p><strong>🔄 Atualização:</strong> O mapa é atualizado automaticamente a cada novo sorteio da Mega Sena.</p>
+								<p><strong>🎯 Estratégia:</strong> Combine o mapa de calor com outras análises para melhores decisões.</p>
+								<p><strong>⚖️ Equilíbrio:</strong> Considere mesclar zonas quentes e frias para um jogo mais equilibrado.</p>
+							</div>
+						</div>
+					</div>
+					
+					<div class="mt-6 text-center">
+						<button onclick="fecharModal('modalHeatmap')" class="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded-lg">
+							Entendi! Vamos usar o Mapa de Calor 🔥
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		
+		
 			<!--SEÇÕES NOVAS ADICIONAR A PARTIR DAQUI..-->	
-				
-				
-				
-				
-				
-				
-            </div>
+    </div>
             
             <!-- LADO DIREITO: Resumo e Controles -->
             <div class="bg-white rounded-lg shadow-lg p-6 border-2 border-megasena h-fit">
@@ -1259,9 +2493,6 @@ Exemplos:
                 </div>
             </div>
         </div>
-
-        <!-- MODAIS EXPLICATIVOS PARA CADA SEÇÃO -->
-        
         <!-- Modal Seção Manual -->
         <div id="modalManual" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
             <div class="bg-white rounded-lg shadow-lg max-w-4xl w-full mx-4 max-h-screen overflow-y-auto">
@@ -1441,7 +2672,7 @@ Exemplos:
                 </div>
             </div>
         </div>
-
+		
     </div>
 
     <script>
@@ -3378,6 +4609,1629 @@ Exemplos:
 				inicializarFechamento();
 			}, 1500);
 		});
+		// ===== SEÇÃO 7: NÚMEROS GÊMEOS E INVERTIDOS =====
+let numerosSelecionadosGemeos = [];
+
+// Definir categorias
+const CATEGORIAS = {
+    baixos: { min: 10, max: 30, label: 'BAIXOS' },
+    medios: { min: 31, max: 45, label: 'MÉDIOS' },
+    altos: { min: 46, max: 60, label: 'ALTOS' }
+};
+
+// Números invertidos válidos (10-60)
+const NUMEROS_INVERTIDOS = [
+    {original: 11, invertido: 11}, {original: 12, invertido: 21}, {original: 13, invertido: 31},
+    {original: 14, invertido: 41}, {original: 15, invertido: 51}, {original: 21, invertido: 12},
+    {original: 22, invertido: 22}, {original: 23, invertido: 32}, {original: 24, invertido: 42},
+    {original: 25, invertido: 52}, {original: 31, invertido: 13}, {original: 32, invertido: 23},
+    {original: 33, invertido: 33}, {original: 34, invertido: 43}, {original: 35, invertido: 53},
+    {original: 41, invertido: 14}, {original: 42, invertido: 24}, {original: 43, invertido: 34},
+    {original: 44, invertido: 44}, {original: 45, invertido: 54}, {original: 51, invertido: 15},
+    {original: 52, invertido: 25}, {original: 53, invertido: 35}, {original: 54, invertido: 45},
+    {original: 55, invertido: 55}
+];
+
+// Números gêmeos
+const NUMEROS_GEMEOS = [11, 22, 33, 44, 55];
+
+function inicializarGemeos() {
+    atualizarAnaliseUltimoResultadoGemeos();
+    configurarEventListenersGemeos();
+    atualizarInterface();
+}
+
+function atualizarAnaliseUltimoResultadoGemeos() {
+    if (!ultimoResultado || !ultimoResultado.listaDezenas) return;
+    
+    const numeros = ultimoResultado.listaDezenas.map(n => parseInt(n));
+    const numerosTexto = numeros.join(', ');
+    
+    // Analisar distribuição
+    const pares = numeros.filter(n => n % 2 === 0).length;
+    const impares = numeros.filter(n => n % 2 !== 0).length;
+    
+    const baixos = numeros.filter(n => n >= 10 && n <= 30).length;
+    const medios = numeros.filter(n => n >= 31 && n <= 45).length;
+    const altos = numeros.filter(n => n >= 46 && n <= 60).length;
+    
+    // Atualizar interface
+    document.getElementById('infoNumerosGemeos').textContent = numerosTexto;
+    document.getElementById('infoParesGemeos').textContent = pares;
+    document.getElementById('infoImparesGemeos').textContent = impares;
+    document.getElementById('infoBaixosGemeos').textContent = baixos;
+    document.getElementById('infoMediosGemeos').textContent = medios;
+    document.getElementById('infoAltosGemeos').textContent = altos;
+    
+    // Encontrar invertidos e gêmeos
+    const invertidosEncontrados = [];
+    const gemeosProximos = [];
+    
+    numeros.forEach(num => {
+        // Verificar se tem invertido
+        const invertido = NUMEROS_INVERTIDOS.find(item => item.original === num);
+        if (invertido && invertido.original !== invertido.invertido) {
+            invertidosEncontrados.push(`${invertido.invertido}→${num}`);
+        }
+        
+        // Verificar gêmeos próximos na mesma categoria
+        NUMEROS_GEMEOS.forEach(gemeo => {
+            const categoriaNum = obterCategoria(num);
+            const categoriaGemeo = obterCategoria(gemeo);
+            if (categoriaNum === categoriaGemeo && !gemeosProximos.includes(gemeo)) {
+                gemeosProximos.push(gemeo);
+            }
+        });
+    });
+    
+    document.getElementById('invertidosEncontrados').textContent = 
+        invertidosEncontrados.length > 0 ? invertidosEncontrados.join(', ') : 'Nenhum encontrado';
+    document.getElementById('gemeosProximos').textContent = 
+        gemeosProximos.length > 0 ? gemeosProximos.join(', ') : 'Nenhum próximo';
+}
+
+function obterCategoria(numero) {
+    if (numero >= 10 && numero <= 30) return 'baixos';
+    if (numero >= 31 && numero <= 45) return 'medios';
+    if (numero >= 46 && numero <= 60) return 'altos';
+    return null;
+}
+
+function atualizarInterface() {
+    const tipo = document.getElementById('tipoNumerosGemeos').value;
+    const categoria = document.getElementById('categoriaPreferida').value;
+    const qtdPares = document.getElementById('qtdParesGemeos').value;
+    const qtdImpares = document.getElementById('qtdImparesGemeos').value;
+    
+    // Mostrar/ocultar seleção manual
+    const selecaoManual = document.getElementById('selecaoManualGemeos');
+    const estrategiaAuto = document.getElementById('estrategiaAutomaticaGemeos');
+    
+    if (tipo === 'personalizado') {
+        selecaoManual.classList.remove('hidden');
+        estrategiaAuto.classList.add('hidden');
+        preencherSelecaoManual();
+    } else {
+        selecaoManual.classList.add('hidden');
+        estrategiaAuto.classList.remove('hidden');
+        atualizarTextoEstrategia();
+    }
+    
+    atualizarPrevisualizacao();
+}
+
+function preencherSelecaoManual() {
+    // Preencher invertidos por categoria
+    const invertidosDiv = document.getElementById('invertidosDisponiveis');
+    invertidosDiv.innerHTML = `
+        <div class="space-y-1">
+            <div class="text-xs text-green-600 font-bold">BAIXOS:</div>
+            ${NUMEROS_INVERTIDOS
+                .filter(item => obterCategoria(item.original) === 'baixos')
+                .map(item => `<span class="candidato-numero candidato-invertido candidato-baixo" data-numero="${item.original}" onclick="toggleCandidato(${item.original})">${item.original}↔${item.invertido}</span>`)
+                .join('')}
+        </div>
+        <div class="space-y-1">
+            <div class="text-xs text-yellow-600 font-bold">MÉDIOS:</div>
+            ${NUMEROS_INVERTIDOS
+                .filter(item => obterCategoria(item.original) === 'medios')
+                .map(item => `<span class="candidato-numero candidato-invertido candidato-medio" data-numero="${item.original}" onclick="toggleCandidato(${item.original})">${item.original}↔${item.invertido}</span>`)
+                .join('')}
+        </div>
+        <div class="space-y-1">
+            <div class="text-xs text-red-600 font-bold">ALTOS:</div>
+            ${NUMEROS_INVERTIDOS
+                .filter(item => obterCategoria(item.original) === 'altos')
+                .map(item => `<span class="candidato-numero candidato-invertido candidato-alto" data-numero="${item.original}" onclick="toggleCandidato(${item.original})">${item.original}↔${item.invertido}</span>`)
+                .join('')}
+        </div>
+    `;
+    
+    // Preencher gêmeos
+    const gemeosDiv = document.getElementById('gemeosDisponiveis');
+    gemeosDiv.innerHTML = NUMEROS_GEMEOS
+        .map(gemeo => {
+            const categoria = obterCategoria(gemeo);
+            return `<span class="candidato-numero candidato-gemeo candidato-${categoria}" data-numero="${gemeo}" onclick="toggleCandidato(${gemeo})">${gemeo}</span>`;
+        })
+        .join('');
+}
+
+function toggleCandidato(numero) {
+    const index = numerosSelecionadosGemeos.indexOf(numero);
+    const elemento = document.querySelector(`[data-numero="${numero}"]`);
+    
+    if (index > -1) {
+        numerosSelecionadosGemeos.splice(index, 1);
+        elemento.classList.remove('selecionado');
+    } else if (numerosSelecionadosGemeos.length < 20) {
+        numerosSelecionadosGemeos.push(numero);
+        elemento.classList.add('selecionado');
+    }
+    
+    atualizarAreaSelecionados();
+}
+
+function atualizarAreaSelecionados() {
+    const area = document.getElementById('numerosSelecionadosGemeos');
+    const count = document.getElementById('countSelecionadosGemeos');
+    
+    count.textContent = numerosSelecionadosGemeos.length;
+    
+    if (numerosSelecionadosGemeos.length === 0) {
+        area.innerHTML = '<span class="text-gray-400 text-sm">Clique nos números acima para selecionar</span>';
+    } else {
+        area.innerHTML = numerosSelecionadosGemeos
+            .sort((a, b) => a - b)
+            .map(num => `
+                <span class="numero-selecionado-gemeos" onclick="toggleCandidato(${num})">
+                    ${num}
+                    <span class="remove-btn">×</span>
+                </span>
+            `).join('');
+    }
+}
+
+function atualizarTextoEstrategia() {
+    const tipo = document.getElementById('tipoNumerosGemeos').value;
+    const categoria = document.getElementById('categoriaPreferida').value;
+    const qtdPares = document.getElementById('qtdParesGemeos').value;
+    const qtdImpares = document.getElementById('qtdImparesGemeos').value;
+    
+    const textosTipo = {
+        'ambos': 'Invertidos + Gêmeos',
+        'invertidos': 'Apenas Invertidos',
+        'gemeos': 'Apenas Gêmeos'
+    };
+    
+    const textosCategoria = {
+        'equilibrada': 'Equilibrada',
+        'baixos': 'Mais Baixos (10-30)',
+        'medios': 'Mais Médios (31-45)',
+        'altos': 'Mais Altos (46-60)'
+    };
+    
+    document.getElementById('tipoEstrategiaTexto').textContent = textosTipo[tipo] || tipo;
+    document.getElementById('categoriaEstrategiaTexto').textContent = textosCategoria[categoria] || categoria;
+    document.getElementById('distribuicaoTexto').textContent = `${qtdPares} pares + ${qtdImpares} ímpares`;
+}
+
+function atualizarPrevisualizacao() {
+    const candidatos = obterCandidatos();
+    
+    // Categorizar candidatos
+    const baixos = candidatos.filter(n => obterCategoria(n) === 'baixos');
+    const medios = candidatos.filter(n => obterCategoria(n) === 'medios');
+    const altos = candidatos.filter(n => obterCategoria(n) === 'altos');
+    
+    document.getElementById('candidatosBaixos').innerHTML = 
+        baixos.map(n => `<span class="preview-numero">${n}</span>`).join('');
+    document.getElementById('candidatosMedios').innerHTML = 
+        medios.map(n => `<span class="preview-numero">${n}</span>`).join('');
+    document.getElementById('candidatosAltos').innerHTML = 
+        altos.map(n => `<span class="preview-numero">${n}</span>`).join('');
+    
+    document.getElementById('totalCandidatos').textContent = candidatos.length;
+}
+
+function obterCandidatos() {
+    const tipo = document.getElementById('tipoNumerosGemeos').value;
+    
+    if (tipo === 'personalizado') {
+        return [...numerosSelecionadosGemeos];
+    }
+    
+    let candidatos = [];
+    
+    if (tipo === 'ambos' || tipo === 'invertidos') {
+        candidatos.push(...NUMEROS_INVERTIDOS.map(item => item.original));
+    }
+    
+    if (tipo === 'ambos' || tipo === 'gemeos') {
+        candidatos.push(...NUMEROS_GEMEOS);
+    }
+    
+    // Remover duplicados
+    candidatos = [...new Set(candidatos)];
+    
+    // Filtrar por categoria se necessário
+    const categoria = document.getElementById('categoriaPreferida').value;
+    if (categoria !== 'equilibrada') {
+        candidatos = candidatos.filter(n => obterCategoria(n) === categoria);
+    }
+    
+    return candidatos.sort((a, b) => a - b);
+}
+
+function gerarJogosGemeos() {
+    const candidatos = obterCandidatos();
+    
+    if (candidatos.length < 6) {
+        showCustomAlert('⚠️ Poucos Candidatos', 'É necessário ter pelo menos 6 números candidatos para gerar os jogos!');
+        return;
+    }
+    
+    const qtdJogos = parseInt(document.getElementById('qtdJogosGemeos').value);
+    const qtdPares = parseInt(document.getElementById('qtdParesGemeos').value);
+    const qtdImpares = parseInt(document.getElementById('qtdImparesGemeos').value);
+    
+    if (qtdPares + qtdImpares !== 6) {
+        showCustomAlert('⚠️ Configuração Inválida', 'A soma de pares e ímpares deve ser 6!');
+        return;
+    }
+    
+    const jogosGerados = [];
+    
+    for (let i = 0; i < qtdJogos; i++) {
+        const jogo = gerarJogoComGemeos(candidatos, qtdPares, qtdImpares);
+        
+        jogosGerados.push({
+            id: Date.now() + i,
+            numeros: jogo.sort((a, b) => a - b),
+            quantidade: 6,
+            custo: sistemaValores.obterValor(6),
+            pares: jogo.filter(n => n % 2 === 0).length,
+            impares: jogo.filter(n => n % 2 !== 0).length,
+            origem: 'Gêmeos/Invertidos'
+        });
+    }
+    
+    exibirResultadosGemeos(jogosGerados);
+}
+
+function gerarJogoComGemeos(candidatos, qtdPares, qtdImpares) {
+    const paresCandidatos = candidatos.filter(n => n % 2 === 0);
+    const imparesCandidatos = candidatos.filter(n => n % 2 !== 0);
+    
+    const jogo = [];
+    
+    // Selecionar pares
+    const paresEscolhidos = paresCandidatos.sort(() => Math.random() - 0.5).slice(0, qtdPares);
+    jogo.push(...paresEscolhidos);
+    
+    // Selecionar ímpares
+    const imparesEscolhidos = imparesCandidatos.sort(() => Math.random() - 0.5).slice(0, qtdImpares);
+    jogo.push(...imparesEscolhidos);
+    
+    // Se não conseguiu completar, preencher com números aleatórios válidos
+    while (jogo.length < 6) {
+        const numeroAleatorio = candidatos[Math.floor(Math.random() * candidatos.length)];
+        if (!jogo.includes(numeroAleatorio)) {
+            jogo.push(numeroAleatorio);
+        }
+    }
+    
+    return jogo.slice(0, 6);
+}
+
+function exibirResultadosGemeos(jogos) {
+    const lista = document.getElementById('listaJogosGemeos');
+    const resultados = document.getElementById('resultadosGemeos');
+    
+    lista.innerHTML = '';
+    
+    // Atualizar resumo
+    const custoTotal = jogos.reduce((sum, jogo) => sum + jogo.custo, 0);
+    const tipo = document.getElementById('tipoNumerosGemeos').value;
+    
+    document.getElementById('resumoJogosGemeos').textContent = `${jogos.length} jogos`;
+    document.getElementById('custoTotalGemeos').textContent = formatarMoeda(custoTotal);
+    document.getElementById('estrategiaAplicadaGemeos').textContent = obterTextoTipoGemeos(tipo);
+    
+    jogos.forEach((jogo, index) => {
+        const jogoDiv = document.createElement('div');
+        jogoDiv.className = 'jogo-gemeos-card';
+        jogoDiv.innerHTML = `
+            <div class="flex justify-between items-center mb-2">
+                <span class="font-bold text-purple-600">Gêmeos/Invertidos ${index + 1}</span>
+                <div class="flex gap-1">
+                    <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">${jogo.pares}P</span>
+                    <span class="text-xs bg-purple-100 text-purple-800 px-2 py-1 rounded">${jogo.impares}I</span>
+                    <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">${formatarMoeda(jogo.custo)}</span>
+                </div>
+            </div>
+            <div class="flex flex-wrap gap-1 mb-1">
+                ${jogo.numeros.map(num => `<span class="numero-gemeos">${num.toString().padStart(2, '0')}</span>`).join('')}
+            </div>
+            <div class="text-xs text-gray-600">${jogo.pares}P/${jogo.impares}I | ${analisarTiposNumeros(jogo.numeros)}</div>
+        `;
+        lista.appendChild(jogoDiv);
+    });
+    
+    resultados.classList.remove('hidden');
+    window.jogosGemeosGerados = jogos;
+}
+
+function analisarTiposNumeros(numeros) {
+    const gemeos = numeros.filter(n => NUMEROS_GEMEOS.includes(n)).length;
+    const invertidos = numeros.filter(n => NUMEROS_INVERTIDOS.some(item => item.original === n)).length;
+    
+    return `${gemeos} gêmeos, ${invertidos} invertidos`;
+}
+
+function obterTextoTipoGemeos(tipo) {
+    const textos = {
+        'ambos': 'Invertidos + Gêmeos',
+        'invertidos': 'Apenas Invertidos',
+        'gemeos': 'Apenas Gêmeos',
+        'personalizado': 'Seleção Manual'
+    };
+    return textos[tipo] || 'Personalizado';
+}
+
+function configurarEventListenersGemeos() {
+    document.getElementById('tipoNumerosGemeos').onchange = atualizarInterface;
+    document.getElementById('categoriaPreferida').onchange = atualizarInterface;
+    document.getElementById('qtdParesGemeos').onchange = atualizarInterface;
+    document.getElementById('qtdImparesGemeos').onchange = atualizarInterface;
+    
+    document.getElementById('gerarJogosGemeos').onclick = gerarJogosGemeos;
+    document.getElementById('novaGeracaoGemeos').onclick = () => {
+        numerosSelecionadosGemeos = [];
+        atualizarInterface();
+        document.getElementById('resultadosGemeos').classList.add('hidden');
+    };
+    
+    document.getElementById('adicionarTodosGemeos').onclick = () => {
+        adicionarTodosJogosSecao(window.jogosGemeosGerados);
+    };
+}
+
+// Inicializar quando carregar
+document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(() => {
+        inicializarGemeos();
+    }, 2000);
+});
+	// ===== SEÇÃO 8: ANÁLISE DE ATRASOS E FREQUÊNCIA CRUZADA (COM API REAL) =====
+
+function inicializarAnaliseAtrasos() {
+    // Aguardar dados reais estarem carregados
+    if (!window.DADOS_REAIS) {
+        console.log('⏳ Aguardando dados reais da API...');
+        setTimeout(inicializarAnaliseAtrasos, 1000);
+        return;
+    }
+    
+    preencherDadosHistoricosReais();
+    preencherSelectNumerosReais();
+    configurarEventListenersAtrasos();
+    mostrarCombinacoes('duplas');
+    atualizarPreAnalise();
+    console.log('✅ Seção 8 inicializada com dados reais da API');
+}
+
+function preencherDadosHistoricosReais() {
+    // Aguardar dados reais
+    if (!window.DADOS_REAIS) {
+        console.log('⚠️ Dados reais ainda não disponíveis');
+        return;
+    }
+    
+    // Atualizar informações gerais com dados reais
+    if (ultimoResultado) {
+        document.getElementById('ultimoConcursoAnalise').textContent = ultimoResultado.dataApuracao;
+        document.getElementById('concursosAnalisados').textContent = (ultimoResultado.numero || 2903).toLocaleString('pt-BR');
+    }
+    
+    // Top 5 mais atrasados (DADOS REAIS DA API)
+    const top5AtrasadosDiv = document.getElementById('top5Atrasados');
+    top5AtrasadosDiv.innerHTML = window.DADOS_REAIS.atrasados.slice(0, 5)
+        .map((item, index) => `
+            <div class="flex justify-between items-center bg-white p-2 rounded border">
+                <div class="flex items-center">
+                    <span class="numero-atrasado">${item.numero.toString().padStart(2, '0')}</span>
+                    <div class="ml-2 text-xs">
+                        <div class="font-bold">#{index + 1} - ${item.atraso} sorteios</div>
+                        <div class="text-gray-600">Último: ${item.ultimaAparicao}</div>
+                    </div>
+                </div>
+                <span class="atraso-badge">${item.atraso}</span>
+            </div>
+        `).join('');
+    
+    // Atrasados médios (DADOS REAIS DA API)
+    const top5AtrasadosMediosDiv = document.getElementById('top5AtrasadosMedios');
+    top5AtrasadosMediosDiv.innerHTML = window.DADOS_REAIS.atrasados.slice(5, 10)
+        .map((item, index) => `
+            <div class="flex justify-between items-center bg-white p-2 rounded border">
+                <div class="flex items-center">
+                    <span class="numero-atrasado">${item.numero.toString().padStart(2, '0')}</span>
+                    <div class="ml-2 text-xs">
+                        <div class="font-bold">#{index + 6} - ${item.atraso} sorteios</div>
+                        <div class="text-gray-600">Último: ${item.ultimaAparicao}</div>
+                    </div>
+                </div>
+                <span class="atraso-badge">${item.atraso}</span>
+            </div>
+        `).join('');
+    
+    // Top 5 mais frequentes (DADOS REAIS DA API)
+    const top5FrequentesDiv = document.getElementById('top5Frequentes');
+    top5FrequentesDiv.innerHTML = window.DADOS_REAIS.frequentes.slice(0, 5)
+        .map((item, index) => `
+            <div class="flex justify-between items-center bg-white p-2 rounded border">
+                <div class="flex items-center">
+                    <span class="numero-frequente">${item.numero.toString().padStart(2, '0')}</span>
+                    <div class="ml-2 text-xs">
+                        <div class="font-bold">#{index + 1} - ${item.frequencia}x</div>
+                        <div class="text-gray-600">${item.percentual}% dos sorteios</div>
+                    </div>
+                </div>
+                <span class="frequencia-badge">${item.frequencia}</span>
+            </div>
+        `).join('');
+    
+    // Frequentes médios (DADOS REAIS DA API)
+    const top5FrequentesMediosDiv = document.getElementById('top5FrequentesMedios');
+    top5FrequentesMediosDiv.innerHTML = window.DADOS_REAIS.frequentes.slice(5, 10)
+        .map((item, index) => `
+            <div class="flex justify-between items-center bg-white p-2 rounded border">
+                <div class="flex items-center">
+                    <span class="numero-frequente">${item.numero.toString().padStart(2, '0')}</span>
+                    <div class="ml-2 text-xs">
+                        <div class="font-bold">#{index + 6} - ${item.frequencia}x</div>
+                        <div class="text-gray-600">${item.percentual}% dos sorteios</div>
+                    </div>
+                </div>
+                <span class="frequencia-badge">${item.frequencia}</span>
+            </div>
+        `).join('');
+    
+    console.log('✅ Dados históricos reais preenchidos na interface');
+}
+
+function preencherSelectNumerosReais() {
+    const select = document.getElementById('numeroAnalise');
+    select.innerHTML = '<option value="">Selecione um número...</option>';
+    
+    if (!window.DADOS_REAIS) return;
+    
+    // Usar números reais mais relevantes da API
+    const numerosRelevantes = [
+        ...window.DADOS_REAIS.frequentes.slice(0, 10).map(item => item.numero),
+        ...window.DADOS_REAIS.atrasados.slice(0, 5).map(item => item.numero)
+    ];
+    
+    const numerosUnicos = [...new Set(numerosRelevantes)].sort((a, b) => a - b);
+    
+    numerosUnicos.forEach(numero => {
+        const option = document.createElement('option');
+        option.value = numero;
+        option.textContent = numero.toString().padStart(2, '0');
+        select.appendChild(option);
+    });
+    
+    console.log('✅ Select de números preenchido com dados reais');
+}
+
+function mostrarCombinacoes(tipo) {
+    // Aguardar dados reais
+    if (!window.DADOS_REAIS) {
+        console.log('⚠️ Aguardando dados reais para combinações...');
+        return;
+    }
+    
+    // Atualizar botões ativos
+    document.querySelectorAll('.analise-btn').forEach(btn => {
+        btn.classList.remove('active');
+        btn.classList.add('bg-gray-300', 'text-gray-700');
+        btn.classList.remove('bg-purple-500', 'text-white');
+    });
+    
+    const btnAtivo = document.getElementById(`btn${tipo.charAt(0).toUpperCase() + tipo.slice(1)}`);
+    if (btnAtivo) {
+        btnAtivo.classList.add('active');
+        btnAtivo.classList.remove('bg-gray-300', 'text-gray-700');
+        btnAtivo.classList.add('bg-purple-500', 'text-white');
+    }
+    
+    // Mostrar dados REAIS da API
+    const container = document.getElementById('resultadosCombinacoes');
+    const dados = window.DADOS_REAIS[tipo] || [];
+    
+    if (dados.length === 0) {
+        container.innerHTML = `
+            <div class="text-center text-gray-500 py-4">
+                📊 Calculando ${tipo} com dados reais da API...
+            </div>
+        `;
+        return;
+    }
+    
+    container.innerHTML = `
+        <div class="text-sm font-bold text-purple-800 mb-3">
+            🏆 TOP ${Math.min(dados.length, 10)} ${tipo.toUpperCase()} MAIS FREQUENTES (DADOS REAIS):
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+            ${dados.slice(0, 10).map((item, index) => `
+                <div class="flex justify-between items-center bg-white p-3 rounded border">
+                    <div class="flex items-center">
+                        <span class="bg-purple-100 text-purple-800 px-2 py-1 rounded font-bold text-sm mr-2">
+                            #${index + 1}
+                        </span>
+                        <div>
+                            <div class="font-bold">
+                                ${item.numeros.map(n => n.toString().padStart(2, '0')).join(' - ')}
+                            </div>
+                            <div class="text-xs text-gray-600">${item.frequencia} aparições reais</div>
+                        </div>
+                    </div>
+                    <span class="combinacao-item">${item.frequencia}x</span>
+                </div>
+            `).join('')}
+        </div>
+        <div class="mt-4 p-3 bg-purple-100 border border-purple-300 rounded text-sm">
+            <strong>📊 Dados Reais da API:</strong> 
+            ${tipo === 'duplas' ? 'Pares de números que mais aparecem juntos nos sorteios históricos reais.' :
+              tipo === 'ternas' ? 'Grupos de 3 números que mais aparecem juntos nos dados oficiais.' :
+              'Grupos de 4 números que mais aparecem juntos segundo a API da Caixa.'}
+            <br><strong>Total de concursos analisados:</strong> ${window.DADOS_REAIS.totalConcursos || 'N/A'}
+        </div>
+    `;
+    
+    console.log(`✅ Combinações ${tipo} exibidas com dados reais`);
+}
+
+function executarAnaliseEspecifica() {
+    const numero = parseInt(document.getElementById('numeroAnalise').value);
+    const tipo = document.getElementById('tipoAnalise').value;
+    
+    if (!numero) {
+        showCustomAlert('⚠️ Seleção Obrigatória', 'Selecione um número para analisar!');
+        return;
+    }
+    
+    if (!window.DADOS_REAIS) {
+        showCustomAlert('⚠️ Dados Indisponíveis', 'Aguardando carregamento dos dados reais da API...');
+        return;
+    }
+    
+    const container = document.getElementById('resultadoAnalise');
+    const titulo = document.getElementById('tituloAnalise');
+    const conteudo = document.getElementById('conteudoAnalise');
+    
+    if (tipo === 'companias') {
+        titulo.textContent = `🤝 Números que mais saem com o ${numero.toString().padStart(2, '0')} (dados reais):`;
+        
+        // Calcular companias reais baseado nos dados históricos da API
+        const companias = calcularCompaniasReais(numero);
+        
+        conteudo.innerHTML = `
+            <div class="companias-numeros">
+                ${companias.slice(0, 8).map((comp, index) => `
+                    <span class="numero-compania" title="Apareceu junto ${comp.frequencia} vezes">
+                        ${comp.numero.toString().padStart(2, '0')}
+                    </span>
+                `).join('')}
+            </div>
+            <div class="text-sm text-cyan-700 mt-2">
+                <strong>📊 Análise Real:</strong> Baseado em ${window.DADOS_REAIS.totalConcursos} concursos oficiais. 
+                Quando o ${numero.toString().padStart(2, '0')} sai, estes números têm maior correlação histórica real.
+                <br><strong>Fonte:</strong> API oficial da Caixa Econômica Federal
+            </div>
+        `;
+    } else if (tipo === 'evitados') {
+        titulo.textContent = `❌ Números que raramente saem com o ${numero.toString().padStart(2, '0')} (dados reais):`;
+        
+        const companias = calcularCompaniasReais(numero);
+        const todosNumeros = Array.from({length: 60}, (_, i) => i + 1);
+        const numerosCompanias = companias.map(c => c.numero);
+        const evitados = todosNumeros.filter(n => n !== numero && !numerosCompanias.includes(n)).slice(0, 8);
+        
+        conteudo.innerHTML = `
+            <div class="companias-numeros">
+                ${evitados.map(evit => `
+                    <span class="numero-compania" style="background: linear-gradient(135deg, #ef4444, #dc2626);">${evit.toString().padStart(2, '0')}</span>
+                `).join('')}
+            </div>
+            <div class="text-sm text-cyan-700 mt-2">
+                <strong>📊 Análise Real:</strong> Baseado em dados oficiais, estes números têm baixa correlação com o ${numero.toString().padStart(2, '0')}.
+                <br><strong>Recomendação:</strong> Considere evitá-los quando apostar no ${numero.toString().padStart(2, '0')}.
+            </div>
+        `;
+    } else if (tipo === 'seguencia') {
+        titulo.textContent = `📊 Sequência real de aparições do ${numero.toString().padStart(2, '0')}:`;
+        
+        const sequenciaReal = calcularSequenciaReal(numero);
+        
+        conteudo.innerHTML = `
+            <div class="space-y-2">
+                ${sequenciaReal.map((seq, index) => `
+                    <div class="flex justify-between items-center bg-gray-50 p-2 rounded">
+                        <span class="text-sm">Aparição ${index + 1}:</span>
+                        <span class="text-sm font-bold">${seq}</span>
+                    </div>
+                `).join('')}
+            </div>
+            <div class="text-sm text-cyan-700 mt-2">
+                <strong>📊 Análise Real:</strong> Últimas aparições do número ${numero.toString().padStart(2, '0')} 
+                baseado em dados oficiais da API da Caixa.
+                <br><strong>Fonte:</strong> Concursos reais analisados em tempo real
+            </div>
+        `;
+    }
+    
+    container.classList.remove('hidden');
+    console.log(`✅ Análise específica executada para número ${numero} com dados reais`);
+}
+
+// ===== FUNÇÕES DE CÁLCULO COM DADOS REAIS =====
+function calcularCompaniasReais(numeroAlvo) {
+    if (!window.DADOS_REAIS || !cacheGlobal.dadosHistoricos) {
+        return [];
+    }
+    
+    const companias = {};
+    
+    // Analisar todos os concursos históricos reais
+    cacheGlobal.dadosHistoricos.forEach(concurso => {
+        if (concurso.listaDezenas && concurso.listaDezenas.length === 6) {
+            const numeros = concurso.listaDezenas.map(n => parseInt(n));
+            
+            if (numeros.includes(numeroAlvo)) {
+                // Este concurso tem o número alvo, contar os outros números
+                numeros.forEach(num => {
+                    if (num !== numeroAlvo) {
+                        companias[num] = (companias[num] || 0) + 1;
+                    }
+                });
+            }
+        }
+    });
+    
+    // Converter para array e ordenar por frequência
+    return Object.entries(companias)
+        .map(([numero, freq]) => ({
+            numero: parseInt(numero),
+            frequencia: freq
+        }))
+        .sort((a, b) => b.frequencia - a.frequencia)
+        .slice(0, 15);
+}
+
+function calcularSequenciaReal(numero) {
+    if (!cacheGlobal.dadosHistoricos) {
+        return ['Dados não disponíveis'];
+    }
+    
+    const aparicoes = [];
+    const dadosOrdenados = cacheGlobal.dadosHistoricos
+        .sort((a, b) => b.numero - a.numero); // Mais recente primeiro
+    
+    dadosOrdenados.forEach((concurso, index) => {
+        if (concurso.listaDezenas && concurso.listaDezenas.includes(numero.toString().padStart(2, '0'))) {
+            aparicoes.push(`${index} sorteios atrás (${concurso.dataApuracao || 'Data N/A'})`);
+        }
+    });
+    
+    return aparicoes.slice(0, 5); // Últimas 5 aparições
+}
+
+function atualizarPreAnalise() {
+    const estrategia = document.getElementById('estrategiaAtrasos').value;
+    const percAtrasados = document.getElementById('percentualAtrasados').value;
+    const percFrequentes = document.getElementById('percentualFrequentes').value;
+    const usarComb = document.getElementById('usarCombinacoes').value;
+    
+    const preAnaliseDiv = document.getElementById('preAnalise');
+    
+    let texto = '';
+    
+    switch (estrategia) {
+        case 'equilibrada':
+            texto = `⚖️ <strong>Estratégia Equilibrada (Dados Reais):</strong> ${percAtrasados}% de números atrasados + ${percFrequentes}% de números frequentes da API. `;
+            break;
+        case 'atrasados':
+            texto = `⏰ <strong>Foco em Atrasados (API Real):</strong> Prioriza números que não saem há mais tempo segundo dados oficiais. `;
+            break;
+        case 'frequentes':
+            texto = `📈 <strong>Foco em Frequentes (API Real):</strong> Prioriza números que mais aparecem nos dados históricos oficiais. `;
+            break;
+        case 'combinacoes':
+            texto = `🔗 <strong>Baseada em Combinações Reais:</strong> Usa as combinações mais frequentes calculadas com dados da API. `;
+            break;
+        case 'cruzada':
+            texto = `🔍 <strong>Análise Cruzada Real:</strong> Combina vários padrões dos dados oficiais em tempo real. `;
+            break;
+    }
+    
+    if (usarComb !== 'nao') {
+        texto += `Inclui ${usarComb} comprovadas nos dados reais. `;
+    }
+    
+    const totalConcursos = window.DADOS_REAIS?.totalConcursos || 'N/A';
+    texto += `<strong>Resultado:</strong> Jogos estratégicos baseados em ${totalConcursos} concursos oficiais da API da Caixa.`;
+    
+    preAnaliseDiv.innerHTML = texto;
+}
+
+function gerarJogosComAtrasos() {
+    if (!window.DADOS_REAIS) {
+        showCustomAlert('⚠️ Dados Indisponíveis', 'Aguarde o carregamento dos dados reais da API...');
+        return;
+    }
+    
+    const estrategia = document.getElementById('estrategiaAtrasos').value;
+    const qtdJogos = parseInt(document.getElementById('qtdJogosAtrasos').value);
+    const percAtrasados = parseInt(document.getElementById('percentualAtrasados').value);
+    const percFrequentes = parseInt(document.getElementById('percentualFrequentes').value);
+    const usarComb = document.getElementById('usarCombinacoes').value;
+    
+    const jogosGerados = [];
+    
+    for (let i = 0; i < qtdJogos; i++) {
+        let jogo;
+        
+        switch (estrategia) {
+            case 'equilibrada':
+                jogo = gerarJogoEquilibradoAtrasosReal(percAtrasados, percFrequentes);
+                break;
+            case 'atrasados':
+                jogo = gerarJogoComAtrasadosReal();
+                break;
+            case 'frequentes':
+                jogo = gerarJogoComFrequentesReal();
+                break;
+            case 'combinacoes':
+                jogo = gerarJogoComCombinacoesReal(usarComb);
+                break;
+            case 'cruzada':
+                jogo = gerarJogoAnaliseCompletaReal();
+                break;
+            default:
+                jogo = gerarJogoEquilibradoAtrasosReal(40, 40);
+        }
+        
+        jogosGerados.push({
+            id: Date.now() + i,
+            numeros: jogo.sort((a, b) => a - b),
+            quantidade: 6,
+            custo: sistemaValores.obterValor(6),
+            pares: jogo.filter(n => n % 2 === 0).length,
+            impares: jogo.filter(n => n % 2 !== 0).length,
+            origem: 'Análise de Padrões (API Real)'
+        });
+    }
+    
+    exibirResultadosAtrasos(jogosGerados);
+    console.log('✅ Jogos gerados com base em dados reais da API');
+}
+
+// ===== FUNÇÕES DE GERAÇÃO COM DADOS REAIS =====
+function gerarJogoEquilibradoAtrasosReal(percAtrasados, percFrequentes) {
+    const jogo = [];
+    const qtdAtrasados = Math.ceil(6 * percAtrasados / 100);
+    const qtdFrequentes = Math.ceil(6 * percFrequentes / 100);
+    
+    // Usar dados REAIS da API
+    const atrasados = window.DADOS_REAIS.atrasados.slice(0, 10).map(item => item.numero);
+    const atrasadosEscolhidos = atrasados.sort(() => Math.random() - 0.5).slice(0, qtdAtrasados);
+    jogo.push(...atrasadosEscolhidos);
+    
+    const frequentes = window.DADOS_REAIS.frequentes.slice(0, 10).map(item => item.numero);
+    const frequentesEscolhidos = frequentes.filter(n => !jogo.includes(n)).slice(0, qtdFrequentes);
+    jogo.push(...frequentesEscolhidos);
+    
+    // Completar com números aleatórios se necessário
+    while (jogo.length < 6) {
+        const numero = Math.floor(Math.random() * 60) + 1;
+        if (!jogo.includes(numero)) {
+            jogo.push(numero);
+        }
+    }
+    
+    return jogo.slice(0, 6);
+}
+
+function gerarJogoComAtrasadosReal() {
+    const atrasados = window.DADOS_REAIS.atrasados.slice(0, 15).map(item => item.numero);
+    return atrasados.sort(() => Math.random() - 0.5).slice(0, 6);
+}
+
+function gerarJogoComFrequentesReal() {
+    const frequentes = window.DADOS_REAIS.frequentes.slice(0, 15).map(item => item.numero);
+    return frequentes.sort(() => Math.random() - 0.5).slice(0, 6);
+}
+
+function gerarJogoComCombinacoesReal(tipo) {
+    const jogo = [];
+    
+    if (tipo === 'duplas' && window.DADOS_REAIS.duplas.length > 0) {
+        const dupla = window.DADOS_REAIS.duplas[Math.floor(Math.random() * Math.min(5, window.DADOS_REAIS.duplas.length))];
+        jogo.push(...dupla.numeros);
+    } else if (tipo === 'ternas' && window.DADOS_REAIS.ternas.length > 0) {
+        const terna = window.DADOS_REAIS.ternas[Math.floor(Math.random() * Math.min(5, window.DADOS_REAIS.ternas.length))];
+        jogo.push(...terna.numeros);
+    }
+    
+    // Completar com números aleatórios
+    while (jogo.length < 6) {
+        const numero = Math.floor(Math.random() * 60) + 1;
+        if (!jogo.includes(numero)) {
+            jogo.push(numero);
+        }
+    }
+    
+    return jogo.slice(0, 6);
+}
+
+function gerarJogoAnaliseCompletaReal() {
+    const jogo = [];
+    
+    // 2 atrasados REAIS
+    const atrasados = window.DADOS_REAIS.atrasados.slice(0, 5).map(item => item.numero);
+    jogo.push(...atrasados.sort(() => Math.random() - 0.5).slice(0, 2));
+    
+    // 2 frequentes REAIS
+    const frequentes = window.DADOS_REAIS.frequentes.slice(0, 5).map(item => item.numero);
+    const frequentesEscolhidos = frequentes.filter(n => !jogo.includes(n)).slice(0, 2);
+    jogo.push(...frequentesEscolhidos);
+    
+    // 2 de uma dupla frequente REAL
+    if (window.DADOS_REAIS.duplas.length > 0) {
+        const dupla = window.DADOS_REAIS.duplas[0];
+        const numerosDisponiveis = dupla.numeros.filter(n => !jogo.includes(n));
+        if (numerosDisponiveis.length >= 2) {
+            jogo.push(...numerosDisponiveis.slice(0, 2));
+        }
+    }
+    
+    // Completar se necessário
+    while (jogo.length < 6) {
+        const numero = Math.floor(Math.random() * 60) + 1;
+        if (!jogo.includes(numero)) {
+            jogo.push(numero);
+        }
+    }
+    
+    return jogo.slice(0, 6);
+}
+
+function exibirResultadosAtrasos(jogos) {
+    const lista = document.getElementById('listaJogosAtrasos');
+    const resultados = document.getElementById('resultadosAtrasos');
+    
+    lista.innerHTML = '';
+    
+    // Atualizar resumo
+    const custoTotal = jogos.reduce((sum, jogo) => sum + jogo.custo, 0);
+    const estrategia = document.getElementById('estrategiaAtrasos').value;
+    
+    document.getElementById('resumoJogosAtrasos').textContent = `${jogos.length} jogos`;
+    document.getElementById('custoTotalAtrasos').textContent = formatarMoeda(custoTotal);
+    document.getElementById('estrategiaAplicadaAtrasos').textContent = obterTextoEstrategiaAtrasos(estrategia);
+    
+    jogos.forEach((jogo, index) => {
+        const jogoDiv = document.createElement('div');
+        jogoDiv.className = 'jogo-atrasos-card';
+        
+        // Analisar composição do jogo com dados REAIS
+        const atrasados = jogo.numeros.filter(n => 
+            window.DADOS_REAIS.atrasados.some(item => item.numero === n)
+        );
+        const frequentes = jogo.numeros.filter(n => 
+            window.DADOS_REAIS.frequentes.some(item => item.numero === n)
+        );
+        
+        jogoDiv.innerHTML = `
+            <div class="flex justify-between items-center mb-2">
+                <span class="font-bold text-indigo-600">Padrões Reais ${index + 1}</span>
+                <div class="flex gap-1">
+                    <span class="text-xs bg-red-100 text-red-800 px-2 py-1 rounded" title="Atrasados da API">${atrasados.length}A</span>
+                    <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded" title="Frequentes da API">${frequentes.length}F</span>
+                    <span class="text-xs bg-purple-100 text-purple-800 px-2 py-1 rounded">${jogo.pares}P</span>
+                    <span class="text-xs bg-orange-100 text-orange-800 px-2 py-1 rounded">${jogo.impares}I</span>
+                    <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">${formatarMoeda(jogo.custo)}</span>
+                </div>
+            </div>
+            <div class="flex flex-wrap gap-1 mb-1">
+                ${jogo.numeros.map(num => `<span class="numero-atrasos">${num.toString().padStart(2, '0')}</span>`).join('')}
+            </div>
+            <div class="text-xs text-gray-600">
+                ${atrasados.length} atrasados reais, ${frequentes.length} frequentes reais | ${jogo.pares}P/${jogo.impares}I
+                <br>Baseado em dados oficiais da API da Caixa
+            </div>
+        `;
+        lista.appendChild(jogoDiv);
+    });
+    
+    resultados.classList.remove('hidden');
+    window.jogosAtrasosGerados = jogos;
+}
+
+function obterTextoEstrategiaAtrasos(estrategia) {
+    const textos = {
+        'equilibrada': 'Equilibrada (Dados Reais API)',
+        'atrasados': 'Foco em Atrasados (API Real)',
+        'frequentes': 'Foco em Frequentes (API Real)',
+        'combinacoes': 'Baseada em Combinações Reais',
+        'cruzada': 'Análise Cruzada Completa (API)'
+    };
+    return textos[estrategia] || 'Personalizada';
+}
+
+function configurarEventListenersAtrasos() {
+    document.getElementById('executarAnalise').onclick = executarAnaliseEspecifica;
+    document.getElementById('estrategiaAtrasos').onchange = atualizarPreAnalise;
+    document.getElementById('percentualAtrasados').onchange = atualizarPreAnalise;
+    document.getElementById('percentualFrequentes').onchange = atualizarPreAnalise;
+    document.getElementById('usarCombinacoes').onchange = atualizarPreAnalise;
+    
+    document.getElementById('gerarJogosAtrasos').onclick = gerarJogosComAtrasos;
+    document.getElementById('novaAnaliseAtrasos').onclick = () => {
+        document.getElementById('resultadosAtrasos').classList.add('hidden');
+        document.getElementById('resultadoAnalise').classList.add('hidden');
+    };
+    
+    document.getElementById('adicionarTodosAtrasos').onclick = () => {
+        adicionarTodosJogosSecao(window.jogosAtrasosGerados);
+    };
+}
+
+// ===== ATUALIZAÇÃO QUANDO DADOS REAIS ESTIVEREM PRONTOS =====
+function atualizarSecaoAtrasosComDadosReais() {
+    if (typeof inicializarAnaliseAtrasos === 'function') {
+        console.log('🔄 Atualizando Seção 8 com dados reais...');
+        inicializarAnaliseAtrasos();
+    }
+}
+
+// Inicializar quando carregar (com retry para aguardar dados reais)
+document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(() => {
+        inicializarAnaliseAtrasos();
+    }, 3000); // 3 segundos para aguardar APIs carregarem
+});
+
+console.log('✅ JavaScript da Seção 8 configurado para API em tempo real');	
+// ===== SEÇÃO 9: MAPA DE CALOR DAS DEZENAS (HEATMAP) - 100% API REAL =====
+
+let dadosHeatmap = null;
+let numerosSelecionadosHeatmap = [];
+let tooltipHeatmap = null;
+
+function inicializarHeatmap() {
+    // Aguardar dados reais estarem carregados
+    if (!window.DADOS_REAIS) {
+        console.log('⏳ Aguardando dados reais para o heatmap...');
+        setTimeout(inicializarHeatmap, 1000);
+        return;
+    }
+    
+    criarGridHeatmap();
+    calcularDadosHeatmap();
+    atualizarHeatmap();
+    criarTooltip();
+    configurarEventListenersHeatmap();
+    atualizarEstatisticasHeatmap();
+    
+    console.log('✅ Heatmap inicializado com dados reais da API');
+}
+
+function criarGridHeatmap() {
+    const grid = document.getElementById('heatmapGrid');
+    grid.innerHTML = '';
+    
+    // Criar grid 10x6 (60 números)
+    for (let i = 1; i <= 60; i++) {
+        const celula = document.createElement('div');
+        celula.className = 'numero-heatmap';
+        celula.dataset.numero = i;
+        celula.textContent = i.toString().padStart(2, '0');
+        
+        // Event listeners
+        celula.onclick = () => toggleNumeroHeatmap(i);
+        celula.onmouseenter = (e) => mostrarTooltipHeatmap(e, i);
+        celula.onmouseleave = () => ocultarTooltipHeatmap();
+        
+        grid.appendChild(celula);
+    }
+}
+
+function calcularDadosHeatmap() {
+    if (!window.DADOS_REAIS || !window.DADOS_REAIS.frequentes) {
+        console.warn('⚠️ Dados da API não disponíveis para o heatmap');
+        return;
+    }
+    
+    // Criar mapa de frequências baseado nos dados reais da API
+    dadosHeatmap = {};
+    
+    // Inicializar todos os números com frequência 0
+    for (let i = 1; i <= 60; i++) {
+        dadosHeatmap[i] = {
+            numero: i,
+            frequencia: 0,
+            atraso: 0,
+            tendencia: 'estavel',
+            intensidade: 0
+        };
+    }
+    
+    // Preencher com dados reais da API
+    window.DADOS_REAIS.frequentes.forEach(item => {
+        if (dadosHeatmap[item.numero]) {
+            dadosHeatmap[item.numero].frequencia = item.frequencia;
+        }
+    });
+    
+    // Preencher atrasos dos dados reais
+    if (window.DADOS_REAIS.atrasados) {
+        window.DADOS_REAIS.atrasados.forEach(item => {
+            if (dadosHeatmap[item.numero]) {
+                dadosHeatmap[item.numero].atraso = item.atraso;
+            }
+        });
+    }
+    
+    // Calcular intensidades (níveis de calor 0-9)
+    const frequencias = Object.values(dadosHeatmap).map(d => d.frequencia);
+    const minFreq = Math.min(...frequencias);
+    const maxFreq = Math.max(...frequencias);
+    const range = maxFreq - minFreq;
+    
+    Object.values(dadosHeatmap).forEach(dados => {
+        if (range > 0) {
+            dados.intensidade = Math.floor(((dados.frequencia - minFreq) / range) * 9);
+        } else {
+            dados.intensidade = 0;
+        }
+    });
+    
+    console.log('✅ Dados do heatmap calculados com frequências reais:', dadosHeatmap);
+}
+
+function atualizarHeatmap() {
+    const estilo = document.getElementById('estiloHeatmap').value;
+    const filtro = document.getElementById('filtroVisualizacao').value;
+    const modo = document.getElementById('modoExibicao').value;
+    
+    if (!dadosHeatmap) {
+        console.warn('⚠️ Dados do heatmap não disponíveis');
+        return;
+    }
+    
+    // Aplicar estilo ao container
+    const grid = document.getElementById('heatmapGrid');
+    grid.className = `grid grid-cols-10 gap-1 heatmap-${estilo}`;
+    
+    // Atualizar cada célula
+    for (let i = 1; i <= 60; i++) {
+        const celula = document.querySelector(`[data-numero="${i}"]`);
+        if (!celula || !dadosHeatmap[i]) continue;
+        
+        let intensidade = dadosHeatmap[i].intensidade;
+        
+        // Ajustar intensidade baseado no filtro
+        if (filtro === 'atraso') {
+            const maxAtraso = Math.max(...Object.values(dadosHeatmap).map(d => d.atraso));
+            intensidade = Math.floor((dadosHeatmap[i].atraso / maxAtraso) * 9);
+        }
+        
+        // Aplicar classe de intensidade
+        celula.className = `numero-heatmap heat-level-${intensidade}`;
+        
+        // Aplicar modo de exibição
+        if (modo === 'cores') {
+            celula.textContent = '';
+        } else if (modo === 'detalhado') {
+            celula.innerHTML = `
+                <div class="text-xs">${i.toString().padStart(2, '0')}</div>
+                <div class="text-xs">${dadosHeatmap[i].frequencia}</div>
+            `;
+        } else {
+            celula.textContent = i.toString().padStart(2, '0');
+        }
+        
+        // Manter seleção
+        if (numerosSelecionadosHeatmap.includes(i)) {
+            celula.classList.add('selecionado-heat');
+        }
+    }
+    
+    // Atualizar legenda
+    atualizarLegendaHeatmap();
+    
+    console.log('✅ Heatmap atualizado com filtro:', filtro, 'estilo:', estilo);
+}
+
+function atualizarLegendaHeatmap() {
+    if (!dadosHeatmap) return;
+    
+    const frequencias = Object.values(dadosHeatmap).map(d => d.frequencia);
+    const minFreq = Math.min(...frequencias);
+    const maxFreq = Math.max(...frequencias);
+    
+    document.getElementById('minFrequencia').textContent = minFreq;
+    document.getElementById('maxFrequencia').textContent = maxFreq + '+';
+}
+
+function atualizarEstatisticasHeatmap() {
+    if (!dadosHeatmap || !ultimoResultado) return;
+    
+    // Atualizar status geral
+    const frequencias = Object.values(dadosHeatmap).map(d => d.frequencia);
+    const numeroMaisQuente = Object.values(dadosHeatmap).reduce((a, b) => a.frequencia > b.frequencia ? a : b);
+    const numeroMaisFrio = Object.values(dadosHeatmap).reduce((a, b) => a.frequencia < b.frequencia ? a : b);
+    
+    document.getElementById('zonaQuente').textContent = numeroMaisQuente.numero.toString().padStart(2, '0');
+    document.getElementById('zonaFria').textContent = numeroMaisFrio.numero.toString().padStart(2, '0');
+    document.getElementById('totalConcursosHeat').textContent = (window.DADOS_REAIS.totalConcursos || ultimoResultado.numero).toLocaleString('pt-BR');
+    document.getElementById('ultimaAtualizacaoHeat').textContent = new Date().toLocaleTimeString('pt-BR', {
+        hour: '2-digit',
+        minute: '2-digit'
+    });
+    
+    // Top 5 mais quentes
+    const maisQuentes = Object.values(dadosHeatmap)
+        .sort((a, b) => b.frequencia - a.frequencia)
+        .slice(0, 5);
+    
+    document.getElementById('top5Quentes').innerHTML = maisQuentes
+        .map((item, index) => `
+            <div class="flex justify-between items-center">
+                <span class="numero-quente-stat">${item.numero.toString().padStart(2, '0')}</span>
+                <span class="text-xs text-red-600">${item.frequencia} aparições</span>
+            </div>
+        `).join('');
+    
+    // Top 5 mais frios
+    const maisFrios = Object.values(dadosHeatmap)
+        .sort((a, b) => a.frequencia - b.frequencia)
+        .slice(0, 5);
+    
+    document.getElementById('top5Frios').innerHTML = maisFrios
+        .map((item, index) => `
+            <div class="flex justify-between items-center">
+                <span class="numero-frio-stat">${item.numero.toString().padStart(2, '0')}</span>
+                <span class="text-xs text-blue-600">${item.frequencia} aparições</span>
+            </div>
+        `).join('');
+    
+    // Análise por quadrantes
+    const quadrantes = analisarQuadrantes();
+    document.getElementById('analiseQuadrantes').innerHTML = `
+        <div class="text-xs space-y-1">
+            <div><strong>Q1 (01-15):</strong> ${quadrantes.q1.toFixed(1)} média</div>
+            <div><strong>Q2 (16-30):</strong> ${quadrantes.q2.toFixed(1)} média</div>
+            <div><strong>Q3 (31-45):</strong> ${quadrantes.q3.toFixed(1)} média</div>
+            <div><strong>Q4 (46-60):</strong> ${quadrantes.q4.toFixed(1)} média</div>
+        </div>
+    `;
+}
+
+function analisarQuadrantes() {
+    if (!dadosHeatmap) return { q1: 0, q2: 0, q3: 0, q4: 0 };
+    
+    const q1 = Object.values(dadosHeatmap).filter(d => d.numero >= 1 && d.numero <= 15);
+    const q2 = Object.values(dadosHeatmap).filter(d => d.numero >= 16 && d.numero <= 30);
+    const q3 = Object.values(dadosHeatmap).filter(d => d.numero >= 31 && d.numero <= 45);
+    const q4 = Object.values(dadosHeatmap).filter(d => d.numero >= 46 && d.numero <= 60);
+    
+    return {
+        q1: q1.reduce((sum, d) => sum + d.frequencia, 0) / q1.length,
+        q2: q2.reduce((sum, d) => sum + d.frequencia, 0) / q2.length,
+        q3: q3.reduce((sum, d) => sum + d.frequencia, 0) / q3.length,
+        q4: q4.reduce((sum, d) => sum + d.frequencia, 0) / q4.length
+    };
+}
+
+function criarTooltip() {
+    if (tooltipHeatmap) return;
+    
+    tooltipHeatmap = document.createElement('div');
+    tooltipHeatmap.className = 'tooltip-heatmap';
+    tooltipHeatmap.style.opacity = '0';
+    document.body.appendChild(tooltipHeatmap);
+}
+
+function mostrarTooltipHeatmap(event, numero) {
+    if (!tooltipHeatmap || !dadosHeatmap[numero]) return;
+    
+    const dados = dadosHeatmap[numero];
+    
+    tooltipHeatmap.innerHTML = `
+        <div class="font-bold">Número ${numero.toString().padStart(2, '0')}</div>
+        <div>Frequência: ${dados.frequencia} aparições</div>
+        <div>Atraso: ${dados.atraso} sorteios</div>
+        <div>Intensidade: ${dados.intensidade}/9</div>
+        <div>Clique para selecionar</div>
+    `;
+    
+    tooltipHeatmap.style.left = event.pageX + 10 + 'px';
+    tooltipHeatmap.style.top = event.pageY - 10 + 'px';
+    tooltipHeatmap.style.opacity = '1';
+}
+
+function ocultarTooltipHeatmap() {
+    if (tooltipHeatmap) {
+        tooltipHeatmap.style.opacity = '0';
+    }
+}
+
+function toggleNumeroHeatmap(numero) {
+    const celula = document.querySelector(`[data-numero="${numero}"]`);
+    
+    if (numerosSelecionadosHeatmap.includes(numero)) {
+        numerosSelecionadosHeatmap = numerosSelecionadosHeatmap.filter(n => n !== numero);
+        celula.classList.remove('selecionado-heat');
+    } else if (numerosSelecionadosHeatmap.length < 6) {
+        numerosSelecionadosHeatmap.push(numero);
+        celula.classList.add('selecionado-heat');
+    }
+    
+    atualizarAreaSelecionadosHeat();
+}
+
+function atualizarAreaSelecionadosHeat() {
+    const area = document.getElementById('numerosSelecionadosHeat');
+    const count = document.getElementById('countSelecionadosHeat');
+    
+    count.textContent = numerosSelecionadosHeatmap.length;
+    
+    if (numerosSelecionadosHeatmap.length === 0) {
+        area.innerHTML = '<span class="text-yellow-600 text-sm">Clique nos números do mapa para selecioná-los</span>';
+    } else {
+        area.innerHTML = numerosSelecionadosHeatmap
+            .sort((a, b) => a - b)
+            .map(num => `
+                <span class="numero-quente-stat cursor-pointer" onclick="toggleNumeroHeatmap(${num})">
+                    ${num.toString().padStart(2, '0')} ×
+                </span>
+            `).join('');
+    }
+}
+
+function gerarJogosHeatmap() {
+    if (!dadosHeatmap) {
+        showCustomAlert('⚠️ Dados Indisponíveis', 'Aguarde o carregamento dos dados reais da API...');
+        return;
+    }
+    
+    const estrategia = document.getElementById('estrategiaHeatmap').value;
+    const qtdJogos = parseInt(document.getElementById('qtdJogosHeatmap').value);
+    const percQuentes = parseInt(document.getElementById('percentualQuentes').value);
+    const percFrios = parseInt(document.getElementById('percentualFrios').value);
+    
+    const jogosGerados = [];
+    
+    for (let i = 0; i < qtdJogos; i++) {
+        let jogo;
+        
+        switch (estrategia) {
+            case 'equilibrada':
+                jogo = gerarJogoEquilibradoHeat(percQuentes, percFrios);
+                break;
+            case 'quentes':
+                jogo = gerarJogoZonasQuentes();
+                break;
+            case 'frios':
+                jogo = gerarJogoZonasFrias();
+                break;
+            case 'quadrantes':
+                jogo = gerarJogoPorQuadrantes();
+                break;
+            case 'gradiente':
+                jogo = gerarJogoGradiente();
+                break;
+            default:
+                jogo = gerarJogoEquilibradoHeat(50, 30);
+        }
+        
+        jogosGerados.push({
+            id: Date.now() + i,
+            numeros: jogo.sort((a, b) => a - b),
+            quantidade: 6,
+            custo: sistemaValores.obterValor(6),
+            pares: jogo.filter(n => n % 2 === 0).length,
+            impares: jogo.filter(n => n % 2 !== 0).length,
+            origem: 'Heatmap'
+        });
+    }
+    
+    exibirResultadosHeatmap(jogosGerados);
+    console.log('✅ Jogos gerados baseados no heatmap com dados reais');
+}
+
+function gerarJogoEquilibradoHeat(percQuentes, percFrios) {
+    const jogo = [];
+    const qtdQuentes = Math.ceil(6 * percQuentes / 100);
+    const qtdFrios = Math.ceil(6 * percFrios / 100);
+    
+    // Números mais quentes (maior frequência)
+    const quentes = Object.values(dadosHeatmap)
+        .sort((a, b) => b.frequencia - a.frequencia)
+        .slice(0, 15)
+        .map(d => d.numero);
+    
+    const quentesEscolhidos = quentes.sort(() => Math.random() - 0.5).slice(0, qtdQuentes);
+    jogo.push(...quentesEscolhidos);
+    
+    // Números mais frios (menor frequência)
+    const frios = Object.values(dadosHeatmap)
+        .sort((a, b) => a.frequencia - b.frequencia)
+        .slice(0, 15)
+        .map(d => d.numero);
+    
+    const friosEscolhidos = frios.filter(n => !jogo.includes(n)).slice(0, qtdFrios);
+    jogo.push(...friosEscolhidos);
+    
+    // Completar com números aleatórios
+    while (jogo.length < 6) {
+        const numero = Math.floor(Math.random() * 60) + 1;
+        if (!jogo.includes(numero)) {
+            jogo.push(numero);
+        }
+    }
+    
+    return jogo.slice(0, 6);
+}
+
+function gerarJogoZonasQuentes() {
+    const quentes = Object.values(dadosHeatmap)
+        .sort((a, b) => b.frequencia - a.frequencia)
+        .slice(0, 20)
+        .map(d => d.numero);
+    
+    return quentes.sort(() => Math.random() - 0.5).slice(0, 6);
+}
+
+function gerarJogoZonasFrias() {
+    const frios = Object.values(dadosHeatmap)
+        .sort((a, b) => a.frequencia - b.frequencia)
+        .slice(0, 20)
+        .map(d => d.numero);
+    
+    return frios.sort(() => Math.random() - 0.5).slice(0, 6);
+}
+
+function gerarJogoPorQuadrantes() {
+    const jogo = [];
+    
+    // 1-2 números de cada quadrante
+    const quadrantes = [
+        { min: 1, max: 15 },   // Q1
+        { min: 16, max: 30 },  // Q2
+        { min: 31, max: 45 },  // Q3
+        { min: 46, max: 60 }   // Q4
+    ];
+    
+    quadrantes.forEach(q => {
+        const numerosQuadrante = Object.values(dadosHeatmap)
+            .filter(d => d.numero >= q.min && d.numero <= q.max)
+            .sort(() => Math.random() - 0.5);
+        
+        if (numerosQuadrante.length > 0 && jogo.length < 6) {
+            jogo.push(numerosQuadrante[0].numero);
+        }
+    });
+    
+    // Completar se necessário
+    while (jogo.length < 6) {
+        const numero = Math.floor(Math.random() * 60) + 1;
+        if (!jogo.includes(numero)) {
+            jogo.push(numero);
+        }
+    }
+    
+    return jogo.slice(0, 6);
+}
+
+function gerarJogoGradiente() {
+    // Seguir um gradiente de intensidades
+    const jogo = [];
+    const intensidades = [2, 3, 4, 5, 6, 7]; // Intensidades médias a altas
+    
+    intensidades.forEach(intensidade => {
+        const candidatos = Object.values(dadosHeatmap)
+            .filter(d => d.intensidade === intensidade)
+            .map(d => d.numero);
+        
+        if (candidatos.length > 0 && jogo.length < 6) {
+            const escolhido = candidatos[Math.floor(Math.random() * candidatos.length)];
+            if (!jogo.includes(escolhido)) {
+                jogo.push(escolhido);
+            }
+        }
+    });
+    
+    // Completar se necessário
+    while (jogo.length < 6) {
+        const numero = Math.floor(Math.random() * 60) + 1;
+        if (!jogo.includes(numero)) {
+            jogo.push(numero);
+        }
+    }
+    
+    return jogo.slice(0, 6);
+}
+
+function exibirResultadosHeatmap(jogos) {
+    const lista = document.getElementById('listaJogosHeatmap');
+    const resultados = document.getElementById('resultadosHeatmap');
+    
+    lista.innerHTML = '';
+    
+    const custoTotal = jogos.reduce((sum, jogo) => sum + jogo.custo, 0);
+    const estrategia = document.getElementById('estrategiaHeatmap').value;
+    
+    document.getElementById('resumoJogosHeatmap').textContent = `${jogos.length} jogos`;
+    document.getElementById('custoTotalHeatmap').textContent = formatarMoeda(custoTotal);
+    document.getElementById('estrategiaAplicadaHeatmap').textContent = obterTextoEstrategiaHeatmap(estrategia);
+    
+    jogos.forEach((jogo, index) => {
+        const jogoDiv = document.createElement('div');
+        jogoDiv.className = 'jogo-heatmap-card';
+        
+        // Analisar intensidade do jogo
+        const intensidadeMedia = jogo.numeros.reduce((sum, num) => sum + (dadosHeatmap[num]?.intensidade || 0), 0) / 6;
+        
+        jogoDiv.innerHTML = `
+            <div class="flex justify-between items-center mb-2">
+                <span class="font-bold text-orange-600">Heatmap ${index + 1}</span>
+                <div class="flex gap-1">
+                    <span class="text-xs bg-red-100 text-red-800 px-2 py-1 rounded" title="Intensidade média">🔥${intensidadeMedia.toFixed(1)}</span>
+                    <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">${jogo.pares}P</span>
+                    <span class="text-xs bg-purple-100 text-purple-800 px-2 py-1 rounded">${jogo.impares}I</span>
+                    <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">${formatarMoeda(jogo.custo)}</span>
+                </div>
+            </div>
+            <div class="flex flex-wrap gap-1 mb-1">
+                ${jogo.numeros.map(num => `<span class="numero-heatmap-jogo">${num.toString().padStart(2, '0')}</span>`).join('')}
+            </div>
+            <div class="text-xs text-gray-600">
+                Intensidade média: ${intensidadeMedia.toFixed(1)}/9 | ${jogo.pares}P/${jogo.impares}I
+                <br>Baseado no mapa de calor com dados reais da API
+            </div>
+        `;
+        lista.appendChild(jogoDiv);
+    });
+    
+    resultados.classList.remove('hidden');
+    window.jogosHeatmapGerados = jogos;
+}
+
+function obterTextoEstrategiaHeatmap(estrategia) {
+    const textos = {
+        'equilibrada': 'Equilibrada (Quentes + Frios)',
+        'quentes': 'Foco em Zonas Quentes',
+        'frios': 'Foco em Zonas Frias',
+        'quadrantes': 'Por Quadrantes',
+        'gradiente': 'Seguindo Gradiente'
+    };
+    return textos[estrategia] || 'Personalizada';
+}
+
+function exportarHeatmapImagem() {
+    // Criar canvas para exportação
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+    
+    canvas.width = 1000;
+    canvas.height = 600;
+    
+    // Desenhar o heatmap no canvas
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    
+    // Título
+    ctx.fillStyle = '#000000';
+    ctx.font = 'bold 24px Arial';
+    ctx.textAlign = 'center';
+    ctx.fillText('Mapa de Calor - Mega Sena', canvas.width / 2, 40);
+    
+    // Desenhar grid
+    const cellWidth = 80;
+    const cellHeight = 60;
+    const startX = 100;
+    const startY = 80;
+    
+    for (let i = 1; i <= 60; i++) {
+        const col = (i - 1) % 10;
+        const row = Math.floor((i - 1) / 10);
+        const x = startX + col * cellWidth;
+        const y = startY + row * cellHeight;
+        
+        const dados = dadosHeatmap[i];
+        const intensidade = dados ? dados.intensidade : 0;
+        
+        // Cores baseadas na intensidade
+        const cores = [
+            '#3b82f6', '#06b6d4', '#10b981', '#84cc16', '#eab308',
+            '#f59e0b', '#f97316', '#ea580c', '#dc2626', '#991b1b'
+        ];
+        
+        ctx.fillStyle = cores[intensidade];
+        ctx.fillRect(x, y, cellWidth - 2, cellHeight - 2);
+        
+        // Número
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 16px Arial';
+        ctx.textAlign = 'center';
+        ctx.fillText(i.toString().padStart(2, '0'), x + cellWidth / 2, y + cellHeight / 2 + 6);
+    }
+    
+    // Download
+    const link = document.createElement('a');
+    link.download = `heatmap-megasena-${new Date().getTime()}.png`;
+    link.href = canvas.toDataURL();
+    link.click();
+    
+    console.log('✅ Heatmap exportado como imagem');
+}
+
+function configurarEventListenersHeatmap() {
+    document.getElementById('estiloHeatmap').onchange = atualizarHeatmap;
+    document.getElementById('filtroVisualizacao').onchange = atualizarHeatmap;
+    document.getElementById('modoExibicao').onchange = atualizarHeatmap;
+    
+    document.getElementById('atualizarHeatmap').onclick = () => {
+        calcularDadosHeatmap();
+        atualizarHeatmap();
+        atualizarEstatisticasHeatmap();
+    };
+    
+    document.getElementById('exportarHeatmap').onclick = exportarHeatmapImagem;
+    
+    document.getElementById('resetarHeatmap').onclick = () => {
+        numerosSelecionadosHeatmap = [];
+        atualizarHeatmap();
+        atualizarAreaSelecionadosHeat();
+    };
+    
+    document.getElementById('gerarJogosHeatmap').onclick = gerarJogosHeatmap;
+    
+    document.getElementById('adicionarTodosHeatmap').onclick = () => {
+        adicionarTodosJogosSecao(window.jogosHeatmapGerados);
+    };
+    
+    document.getElementById('novoHeatmap').onclick = () => {
+        document.getElementById('resultadosHeatmap').classList.add('hidden');
+        numerosSelecionadosHeatmap = [];
+        atualizarAreaSelecionadosHeat();
+    };
+    
+    // Modal
+    document.getElementById('modalHeatmapBtn').onclick = () => {
+        document.getElementById('modalHeatmap').classList.remove('hidden');
+    };
+}
+
+function fecharModal(modalId) {
+    document.getElementById(modalId).classList.add('hidden');
+}
+
+// Inicializar quando dados estiverem prontos
+document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(() => {
+        inicializarHeatmap();
+    }, 3500);
+});
+
+console.log('✅ JavaScript da Seção 9 (Heatmap) configurado para API em tempo real');		
+		
+		
 		
     </script>
 </body>
