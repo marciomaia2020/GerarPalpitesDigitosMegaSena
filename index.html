@@ -377,6 +377,44 @@
             z-index: 1000;
             box-shadow: 0 8px 25px rgba(27, 154, 103, 0.6);
         }
+		
+		/* Estilos específicos para fechamento */
+		.numero-fechamento {
+			width: 35px;
+			height: 35px;
+			background: linear-gradient(135deg, #f59e0b, #f97316);
+			color: white;
+			border-radius: 50%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-weight: bold;
+			font-size: 14px;
+			margin: 2px;
+		}
+
+		.jogo-fechamento-card {
+			background: linear-gradient(to right, #fefce8, #fef3c7);
+			border: 2px solid #f59e0b;
+			border-radius: 12px;
+			padding: 12px;
+			margin: 8px 0;
+		}
+
+		.numero-mega.selecionado-fechamento {
+			background: linear-gradient(135deg, #f59e0b, #ea580c);
+			box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.3);
+			border-color: #f59e0b;
+		}
+
+		.fechamento-analise {
+			background: linear-gradient(135deg, #fefce8, #fef3c7);
+			border: 2px solid #f59e0b;
+			border-radius: 12px;
+			padding: 16px;
+			margin: 12px 0;
+		}
+		
     </style>
 </head>
 <body class="bg-megasena-bg min-h-screen">
@@ -995,6 +1033,187 @@ Exemplos:
                     </div>
                 </div>
                 
+				<!-- 🎯 SEÇÃO 6: FECHAMENTO INTELIGENTE -->
+<div class="secao-geracao bg-white rounded-lg shadow-lg p-6">
+    <div class="secao-titulo">🎯 SEÇÃO 6: FECHAMENTO INTELIGENTE</div>
+    <div class="mt-3 flex justify-center gap-2">
+        <a href="https://resumomegasena-i.netlify.app" target="_blank" 
+           class="inline-flex items-center bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-sm transition-colors">
+            🌐 Estratégias de Fechamento
+        </a>
+        <button id="modalFechamentoBtn" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg text-sm">
+            ❓ Como Funciona
+        </button>
+    </div><br />
+
+    <!-- Informação Estratégica -->
+    <div class="bg-gradient-to-r from-yellow-50 to-orange-50 border-2 border-yellow-400 rounded-lg p-4 mb-4">
+        <h4 class="text-lg font-bold text-yellow-800 mb-2">🏆 ESTRATÉGIA DE FECHAMENTO:</h4>
+        <div class="text-sm text-yellow-700 mb-3">
+            Escolha mais dezenas e o sistema gera combinações inteligentes para garantir prêmios mínimos com menor investimento.
+            Baseado no último resultado: <span id="infoFechamentoBase" class="font-bold">20, 24, 27, 46, 50, 54</span>
+        </div>
+        
+        <!-- Distribuição P/I Sugerida -->
+        <div class="grid grid-cols-2 gap-4">
+            <div class="bg-green-100 p-3 rounded border border-green-300">
+                <div class="text-sm font-bold text-green-800">📊 PARES SUGERIDOS:</div>
+                <div class="text-lg font-bold text-green-900" id="paresSugeridosFech">60% (9 de 15)</div>
+                <div class="text-xs text-green-600">Baseado no padrão histórico</div>
+            </div>
+            <div class="bg-purple-100 p-3 rounded border border-purple-300">
+                <div class="text-sm font-bold text-purple-800">📊 ÍMPARES SUGERIDOS:</div>
+                <div class="text-lg font-bold text-purple-900" id="imparesSugeridosFech">40% (6 de 15)</div>
+                <div class="text-xs text-purple-600">Mantém equilíbrio estratégico</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Configuração do Fechamento -->
+    <div class="mb-4">
+        <label class="block text-megasena font-medium mb-3">⚙️ Configuração do Fechamento:</label>
+        
+        <div class="grid grid-cols-2 gap-4 mb-4">
+            <div>
+                <label class="block text-sm font-medium mb-1">🎯 Quantidade de Dezenas:</label>
+                <select id="qtdDezenasFech" class="w-full px-3 py-2 border border-gray-300 rounded-lg text-base">
+                    <option value="10">10 dezenas (210 combinações)</option>
+                    <option value="12">12 dezenas (924 combinações)</option>
+                    <option value="15" selected>15 dezenas (5.005 combinações)</option>
+                    <option value="18">18 dezenas (18.564 combinações)</option>
+                    <option value="20">20 dezenas (38.760 combinações)</option>
+                </select>
+            </div>
+            <div>
+                <label class="block text-sm font-medium mb-1">🏆 Tipo de Garantia:</label>
+                <select id="tipoGarantia" class="w-full px-3 py-2 border border-gray-300 rounded-lg text-base">
+                    <option value="quadra" selected>🎯 Garantia de Quadra (4 acertos)</option>
+                    <option value="quina">🏆 Garantia de Quina (5 acertos)</option>
+                    <option value="otimizado">⚖️ Fechamento Otimizado</option>
+                    <option value="economico">💰 Fechamento Econômico</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-3 gap-4 mb-4">
+            <div>
+                <label class="block text-sm font-medium mb-1">🟢 Pares (sugerido):</label>
+                <select id="qtdParesFech" class="w-full px-2 py-2 border border-gray-300 rounded text-sm">
+                    <!-- Será preenchido dinamicamente -->
+                </select>
+            </div>
+            <div>
+                <label class="block text-sm font-medium mb-1">🟣 Ímpares (sugerido):</label>
+                <select id="qtdImparesFech" class="w-full px-2 py-2 border border-gray-300 rounded text-sm">
+                    <!-- Será preenchido dinamicamente -->
+                </select>
+            </div>
+            <div>
+                <label class="block text-sm font-medium mb-1">🎮 Jogos a Gerar:</label>
+                <select id="qtdJogosFech" class="w-full px-2 py-2 border border-gray-300 rounded text-sm">
+                    <option value="15">15 jogos</option>
+                    <option value="20" selected>20 jogos</option>
+                    <option value="25">25 jogos</option>
+                    <option value="30">30 jogos</option>
+                    <option value="50">50 jogos</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+				<!-- Seleção de Dezenas para Fechamento -->
+				<div class="mb-4">
+					<label class="block text-megasena font-medium mb-2">📋 Selecione as Dezenas para o Fechamento:</label>
+					<div class="bg-blue-50 border border-blue-200 rounded p-3 mb-3 text-sm text-blue-800">
+						<strong>💡 Dica:</strong> Selecione <span id="dezenasNecessarias" class="font-bold">15</span> números. 
+						Atualmente: <span id="dezenasSelecionadasFech" class="font-bold">0</span> selecionadas.
+						<span id="statusSelecaoFech" class="ml-2">Faltam <span class="font-bold">15</span> números</span>
+					</div>
+					
+					<div class="flex gap-2 mb-3">
+						<button id="selecionarAutomaticoFech" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-sm">
+							🤖 Seleção Automática Inteligente
+						</button>
+						<button id="basearUltimoResultadoFech" class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg text-sm">
+							📊 Basear no Último Resultado
+						</button>
+						<button id="limparSelecaoFech" class="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-lg text-sm">
+							🗑️ Limpar Seleção
+						</button>
+					</div>
+					
+					<div id="gridNumerosFech" class="grid grid-cols-6 gap-2">
+						<!-- Números de 01 a 60 serão gerados aqui -->
+					</div>
+				</div>
+
+				<!-- Análise do Fechamento -->
+				<div class="mb-4">
+					<div class="bg-gradient-to-r from-purple-50 to-pink-50 border-2 border-purple-400 rounded-lg p-4">
+						<h4 class="text-lg font-bold text-purple-800 mb-3">📊 ANÁLISE DO FECHAMENTO:</h4>
+						
+						<div class="grid grid-cols-2 gap-4 mb-4">
+							<div class="bg-white p-3 rounded border">
+								<div class="text-sm font-bold text-gray-800">💰 Custo Estimado:</div>
+								<div class="text-xl font-bold text-green-600" id="custoFechamento">R$ 0,00</div>
+								<div class="text-xs text-gray-600">Para <span id="jogosGeradosFech">0</span> jogos</div>
+							</div>
+							<div class="bg-white p-3 rounded border">
+								<div class="text-sm font-bold text-gray-800">🎯 Cobertura:</div>
+								<div class="text-xl font-bold text-blue-600" id="coberturaFechamento">0%</div>
+								<div class="text-xs text-gray-600">Das combinações possíveis</div>
+							</div>
+						</div>
+						
+						<div class="grid grid-cols-3 gap-4">
+							<div class="bg-yellow-100 p-2 rounded text-center">
+								<div class="text-sm font-bold text-yellow-800">Quadra</div>
+								<div class="font-bold text-yellow-900" id="garantiaQuadra">-</div>
+							</div>
+							<div class="bg-orange-100 p-2 rounded text-center">
+								<div class="text-sm font-bold text-orange-800">Quina</div>
+								<div class="font-bold text-orange-900" id="garantiaQuina">-</div>
+							</div>
+							<div class="bg-red-100 p-2 rounded text-center">
+								<div class="text-sm font-bold text-red-800">Sena</div>
+								<div class="font-bold text-red-900" id="garantiaSena">-</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<button id="gerarFechamento" class="w-full bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white px-4 py-2 rounded-lg font-bold text-lg disabled:opacity-50">
+					🎯 Gerar Fechamento Inteligente
+				</button>
+				
+				<div id="resultadosFech" class="mt-4 hidden">
+					<h4 class="font-bold text-yellow-600 mb-2">🎯 Fechamento Gerado:</h4>
+					<div class="bg-yellow-50 border border-yellow-200 rounded p-2 mb-3 text-sm">
+						<strong>Resumo:</strong> <span id="resumoFechamento">20 jogos</span> | 
+						<strong>Custo Total:</strong> <span id="custoTotalFech">R$ 120,00</span> | 
+						<strong>Garantia:</strong> <span id="garantiaFechamento">Quadra se acertar 6</span>
+					</div>
+					<div id="listaJogosFech" class="space-y-2 max-h-60 overflow-y-auto">
+						<!-- Jogos do fechamento aparecerão aqui -->
+					</div>
+					<div class="mt-3 flex gap-2">
+						<button id="adicionarTodosFech" class="flex-1 bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded-lg">
+							➕ Adicionar Todos aos Meus Jogos
+						</button>
+						<button id="novoFechamento" class="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-lg">
+							🔄 Novo Fechamento
+						</button>
+					</div>
+				</div>
+			</div>
+				
+			<!--SEÇÕES NOVAS ADICIONAR A PARTIR DAQUI..-->	
+				
+				
+				
+				
+				
+				
             </div>
             
             <!-- LADO DIREITO: Resumo e Controles -->
@@ -2725,6 +2944,441 @@ Exemplos:
             atualizarNumerosBaseAlterados();
             atualizarTodasInformacoesPareImpares();
         }
+		// ===== SEÇÃO 6: FECHAMENTO INTELIGENTE =====
+		let numerosSelecionadosFechamento = [];
+
+		function inicializarFechamento() {
+			criarGridNumerosFechamento();
+			atualizarSugestoesPareImpares();
+			configurarEventListenersFechamento();
+		}
+
+		function criarGridNumerosFechamento() {
+			const grid = document.getElementById('gridNumerosFech');
+			grid.innerHTML = '';
+			
+			for (let i = 1; i <= 60; i++) {
+				const btn = document.createElement('button');
+				btn.className = 'numero-mega';
+				btn.dataset.numero = i;
+				
+				if (i % 2 === 0) {
+					btn.classList.add('par');
+				} else {
+					btn.classList.add('impar');
+				}
+				
+				btn.textContent = i.toString().padStart(2, '0');
+				btn.onclick = () => toggleNumeroFechamento(i);
+				
+				grid.appendChild(btn);
+			}
+		}
+
+		function toggleNumeroFechamento(numero) {
+			const btn = document.querySelector(`#gridNumerosFech .numero-mega[data-numero="${numero}"]`);
+			const qtdNecessaria = parseInt(document.getElementById('qtdDezenasFech').value);
+			
+			if (numerosSelecionadosFechamento.includes(numero)) {
+				numerosSelecionadosFechamento = numerosSelecionadosFechamento.filter(n => n !== numero);
+				btn.classList.remove('selecionado-fechamento');
+			} else if (numerosSelecionadosFechamento.length < qtdNecessaria) {
+				numerosSelecionadosFechamento.push(numero);
+				btn.classList.add('selecionado-fechamento');
+			}
+			
+			atualizarStatusSelecaoFechamento();
+			validarBotaoFechamento();
+			atualizarAnaliseFechamento();
+		}
+
+		function atualizarStatusSelecaoFechamento() {
+			const qtdNecessaria = parseInt(document.getElementById('qtdDezenasFech').value);
+			const qtdSelecionada = numerosSelecionadosFechamento.length;
+			const faltam = qtdNecessaria - qtdSelecionada;
+			
+			document.getElementById('dezenasNecessarias').textContent = qtdNecessaria;
+			document.getElementById('dezenasSelecionadasFech').textContent = qtdSelecionada;
+			
+			const statusEl = document.getElementById('statusSelecaoFech');
+			if (faltam > 0) {
+				statusEl.innerHTML = `Faltam <span class="font-bold text-red-600">${faltam}</span> números`;
+				statusEl.className = 'ml-2 text-red-600';
+			} else if (faltam === 0) {
+				statusEl.innerHTML = `<span class="font-bold text-green-600">✅ Seleção completa!</span>`;
+				statusEl.className = 'ml-2 text-green-600';
+			}
+		}
+
+		function atualizarSugestoesPareImpares() {
+			const qtdTotal = parseInt(document.getElementById('qtdDezenasFech').value);
+			const sugeridoPares = Math.round(qtdTotal * 0.6); // 60% pares
+			const sugeridoImpares = qtdTotal - sugeridoPares;
+			
+			// Atualizar displays
+			document.getElementById('paresSugeridosFech').textContent = `60% (${sugeridoPares} de ${qtdTotal})`;
+			document.getElementById('imparesSugeridosFech').textContent = `40% (${sugeridoImpares} de ${qtdTotal})`;
+			
+			// Preencher selects
+			const selectPares = document.getElementById('qtdParesFech');
+			const selectImpares = document.getElementById('qtdImparesFech');
+			
+			selectPares.innerHTML = '';
+			selectImpares.innerHTML = '';
+			
+			for (let i = 1; i <= qtdTotal - 1; i++) {
+				const optPares = document.createElement('option');
+				optPares.value = i;
+				optPares.textContent = `${i} pares`;
+				if (i === sugeridoPares) optPares.selected = true;
+				selectPares.appendChild(optPares);
+				
+				const optImpares = document.createElement('option');
+				optImpares.value = qtdTotal - i;
+				optImpares.textContent = `${qtdTotal - i} ímpares`;
+				if (qtdTotal - i === sugeridoImpares) optImpares.selected = true;
+				selectImpares.appendChild(optImpares);
+			}
+		}
+
+		function selecionarAutomaticoFechamento() {
+			limparSelecaoFechamento();
+			
+			const qtdTotal = parseInt(document.getElementById('qtdDezenasFech').value);
+			const qtdPares = parseInt(document.getElementById('qtdParesFech').value);
+			const qtdImpares = parseInt(document.getElementById('qtdImparesFech').value);
+			
+			// Separar números pares e ímpares
+			const pares = [];
+			const impares = [];
+			
+			for (let i = 1; i <= 60; i++) {
+				if (i % 2 === 0) pares.push(i);
+				else impares.push(i);
+			}
+			
+			// Embaralhar arrays
+			pares.sort(() => Math.random() - 0.5);
+			impares.sort(() => Math.random() - 0.5);
+			
+			// Selecionar números
+			for (let i = 0; i < qtdPares; i++) {
+				if (pares[i]) {
+					numerosSelecionadosFechamento.push(pares[i]);
+					const btn = document.querySelector(`#gridNumerosFech .numero-mega[data-numero="${pares[i]}"]`);
+					btn.classList.add('selecionado-fechamento');
+				}
+			}
+			
+			for (let i = 0; i < qtdImpares; i++) {
+				if (impares[i]) {
+					numerosSelecionadosFechamento.push(impares[i]);
+					const btn = document.querySelector(`#gridNumerosFech .numero-mega[data-numero="${impares[i]}"]`);
+					btn.classList.add('selecionado-fechamento');
+				}
+			}
+			
+			atualizarStatusSelecaoFechamento();
+			validarBotaoFechamento();
+			atualizarAnaliseFechamento();
+		}
+
+		function basearNoUltimoResultadoFechamento() {
+			if (!ultimoResultado || !ultimoResultado.listaDezenas) {
+				showCustomAlert('⚠️ Dados Indisponíveis', 'Não há dados do último resultado!');
+				return;
+			}
+			
+			limparSelecaoFechamento();
+			
+			const numerosBase = ultimoResultado.listaDezenas.map(n => parseInt(n));
+			const qtdTotal = parseInt(document.getElementById('qtdDezenasFech').value);
+			
+			// Adicionar números do último resultado
+			numerosBase.forEach(numero => {
+				numerosSelecionadosFechamento.push(numero);
+				const btn = document.querySelector(`#gridNumerosFech .numero-mega[data-numero="${numero}"]`);
+				btn.classList.add('selecionado-fechamento');
+			});
+			
+			// Completar com números próximos aos sorteados
+			const numerosAdicionais = [];
+			numerosBase.forEach(numero => {
+				for (let i = 1; i <= 3; i++) {
+					const vizinho1 = numero - i;
+					const vizinho2 = numero + i;
+					
+					if (vizinho1 >= 1 && !numerosSelecionadosFechamento.includes(vizinho1)) {
+						numerosAdicionais.push(vizinho1);
+					}
+					if (vizinho2 <= 60 && !numerosSelecionadosFechamento.includes(vizinho2)) {
+						numerosAdicionais.push(vizinho2);
+					}
+				}
+			});
+			
+			// Embaralhar e adicionar números adicionais até completar
+			numerosAdicionais.sort(() => Math.random() - 0.5);
+			for (let i = 0; i < numerosAdicionais.length && numerosSelecionadosFechamento.length < qtdTotal; i++) {
+				const numero = numerosAdicionais[i];
+				numerosSelecionadosFechamento.push(numero);
+				const btn = document.querySelector(`#gridNumerosFech .numero-mega[data-numero="${numero}"]`);
+				btn.classList.add('selecionado-fechamento');
+			}
+			
+			atualizarStatusSelecaoFechamento();
+			validarBotaoFechamento();
+			atualizarAnaliseFechamento();
+		}
+
+		function limparSelecaoFechamento() {
+			numerosSelecionadosFechamento = [];
+			document.querySelectorAll('#gridNumerosFech .numero-mega').forEach(btn => {
+				btn.classList.remove('selecionado-fechamento');
+			});
+			atualizarStatusSelecaoFechamento();
+			validarBotaoFechamento();
+			atualizarAnaliseFechamento();
+		}
+
+		function validarBotaoFechamento() {
+			const btn = document.getElementById('gerarFechamento');
+			const qtdNecessaria = parseInt(document.getElementById('qtdDezenasFech').value);
+			btn.disabled = numerosSelecionadosFechamento.length !== qtdNecessaria;
+		}
+
+		function atualizarAnaliseFechamento() {
+			const qtdJogos = parseInt(document.getElementById('qtdJogosFech').value);
+			const custo = qtdJogos * sistemaValores.obterValor(6);
+			const qtdDezenas = numerosSelecionadosFechamento.length;
+			
+			document.getElementById('custoFechamento').textContent = formatarMoeda(custo);
+			document.getElementById('jogosGeradosFech').textContent = qtdJogos;
+			
+			if (qtdDezenas > 0) {
+				const totalCombinacoes = calcularCombinacoes(qtdDezenas, 6);
+				const cobertura = ((qtdJogos / totalCombinacoes) * 100).toFixed(1);
+				document.getElementById('coberturaFechamento').textContent = `${cobertura}%`;
+				
+				// Calcular garantias estimadas
+				const tipoGarantia = document.getElementById('tipoGarantia').value;
+				atualizarGarantias(tipoGarantia, qtdJogos, qtdDezenas);
+			} else {
+				document.getElementById('coberturaFechamento').textContent = '0%';
+				document.getElementById('garantiaQuadra').textContent = '-';
+				document.getElementById('garantiaQuina').textContent = '-';
+				document.getElementById('garantiaSena').textContent = '-';
+			}
+		}
+
+		function calcularCombinacoes(n, k) {
+			if (k > n) return 0;
+			if (k === 0 || k === n) return 1;
+			
+			let result = 1;
+			for (let i = 0; i < k; i++) {
+				result = result * (n - i) / (i + 1);
+			}
+			return Math.round(result);
+		}
+
+		function atualizarGarantias(tipo, qtdJogos, qtdDezenas) {
+			let garantiaQuadra = '-';
+			let garantiaQuina = '-';
+			let garantiaSena = '-';
+			
+			switch (tipo) {
+				case 'quadra':
+					garantiaQuadra = 'Garantida se acertar 6';
+					garantiaQuina = 'Possível';
+					garantiaSena = 'Possível';
+					break;
+				case 'quina':
+					garantiaQuadra = 'Garantida';
+					garantiaQuina = 'Garantida se acertar 7';
+					garantiaSena = 'Possível';
+					break;
+				case 'otimizado':
+					garantiaQuadra = 'Alta probabilidade';
+					garantiaQuina = 'Média probabilidade';
+					garantiaSena = 'Baixa probabilidade';
+					break;
+				case 'economico':
+					garantiaQuadra = 'Média probabilidade';
+					garantiaQuina = 'Baixa probabilidade';
+					garantiaSena = 'Muito baixa';
+					break;
+			}
+			
+			document.getElementById('garantiaQuadra').textContent = garantiaQuadra;
+			document.getElementById('garantiaQuina').textContent = garantiaQuina;
+			document.getElementById('garantiaSena').textContent = garantiaSena;
+		}
+
+		function gerarFechamentoInteligente() {
+			const qtdJogos = parseInt(document.getElementById('qtdJogosFech').value);
+			const tipoGarantia = document.getElementById('tipoGarantia').value;
+			
+			if (numerosSelecionadosFechamento.length === 0) {
+				showCustomAlert('⚠️ Seleção Vazia', 'Selecione os números para o fechamento primeiro!');
+				return;
+			}
+			
+			const jogosGerados = [];
+			
+			// Gerar jogos baseado no tipo de garantia
+			for (let i = 0; i < qtdJogos; i++) {
+				let jogo;
+				
+				switch (tipoGarantia) {
+					case 'quadra':
+						jogo = gerarJogoGarantiaQuadra(numerosSelecionadosFechamento);
+						break;
+					case 'quina':
+						jogo = gerarJogoGarantiaQuina(numerosSelecionadosFechamento);
+						break;
+					case 'otimizado':
+						jogo = gerarJogoOtimizado(numerosSelecionadosFechamento);
+						break;
+					case 'economico':
+						jogo = gerarJogoEconomico(numerosSelecionadosFechamento);
+						break;
+					default:
+						jogo = gerarJogoAleatorioFechamento(numerosSelecionadosFechamento);
+				}
+				
+				jogosGerados.push({
+					id: Date.now() + i,
+					numeros: jogo.sort((a, b) => a - b),
+					quantidade: 6,
+					custo: sistemaValores.obterValor(6),
+					pares: jogo.filter(n => n % 2 === 0).length,
+					impares: jogo.filter(n => n % 2 !== 0).length,
+					origem: 'Fechamento'
+				});
+			}
+			
+			exibirResultadosFechamento(jogosGerados);
+		}
+
+		function gerarJogoAleatorioFechamento(numerosDisponiveis) {
+			const embaralhados = [...numerosDisponiveis].sort(() => Math.random() - 0.5);
+			return embaralhados.slice(0, 6);
+		}
+
+		function gerarJogoGarantiaQuadra(numerosDisponiveis) {
+			// Estratégia: distribuir bem os números para maximizar cobertura
+			const jogo = [];
+			const copia = [...numerosDisponiveis];
+			
+			// Pegar números espaçados
+			for (let i = 0; i < 6 && copia.length > 0; i++) {
+				const index = Math.floor(i * copia.length / 6);
+				jogo.push(copia.splice(index, 1)[0]);
+			}
+			
+			return jogo;
+		}
+
+		function gerarJogoGarantiaQuina(numerosDisponiveis) {
+			// Estratégia mais conservadora para quina
+			return gerarJogoAleatorioFechamento(numerosDisponiveis);
+		}
+
+		function gerarJogoOtimizado(numerosDisponiveis) {
+			// Mescla estratégias
+			const jogo = [];
+			const pares = numerosDisponiveis.filter(n => n % 2 === 0);
+			const impares = numerosDisponiveis.filter(n => n % 2 !== 0);
+			
+			// 3 pares, 3 ímpares (estratégia equilibrada)
+			const paresEscolhidos = pares.sort(() => Math.random() - 0.5).slice(0, 3);
+			const imparesEscolhidos = impares.sort(() => Math.random() - 0.5).slice(0, 3);
+			
+			return [...paresEscolhidos, ...imparesEscolhidos];
+		}
+
+		function gerarJogoEconomico(numerosDisponiveis) {
+			// Estratégia mais simples e econômica
+			return gerarJogoAleatorioFechamento(numerosDisponiveis);
+		}
+
+		function exibirResultadosFechamento(jogos) {
+			const lista = document.getElementById('listaJogosFech');
+			const resultados = document.getElementById('resultadosFech');
+			
+			lista.innerHTML = '';
+			
+			// Atualizar resumo
+			const custoTotal = jogos.reduce((sum, jogo) => sum + jogo.custo, 0);
+			const tipoGarantia = document.getElementById('tipoGarantia').value;
+			
+			document.getElementById('resumoFechamento').textContent = `${jogos.length} jogos`;
+			document.getElementById('custoTotalFech').textContent = formatarMoeda(custoTotal);
+			document.getElementById('garantiaFechamento').textContent = obterTextoGarantia(tipoGarantia);
+			
+			jogos.forEach((jogo, index) => {
+				const jogoDiv = document.createElement('div');
+				jogoDiv.className = 'jogo-fechamento-card';
+				jogoDiv.innerHTML = `
+					<div class="flex justify-between items-center mb-2">
+						<span class="font-bold text-yellow-600">Fechamento ${index + 1}</span>
+						<div class="flex gap-1">
+							<span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">${jogo.pares}P</span>
+							<span class="text-xs bg-purple-100 text-purple-800 px-2 py-1 rounded">${jogo.impares}I</span>
+							<span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">${formatarMoeda(jogo.custo)}</span>
+						</div>
+					</div>
+					<div class="flex flex-wrap gap-1 mb-1">
+						${jogo.numeros.map(num => `<span class="numero-fechamento">${num.toString().padStart(2, '0')}</span>`).join('')}
+					</div>
+					<div class="text-xs text-gray-600">${jogo.pares}P/${jogo.impares}I</div>
+				`;
+				lista.appendChild(jogoDiv);
+			});
+			
+			resultados.classList.remove('hidden');
+			window.jogosFechamentoGerados = jogos;
+		}
+
+		function obterTextoGarantia(tipo) {
+			const textos = {
+				'quadra': 'Quadra garantida se acertar 6',
+				'quina': 'Quina garantida se acertar 7',
+				'otimizado': 'Fechamento otimizado',
+				'economico': 'Fechamento econômico'
+			};
+			return textos[tipo] || 'Fechamento personalizado';
+		}
+
+		function configurarEventListenersFechamento() {
+			// Event listeners para fechamento
+			document.getElementById('qtdDezenasFech').onchange = () => {
+				atualizarSugestoesPareImpares();
+				limparSelecaoFechamento();
+			};
+			
+			document.getElementById('qtdJogosFech').onchange = atualizarAnaliseFechamento;
+			document.getElementById('tipoGarantia').onchange = atualizarAnaliseFechamento;
+			
+			document.getElementById('selecionarAutomaticoFech').onclick = selecionarAutomaticoFechamento;
+			document.getElementById('basearUltimoResultadoFech').onclick = basearNoUltimoResultadoFechamento;
+			document.getElementById('limparSelecaoFech').onclick = limparSelecaoFechamento;
+			document.getElementById('gerarFechamento').onclick = gerarFechamentoInteligente;
+			document.getElementById('novoFechamento').onclick = limparSelecaoFechamento;
+			
+			document.getElementById('adicionarTodosFech').onclick = () => {
+				adicionarTodosJogosSecao(window.jogosFechamentoGerados);
+			};
+		}
+
+		// Inicializar fechamento quando o DOM carregar
+		document.addEventListener('DOMContentLoaded', () => {
+			setTimeout(() => {
+				inicializarFechamento();
+			}, 1500);
+		});
+		
     </script>
 </body>
 </html>
