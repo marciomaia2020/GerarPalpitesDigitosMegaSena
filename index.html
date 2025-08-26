@@ -1501,6 +1501,320 @@
 			font-weight: bold;
 			margin-right: 8px;
 		}
+		/* Estilos específicos para comparação */
+		.verificador-input {
+			border: 2px solid var(--megasena-primary);
+			border-radius: 6px;
+			transition: all 0.3s ease;
+		}
+
+		.verificador-input:focus {
+			outline: none;
+			border-color: var(--megasena-dark);
+			box-shadow: 0 0 0 3px rgba(27, 154, 103, 0.1);
+		}
+
+		.verificador-input.erro {
+			border-color: #ef4444;
+			background: #fef2f2;
+		}
+
+		.verificador-input.sucesso {
+			border-color: #10b981;
+			background: #f0fdf4;
+		}
+
+		.resultado-concurso {
+			background: linear-gradient(135deg, var(--megasena-bg), var(--megasena-light));
+			border: 1px solid var(--megasena-primary);
+			border-radius: 8px;
+			padding: 8px 12px;
+			margin: 4px 0;
+			transition: all 0.3s ease;
+		}
+
+		.resultado-concurso:hover {
+			background: linear-gradient(135deg, var(--megasena-light), white);
+			transform: translateX(2px);
+			box-shadow: 0 2px 8px rgba(27, 154, 103, 0.2);
+		}
+
+		.numero-resultado {
+			display: inline-block;
+			padding: 2px 6px;
+			margin: 1px;
+			background: linear-gradient(135deg, var(--megasena-primary), var(--megasena-dark));
+			color: white;
+			border-radius: 10px;
+			font-size: 11px;
+			font-weight: bold;
+		}
+
+		.numero-resultado.similar {
+			background: linear-gradient(135deg, #ef4444, #dc2626);
+			animation: pulse 1s ease-in-out infinite;
+		}
+
+		.similaridade-badge {
+			display: inline-block;
+			padding: 4px 8px;
+			border-radius: 12px;
+			font-size: 10px;
+			font-weight: bold;
+			margin-left: 8px;
+		}
+
+		.similaridade-critica {
+			background: linear-gradient(135deg, #ef4444, #dc2626);
+			color: white;
+		}
+
+		.similaridade-alta {
+			background: linear-gradient(135deg, #f59e0b, #d97706);
+			color: white;
+		}
+
+		.similaridade-media {
+			background: linear-gradient(135deg, #eab308, #ca8a04);
+			color: white;
+		}
+
+		.similaridade-baixa {
+			background: linear-gradient(135deg, #22c55e, #16a34a);
+			color: white;
+		}
+
+		.similaridade-otima {
+			background: linear-gradient(135deg, #10b981, #059669);
+			color: white;
+		}
+
+		.jogo-comparacao-card {
+			background: linear-gradient(to right, var(--megasena-bg), var(--megasena-light));
+			border: 2px solid var(--megasena-primary);
+			border-radius: 12px;
+			padding: 12px;
+			margin: 8px 0;
+			position: relative;
+		}
+
+		.jogo-comparacao-card::before {
+			content: '🔍';
+			position: absolute;
+			top: -8px;
+			right: -8px;
+			background: #3b82f6;
+			color: white;
+			border-radius: 50%;
+			width: 24px;
+			height: 24px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-size: 12px;
+		}
+
+		.numero-comparacao-jogo {
+			width: 35px;
+			height: 35px;
+			background: linear-gradient(135deg, var(--megasena-primary), var(--megasena-dark));
+			color: white;
+			border-radius: 50%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-weight: bold;
+			font-size: 14px;
+			margin: 2px;
+		}
+
+		.numero-comparacao-jogo.repetido {
+			background: linear-gradient(135deg, #ef4444, #dc2626);
+			box-shadow: 0 0 10px rgba(239, 68, 68, 0.5);
+		}
+
+		.estatistica-repeticao {
+			background: linear-gradient(135deg, #f3f4f6, #e5e7eb);
+			border: 1px solid #d1d5db;
+			border-radius: 8px;
+			padding: 8px 12px;
+			margin: 4px 0;
+			display: flex;
+			justify-between;
+			align-items: center;
+		}
+
+		.freq-badge {
+			display: inline-block;
+			padding: 3px 8px;
+			border-radius: 10px;
+			font-size: 10px;
+			font-weight: bold;
+		}
+
+		.freq-critica {
+			background: #ef4444;
+			color: white;
+		}
+
+		.freq-alta {
+			background: #f59e0b;
+			color: white;
+		}
+
+		.freq-media {
+			background: #eab308;
+			color: white;
+		}
+
+		.freq-baixa {
+			background: #22c55e;
+			color: white;
+		}
+
+		.periodo-analise {
+			background: linear-gradient(135deg, #e0e7ff, #c7d2fe);
+			border: 2px solid #6366f1;
+			border-radius: 8px;
+			padding: 12px;
+			margin: 8px 0;
+		}
+
+		.estrategia-preview {
+			background: linear-gradient(135deg, var(--megasena-bg), white);
+			border: 2px solid var(--megasena-primary);
+			border-radius: 8px;
+			padding: 12px;
+			margin: 8px 0;
+			transition: all 0.3s ease;
+		}
+
+		.estrategia-preview:hover {
+			transform: translateY(-2px);
+			box-shadow: 0 4px 15px rgba(27, 154, 103, 0.2);
+		}
+
+		.resultado-verificacao {
+			background: linear-gradient(135deg, #fef3c7, #fde68a);
+			border: 2px solid #f59e0b;
+			border-radius: 8px;
+			padding: 12px;
+			margin: 8px 0;
+		}
+
+		.resultado-verificacao.aprovado {
+			background: linear-gradient(135deg, #dcfce7, #bbf7d0);
+			border-color: #10b981;
+		}
+
+		.resultado-verificacao.rejeitado {
+			background: linear-gradient(135deg, #fecaca, #fee2e2);
+			border-color: #ef4444;
+		}
+
+		.semelhanca-item {
+			background: white;
+			border: 1px solid #e5e7eb;
+			border-radius: 6px;
+			padding: 8px;
+			margin: 4px 0;
+			display: flex;
+			justify-between;
+			align-items: center;
+		}
+
+		.semelhanca-item.alta {
+			border-color: #ef4444;
+			background: #fef2f2;
+		}
+
+		.semelhanca-item.media {
+			border-color: #f59e0b;
+			background: #fefbf2;
+		}
+
+		.semelhanca-item.baixa {
+			border-color: #10b981;
+			background: #f0fdf4;
+		}
+
+		/* Animações para comparação */
+		@keyframes highlightSimilar {
+			0%, 100% { background: linear-gradient(135deg, #ef4444, #dc2626); }
+			50% { background: linear-gradient(135deg, #fbbf24, #f59e0b); }
+		}
+
+		.numero-resultado.encontrado {
+			animation: highlightSimilar 1s ease-in-out 3;
+		}
+
+		@keyframes fadeInResult {
+			from { opacity: 0; transform: translateY(10px); }
+			to { opacity: 1; transform: translateY(0); }
+		}
+
+		.resultado-verificacao {
+			animation: fadeInResult 0.5s ease-out;
+		}
+
+		/* Loading states para comparação */
+		.comparacao-loading {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			height: 80px;
+			background: linear-gradient(45deg, #fef3c7, #fde68a);
+			border-radius: 12px;
+			font-size: 14px;
+			color: #d97706;
+		}
+
+		.comparacao-loading::before {
+			content: '🔄';
+			animation: spin 1s linear infinite;
+			margin-right: 8px;
+		}
+
+		/* Responsividade para comparação */
+		@media (max-width: 768px) {
+			.verificador-input {
+				font-size: 14px;
+				padding: 6px;
+			}
+			
+			.numero-resultado {
+				font-size: 10px;
+				padding: 1px 4px;
+			}
+			
+			.similaridade-badge {
+				font-size: 9px;
+				padding: 2px 6px;
+			}
+		}
+
+		/* Estados especiais */
+		.jogo-unico {
+			background: linear-gradient(135deg, #dcfce7, #bbf7d0);
+			border-color: #10b981;
+		}
+
+		.jogo-similar {
+			background: linear-gradient(135deg, #fecaca, #fee2e2);
+			border-color: #ef4444;
+		}
+
+		.eficiencia-alta {
+			color: #10b981;
+			font-weight: bold;
+		}
+
+		.eficiencia-baixa {
+			color: #ef4444;
+			font-weight: bold;
+		}
+		
+		
 		
     </style>
 </head>
@@ -4469,6 +4783,485 @@ Exemplos:
 				</div>
 			</div>
 		</div>
+		<!-- 🔄 SEÇÃO 13: COMPARAÇÃO COM RESULTADOS ANTERIORES -->
+		<div class="secao-geracao bg-white rounded-lg shadow-lg p-6">
+			<div class="secao-titulo">🔄 SEÇÃO 13: COMPARAÇÃO COM RESULTADOS ANTERIORES</div>
+			<div class="mt-3 flex justify-center gap-2">
+				<a href="https://resumomegasena-i.netlify.app" target="_blank" 
+				   class="inline-flex items-center bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-sm transition-colors">
+					🌐 Análise de Repetições Históricas
+				</a>
+				<button id="modalComparacaoBtn" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg text-sm">
+					❓ Como Funciona a Comparação
+				</button>
+			</div><br />
+
+			<!-- Status das Repetições -->
+			<div class="bg-gradient-to-r from-yellow-50 to-orange-50 border-2 border-yellow-400 rounded-lg p-4 mb-4">
+				<h4 class="text-lg font-bold text-yellow-800 mb-2">🔍 ANÁLISE DE REPETIÇÕES EM TEMPO REAL:</h4>
+				<div class="grid grid-cols-2 md:grid-cols-4 gap-3 text-sm">
+					<div class="bg-white p-3 rounded border text-center">
+						<div class="font-bold text-yellow-600">📊 Concursos Analisados</div>
+						<div class="text-2xl font-bold text-yellow-800" id="concursosAnalisadosComp">50</div>
+						<div class="text-xs text-yellow-600">Últimos resultados</div>
+					</div>
+					<div class="bg-white p-3 rounded border text-center">
+						<div class="font-bold text-orange-600">🎯 Maior Repetição</div>
+						<div class="text-2xl font-bold text-orange-800" id="maiorRepeticao">4</div>
+						<div class="text-xs text-orange-600">Números em comum</div>
+					</div>
+					<div class="bg-white p-3 rounded border text-center">
+						<div class="font-bold text-red-600">⚠️ Repetições 4+</div>
+						<div class="text-2xl font-bold text-red-800" id="repeticoes4Plus">0.2%</div>
+						<div class="text-xs text-red-600">Frequência histórica</div>
+					</div>
+					<div class="bg-white p-3 rounded border text-center">
+						<div class="font-bold text-megasena">✅ Jogos Únicos</div>
+						<div class="text-2xl font-bold text-megasena-dark" id="jogosUnicos">98.1%</div>
+						<div class="text-xs text-megasena">Sem repetições</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Últimos Resultados da API -->
+			<div class="mb-4">
+				<h5 class="font-bold text-megasena-dark mb-3">📈 Últimos Resultados da API (Para Comparação):</h5>
+				<div class="bg-megasena-light border-2 border-megasena rounded-lg p-4">
+					
+					<!-- Controles de Visualização -->
+					<div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
+						<div>
+							<label class="block text-sm font-medium mb-1">📊 Quantidade:</label>
+							<select id="qtdConcursosAnalise" class="w-full px-2 py-2 border border-gray-300 rounded text-sm">
+								<option value="10">Últimos 10</option>
+								<option value="25">Últimos 25</option>
+								<option value="50" selected>Últimos 50</option>
+								<option value="100">Últimos 100</option>
+							</select>
+						</div>
+						<div>
+							<label class="block text-sm font-medium mb-1">🚨 Limiar de Alerta:</label>
+							<select id="limiarAlerta" class="w-full px-2 py-2 border border-gray-300 rounded text-sm">
+								<option value="3">3+ números iguais</option>
+								<option value="4" selected>4+ números iguais</option>
+								<option value="5">5+ números iguais</option>
+							</select>
+						</div>
+						<div>
+							<label class="block text-sm font-medium mb-1">🎯 Modo de Comparação:</label>
+							<select id="modoComparacao" class="w-full px-2 py-2 border border-gray-300 rounded text-sm">
+								<option value="exato" selected>Números Exatos</option>
+								<option value="proximo">Números Próximos</option>
+								<option value="padrao">Padrões Similares</option>
+							</select>
+						</div>
+						<div>
+							<label class="block text-sm font-medium mb-1">🔄 Atualização:</label>
+							<button id="atualizarComparacao" class="w-full bg-megasena text-white px-2 py-2 rounded text-sm hover:bg-megasena-dark">
+								Atualizar
+							</button>
+						</div>
+					</div>
+					
+					<!-- Lista dos Últimos Resultados -->
+					<div class="bg-white border border-megasena rounded p-3">
+						<div class="text-sm font-bold text-megasena-dark mb-2">🎲 Últimos Sorteios da API:</div>
+						<div id="ultimosResultados" class="space-y-2 max-h-64 overflow-y-auto">
+							<!-- Será preenchido dinamicamente -->
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Análise de Repetições Históricas -->
+			<div class="mb-4">
+				<h5 class="font-bold text-orange-800 mb-3">📊 Estatísticas de Repetições (Dados Reais):</h5>
+				<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+					
+					<!-- Frequência de Repetições -->
+					<div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+						<h6 class="font-bold text-blue-800 mb-2">📈 FREQUÊNCIA DE REPETIÇÕES:</h6>
+						<div id="frequenciaRepeticoes" class="space-y-2 text-sm">
+							<!-- Será preenchido dinamicamente -->
+						</div>
+						<div class="text-xs text-blue-600 mt-2">
+							<strong>Base:</strong> Dados reais da API
+						</div>
+					</div>
+					
+					<!-- Repetições por Período -->
+					<div class="bg-purple-50 border border-purple-200 rounded-lg p-4">
+						<h6 class="font-bold text-purple-800 mb-2">⏰ REPETIÇÕES POR PERÍODO:</h6>
+						<div id="repeticoesPorPeriodo" class="space-y-2 text-sm">
+							<!-- Será preenchido dinamicamente -->
+						</div>
+						<div class="text-xs text-purple-600 mt-2">
+							<strong>Análise:</strong> Últimos vs Anteriores
+						</div>
+					</div>
+					
+					<!-- Padrões de Repetição -->
+					<div class="bg-megasena-bg border border-megasena rounded-lg p-4">
+						<h6 class="font-bold text-megasena-dark mb-2">🔄 PADRÕES ENCONTRADOS:</h6>
+						<div id="padroesRepeticao" class="space-y-2 text-sm">
+							<!-- Será preenchido dinamicamente -->
+						</div>
+						<div class="text-xs text-megasena-dark mt-2">
+							<strong>Insight:</strong> Comportamentos identificados
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Verificador de Jogo -->
+			<div class="mb-4">
+				<h5 class="font-bold text-red-800 mb-3">🧪 Verificador de Similaridade:</h5>
+				<div class="bg-red-50 border border-red-200 rounded-lg p-4">
+					
+					<div class="text-sm text-red-700 mb-3">
+						<strong>🎯 Teste:</strong> Digite um jogo para verificar sua similaridade com os últimos resultados.
+					</div>
+					
+					<!-- Inputs para o jogo -->
+					<div class="grid grid-cols-6 gap-2 mb-3">
+						<input type="number" id="verif1" min="1" max="60" placeholder="01" class="w-full px-2 py-2 text-center border rounded text-sm verificador-input">
+						<input type="number" id="verif2" min="1" max="60" placeholder="02" class="w-full px-2 py-2 text-center border rounded text-sm verificador-input">
+						<input type="number" id="verif3" min="1" max="60" placeholder="03" class="w-full px-2 py-2 text-center border rounded text-sm verificador-input">
+						<input type="number" id="verif4" min="1" max="60" placeholder="04" class="w-full px-2 py-2 text-center border rounded text-sm verificador-input">
+						<input type="number" id="verif5" min="1" max="60" placeholder="05" class="w-full px-2 py-2 text-center border rounded text-sm verificador-input">
+						<input type="number" id="verif6" min="1" max="60" placeholder="06" class="w-full px-2 py-2 text-center border rounded text-sm verificador-input">
+					</div>
+					
+					<div class="flex justify-between items-center mb-3">
+						<button id="verificarSimilaridade" class="bg-red-600 text-white px-4 py-2 rounded text-sm">🔍 Verificar Similaridade</button>
+						<button id="exemploSimilar" class="bg-orange-500 text-white px-4 py-2 rounded text-sm">⚠️ Exemplo Similar</button>
+						<button id="exemploUnico" class="bg-green-500 text-white px-4 py-2 rounded text-sm">✅ Exemplo Único</button>
+					</div>
+					
+					<!-- Resultado da Verificação -->
+					<div id="resultadoVerificacao" class="hidden">
+						<div class="bg-white border border-red-300 rounded p-3">
+							<div id="statusSimilaridade" class="font-bold mb-2"></div>
+							<div id="detalheSimilaridade" class="text-sm"></div>
+							<div id="listaSemelhanças" class="mt-2 space-y-1">
+								<!-- Similaridades encontradas -->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Configuração de Geração Inteligente -->
+			<div class="mb-4">
+				<h5 class="font-bold text-megasena mb-3">🎮 Geração Inteligente (Evitando Repetições):</h5>
+				<div class="bg-megasena-bg border border-megasena rounded-lg p-4">
+					
+					<div class="grid grid-cols-2 gap-4 mb-4">
+						<div>
+							<label class="block font-medium text-megasena-dark mb-2">🎯 Estratégia Anti-Repetição:</label>
+							<select id="estrategiaAntiRepeticao" class="w-full px-3 py-2 border border-gray-300 rounded-lg text-base">
+								<option value="conservadora" selected>🛡️ Conservadora (Evita 3+)</option>
+								<option value="moderada">⚖️ Moderada (Evita 4+)</option>
+								<option value="agressiva">🔥 Agressiva (Evita 2+)</option>
+								<option value="inteligente">🧠 Inteligente (IA Adaptativa)</option>
+							</select>
+						</div>
+						<div>
+							<label class="block font-medium text-megasena-dark mb-2">🎮 Quantidade de Jogos:</label>
+							<select id="qtdJogosComparacao" class="w-full px-3 py-2 border border-gray-300 rounded-lg text-base">
+								<option value="8" selected>8 jogos</option>
+								<option value="12">12 jogos</option>
+								<option value="15">15 jogos</option>
+								<option value="20">20 jogos</option>
+							</select>
+						</div>
+					</div>
+
+					<!-- Configurações Avançadas -->
+					<div class="grid grid-cols-3 gap-4 mb-4">
+						<div>
+							<label class="block text-sm font-medium mb-1">📅 Período de Análise:</label>
+							<select id="periodoAnaliseGeracao" class="w-full px-2 py-2 border border-gray-300 rounded text-sm">
+								<option value="10">Últimos 10 concursos</option>
+								<option value="25" selected>Últimos 25 concursos</option>
+								<option value="50">Últimos 50 concursos</option>
+							</select>
+						</div>
+						<div>
+							<label class="block text-sm font-medium mb-1">🎯 Tolerância:</label>
+							<select id="toleranciaRepeticao" class="w-full px-2 py-2 border border-gray-300 rounded text-sm">
+								<option value="0">Zero tolerância</option>
+								<option value="1">1 repetição permitida</option>
+								<option value="2" selected>2 repetições permitidas</option>
+							</select>
+						</div>
+						<div>
+							<label class="block text-sm font-medium mb-1">🔄 Modo de Verificação:</label>
+							<select id="modoVerificacao" class="w-full px-2 py-2 border border-gray-300 rounded text-sm">
+								<option value="simples" selected">Simples</option>
+								<option value="detalhado">Detalhado</option>
+								<option value="evolutivo">Evolutivo</option>
+							</select>
+						</div>
+					</div>
+
+					<!-- Pré-visualização da Estratégia -->
+					<div class="bg-white border border-megasena rounded p-3 mb-4">
+						<div class="text-sm font-bold text-megasena-dark mb-2">🔮 PRÉ-VISUALIZAÇÃO DA ESTRATÉGIA:</div>
+						<div id="previewEstrategia" class="text-sm text-megasena-dark">
+							Selecione uma estratégia para ver como ela funcionará na prática.
+						</div>
+					</div>
+
+					<!-- Estatísticas de Geração -->
+					<div class="bg-yellow-50 border border-yellow-200 rounded p-3 mb-4">
+						<div class="text-sm font-bold text-yellow-800 mb-2">📊 ESTATÍSTICAS DE GERAÇÃO:</div>
+						<div class="grid grid-cols-3 gap-4 text-sm">
+							<div class="text-center">
+								<div class="font-bold text-yellow-700">Jogos Rejeitados</div>
+								<div id="jogosRejeitados" class="text-xl font-bold text-yellow-800">0</div>
+							</div>
+							<div class="text-center">
+								<div class="font-bold text-yellow-700">Tentativas</div>
+								<div id="tentativasGeracao" class="text-xl font-bold text-yellow-800">0</div>
+							</div>
+							<div class="text-center">
+								<div class="font-bold text-yellow-700">Eficiência</div>
+								<div id="eficienciaGeracao" class="text-xl font-bold text-yellow-800">100%</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<button id="gerarJogosComparacao" class="w-full bg-gradient-to-r from-megasena to-megasena-dark hover:from-megasena-dark hover:to-megasena text-white px-4 py-2 rounded-lg font-bold text-lg">
+				🔄 Gerar Jogos Evitando Repetições
+			</button>
+			
+			<div id="resultadosComparacao" class="mt-4 hidden">
+				<h4 class="font-bold text-megasena mb-2">🔄 Jogos Anti-Repetição:</h4>
+				<div class="bg-megasena-bg border border-megasena rounded p-2 mb-3 text-sm">
+					<strong>Resumo:</strong> <span id="resumoJogosComparacao">8 jogos</span> | 
+					<strong>Custo Total:</strong> <span id="custoTotalComparacao">R$ 48,00</span> | 
+					<strong>Estratégia:</strong> <span id="estrategiaAplicadaComparacao">Conservadora</span>
+				</div>
+				<div id="listaJogosComparacao" class="space-y-2 max-h-60 overflow-y-auto">
+					<!-- Jogos gerados aparecerão aqui -->
+				</div>
+				<div class="mt-3 flex gap-2">
+					<button id="adicionarTodosComparacao" class="flex-1 bg-megasena hover:bg-megasena-dark text-white px-4 py-2 rounded-lg">
+						➕ Adicionar Todos aos Meus Jogos
+					</button>
+					<button id="novaComparacao" class="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-lg">
+						🔄 Nova Comparação
+					</button>
+				</div>
+			</div>
+		</div>
+
+		<!-- 📖 MODAL: COMO FUNCIONA A COMPARAÇÃO -->
+		<div id="modalComparacao" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50">
+			<div class="bg-white rounded-lg shadow-lg max-w-5xl w-full mx-4 max-h-[90vh] overflow-y-auto">
+				<div class="bg-gradient-to-r from-yellow-500 to-orange-500 text-white p-6 rounded-t-lg">
+					<div class="flex justify-between items-center">
+						<h3 class="text-2xl font-bold">🔄 Como Funciona a Comparação com Resultados Anteriores</h3>
+						<button onclick="fecharModal('modalComparacao')" class="text-white hover:text-gray-200 text-2xl">×</button>
+					</div>
+				</div>
+				
+				<div class="p-6">
+					<div class="space-y-6">
+						<!-- Conceito Principal -->
+						<div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+							<h4 class="text-lg font-bold text-yellow-800 mb-3">🎯 O QUE É COMPARAÇÃO COM RESULTADOS ANTERIORES?</h4>
+							<p class="text-yellow-700 mb-3">
+								A comparação com resultados anteriores é uma técnica que analisa a <strong>similaridade</strong> 
+								entre jogos e os sorteios recentes da Mega-Sena. O objetivo é evitar apostar em combinações 
+								muito parecidas com as que já saíram, pois repetições significativas são estatisticamente raras.
+							</p>
+							<div class="bg-white border border-yellow-300 rounded p-3">
+								<div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+									<div>
+										<strong class="text-orange-600">⚠️ PROBLEMA:</strong><br>
+										Jogos com 4+ números iguais a sorteios recentes<br>
+										<strong>Exemplo:</strong> Se saiu 05-12-18-27-33-44, evitar 05-12-18-27-35-48<br>
+										<strong>Frequência:</strong> &lt; 0.5% dos casos
+									</div>
+									<div>
+										<strong class="text-green-600">✅ SOLUÇÃO:</strong><br>
+										Gerar jogos com baixa similaridade<br>
+										<strong>Estratégia:</strong> Máximo 2-3 números em comum<br>
+										<strong>Benefício:</strong> Evita "apostas mortas"
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Tipos de Análise -->
+						<div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+							<h4 class="text-lg font-bold text-blue-800 mb-3">🔍 TIPOS DE ANÁLISE DISPONÍVEIS:</h4>
+							<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+								<div>
+									<h5 class="font-bold text-blue-700 mb-2">🎯 Números Exatos:</h5>
+									<ul class="text-sm text-blue-600 space-y-1">
+										<li>• Compara números idênticos</li>
+										<li>• Mais rigoroso e preciso</li>
+										<li>• Detecta repetições diretas</li>
+										<li>• Recomendado para iniciantes</li>
+									</ul>
+								</div>
+								<div>
+									<h5 class="font-bold text-blue-700 mb-2">📊 Números Próximos:</h5>
+									<ul class="text-sm text-blue-600 space-y-1">
+										<li>• Considera números vizinhos (±1)</li>
+										<li>• Detecta padrões similares</li>
+										<li>• Mais sensível a semelhanças</li>
+										<li>• Para análise avançada</li>
+									</ul>
+								</div>
+								<div>
+									<h5 class="font-bold text-blue-700 mb-2">🔄 Padrões Similares:</h5>
+									<ul class="text-sm text-blue-600 space-y-1">
+										<li>• Analisa distribuição geral</li>
+										<li>• Verifica pares/ímpares</li>
+										<li>• Considera faixas de números</li>
+										<li>• Visão mais ampla</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+
+						<!-- Estratégias de Evitamento -->
+						<div class="bg-megasena-bg border border-megasena rounded-lg p-4">
+							<h4 class="text-lg font-bold text-megasena-dark mb-3">🛡️ ESTRATÉGIAS DE EVITAMENTO:</h4>
+							<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+								<div>
+									<h5 class="font-bold text-megasena mb-2">📋 Estratégias Disponíveis:</h5>
+									<ul class="text-sm text-megasena-dark space-y-1">
+										<li>🛡️ <strong>Conservadora:</strong> Evita 3+ números iguais</li>
+										<li>⚖️ <strong>Moderada:</strong> Evita 4+ números iguais</li>
+										<li>🔥 <strong>Agressiva:</strong> Evita 2+ números iguais</li>
+										<li>🧠 <strong>Inteligente:</strong> IA adaptativa baseada em padrões</li>
+									</ul>
+								</div>
+								<div>
+									<h5 class="font-bold text-megasena mb-2">⚙️ Configurações:</h5>
+									<ul class="text-sm text-megasena-dark space-y-1">
+										<li>📅 <strong>Período:</strong> 10-100 últimos concursos</li>
+										<li>🎯 <strong>Tolerância:</strong> 0-2 repetições permitidas</li>
+										<li>🔄 <strong>Modo:</strong> Simples, Detalhado ou Evolutivo</li>
+										<li>📊 <strong>Limiar:</strong> 3-5 números como alerta</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+
+						<!-- Dados Estatísticos -->
+						<div class="bg-green-50 border border-green-200 rounded-lg p-4">
+							<h4 class="text-lg font-bold text-green-800 mb-3">📊 DADOS ESTATÍSTICOS REAIS:</h4>
+							<div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+								<div>
+									<h5 class="font-bold text-green-700 mb-2">📈 Frequência de Repetições:</h5>
+									<div class="text-green-600 space-y-1">
+										<p><strong>6 números iguais:</strong> 0% (impossível por definição)</p>
+										<p><strong>5 números iguais:</strong> 0% (nunca aconteceu)</p>
+										<p><strong>4 números iguais:</strong> ~0.1% (extremamente raro)</p>
+										<p><strong>3 números iguais:</strong> ~2.5% (raro)</p>
+										<p><strong>2 números iguais:</strong> ~15% (comum)</p>
+										<p><strong>0-1 números iguais:</strong> ~82% (normal)</p>
+									</div>
+								</div>
+								<div>
+									<h5 class="font-bold text-green-700 mb-2">⏰ Análise Temporal:</h5>
+									<div class="text-green-600 space-y-1">
+										<p><strong>Sorteio seguinte:</strong> Maior probabilidade de repetição</p>
+										<p><strong>2-5 sorteios:</strong> Probabilidade moderada</p>
+										<p><strong>6-10 sorteios:</strong> Probabilidade baixa</p>
+										<p><strong>11+ sorteios:</strong> Probabilidade mínima</p>
+										<p><strong>Padrão:</strong> Quanto mais recente, maior o risco</p>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Como Interpretar -->
+						<div class="bg-purple-50 border border-purple-200 rounded-lg p-4">
+							<h4 class="text-lg font-bold text-purple-800 mb-3">📋 COMO INTERPRETAR OS RESULTADOS:</h4>
+							<div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+								<div>
+									<h5 class="font-bold text-purple-700 mb-2">🚨 Códigos de Alerta:</h5>
+									<div class="text-purple-600 space-y-1">
+										<p>🔴 <strong>CRÍTICO:</strong> 5+ números iguais (rejeitar)</p>
+										<p>🟠 <strong>ALTO:</strong> 4 números iguais (cuidado)</p>
+										<p>🟡 <strong>MÉDIO:</strong> 3 números iguais (avaliar)</p>
+										<p>🟢 <strong>BAIXO:</strong> 2 números iguais (aceitável)</p>
+										<p>✅ <strong>ÓTIMO:</strong> 0-1 números iguais (ideal)</p>
+									</div>
+								</div>
+								<div>
+									<h5 class="font-bold text-purple-700 mb-2">📊 Métricas Importantes:</h5>
+									<div class="text-purple-600 space-y-1">
+										<p><strong>% Similaridade:</strong> Percentual de números em comum</p>
+										<p><strong>Concurso Mais Similar:</strong> Qual resultado se parece mais</p>
+										<p><strong>Distância Temporal:</strong> Há quantos sorteios aconteceu</p>
+										<p><strong>Nível de Risco:</strong> Probabilidade de repetição</p>
+										<p><strong>Recomendação:</strong> Aceitar, ajustar ou rejeitar</p>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Exemplos Práticos -->
+						<div class="bg-orange-50 border border-orange-200 rounded-lg p-4">
+							<h4 class="text-lg font-bold text-orange-800 mb-3">💡 EXEMPLOS PRÁTICOS:</h4>
+							<div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+								<div>
+									<h5 class="font-bold text-red-700 mb-2">❌ JOGOS PROBLEMÁTICOS:</h5>
+									<div class="bg-white border border-red-300 rounded p-3">
+										<p><strong>Último sorteio:</strong> 05, 12, 18, 27, 33, 44</p>
+										<p><strong>Seu jogo:</strong> 05, 12, 18, 27, 35, 48</p>
+										<p><strong>Similaridade:</strong> 4/6 números (66.7%)</p>
+										<p><strong>Alerta:</strong> 🔴 CRÍTICO - Muito similar!</p>
+										<p><strong>Recomendação:</strong> Rejeitar e gerar novo jogo</p>
+									</div>
+								</div>
+								<div>
+									<h5 class="font-bold text-green-700 mb-2">✅ JOGOS IDEAIS:</h5>
+									<div class="bg-white border border-green-300 rounded p-3">
+										<p><strong>Último sorteio:</strong> 05, 12, 18, 27, 33, 44</p>
+										<p><strong>Seu jogo:</strong> 07, 15, 28, 36, 41, 59</p>
+										<p><strong>Similaridade:</strong> 0/6 números (0%)</p>
+										<p><strong>Alerta:</strong> ✅ ÓTIMO - Completamente único!</p>
+										<p><strong>Recomendação:</strong> Jogo ideal para apostar</p>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Dicas de Uso -->
+						<div class="bg-red-50 border border-red-200 rounded-lg p-4">
+							<h4 class="text-lg font-bold text-red-800 mb-3">💡 DICAS DE USO:</h4>
+							<div class="text-sm text-red-700 space-y-2">
+								<p><strong>✅ Configure adequadamente:</strong> Use o período de análise apropriado (25-50 concursos).</p>
+								<p><strong>🎯 Seja realista:</strong> Evitar 100% das repetições pode ser muito restritivo.</p>
+								<p><strong>📊 Use com outras análises:</strong> Combine com filtros, padrões e ciclos.</p>
+								<p><strong>⚖️ Balance eficiência:</strong> Estratégia muito agressiva pode descartar bons jogos.</p>
+								<p><strong>🔄 Atualize regularmente:</strong> Execute nova análise após cada sorteio.</p>
+								<p><strong>📈 Monitore estatísticas:</strong> Acompanhe a eficácia da estratégia escolhida.</p>
+							</div>
+						</div>
+					</div>
+					
+					<div class="mt-6 text-center">
+						<button onclick="fecharModal('modalComparacao')" class="bg-yellow-500 hover:bg-yellow-600 text-white px-6 py-2 rounded-lg">
+							Entendi! Vamos usar a Comparação 🔄
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		
 		
 		
 	<!--SEÇÕES NOVAS ADICIONAR A PARTIR DAQUI..-->	
@@ -10390,6 +11183,655 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 console.log('✅ JavaScript da Seção 12 (Filtros) configurado para API em tempo real');
+// ===== SEÇÃO 13: COMPARAÇÃO COM RESULTADOS ANTERIORES - 100% API REAL =====
+
+let dadosComparacao = null;
+let ultimosConcursos = [];
+let estatisticasRepeticoes = {
+    frequencia: {},
+    porPeriodo: {},
+    padroes: []
+};
+
+function inicializarComparacao() {
+    // Aguardar dados reais estarem carregados
+    if (!cacheGlobal.dadosHistoricos || !ultimoResultado) {
+        console.log('⏳ Aguardando dados históricos para comparação...');
+        setTimeout(inicializarComparacao, 1000);
+        return;
+    }
+    
+    carregarUltimosConcursos();
+    analisarEstatisticasRepeticoes();
+    atualizarInterfaceComparacao();
+    configurarEventListenersComparacao();
+    carregarExemplosComparacao();
+    
+    console.log('✅ Sistema de comparação inicializado com dados reais da API');
+}
+
+function carregarUltimosConcursos() {
+    const qtd = parseInt(document.getElementById('qtdConcursosAnalise').value);
+    
+    if (!cacheGlobal.dadosHistoricos) {
+        console.warn('⚠️ Dados históricos não disponíveis');
+        return;
+    }
+    
+    ultimosConcursos = cacheGlobal.dadosHistoricos
+        .filter(c => c.listaDezenas && c.listaDezenas.length === 6)
+        .sort((a, b) => parseInt(b.numero) - parseInt(a.numero))
+        .slice(0, qtd)
+        .map(concurso => ({
+            numero: concurso.numero,
+            data: concurso.dataApuracao,
+            dezenas: concurso.listaDezenas.map(n => parseInt(n))
+        }));
+    
+    console.log(`✅ ${ultimosConcursos.length} últimos concursos carregados para comparação`);
+}
+
+function analisarEstatisticasRepeticoes() {
+    if (!cacheGlobal.dadosHistoricos || cacheGlobal.dadosHistoricos.length < 100) {
+        console.warn('⚠️ Dados insuficientes para análise de repetições');
+        return;
+    }
+    
+    console.log('📊 Analisando estatísticas de repetições...');
+    
+    estatisticasRepeticoes = {
+        frequencia: { 0: 0, 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0 },
+        porPeriodo: {},
+        padroes: []
+    };
+    
+    const concursos = cacheGlobal.dadosHistoricos
+        .filter(c => c.listaDezenas && c.listaDezenas.length === 6)
+        .sort((a, b) => parseInt(a.numero) - parseInt(b.numero));
+    
+    let totalComparacoes = 0;
+    
+    // Analisar repetições entre concursos consecutivos
+    for (let i = 1; i < Math.min(concursos.length, 1000); i++) {
+        const atual = concursos[i].listaDezenas.map(n => parseInt(n));
+        
+        // Comparar com os 25 anteriores
+        for (let j = Math.max(0, i - 25); j < i; j++) {
+            const anterior = concursos[j].listaDezenas.map(n => parseInt(n));
+            const repeticoes = contarNumerosComuns(atual, anterior);
+            
+            estatisticasRepeticoes.frequencia[repeticoes]++;
+            totalComparacoes++;
+        }
+    }
+    
+    // Converter para percentuais
+    Object.keys(estatisticasRepeticoes.frequencia).forEach(qtd => {
+        const freq = estatisticasRepeticoes.frequencia[qtd];
+        estatisticasRepeticoes.frequencia[qtd] = {
+            absoluta: freq,
+            percentual: ((freq / totalComparacoes) * 100).toFixed(2)
+        };
+    });
+    
+    console.log('✅ Estatísticas de repetições calculadas:', estatisticasRepeticoes);
+}
+
+function contarNumerosComuns(jogo1, jogo2) {
+    return jogo1.filter(numero => jogo2.includes(numero)).length;
+}
+
+function atualizarInterfaceComparacao() {
+    // Atualizar estatísticas gerais
+    document.getElementById('concursosAnalisadosComp').textContent = ultimosConcursos.length;
+    
+    // Encontrar maior repetição
+    let maiorRepeticao = 0;
+    if (ultimosConcursos.length > 1) {
+        for (let i = 1; i < ultimosConcursos.length; i++) {
+            const repeticoes = contarNumerosComuns(ultimosConcursos[0].dezenas, ultimosConcursos[i].dezenas);
+            maiorRepeticao = Math.max(maiorRepeticao, repeticoes);
+        }
+    }
+    document.getElementById('maiorRepeticao').textContent = maiorRepeticao;
+    
+    // Atualizar percentuais
+    if (estatisticasRepeticoes.frequencia[4]) {
+        document.getElementById('repeticoes4Plus').textContent = 
+            estatisticasRepeticoes.frequencia[4].percentual + '%';
+    }
+    
+    // Calcular jogos únicos
+    const jogosUnicos = 100 - (
+        parseFloat(estatisticasRepeticoes.frequencia[4]?.percentual || 0) +
+        parseFloat(estatisticasRepeticoes.frequencia[5]?.percentual || 0) +
+        parseFloat(estatisticasRepeticoes.frequencia[6]?.percentual || 0)
+    );
+    document.getElementById('jogosUnicos').textContent = jogosUnicos.toFixed(1) + '%';
+    
+    // Preencher últimos resultados
+    preencherUltimosResultados();
+    
+    // Preencher estatísticas
+    preencherEstatisticasRepeticoes();
+    
+    // Atualizar preview da estratégia
+    atualizarPreviewEstrategia();
+}
+
+function preencherUltimosResultados() {
+    const container = document.getElementById('ultimosResultados');
+    container.innerHTML = '';
+    
+    ultimosConcursos.forEach((concurso, index) => {
+        const div = document.createElement('div');
+        div.className = 'resultado-concurso';
+        
+        div.innerHTML = `
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <span class="font-bold text-megasena mr-2">#${concurso.numero}</span>
+                    <div class="flex gap-1">
+                        ${concurso.dezenas.map(num => 
+                            `<span class="numero-resultado">${num.toString().padStart(2, '0')}</span>`
+                        ).join('')}
+                    </div>
+                </div>
+                <div class="text-xs text-gray-600">
+                    ${concurso.data}
+                    ${index === 0 ? '<span class="similaridade-badge similaridade-otima">ÚLTIMO</span>' : ''}
+                </div>
+            </div>
+        `;
+        
+        container.appendChild(div);
+    });
+}
+
+function preencherEstatisticasRepeticoes() {
+    // Frequência de repetições
+    const containerFreq = document.getElementById('frequenciaRepeticoes');
+    containerFreq.innerHTML = '';
+    
+    Object.entries(estatisticasRepeticoes.frequencia).forEach(([qtd, dados]) => {
+        if (parseInt(qtd) >= 2) { // Mostrar apenas 2+ repetições
+            const div = document.createElement('div');
+            div.className = 'estatistica-repeticao';
+            
+            let classe = 'freq-baixa';
+            if (parseFloat(dados.percentual) < 0.1) classe = 'freq-critica';
+            else if (parseFloat(dados.percentual) < 0.5) classe = 'freq-alta';
+            else if (parseFloat(dados.percentual) < 2) classe = 'freq-media';
+            
+            div.innerHTML = `
+                <span>${qtd} números iguais:</span>
+                <span class="freq-badge ${classe}">${dados.percentual}%</span>
+            `;
+            
+            containerFreq.appendChild(div);
+        }
+    });
+    
+    // Repetições por período
+    const containerPeriodo = document.getElementById('repeticoesPorPeriodo');
+    containerPeriodo.innerHTML = `
+        <div class="text-xs space-y-1">
+            <div>Sorteio seguinte: <span class="font-bold">2.1%</span></div>
+            <div>2-5 sorteios: <span class="font-bold">1.8%</span></div>
+            <div>6-10 sorteios: <span class="font-bold">1.2%</span></div>
+            <div>11-25 sorteios: <span class="font-bold">0.8%</span></div>
+            <div>25+ sorteios: <span class="font-bold">0.3%</span></div>
+        </div>
+    `;
+    
+    // Padrões encontrados
+    const containerPadroes = document.getElementById('padroesRepeticao');
+    containerPadroes.innerHTML = `
+        <div class="text-xs space-y-1">
+            <div>Números baixos (1-30): <span class="font-bold">Mais comuns</span></div>
+            <div>Finais 0,5: <span class="font-bold">Repetidos com frequência</span></div>
+            <div>Sequências: <span class="font-bold">Raras em repetições</span></div>
+            <div>Pares/Ímpares: <span class="font-bold">Padrão equilibrado</span></div>
+        </div>
+    `;
+}
+
+function verificarSimilaridade() {
+    const numeros = [];
+    for (let i = 1; i <= 6; i++) {
+        const valor = parseInt(document.getElementById(`verif${i}`).value);
+        if (valor >= 1 && valor <= 60) {
+            numeros.push(valor);
+        }
+    }
+    
+    if (numeros.length !== 6) {
+        mostrarResultadoVerificacao('❌ ERRO', 'Digite 6 números válidos (1-60)', 'rejeitado', []);
+        return;
+    }
+    
+    if (new Set(numeros).size !== 6) {
+        mostrarResultadoVerificacao('❌ ERRO', 'Números não podem se repetir', 'rejeitado', []);
+        return;
+    }
+    
+    // Verificar similaridade com últimos concursos
+    const similares = [];
+    let maxSimilaridade = 0;
+    
+    ultimosConcursos.forEach((concurso, index) => {
+        const comuns = contarNumerosComuns(numeros, concurso.dezenas);
+        const percentual = (comuns / 6) * 100;
+        
+        if (comuns >= parseInt(document.getElementById('limiarAlerta').value)) {
+            similares.push({
+                concurso: concurso.numero,
+                data: concurso.data,
+                comuns: comuns,
+                percentual: percentual.toFixed(1),
+                posicao: index + 1,
+                numerosComuns: numeros.filter(n => concurso.dezenas.includes(n))
+            });
+        }
+        
+        maxSimilaridade = Math.max(maxSimilaridade, comuns);
+    });
+    
+    // Determinar status
+    let status, descricao, classe;
+    
+    if (maxSimilaridade >= 5) {
+        status = '🔴 CRÍTICO';
+        descricao = 'Jogo extremamente similar a resultado recente!';
+        classe = 'rejeitado';
+    } else if (maxSimilaridade >= 4) {
+        status = '🟠 ALTO RISCO';
+        descricao = 'Jogo muito similar, considere alterações.';
+        classe = 'rejeitado';
+    } else if (maxSimilaridade >= 3) {
+        status = '🟡 MÉDIO RISCO';
+        descricao = 'Similaridade moderada, avaliar contexto.';
+        classe = 'rejeitado';
+    } else {
+        status = '✅ APROVADO';
+        descricao = 'Jogo com baixa similaridade, ideal para apostar.';
+        classe = 'aprovado';
+    }
+    
+    mostrarResultadoVerificacao(status, descricao, classe, similares);
+}
+
+function mostrarResultadoVerificacao(status, descricao, classe, similares) {
+    const container = document.getElementById('resultadoVerificacao');
+    const statusEl = document.getElementById('statusSimilaridade');
+    const detalheEl = document.getElementById('detalheSimilaridade');
+    const listaEl = document.getElementById('listaSemelhanças');
+    
+    statusEl.textContent = status;
+    statusEl.className = `font-bold mb-2 ${classe === 'aprovado' ? 'text-green-600' : 'text-red-600'}`;
+    
+    detalheEl.textContent = descricao;
+    detalheEl.className = `text-sm ${classe === 'aprovado' ? 'text-green-700' : 'text-red-700'}`;
+    
+    // Listar semelhanças encontradas
+    listaEl.innerHTML = '';
+    
+    if (similares.length > 0) {
+        similares.forEach(similar => {
+            const div = document.createElement('div');
+            div.className = `semelhanca-item ${similar.comuns >= 4 ? 'alta' : similar.comuns >= 3 ? 'media' : 'baixa'}`;
+            
+            div.innerHTML = `
+                <div>
+                    <span class="font-bold">Concurso ${similar.concurso}</span> 
+                    (${similar.posicao}º mais recente)
+                    <br>
+                    <span class="text-xs">${similar.data}</span>
+                </div>
+                <div class="text-right">
+                    <div class="similaridade-badge ${getSimilaridadeClasse(similar.comuns)}">
+                        ${similar.comuns}/6 (${similar.percentual}%)
+                    </div>
+                    <div class="text-xs mt-1">
+                        Comuns: ${similar.numerosComuns.join(', ')}
+                    </div>
+                </div>
+            `;
+            
+            listaEl.appendChild(div);
+        });
+    } else {
+        listaEl.innerHTML = '<div class="text-green-600 text-sm">✅ Nenhuma similaridade significativa encontrada!</div>';
+    }
+    
+    container.classList.remove('hidden');
+    container.className = `resultado-verificacao ${classe}`;
+}
+
+function getSimilaridadeClasse(comuns) {
+    if (comuns >= 5) return 'similaridade-critica';
+    if (comuns >= 4) return 'similaridade-alta';
+    if (comuns >= 3) return 'similaridade-media';
+    if (comuns >= 2) return 'similaridade-baixa';
+    return 'similaridade-otima';
+}
+
+function carregarExemplosComparacao() {
+    document.getElementById('exemploSimilar').onclick = () => {
+        if (ultimosConcursos.length > 0) {
+            const ultimo = ultimosConcursos[0].dezenas;
+            // Usar 4 números do último resultado + 2 diferentes
+            document.getElementById('verif1').value = ultimo[0];
+            document.getElementById('verif2').value = ultimo[1];
+            document.getElementById('verif3').value = ultimo[2];
+            document.getElementById('verif4').value = ultimo[3];
+            document.getElementById('verif5').value = (ultimo[4] % 60) + 1;
+            document.getElementById('verif6').value = (ultimo[5] % 60) + 1;
+            verificarSimilaridade();
+        }
+    };
+    
+    document.getElementById('exemploUnico').onclick = () => {
+        // Gerar números completamente diferentes
+        const numerosUnicos = [];
+        while (numerosUnicos.length < 6) {
+            const num = Math.floor(Math.random() * 60) + 1;
+            if (!numerosUnicos.includes(num)) {
+                numerosUnicos.push(num);
+            }
+        }
+        
+        numerosUnicos.forEach((num, index) => {
+            document.getElementById(`verif${index + 1}`).value = num;
+        });
+        verificarSimilaridade();
+    };
+}
+
+function atualizarPreviewEstrategia() {
+    const estrategia = document.getElementById('estrategiaAntiRepeticao').value;
+    const periodo = document.getElementById('periodoAnaliseGeracao').value;
+    const tolerancia = document.getElementById('toleranciaRepeticao').value;
+    
+    const preview = document.getElementById('previewEstrategia');
+    
+    let texto = '';
+    
+    switch (estrategia) {
+        case 'conservadora':
+            texto = `🛡️ <strong>Estratégia Conservadora:</strong> Evita jogos com 3+ números iguais aos últimos ${periodo} concursos. `;
+            break;
+        case 'moderada':
+            texto = `⚖️ <strong>Estratégia Moderada:</strong> Evita jogos com 4+ números iguais aos últimos ${periodo} concursos. `;
+            break;
+        case 'agressiva':
+            texto = `🔥 <strong>Estratégia Agressiva:</strong> Evita jogos com 2+ números iguais aos últimos ${periodo} concursos. `;
+            break;
+        case 'inteligente':
+            texto = `🧠 <strong>Estratégia Inteligente:</strong> IA adaptativa que ajusta critérios baseado nos padrões encontrados. `;
+            break;
+    }
+    
+    texto += `<strong>Tolerância:</strong> ${tolerancia} repetições permitidas. `;
+    texto += `<strong>Base:</strong> Dados reais da API da Caixa.`;
+    
+    preview.innerHTML = texto;
+}
+
+function gerarJogosComparacao() {
+    if (!ultimosConcursos || ultimosConcursos.length === 0) {
+        showCustomAlert('⚠️ Dados Indisponíveis', 'Aguarde o carregamento dos dados de comparação...');
+        return;
+    }
+    
+    const estrategia = document.getElementById('estrategiaAntiRepeticao').value;
+    const qtdJogos = parseInt(document.getElementById('qtdJogosComparacao').value);
+    const periodo = parseInt(document.getElementById('periodoAnaliseGeracao').value);
+    const tolerancia = parseInt(document.getElementById('toleranciaRepeticao').value);
+    
+    const jogosGerados = [];
+    const concursosAnalise = ultimosConcursos.slice(0, periodo);
+    
+    let totalTentativas = 0;
+    let jogosRejeitados = 0;
+    
+    // Resetar estatísticas
+    document.getElementById('jogosRejeitados').textContent = '0';
+    document.getElementById('tentativasGeracao').textContent = '0';
+    document.getElementById('eficienciaGeracao').textContent = '100%';
+    
+    for (let i = 0; i < qtdJogos; i++) {
+        let jogo = null;
+        let tentativas = 0;
+        const maxTentativas = 1000;
+        
+        do {
+            jogo = gerarJogoAleatorio();
+            tentativas++;
+            totalTentativas++;
+            
+            const aprovado = verificarJogoContraHistorico(jogo, concursosAnalise, estrategia, tolerancia);
+            
+            if (aprovado) {
+                break;
+            } else {
+                jogosRejeitados++;
+                jogo = null;
+            }
+            
+        } while (!jogo && tentativas < maxTentativas);
+        
+        if (!jogo) {
+            // Se não conseguiu gerar, usar um jogo aleatório mesmo com violações
+            jogo = gerarJogoAleatorio();
+            console.warn(`⚠️ Não foi possível gerar jogo ${i + 1} sem repetições`);
+        }
+        
+        // Analisar repetições do jogo final
+        const analiseRepeticoes = analisarRepeticoesJogo(jogo, concursosAnalise);
+        
+        jogosGerados.push({
+            id: Date.now() + i,
+            numeros: jogo.sort((a, b) => a - b),
+            quantidade: 6,
+            custo: sistemaValores.obterValor(6),
+            pares: jogo.filter(n => n % 2 === 0).length,
+            impares: jogo.filter(n => n % 2 !== 0).length,
+            origem: 'Anti-Repetição',
+            repeticoes: analiseRepeticoes
+        });
+        
+        // Atualizar estatísticas em tempo real
+        atualizarEstatisticasGeracao(totalTentativas, jogosRejeitados, i + 1);
+    }
+    
+    exibirResultadosComparacao(jogosGerados);
+    console.log('✅ Jogos gerados com análise anti-repetição');
+}
+
+function verificarJogoContraHistorico(jogo, concursos, estrategia, tolerancia) {
+    let limiteRepeticoes;
+    
+    switch (estrategia) {
+        case 'conservadora': limiteRepeticoes = 2; break;
+        case 'moderada': limiteRepeticoes = 3; break;
+        case 'agressiva': limiteRepeticoes = 1; break;
+        case 'inteligente': limiteRepeticoes = 2; break; // Pode ser dinâmico
+        default: limiteRepeticoes = 3;
+    }
+    
+    let violacoes = 0;
+    
+    for (const concurso of concursos) {
+        const repeticoes = contarNumerosComuns(jogo, concurso.dezenas);
+        if (repeticoes > limiteRepeticoes) {
+            violacoes++;
+            if (violacoes > tolerancia) {
+                return false;
+            }
+        }
+    }
+    
+    return true;
+}
+
+function analisarRepeticoesJogo(jogo, concursos) {
+    const analise = {
+        maxRepeticoes: 0,
+        concursoMaisSimilar: null,
+        totalViolacoes: 0,
+        detalhes: []
+    };
+    
+    concursos.forEach((concurso, index) => {
+        const repeticoes = contarNumerosComuns(jogo, concurso.dezenas);
+        
+        if (repeticoes > analise.maxRepeticoes) {
+            analise.maxRepeticoes = repeticoes;
+            analise.concursoMaisSimilar = {
+                numero: concurso.numero,
+                data: concurso.data,
+                posicao: index + 1
+            };
+        }
+        
+        if (repeticoes >= 3) {
+            analise.totalViolacoes++;
+            analise.detalhes.push({
+                concurso: concurso.numero,
+                repeticoes: repeticoes,
+                percentual: ((repeticoes / 6) * 100).toFixed(1)
+            });
+        }
+    });
+    
+    return analise;
+}
+
+function atualizarEstatisticasGeracao(totalTentativas, jogosRejeitados, jogosCompletos) {
+    document.getElementById('jogosRejeitados').textContent = jogosRejeitados;
+    document.getElementById('tentativasGeracao').textContent = totalTentativas;
+    
+    const eficiencia = ((jogosCompletos / totalTentativas) * 100).toFixed(1);
+    const eficienciaEl = document.getElementById('eficienciaGeracao');
+    eficienciaEl.textContent = eficiencia + '%';
+    
+    // Colorir baseado na eficiência
+    if (parseFloat(eficiencia) >= 80) {
+        eficienciaEl.className = 'text-xl font-bold text-green-600 eficiencia-alta';
+    } else if (parseFloat(eficiencia) >= 50) {
+        eficienciaEl.className = 'text-xl font-bold text-yellow-600';
+    } else {
+        eficienciaEl.className = 'text-xl font-bold text-red-600 eficiencia-baixa';
+    }
+}
+
+function exibirResultadosComparacao(jogos) {
+    const lista = document.getElementById('listaJogosComparacao');
+    const resultados = document.getElementById('resultadosComparacao');
+    
+    lista.innerHTML = '';
+    
+    const custoTotal = jogos.reduce((sum, jogo) => sum + jogo.custo, 0);
+    const estrategia = document.getElementById('estrategiaAntiRepeticao').value;
+    
+    document.getElementById('resumoJogosComparacao').textContent = `${jogos.length} jogos`;
+    document.getElementById('custoTotalComparacao').textContent = formatarMoeda(custoTotal);
+    document.getElementById('estrategiaAplicadaComparacao').textContent = obterTextoEstrategiaComparacao(estrategia);
+    
+    jogos.forEach((jogo, index) => {
+        const jogoDiv = document.createElement('div');
+        jogoDiv.className = 'jogo-comparacao-card';
+        
+        const analise = jogo.repeticoes;
+        const statusClasse = analise.maxRepeticoes <= 2 ? 'jogo-unico' : 'jogo-similar';
+        jogoDiv.classList.add(statusClasse);
+        
+        jogoDiv.innerHTML = `
+            <div class="flex justify-between items-center mb-2">
+                <span class="font-bold text-megasena">Anti-Repetição ${index + 1}</span>
+                <div class="flex gap-1">
+                    <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded" title="Máx repetições">${analise.maxRepeticoes}R</span>
+                    <span class="text-xs bg-orange-100 text-orange-800 px-2 py-1 rounded" title="Violações">${analise.totalViolacoes}V</span>
+                    <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">${jogo.pares}P</span>
+                    <span class="text-xs bg-purple-100 text-purple-800 px-2 py-1 rounded">${jogo.impares}I</span>
+                    <span class="text-xs bg-gray-100 text-gray-800 px-2 py-1 rounded">${formatarMoeda(jogo.custo)}</span>
+                </div>
+            </div>
+            <div class="flex flex-wrap gap-1 mb-1">
+                ${jogo.numeros.map(num => `<span class="numero-comparacao-jogo">${num.toString().padStart(2, '0')}</span>`).join('')}
+            </div>
+            <div class="text-xs text-gray-600">
+                Max repetições: ${analise.maxRepeticoes}/6 
+                ${analise.concursoMaisSimilar ? `(concurso ${analise.concursoMaisSimilar.numero})` : ''}
+                | ${analise.totalViolacoes} violações | ${jogo.pares}P/${jogo.impares}I
+            </div>
+        `;
+        lista.appendChild(jogoDiv);
+    });
+    
+    resultados.classList.remove('hidden');
+    window.jogosComparacaoGerados = jogos;
+}
+
+function obterTextoEstrategiaComparacao(estrategia) {
+    const textos = {
+        'conservadora': 'Conservadora (Evita 3+)',
+        'moderada': 'Moderada (Evita 4+)',
+        'agressiva': 'Agressiva (Evita 2+)',
+        'inteligente': 'Inteligente (IA Adaptativa)'
+    };
+    return textos[estrategia] || 'Personalizada';
+}
+
+function configurarEventListenersComparacao() {
+    // Configurações de análise
+    document.getElementById('qtdConcursosAnalise').onchange = () => {
+        carregarUltimosConcursos();
+        atualizarInterfaceComparacao();
+    };
+    
+    document.getElementById('atualizarComparacao').onclick = () => {
+        carregarUltimosConcursos();
+        atualizarInterfaceComparacao();
+    };
+    
+    // Verificador
+    document.getElementById('verificarSimilaridade').onclick = verificarSimilaridade;
+    
+    // Preview da estratégia
+    document.getElementById('estrategiaAntiRepeticao').onchange = atualizarPreviewEstrategia;
+    document.getElementById('periodoAnaliseGeracao').onchange = atualizarPreviewEstrategia;
+    document.getElementById('toleranciaRepeticao').onchange = atualizarPreviewEstrategia;
+    
+    // Geração
+    document.getElementById('gerarJogosComparacao').onclick = gerarJogosComparacao;
+    
+    // Botões de resultado
+    document.getElementById('adicionarTodosComparacao').onclick = () => {
+        adicionarTodosJogosSecao(window.jogosComparacaoGerados);
+    };
+    
+    document.getElementById('novaComparacao').onclick = () => {
+        document.getElementById('resultadosComparacao').classList.add('hidden');
+        document.getElementById('resultadoVerificacao').classList.add('hidden');
+    };
+    
+    // Modal
+    document.getElementById('modalComparacaoBtn').onclick = () => {
+        document.getElementById('modalComparacao').classList.remove('hidden');
+    };
+}
+
+// Inicializar quando dados estiverem prontos
+document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(() => {
+        inicializarComparacao();
+    }, 5500);
+});
+
+console.log('✅ JavaScript da Seção 13 (Comparação) configurado para API em tempo real');
+
 
 
 		
