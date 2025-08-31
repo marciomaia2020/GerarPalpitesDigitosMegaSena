@@ -615,3 +615,102 @@ Lighter / Darker:
 5% 		     #04160f
 0% 		     #000000
 
+
+
+NO ANEXO ESTA UM EXEMPLO POIS FORAM CRIADAS VÁRIAS SEÇÕES SEÇÃO 1: CRIAÇÃO MANUAL DE JOGOS
+SEÇÃO 2: GERAÇÃO MINIMALISTA (Menos Jogos)
+SEÇÃO 3: ANÁLISE POR POSIÇÕES (1ª a 6ª)
+SEÇÃO 4: RESULTADOS ALTERADOS (Variações)
+SEÇÃO 5: REGRAS FIXAS AVANÇADAS
+SEÇÃO 6: FECHAMENTO INTELIGENTE
+SEÇÃO 7: NÚMEROS GÊMEOS E INVERTIDOS
+SEÇÃO 8: ANÁLISE DE ATRASOS E FREQUÊNCIA CRUZADA
+SEÇÃO 9: MAPA DE CALOR DAS DEZENAS (HEATMAP)
+SEÇÃO 10: CICLOS DE FECHAMENTO
+SEÇÃO 11: JOGOS COMBINADOS POR PADRÃO DE COLUNAS E LINHAS
+SEÇÃO 12: FILTRAGEM POR PADRÕES IMPROVÁVEIS
+SEÇÃO 13: COMPARAÇÃO COM RESULTADOS ANTERIORES
+SEÇÃO 14: GERAÇÃO ORDEM SORTEIO
+
+
+
+
+SEÇÃO 14: GERAÇÃO ORDEM SORTEIO com todas as funcionalidades solicitadas:
+
+🔥 Funcionalidades Principais:
+
+✅ Usa API oficial da Caixa em tempo real
+✅ Bloqueia automaticamente os 6 números do último sorteio
+✅ Gera números aleatórios por estratégia sem repetição
+✅ Mostra os últimos 5 resultados com ordem original
+✅ Input personalizável de 1 a 100+ jogos
+✅ Modal explicativo completo
+✅ Cores da Mega Sena (#1B9A67 e variações)
+✅ Interface responsiva e moderna
+🎯 Estratégias Disponíveis:
+
+Ordem Totalmente Aleatória
+Tendência Crescente
+Tendência Decrescente
+Ordem Mista (Recomendado)
+Baseada em Padrões Históricos
+📊 Configurações:
+
+Distribuição Pares/Ímpares automática ou manual
+Faixas de números (equilibrada, baixos, altos, extremos)
+Filtros para evitar padrões improváveis
+Cálculo automático de custos
+O código está pronto para ser integrado à aplicação existente!
+
+
+-----------------------------------------------------------------------------------------------
+crie mais uma seção chamada.. Geração Ordem Sorteio
+
+preciso que a app use a api oficial da caixa.. PRINCIPALMENTE PARA BLOQUEAR OS 6 NUMEROS SORTEADOS NO ULTIMO CONCURSO.. 
+A APP DEVE SER CAPAZ DE GERAR NUMEROS ALEATORIOS POR COLUNA SEM HAVER REPETIÇÃO NA MESMA LINHA.. VIDE ANEXO... 
+QUERO QUE TRAGA TBM PELO MENOS OS ULTIMOS CINCO RESULTADOS (ORDEM DE SORTEIO)
+A APP TBM DEVE LIBEBER UM IMPUT PARA SELECIONAR QUANTOS JOGOS NESTA CONDIÇÃO O USUARIO QUISER CRIAR.. 
+
+
+use sempre a api para trazer as informações em tempo real
+NUNCA TRAGA DADOS SIMULADOS...
+SEMPRE ADICIONE UM MODAL COM A INFORMAÇÃO (COMO FUNCIONA)
+Use cores da modalidade (mega sena)
+https://servicebus2.caixa.gov.br/portaldeloterias/api/megasena	
+A aplicação deve buscar SEMPRE os dados reais da API e usar essas informações para gerar estratégias dinâmicas e inteligentes
+QUERO GERAR OS PALPITES baseados nos valores das estatiscicas reais... 
+
+#1B9A67	E SUAS VARIAÇÕES DO 0% ATÉ 100%		
+
+Lighter / Darker:
+100% 		 #ffffff
+95% 		 #e9fbf4
+90% 		 #d4f7e9
+85% 		 #bef4de
+80% 		 #a8f0d3
+75% 		 #93ecc8
+70% 		 #7de8bd
+65% 		 #67e4b2
+60% 		 #52e0a7
+55% 		 #3cdd9c
+50% 		 #26d991
+45% 		 #22c383
+40% 		 #1fad74
+35%          #1b9a67 //cor pricipal
+30% 		 #178257
+25% 		 #136c49
+20% 		 #0f573a
+15% 		 #0b412c
+10% 		 #082b1d
+5% 		     #04160f
+0% 		     #000000
+
+
+
+
+CASO PARAR EXCLUIR
+
+
+//NOVO INICIO
+
+//NOVO FIM
