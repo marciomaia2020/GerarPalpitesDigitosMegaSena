@@ -2327,26 +2327,6 @@
                         <div id="dicaEstrategia" class="mt-3 text-center text-sm bg-yellow-100 border border-yellow-300 rounded p-2 text-yellow-800">
                             💡 <strong>Dica:</strong> O padrão 3P/3I é o mais comum com 30.4% dos sorteios!
                         </div>
-
-
-						
-<!-- Adicionar este bloco APÓS a div com id="dicaEstrategia" e ANTES da div "Grid de Números 1-60" -->
-<!-- 🎯 Números já sorteados (Último Concurso) -->
-<div class="mb-4 p-4 bg-yellow-50 border-2 border-yellow-400 rounded-lg">
-    <div class="text-sm font-bold text-yellow-800 mb-2">🎯 Números já sorteados:</div>
-    <div id="numerosJaSorteados" class="flex flex-wrap gap-2 mb-3">
-        <!-- Números do último sorteio aparecerão aqui -->
-    </div>
-    
-    <label class="flex items-center cursor-pointer">
-        <input type="checkbox" id="permitirNumerosJaSorteados" class="mr-2 w-4 h-4">
-        <span class="text-sm font-medium text-yellow-800">Permitir usar números já sorteados</span>
-    </label>
-    <div class="text-xs text-yellow-700 mt-1">
-        Por padrão, números que saíram no último sorteio estão desabilitados para evitar repetições.
-    </div>
-</div>
-		
                    </div><hr />
                 
                 <div class="flex justify-between items-center mb-4">
@@ -13975,7 +13955,9 @@ function gerarJogoIndividualOrdem(estrategia, distribuicao, faixas, evitarPadroe
         numeros = aplicarFiltrosOrdem(numeros, evitarPadroes, pool);
     }
     
-    return numeros.length === 6 ? numeros.sort((a, b) => a - b) : null;
+	return numeros.length === 6 ? numeros : null;
+	
+	
 }
 
 // Gerar sequência crescente
