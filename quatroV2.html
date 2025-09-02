@@ -766,18 +766,6 @@ Exemplos: 01, 02, 03, 04, 05, 06"
                                 <option value="6" selected>6 dezenas</option>
                                 <option value="7">7 dezenas</option>
                                 <option value="8">8 dezenas</option>
-                                <option value="9">9 dezenas</option>
-                                <option value="10">10 dezenas</option>
-                                <option value="11">11 dezenas</option>
-                                <option value="12">12 dezenas</option>
-                                <option value="13">13 dezenas</option>
-                                <option value="14">14 dezenas</option>
-                                <option value="15">15 dezenas</option>
-                                <option value="16">16 dezenas</option>
-                                <option value="17">17 dezenas</option>
-                                <option value="18">18 dezenas</option>
-                                <option value="19">19 dezenas</option>
-                                <option value="20">20 dezenas</option>
                             </select>
                         </div>
                     </div>
@@ -800,7 +788,7 @@ Exemplos: 01, 02, 03, 04, 05, 06"
                 
                 <div id="resultadosMin" class="mt-4 hidden">
                     <h4 class="font-bold text-purple-600 mb-2 text-sm">🎯 Jogos Gerados:</h4>
-                    <div id="listaJogosMin" class="space-y-2 h-96 overflow-y-auto border-2 border-purple-200 rounded-lg p-3 bg-gray-50 shadow-inner">
+                    <div id="listaJogosMin" class="space-y-2 max-h-60 overflow-y-auto">
                         <!-- Jogos minimalistas aparecerão aqui -->
                     </div>
                     <div class="mt-3 text-center">
@@ -839,7 +827,7 @@ Exemplos: 01, 02, 03, 04, 05, 06"
                     <button id="downloadHTML" class="bg-orange-500 hover:bg-orange-600 text-white px-3 py-2 rounded-lg text-sm">
                         🌐 HTML
                     </button>
-                    <button id="downloadTXT" class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-2 rounded-lg text-sm" title="Gera arquivo TXT simples contendo apenas os números dos jogos, um jogo por linha">
+                    <button id="downloadTXT" class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-2 rounded-lg text-sm">
                         📄 TXT
                     </button>
                     <button id="downloadXLSX" class="bg-green-500 hover:bg-green-600 text-white px-3 py-2 rounded-lg text-sm">
@@ -872,8 +860,7 @@ Exemplos: 01, 02, 03, 04, 05, 06"
         const sistemaValores = {
             valorSimples: 6.00,
             multiplicadores: {
-                6: 1, 7: 7, 8: 28, 9: 84, 10: 210, 11: 462, 12: 924, 13: 1716, 14: 3003, 15: 5005,
-                16: 8008, 17: 12376, 18: 18564, 19: 27132, 20: 38760
+                6: 1, 7: 7, 8: 28, 9: 84, 10: 210, 11: 462, 12: 924, 13: 1716, 14: 3003, 15: 5005
             },
             obterValor: function(dezenas) {
                 return this.valorSimples * (this.multiplicadores[dezenas] || 1);
@@ -886,12 +873,13 @@ Exemplos: 01, 02, 03, 04, 05, 06"
                 // Atualizar dropdown de quantidade de dezenas
                 const select = document.getElementById('quantidadeDezenas');
                 if (select) {
-                    let options = '';
-                    for (let i = 6; i <= 20; i++) {
-                        const selected = i === 6 ? ' selected' : '';
-                        options += `<option value="${i}"${selected}>${i} dezenas - ${formatarMoeda(this.obterValor(i))}</option>`;
-                    }
-                    select.innerHTML = options;
+                    select.innerHTML = `
+                        <option value="6" selected>6 dezenas - ${formatarMoeda(this.obterValor(6))}</option>
+                        <option value="7">7 dezenas - ${formatarMoeda(this.obterValor(7))}</option>
+                        <option value="8">8 dezenas - ${formatarMoeda(this.obterValor(8))}</option>
+                        <option value="9">9 dezenas - ${formatarMoeda(this.obterValor(9))}</option>
+                        <option value="10">10 dezenas - ${formatarMoeda(this.obterValor(10))}</option>
+                    `;
                 }
                 
                 // Atualizar valores dos multiplicadores na seção de configuração
@@ -901,14 +889,6 @@ Exemplos: 01, 02, 03, 04, 05, 06"
                 
                 // Atualizar timestamp
                 document.getElementById('ultimaAtualizacao').textContent = new Date().toLocaleString('pt-BR');
-                
-                // RECALCULAR CUSTOS DOS JOGOS EXISTENTES
-                meusJogos.forEach(jogo => {
-                    jogo.custo = this.obterValor(jogo.numeros.length);
-                });
-                
-                // Atualizar visualização dos jogos
-                atualizarVisualizacaoJogos();
                 
                 // Recalcular custo total dos jogos
                 atualizarCustoTotal();
@@ -1457,8 +1437,6 @@ Exemplos: 01, 02, 03, 04, 05, 06"
             const dezenasJogo = parseInt(document.getElementById('dezenasPorJogoMin').value);
             const estrategia = document.getElementById('estrategiaMin').value;
             
-            console.log('🎯 Configuração:', {qtdJogos, dezenasJogo, estrategia}); // Debug
-            
             const regrasSelecionadas = [];
             document.querySelectorAll('.regra-checkbox:checked').forEach(checkbox => {
                 regrasSelecionadas.push(checkbox.id);
@@ -1473,14 +1451,9 @@ Exemplos: 01, 02, 03, 04, 05, 06"
             
             for (let i = 0; i < qtdJogos; i++) {
                 const jogo = gerarJogoComRegrasSelecionadas(dezenasJogo, estrategia, regrasSelecionadas, i);
-                console.log(`🎮 Jogo ${i+1} gerado com ${jogo.length} números:`, jogo); // Debug
-                
-                // FORÇAR o número correto de dezenas
-                const jogoFinal = jogo.slice(0, dezenasJogo);
-                
                 jogosGerados.push({
                     id: Date.now() + i,
-                    numeros: jogoFinal,
+                    numeros: jogo,
                     quantidade: dezenasJogo,
                     custo: sistemaValores.obterValor(dezenasJogo),
                     estrategia: estrategia,
@@ -1629,19 +1602,13 @@ Exemplos: 01, 02, 03, 04, 05, 06"
                             <span class="px-2 py-1 bg-purple-100 text-purple-800 text-xs rounded">${impares}I</span>
                             <span class="px-2 py-1 bg-orange-100 text-orange-800 text-xs rounded">${jogo.regras}R</span>
                             <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded">${formatarMoeda(jogo.custo)}</span>
-                            <button onclick="editarJogoMinimalistaPorId('${jogo.id}')" class="px-2 py-1 bg-yellow-500 hover:bg-yellow-600 text-white text-xs rounded transition-all duration-200 hover:scale-105" title="Editar jogo">
-                                ✏️
-                            </button>
-                            <button onclick="excluirJogoMinimalistaPorId('${jogo.id}')" class="px-2 py-1 bg-red-500 hover:bg-red-600 text-white text-xs rounded transition-all duration-200 hover:scale-105" title="Excluir jogo">
-                                🗑️
-                            </button>
                         </div>
                     </div>
                     <div class="flex flex-wrap gap-1 mb-2">
                         ${jogo.numeros.map(num => `<span class="numero-minimalista">${num.toString().padStart(2, '0')}</span>`).join('')}
                     </div>
                     <div class="text-xs text-gray-600">
-                        ${jogo.estrategia} | ${jogo.numeros.length} dezenas | ${jogo.regras} regras
+                        ${jogo.estrategia} | ${jogo.quantidade} dezenas | ${jogo.regras} regras
                     </div>
                 `;
                 
@@ -1716,7 +1683,7 @@ Exemplos: 01, 02, 03, 04, 05, 06"
                         ).join('')}
                     </div>
                     <div class="text-sm text-gray-600">
-                        ${jogo.numeros.length} dezenas - ${formatarMoeda(jogo.custo)}
+                        ${jogo.quantidade} dezenas - ${formatarMoeda(jogo.custo)}
                         ${jogo.origem ? `<span class="text-orange-600"> | ${jogo.origem}</span>` : ''}
                     </div>
                 `;
@@ -1801,7 +1768,7 @@ Exemplos: 01, 02, 03, 04, 05, 06"
             meusJogos.forEach((jogo, index) => {
                 html += `
     <div class="jogo">
-        <h3>Jogo ${index + 1} - ${jogo.numeros.length} dezenas - ${formatarMoeda(jogo.custo)}</h3>
+        <h3>Jogo ${index + 1} - ${jogo.quantidade} dezenas - ${formatarMoeda(jogo.custo)}</h3>
         <div>
             ${jogo.numeros.map(num => `<span class="numero">${num.toString().padStart(2, '0')}</span>`).join('')}
         </div>
@@ -1830,7 +1797,7 @@ Exemplos: 01, 02, 03, 04, 05, 06"
             meusJogos.forEach((jogo, index) => {
                 dados.push([
                     `Jogo ${index + 1}`,
-                    jogo.numeros.length,
+                    jogo.quantidade,
                     jogo.numeros.map(n => n.toString().padStart(2, '0')).join(' - '),
                     jogo.pares,
                     jogo.impares,
@@ -1887,36 +1854,15 @@ Exemplos: 01, 02, 03, 04, 05, 06"
         function showCustomConfirm(message, onConfirm) {
             const modal = document.createElement('div');
             modal.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50';
-            
-            const modalContent = document.createElement('div');
-            modalContent.className = 'bg-white p-6 rounded-lg shadow-lg max-w-sm w-full mx-4';
-            
-            const messageEl = document.createElement('p');
-            messageEl.className = 'text-gray-700 mb-4';
-            messageEl.style.whiteSpace = 'pre-line';
-            messageEl.textContent = message;
-            
-            const buttonsDiv = document.createElement('div');
-            buttonsDiv.className = 'flex justify-end space-x-3';
-            
-            const cancelBtn = document.createElement('button');
-            cancelBtn.className = 'px-4 py-2 text-gray-600 hover:bg-gray-100 rounded';
-            cancelBtn.textContent = 'Cancelar';
-            cancelBtn.onclick = () => modal.remove();
-            
-            const confirmBtn = document.createElement('button');
-            confirmBtn.className = 'px-4 py-2 bg-red-500 text-white hover:bg-red-600 rounded';
-            confirmBtn.textContent = 'Confirmar';
-            confirmBtn.onclick = () => {
-                modal.remove();
-                onConfirm();
-            };
-            
-            buttonsDiv.appendChild(cancelBtn);
-            buttonsDiv.appendChild(confirmBtn);
-            modalContent.appendChild(messageEl);
-            modalContent.appendChild(buttonsDiv);
-            modal.appendChild(modalContent);
+            modal.innerHTML = `
+                <div class="bg-white p-6 rounded-lg shadow-lg max-w-sm w-full mx-4">
+                    <p class="text-gray-700 mb-4">${message}</p>
+                    <div class="flex justify-end space-x-3">
+                        <button class="px-4 py-2 text-gray-600 hover:bg-gray-100 rounded" onclick="this.closest('.fixed').remove()">Cancelar</button>
+                        <button class="px-4 py-2 bg-red-500 text-white hover:bg-red-600 rounded" onclick="this.closest('.fixed').remove(); (${onConfirm})()">Confirmar</button>
+                    </div>
+                </div>
+            `;
             document.body.appendChild(modal);
         }
 
@@ -1932,108 +1878,6 @@ Exemplos: 01, 02, 03, 04, 05, 06"
             });
             
             return digitosUsados.size;
-        }
-
-        // ===== FUNÇÕES PARA JOGOS MINIMALISTAS =====
-
-        function editarJogoMinimalistaPorId(id) {
-            console.log('🔧 Tentativa de editar jogo ID:', id);
-            console.log('🔧 Lista atual:', window.jogosMinimalistasGerados);
-            
-            if (!window.jogosMinimalistasGerados || window.jogosMinimalistasGerados.length === 0) {
-                showCustomAlert('⚠️ Erro', 'Lista de jogos não encontrada ou vazia!');
-                return;
-            }
-            
-            const jogo = window.jogosMinimalistasGerados.find(j => j.id.toString() === id.toString());
-            if (!jogo) {
-                console.log('❌ Jogo não encontrado! ID procurado:', id);
-                console.log('❌ IDs disponíveis:', window.jogosMinimalistasGerados.map(j => j.id));
-                showCustomAlert('⚠️ Erro', 'Jogo não encontrado!');
-                return;
-            }
-            
-            console.log('✅ Jogo encontrado:', jogo);
-            
-            // 🎯 USAR APENAS OS NÚMEROS QUE ESTÃO SENDO EXIBIDOS
-            const numerosParaEditar = jogo.numeros.slice(0, jogo.quantidade);
-            
-            showCustomConfirm(
-                `Deseja editar este jogo?\n\nNúmeros: ${numerosParaEditar.map(n => n.toString().padStart(2, '0')).join(' - ')}\n\nOs números serão carregados na seção manual para edição.`, 
-                () => {
-                    // Limpar seleção atual
-                    limparSelecao();
-                    
-                    // Definir quantidade de dezenas
-                    document.getElementById('quantidadeDezenas').value = numerosParaEditar.length;
-                    atualizarVisualizacaoDropArea();
-                    
-                    // Carregar números na área de drop
-                    numerosParaEditar.forEach(numero => {
-                        numerosDropArea.push(numero);
-                        const btn = document.querySelector(`[data-numero="${numero}"]`);
-                        if (btn) btn.classList.add('selecionado');
-                    });
-                    
-                    // Atualizar visualização
-                    atualizarVisualizacaoDropArea();
-                    atualizarContadorParesImpares();
-                    validarBotaoAdicionar();
-                    
-                    // Remover jogo da lista minimalista
-                    window.jogosMinimalistasGerados = window.jogosMinimalistasGerados.filter(j => j.id.toString() !== id.toString());
-                    exibirJogosMinimalistas(window.jogosMinimalistasGerados);
-                    
-                    // Rolar para a seção manual
-                    document.querySelector('#dropZone').scrollIntoView({ 
-                        behavior: 'smooth', 
-                        block: 'center' 
-                    });
-                    
-                    showCustomAlert('✅ Jogo Carregado', `${numerosParaEditar.length} números carregados na seção manual!\n\nVocê pode editá-los e adicionar novamente.`);
-                }
-            );
-        }
-
-        function excluirJogoMinimalistaPorId(id) {
-            console.log('🗑️ Tentativa de excluir jogo ID:', id);
-            console.log('🗑️ Lista atual:', window.jogosMinimalistasGerados);
-            
-            if (!window.jogosMinimalistasGerados || window.jogosMinimalistasGerados.length === 0) {
-                showCustomAlert('⚠️ Erro', 'Lista de jogos não encontrada ou vazia!');
-                return;
-            }
-            
-            const jogo = window.jogosMinimalistasGerados.find(j => j.id.toString() === id.toString());
-            if (!jogo) {
-                console.log('❌ Jogo não encontrado! ID procurado:', id);
-                console.log('❌ IDs disponíveis:', window.jogosMinimalistasGerados.map(j => j.id));
-                showCustomAlert('⚠️ Erro', 'Jogo não encontrado!');
-                return;
-            }
-            
-            console.log('✅ Jogo encontrado para exclusão:', jogo);
-            
-            showCustomConfirm(
-                `Tem certeza que deseja excluir este jogo?\n\nNúmeros: ${jogo.numeros.slice(0, jogo.quantidade).map(n => n.toString().padStart(2, '0')).join(' - ')}`, 
-                () => {
-                    // Remover jogo da lista
-                    const quantidadeAntes = window.jogosMinimalistasGerados.length;
-                    window.jogosMinimalistasGerados = window.jogosMinimalistasGerados.filter(j => j.id.toString() !== id.toString());
-                    const quantidadeDepois = window.jogosMinimalistasGerados.length;
-                    
-                    console.log(`🗑️ Exclusão: ${quantidadeAntes} → ${quantidadeDepois} jogos`);
-                    
-                    // Atualizar exibição
-                    if (window.jogosMinimalistasGerados.length === 0) {
-                        document.getElementById('resultadosMin').classList.add('hidden');
-                        showCustomAlert('✅ Lista Vazia', 'Todos os jogos foram removidos. Gere novos jogos quando desejar!');
-                    } else {
-                        exibirJogosMinimalistas(window.jogosMinimalistasGerados);
-                        showCustomAlert('✅ Excluído', 'Jogo removido da lista!');
-                    }
-                }
-            );
         }
 
         // Funções globais para drag and drop
