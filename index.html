@@ -737,12 +737,147 @@ Exemplos: 01, 02, 03, 04, 05, 06"
                                 </div>
                             </label>
                         </div>
+
+                        <!-- ======= NOVAS REGRAS MINIMALISTAS AVANÇADAS ======= -->
+                        
+                        <!-- R8 - Componentes Diretos -->
+                        <div class="regra-item" id="regra8">
+                            <label class="flex items-start cursor-pointer">
+                                <input type="checkbox" id="r8-componentes" class="regra-checkbox mr-2 scale-110">
+                                <div>
+                                    <div class="text-sm font-bold text-green-800">R8 - Componentes Diretos</div>
+                                    <div class="text-xs text-green-700">Prefixo/sufixo do ano, mês, dia, partes do concurso</div>
+                                </div>
+                            </label>
+                        </div>
+
+                        <!-- R9 - Soma Dígitos Concurso -->
+                        <div class="regra-item" id="regra9">
+                            <label class="flex items-start cursor-pointer">
+                                <input type="checkbox" id="r9-somadigitos" class="regra-checkbox mr-2 scale-110">
+                                <div>
+                                    <div class="text-sm font-bold text-green-800">R9 - Soma Dígitos Concurso</div>
+                                    <div class="text-xs text-green-700">Somar dígitos do número do concurso</div>
+                                </div>
+                            </label>
+                        </div>
+
+                        <!-- R10 - Soma Simples Componentes -->
+                        <div class="regra-item" id="regra10">
+                            <label class="flex items-start cursor-pointer">
+                                <input type="checkbox" id="r10-somasimples" class="regra-checkbox mr-2 scale-110">
+                                <div>
+                                    <div class="text-sm font-bold text-green-800">R10 - Soma Simples</div>
+                                    <div class="text-xs text-green-700">Dia+ano, mês+ano, partes do concurso</div>
+                                </div>
+                            </label>
+                        </div>
+
+                        <!-- R11 - Diferença Absoluta -->
+                        <div class="regra-item" id="regra11">
+                            <label class="flex items-start cursor-pointer">
+                                <input type="checkbox" id="r11-diferenca" class="regra-checkbox mr-2 scale-110">
+                                <div>
+                                    <div class="text-sm font-bold text-green-800">R11 - Diferença Absoluta</div>
+                                    <div class="text-xs text-green-700">Diferenças entre componentes-chave</div>
+                                </div>
+                            </label>
+                        </div>
+
+                        <!-- R12 - Ajustes Fixos ±1/±2 -->
+                        <div class="regra-item" id="regra12">
+                            <label class="flex items-start cursor-pointer">
+                                <input type="checkbox" id="r12-ajustes" class="regra-checkbox mr-2 scale-110">
+                                <div>
+                                    <div class="text-sm font-bold text-green-800">R12 - Ajustes ±1/±2</div>
+                                    <div class="text-xs text-green-700">Deslocamentos em números centrais</div>
+                                </div>
+                            </label>
+                        </div>
+
+                        <!-- R13 - Reverso Dois Dígitos -->
+                        <div class="regra-item" id="regra13">
+                            <label class="flex items-start cursor-pointer">
+                                <input type="checkbox" id="r13-reverso" class="regra-checkbox mr-2 scale-110">
+                                <div>
+                                    <div class="text-sm font-bold text-green-800">R13 - Reverso 2 Dígitos</div>
+                                    <div class="text-xs text-green-700">Inverter ordem dos dígitos (ex: 35→53)</div>
+                                </div>
+                            </label>
+                        </div>
+
+                        <!-- R14 - Soma Dígitos como Operador -->
+                        <div class="regra-item" id="regra14">
+                            <label class="flex items-start cursor-pointer">
+                                <input type="checkbox" id="r14-operador" class="regra-checkbox mr-2 scale-110">
+                                <div>
+                                    <div class="text-sm font-bold text-green-800">R14 - Soma como Operador</div>
+                                    <div class="text-xs text-green-700">Usar soma dígitos ano/mês como operador</div>
+                                </div>
+                            </label>
+                        </div>
+
+                        <!-- R15 - Múltiplos de 10 -->
+                        <div class="regra-item" id="regra15">
+                            <label class="flex items-start cursor-pointer">
+                                <input type="checkbox" id="r15-multiplos" class="regra-checkbox mr-2 scale-110">
+                                <div>
+                                    <div class="text-sm font-bold text-green-800">R15 - Múltiplos de 10</div>
+                                    <div class="text-xs text-green-700">Clima dos zeros (10,20,30,40,50,60)</div>
+                                </div>
+                            </label>
+                        </div>
+
+                        <!-- R16 - Vizinhos ±1 -->
+                        <div class="regra-item" id="regra16">
+                            <label class="flex items-start cursor-pointer">
+                                <input type="checkbox" id="r16-vizinhos" class="regra-checkbox mr-2 scale-110">
+                                <div>
+                                    <div class="text-sm font-bold text-green-800">R16 - Vizinhos ±1</div>
+                                    <div class="text-xs text-green-700">Números adjacentes aos importantes</div>
+                                </div>
+                            </label>
+                        </div>
+
+                        <!-- R17 - Filtragem Impossíveis -->
+                        <div class="regra-item" id="regra17">
+                            <label class="flex items-start cursor-pointer">
+                                <input type="checkbox" id="r17-filtragem" class="regra-checkbox mr-2 scale-110" checked>
+                                <div>
+                                    <div class="text-sm font-bold text-green-800">R17 - Filtragem Inteligente</div>
+                                    <div class="text-xs text-green-700">Evitar sequências óbvias e repetições</div>
+                                </div>
+                            </label>
+                        </div>
+
+                        <!-- R18 - Ordem de Prioridade -->
+                        <div class="regra-item" id="regra18">
+                            <label class="flex items-start cursor-pointer">
+                                <input type="checkbox" id="r18-prioridade" class="regra-checkbox mr-2 scale-110" checked>
+                                <div>
+                                    <div class="text-sm font-bold text-green-800">R18 - Ordem de Prioridade</div>
+                                    <div class="text-xs text-green-700">Priorizar componentes mais importantes</div>
+                                </div>
+                            </label>
+                        </div>
+
+                        <!-- R19 - Formato Otimizado -->
+                        <div class="regra-item" id="regra19">
+                            <label class="flex items-start cursor-pointer">
+                                <input type="checkbox" id="r19-formato" class="regra-checkbox mr-2 scale-110" checked>
+                                <div>
+                                    <div class="text-sm font-bold text-green-800">R19 - Formato Otimizado</div>
+                                    <div class="text-xs text-green-700">Saída ordenada e sem duplicatas</div>
+                                </div>
+                            </label>
+                        </div>
                     </div>
 
                     <div class="mt-3 p-2 bg-purple-50 border border-purple-200 rounded-lg">
                         <div class="text-xs text-purple-800">
-                            <strong>📋 Regras selecionadas:</strong> <span id="contadorRegras">5</span> de 7 disponíveis<br>
-                            <strong>💡 Recomendação:</strong> Use pelo menos 3 regras para maior diversidade
+                            <strong>📋 Regras selecionadas:</strong> <span id="contadorRegras">8</span> de 19 disponíveis<br>
+                            <strong>💡 Recomendação:</strong> Use pelo menos 5 regras para maior diversidade<br>
+                            <strong>🎯 Novo:</strong> 12 regras avançadas do Preset Origem Minimalista
                         </div>
                     </div>
                 </div>
@@ -1494,12 +1629,20 @@ Exemplos: 01, 02, 03, 04, 05, 06"
 
         function gerarJogoComRegrasSelecionadas(quantidade, estrategia, regras, indiceJogo = 0) {
             const numerosBase = [];
+            const numerosImportantes = []; // Para rastrear números importantes para R16
             const data = new Date();
+            
+            // Obter dados do contexto (concurso, prêmio, etc.)
+            const concurso = ultimoResultado ? ultimoResultado.numero + 1 : 2904;
+            const premio = ultimoResultado ? Math.floor(ultimoResultado.valorEstimadoProximoConcurso / 1000000) : 65;
+            const ano = data.getFullYear();
+            const mes = data.getMonth() + 1;
+            const dia = data.getDate();
             
             // Adicionar variação baseada no índice do jogo para garantir unicidade
             const variacao = indiceJogo * 7 + Math.floor(Math.random() * 50);
             
-            // Aplicar regras selecionadas com variação
+            // ===== REGRAS ORIGINAIS (R1-R7) =====
             if (regras.includes('r1-direto')) {
                 numerosBase.push(
                     (data.getDate() + variacao) % 60 || 60, 
@@ -1538,6 +1681,162 @@ Exemplos: 01, 02, 03, 04, 05, 06"
                 const cruzada = (data.getDate() + data.getFullYear() % 100 + variacao) % 60 || 60;
                 numerosBase.push(cruzada);
             }
+
+            // ===== NOVAS REGRAS AVANÇADAS (R8-R19) =====
+            
+            // R8 - Componentes Diretos do Contexto
+            if (regras.includes('r8-componentes')) {
+                const prefixoAno = Math.floor(ano / 100); // 20 de 2025
+                const sufixoAno = ano % 100; // 25 de 2025
+                
+                // Adicionar componentes diretos se estiverem na faixa válida
+                [prefixoAno, sufixoAno, mes, dia].forEach(valor => {
+                    if (valor >= 1 && valor <= 60) {
+                        numerosBase.push(valor);
+                        numerosImportantes.push(valor);
+                    }
+                });
+                
+                // Partes do concurso
+                const concursoStr = concurso.toString();
+                for (let i = 0; i < concursoStr.length - 1; i++) {
+                    const parte = parseInt(concursoStr.substring(i, i + 2));
+                    if (parte >= 1 && parte <= 60) {
+                        numerosBase.push(parte);
+                        numerosImportantes.push(parte);
+                    }
+                }
+                
+                // Prêmio em milhões
+                if (premio >= 1 && premio <= 60) {
+                    numerosBase.push(premio);
+                    numerosImportantes.push(premio);
+                }
+                
+                // Somas diretas
+                const soma1 = (prefixoAno + Math.floor(concurso / 100)) % 60 || 60;
+                if (soma1 <= 60) numerosBase.push(soma1);
+            }
+            
+            // R9 - Soma dos Dígitos do Número do Concurso
+            if (regras.includes('r9-somadigitos')) {
+                const digitosConcurso = concurso.toString().split('').map(d => parseInt(d));
+                const somaDigitos = digitosConcurso.reduce((sum, d) => sum + d, 0);
+                if (somaDigitos >= 1 && somaDigitos <= 60) {
+                    numerosBase.push(somaDigitos);
+                    numerosImportantes.push(somaDigitos);
+                }
+            }
+            
+            // R10 - Soma Simples entre Componentes
+            if (regras.includes('r10-somasimples')) {
+                const somas = [
+                    dia + (ano % 100), // dia + sufixo ano
+                    mes + (ano % 100), // mês + sufixo ano
+                    Math.floor(concurso / 100) + (concurso % 100) // partes do concurso
+                ];
+                
+                somas.forEach(soma => {
+                    if (soma >= 1 && soma <= 60) {
+                        numerosBase.push(soma);
+                        numerosImportantes.push(soma);
+                    }
+                });
+            }
+            
+            // R11 - Diferença Absoluta entre Componentes
+            if (regras.includes('r11-diferenca')) {
+                const diferencas = [
+                    Math.abs(premio - mes),
+                    Math.abs(dia - (ano % 100)),
+                    Math.abs(concurso % 100 - Math.floor(concurso / 100))
+                ];
+                
+                diferencas.forEach(diff => {
+                    if (diff >= 1 && diff <= 60) {
+                        numerosBase.push(diff);
+                        numerosImportantes.push(diff);
+                    }
+                });
+            }
+            
+            // R12 - Ajustes Fixos (±1 e ±2) em Números Centrais
+            if (regras.includes('r12-ajustes')) {
+                const numerosCentralis = [premio, dia, mes];
+                const ajustes = [-2, -1, 1, 2];
+                
+                numerosCentralis.forEach(base => {
+                    ajustes.forEach(ajuste => {
+                        const resultado = base + ajuste;
+                        if (resultado >= 1 && resultado <= 60) {
+                            numerosBase.push(resultado);
+                        }
+                    });
+                });
+            }
+            
+            // R13 - Reverso de Dois Dígitos
+            if (regras.includes('r13-reverso')) {
+                const numerosParaReverter = [premio, dia, mes, ano % 100];
+                
+                numerosParaReverter.forEach(num => {
+                    if (num >= 10) {
+                        const numStr = num.toString().padStart(2, '0');
+                        const reverso = parseInt(numStr.split('').reverse().join(''));
+                        if (reverso <= 60) {
+                            numerosBase.push(reverso);
+                            numerosImportantes.push(reverso);
+                        }
+                    }
+                });
+            }
+            
+            // R14 - Uso da Soma dos Dígitos do Ano/Mês como Operador
+            if (regras.includes('r14-operador')) {
+                const somaDigitosAno = ano.toString().split('').map(d => parseInt(d)).reduce((sum, d) => sum + d, 0);
+                const somaDigitosMes = mes.toString().split('').map(d => parseInt(d)).reduce((sum, d) => sum + d, 0);
+                
+                const operacoes = [
+                    dia - somaDigitosAno,
+                    premio + somaDigitosMes,
+                    mes * somaDigitosAno
+                ];
+                
+                operacoes.forEach(resultado => {
+                    const num = Math.abs(resultado) % 60 || 60;
+                    if (num >= 1 && num <= 60) {
+                        numerosBase.push(num);
+                    }
+                });
+            }
+            
+            // R15 - Múltiplos de 10 Relacionados ao Prêmio
+            if (regras.includes('r15-multiplos')) {
+                const multiplos = [10, 20, 30, 40, 50, 60];
+                const premioDecena = Math.floor(premio / 10) * 10;
+                
+                // Incluir múltiplo mais próximo do prêmio
+                if (premioDecena >= 10 && premioDecena <= 60) {
+                    numerosBase.push(premioDecena);
+                }
+                
+                // Adicionar alguns múltiplos aleatoriamente
+                const multiploAleatorio = multiplos[Math.floor(Math.random() * multiplos.length)];
+                numerosBase.push(multiploAleatorio);
+            }
+            
+            // R16 - Vizinhos (±1) dos Resultados Importantes  
+            if (regras.includes('r16-vizinhos')) {
+                // Será aplicado após gerar números importantes
+                numerosImportantes.forEach(importante => {
+                    const vizinhos = [importante - 1, importante + 1];
+                    vizinhos.forEach(viz => {
+                        if (viz >= 1 && viz <= 60) {
+                            numerosBase.push(viz);
+                        }
+                    });
+                });
+            }
             
             // Adicionar números aleatórios extras para garantir variação
             for (let i = 0; i < 3; i++) {
@@ -1546,7 +1845,35 @@ Exemplos: 01, 02, 03, 04, 05, 06"
             }
             
             // Remover duplicatas
-            const numerosValidos = [...new Set(numerosBase)].filter(n => n >= 1 && n <= 60);
+            let numerosValidos = [...new Set(numerosBase)].filter(n => n >= 1 && n <= 60);
+            
+            // R17 - Filtragem de Jogos "Impossíveis"
+            if (regras.includes('r17-filtragem')) {
+                // Evitar sequências óbvias (1,2,3,4,5,6 ou 6 consecutivos)
+                const temSequenciaCompleta = numerosValidos.some((num, index) => {
+                    if (index <= numerosValidos.length - 6) {
+                        const sequencia = numerosValidos.slice(index, index + 6);
+                        const isConsecutiva = sequencia.every((n, i) => i === 0 || n === sequencia[i-1] + 1);
+                        return isConsecutiva;
+                    }
+                    return false;
+                });
+                
+                if (temSequenciaCompleta) {
+                    // Remover alguns números da sequência e substituir por aleatórios
+                    numerosValidos = numerosValidos.filter((_, index) => Math.random() > 0.3);
+                }
+                
+                // Evitar muitos números do último sorteio
+                if (numerosSorteados.size > 0) {
+                    const numerosDoUltimoSorteio = numerosValidos.filter(n => numerosSorteados.has(n));
+                    if (numerosDoUltimoSorteio.length > 2) {
+                        // Manter apenas 1-2 números do último sorteio
+                        numerosValidos = numerosValidos.filter(n => !numerosSorteados.has(n));
+                        numerosValidos.push(...numerosDoUltimoSorteio.slice(0, 2));
+                    }
+                }
+            }
             
             // Completar com números aleatórios
             const numerosDisponiveis = Array.from({length: 60}, (_, i) => i + 1)
@@ -1558,7 +1885,24 @@ Exemplos: 01, 02, 03, 04, 05, 06"
                 [numerosDisponiveis[i], numerosDisponiveis[j]] = [numerosDisponiveis[j], numerosDisponiveis[i]];
             }
             
-            const jogo = [...numerosValidos];
+            let jogo = [...numerosValidos];
+            
+            // R18 - Ordem de Prioridade na Geração dos Números
+            if (regras.includes('r18-prioridade')) {
+                // Reorganizar jogo seguindo prioridades:
+                // 1. Componentes diretos + soma dígitos concurso
+                // 2. Somas/diferenças
+                // 3. Ajustes ±2 do prêmio  
+                // 4. Reversos
+                // 5. Vizinhos e múltiplos de 10
+                // 6. Demais combinações
+                
+                const prioridade1 = jogo.filter(n => [dia, mes, ano%100, premio].includes(n));
+                const prioridade2 = jogo.filter(n => !prioridade1.includes(n) && numerosImportantes.includes(n));
+                const prioridade3 = jogo.filter(n => !prioridade1.includes(n) && !prioridade2.includes(n));
+                
+                jogo = [...prioridade1, ...prioridade2, ...prioridade3];
+            }
             
             // Aplicar estratégia
             let targetPares, targetImpares;
@@ -1604,7 +1948,24 @@ Exemplos: 01, 02, 03, 04, 05, 06"
                 }
             }
             
-            // NÃO ordenar aqui - manter ordem de geração
+            // R19 - Formato Otimizado
+            if (regras.includes('r19-formato')) {
+                // Garantir que o jogo final tenha exatamente a quantidade correta
+                jogo = jogo.slice(0, quantidade);
+                
+                // Remover duplicatas finais (caso tenham passado)
+                jogo = [...new Set(jogo)];
+                
+                // Se ficou com menos números, completar
+                while (jogo.length < quantidade && numerosDisponiveis.length > 0) {
+                    const numeroAdicional = numerosDisponiveis.splice(
+                        Math.floor(Math.random() * numerosDisponiveis.length), 1
+                    )[0];
+                    jogo.push(numeroAdicional);
+                }
+            }
+            
+            // NÃO ordenar aqui - manter ordem de geração (R19 controla a ordenação final)
             return jogo;
         }
 
