@@ -6,6 +6,9 @@
     <title>Mega Sena - Gerador Manual + Minimalista</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
+		<link rel="stylesheet" href="./css/styles.css">
+		<script src="./js/scripts.js"></script>
+
     <script>
         tailwind.config = {
             theme: {
@@ -321,9 +324,39 @@
             gap: 4px;
         }
 
+        .numero-padrao {
+            width: 30px;
+            height: 30px;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 12px;
+            margin: 1px;
+        }
+
+        .numero-ausente {
+            width: 30px;
+            height: 30px;
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 12px;
+            margin: 1px;
+        }
+
         @media (max-width: 768px) {
             .numero-mega { width: 45px; height: 45px; font-size: 14px; }
             .numero-drop { width: 30px; height: 30px; font-size: 12px; }
+            .numero-padrao { width: 28px; height: 28px; font-size: 11px; }
+            .numero-ausente { width: 28px; height: 28px; font-size: 11px; }
         }
     </style>
 </head>
@@ -331,7 +364,7 @@
     <div class="container mx-auto px-4 py-6">
         <!-- Header -->
         <div class="text-center mb-6">
-            <h1 class="text-4xl font-bold text-megasena mb-2">🍀 MEGA SENA</h1>
+		<img src="https://i.postimg.cc/VkSZr7z6/megasena.png" alt="Mega Sena" class="logo"><br />
             <p class="text-gray-600">Gerador Completo: Manual + Minimalista com 19 Regras Avançadas</p>
             
             <!-- Botões de Navegação -->
@@ -423,7 +456,7 @@
                             </div>
                             <div class="text-sm text-green-700">
                                 <strong>Última atualização:</strong> <span id="ultimaAtualizacao">-</span><br>
-                                <strong>Total de seções:</strong> 2 (Manual + Minimalista)
+                                <strong>Total de seções:</strong> 3 (Manual + Minimalista + Análise)
                             </div>
                         </div>
                     </div>
@@ -947,7 +980,115 @@ Exemplos: 01, 02, 03, 04, 05, 06"
             </div>
         </div>
 
-        <!-- Segunda linha: MEUS JOGOS ocupando toda a largura -->
+        <!-- Segunda linha: SEÇÃO 3 - ANÁLISE DE PADRÕES -->
+        <div class="bg-white rounded-lg shadow-lg p-6 border-2 border-indigo-500 mb-6">
+            <h3 class="text-xl font-bold text-indigo-600 mb-4">📊 SEÇÃO 3: ANÁLISE DE PADRÕES E NÚMEROS AUSENTES</h3>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <!-- Padrões do Último Sorteio -->
+                <div class="space-y-4">
+                    <!-- Padrão Ordem Crescente -->
+                    <div class="p-4 bg-gradient-to-br from-green-50 to-emerald-50 border-2 border-green-400 rounded-lg">
+                        <div class="text-center mb-3">
+                            <div class="text-sm font-bold text-green-800 mb-2">📈 Padrão do Último Concurso (Ordem Crescente)</div>
+                            <div id="numerosOrdemCrescente" class="flex justify-center gap-2 mb-3">
+                                <!-- Números em ordem crescente aparecerão aqui -->
+                            </div>
+                            <div class="bg-white p-3 rounded-lg border border-green-300">
+                                <div class="text-xs text-green-700 mb-1">PADRÃO DE POSIÇÕES:</div>
+                                <div id="padraoOrdemCrescente" class="text-lg font-bold text-green-900 bg-green-100 p-2 rounded">
+                                    [Carregando...]
+                                </div>
+                            </div>
+                            <div class="mt-2 text-center">
+                                <span id="digitosUnicosOrdemCrescente" class="text-sm font-bold text-green-800 bg-green-200 px-2 py-1 rounded">
+                                    <!-- Dígitos únicos aparecerão aqui -->
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Padrão Ordem de Sorteio -->
+                    <div class="p-4 bg-gradient-to-br from-blue-50 to-cyan-50 border-2 border-blue-400 rounded-lg">
+                        <div class="text-center mb-3">
+                            <div class="text-sm font-bold text-blue-800 mb-2">🎯 Padrão do Último Concurso (Ordem de Sorteio)</div>
+                            <div id="numerosOrdemSorteio" class="flex justify-center gap-2 mb-3">
+                                <!-- Números em ordem de sorteio aparecerão aqui -->
+                            </div>
+                            <div class="bg-white p-3 rounded-lg border border-blue-300">
+                                <div class="text-xs text-blue-700 mb-1">PADRÃO DE POSIÇÕES:</div>
+                                <div id="padraoOrdemSorteio" class="text-lg font-bold text-blue-900 bg-blue-100 p-2 rounded">
+                                    [Carregando...]
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Números Ausentes -->
+                <div class="p-4 bg-gradient-to-br from-orange-50 to-amber-50 border-2 border-orange-400 rounded-lg">
+                    <div class="text-center mb-4">
+                        <div class="text-sm font-bold text-orange-800 mb-3">🔍 Números que NÃO Saíram</div>
+                        
+                        <!-- Seletor de Jogos -->
+                        <div class="mb-4">
+                            <label class="block text-xs font-medium text-orange-700 mb-2">Analisar últimos:</label>
+                            <select id="ultimosJogosSelect" class="w-full px-3 py-2 border border-orange-300 rounded-lg text-sm bg-white focus:ring-2 focus:ring-orange-400">
+                                <option value="6" selected>6 jogos</option>
+                                <option value="3">3 jogos</option>
+                                <option value="5">5 jogos</option>
+                                <option value="7">7 jogos</option>
+                                <option value="10">10 jogos</option>
+                                <option value="15">15 jogos</option>
+                                <option value="20">20 jogos</option>
+                                <option value="25">25 jogos</option>
+                                <option value="30">30 jogos</option>
+                                <option value="40">40 jogos</option>
+                                <option value="50">50 jogos</option>
+                                <option value="60">60 jogos (máximo)</option>
+                            </select>
+                        </div>
+                        
+                        <!-- Números Ausentes por Categoria -->
+                        <div class="space-y-3">
+                            <!-- Baixos (01-20) -->
+                            <div class="bg-white p-3 rounded-lg border border-red-300">
+                                <div class="text-xs font-bold text-red-800 mb-2">🔴 BAIXOS (01-20):</div>
+                                <div id="numerosBaixos" class="flex flex-wrap justify-center gap-1 min-h-[30px]">
+                                    <span class="text-xs text-gray-500">Carregando...</span>
+                                </div>
+                            </div>
+                            
+                            <!-- Médios (21-40) -->
+                            <div class="bg-white p-3 rounded-lg border border-yellow-300">
+                                <div class="text-xs font-bold text-yellow-800 mb-2">🟡 MÉDIOS (21-40):</div>
+                                <div id="numerosMedios" class="flex flex-wrap justify-center gap-1 min-h-[30px]">
+                                    <span class="text-xs text-gray-500">Carregando...</span>
+                                </div>
+                            </div>
+                            
+                            <!-- Altos (41-60) -->
+                            <div class="bg-white p-3 rounded-lg border border-purple-300">
+                                <div class="text-xs font-bold text-purple-800 mb-2">🟣 ALTOS (41-60):</div>
+                                <div id="numerosAltos" class="flex flex-wrap justify-center gap-1 min-h-[30px]">
+                                    <span class="text-xs text-gray-500">Carregando...</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Resumo -->
+                        <div class="mt-4 p-2 bg-orange-100 border border-orange-300 rounded-lg">
+                            <div class="text-xs font-bold text-orange-800">📊 RESUMO:</div>
+                            <div id="resumoAusentes" class="text-xs text-orange-700 mt-1">
+                                Aguardando análise...
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Terceira linha: MEUS JOGOS ocupando toda a largura -->
         <div class="space-y-6">
             <!-- Resumo e Controles -->
             <div class="bg-white rounded-lg shadow-lg p-6 border-2 border-megasena">
@@ -1004,6 +1145,16 @@ Exemplos: 01, 02, 03, 04, 05, 06"
         let numerosSorteados = new Set();
         let permitirNumerosSorteados = false;
         
+        // Dados dos últimos 6 jogos para análise
+        const ultimosJogosData = [
+            [6, 7, 11, 15, 22, 25, 31],
+            [4, 8, 12, 17, 24, 27, 29],
+            [3, 5, 20, 24, 25, 26, 30],
+            [2, 3, 6, 13, 19, 20, 24],
+            [6, 8, 9, 11, 13, 15, 30],
+            [1, 4, 12, 15, 16, 22, 25]
+        ];
+        
         const sistemaValores = {
             valorSimples: 6.00,
             multiplicadores: {
@@ -1055,7 +1206,8 @@ Exemplos: 01, 02, 03, 04, 05, 06"
             numero: 2903,
             dataApuracao: "20/01/2025",
             dataProximoConcurso: "23/01/2025",
-            listaDezenas: ["20", "24", "27", "46", "50", "54"],
+            listaDezenas: ["06", "07", "11", "15", "22", "25", "31"], // Último sorteio real
+            listaDezenasSorteio: ["25", "07", "22", "06", "11", "31", "15"], // Ordem de sorteio simulada
             acumulado: true,
             valorEstimadoProximoConcurso: 65000000.00,
             listaRateioPremio: [
@@ -1171,8 +1323,130 @@ Exemplos: 01, 02, 03, 04, 05, 06"
             analisarParesImparesTempoReal(numeros);
             identificarNumerosSorteados(numeros);
             exibirNumerosSorteados(numeros);
+            analisarPadroesUltimoSorteio(numeros);
+            analisarNumerosAusentes();
             
             document.getElementById('ultimoResultado').classList.remove('hidden');
+        }
+
+        // ===== NOVA FUNCIONALIDADE: ANÁLISE DE PADRÕES =====
+        function analisarPadroesUltimoSorteio(numeros) {
+            if (!numeros || numeros.length === 0) return;
+            
+            // Converter para números
+            const numerosInt = numeros.map(n => parseInt(n));
+            
+            // ORDEM CRESCENTE: Números ordenados do menor para o maior
+            const numerosOrdenados = [...numerosInt].sort((a, b) => a - b);
+            
+            // Exibir números ordem crescente
+            const divOrdemCrescente = document.getElementById('numerosOrdemCrescente');
+            divOrdemCrescente.innerHTML = numerosOrdenados.map(num => 
+                `<span class="numero-padrao">${num.toString().padStart(2, '0')}</span>`
+            ).join('');
+            
+            // Calcular padrão ordem crescente (posições 1-4)
+            const padraoOrdemCrescente = calcularPadraoPosicoes(numerosOrdenados);
+            document.getElementById('padraoOrdemCrescente').textContent = `[${padraoOrdemCrescente.join(' ')}]`;
+            
+            // Calcular dígitos únicos com base nos dados reais
+            const digitosUnicos = calcularDigitosUnicosResultado(numerosOrdenados);
+            document.getElementById('digitosUnicosOrdemCrescente').textContent = `${digitosUnicos}d`;
+            
+            // ORDEM DE SORTEIO: Simular ordem diferente (se não temos a ordem real)
+            let numerosOrdemSorteio;
+            if (ultimoResultado && ultimoResultado.listaDezenasSorteio) {
+                // Usar ordem de sorteio real se disponível
+                numerosOrdemSorteio = ultimoResultado.listaDezenasSorteio.map(n => parseInt(n));
+            } else {
+                // Simular uma ordem de sorteio diferente da crescente
+                numerosOrdemSorteio = [...numerosInt];
+                // Embaralhar para simular ordem de sorteio
+                for (let i = numerosOrdemSorteio.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [numerosOrdemSorteio[i], numerosOrdemSorteio[j]] = [numerosOrdemSorteio[j], numerosOrdemSorteio[i]];
+                }
+            }
+            
+            // Exibir números ordem de sorteio
+            const divOrdemSorteio = document.getElementById('numerosOrdemSorteio');
+            divOrdemSorteio.innerHTML = numerosOrdemSorteio.map(num => 
+                `<span class="numero-padrao">${num.toString().padStart(2, '0')}</span>`
+            ).join('');
+            
+            // Calcular padrão ordem de sorteio (posições 1-4)
+            const padraoOrdemSorteio = calcularPadraoPosicoes(numerosOrdemSorteio);
+            document.getElementById('padraoOrdemSorteio').textContent = `[${padraoOrdemSorteio.join(' ')}]`;
+        }
+        
+        function calcularPadraoPosicoes(numeros) {
+            return numeros.map(num => {
+                if (num >= 1 && num <= 20) return 1;
+                if (num >= 21 && num <= 30) return 2;
+                if (num >= 31 && num <= 39) return 3;
+                if (num >= 40 && num <= 60) return 4;
+                return 0;
+            });
+        }
+        
+        function calcularDigitosUnicosResultado(numeros) {
+            const digitosUsados = new Set();
+            numeros.forEach(numero => {
+                const numeroStr = numero.toString();
+                for (let digito of numeroStr) {
+                    digitosUsados.add(digito);
+                }
+            });
+            return digitosUsados.size;
+        }
+
+        function analisarNumerosAusentes() {
+            const ultimosJogos = parseInt(document.getElementById('ultimosJogosSelect').value);
+            
+            // Consolidar números que saíram nos últimos jogos
+            const numerosSairam = new Set();
+            for (let i = 0; i < Math.min(ultimosJogos, ultimosJogosData.length); i++) {
+                ultimosJogosData[i].forEach(num => numerosSairam.add(num));
+            }
+            
+            // Identificar números ausentes (1-60 para Mega Sena)
+            const numerosAusentes = [];
+            for (let i = 1; i <= 60; i++) {
+                if (!numerosSairam.has(i)) {
+                    numerosAusentes.push(i);
+                }
+            }
+            
+            // Classificar em baixos, médios, altos para Mega Sena
+            const baixos = numerosAusentes.filter(n => n >= 1 && n <= 20);
+            const medios = numerosAusentes.filter(n => n >= 21 && n <= 40);
+            const altos = numerosAusentes.filter(n => n >= 41 && n <= 60);
+            
+            // Exibir resultados
+            exibirNumerosAusentes('numerosBaixos', baixos);
+            exibirNumerosAusentes('numerosMedios', medios);
+            exibirNumerosAusentes('numerosAltos', altos);
+            
+            // Atualizar resumo
+            const resumo = `
+                Total ausentes: ${numerosAusentes.length} | 
+                Baixos: ${baixos.length} | 
+                Médios: ${medios.length} | 
+                Altos: ${altos.length} | 
+                Analisando últimos ${ultimosJogos} jogos
+            `;
+            document.getElementById('resumoAusentes').textContent = resumo;
+        }
+        
+        function exibirNumerosAusentes(elementId, numeros) {
+            const elemento = document.getElementById(elementId);
+            if (numeros.length === 0) {
+                elemento.innerHTML = '<span class="text-xs text-gray-500">Nenhum</span>';
+            } else {
+                elemento.innerHTML = numeros.map(num => 
+                    `<span class="numero-ausente">${num.toString().padStart(2, '0')}</span>`
+                ).join('');
+            }
         }
 
         function analisarParesImparesTempoReal(numeros) {
@@ -1334,6 +1608,9 @@ Exemplos: 01, 02, 03, 04, 05, 06"
             // Minimalista
             document.getElementById('gerarJogosMin').addEventListener('click', gerarJogosMinimalistas);
             document.getElementById('adicionarTodosMin').addEventListener('click', adicionarTodosJogosMinimalistas);
+            
+            // Análise de padrões
+            document.getElementById('ultimosJogosSelect').addEventListener('change', analisarNumerosAusentes);
             
             // Controles
             document.getElementById('mostrarOrdemCrescente').addEventListener('change', atualizarVisualizacaoJogos);
